@@ -24,8 +24,11 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
     expect(readability.heroHeight).toBeGreaterThanOrEqual(380);expect(readability.smallParagraphs).toEqual([]);expect(readability.smallButtons).toEqual([]);
    }
    await expect(page.locator('nav a')).toHaveCount(4);
+   await expect(page.locator('nav a')).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);
+   await expect(page.locator('nav a[aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
+   await expect(page.locator('nav .nav-icon[aria-hidden="true"]')).toHaveCount(4);
    for (const img of await page.locator('img[src]').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
-   if(width<=760){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
+   if(width<=1200){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
   }
   expect(errors).toEqual([]);
  });
@@ -192,6 +195,27 @@ test('premium header provides working desktop actions and accessible mobile menu
  await page.keyboard.press('Escape');await expect(page.locator('#main-nav')).not.toBeVisible();await expect(page.getByRole('button',{name:'เปิดเมนู'})).toBeFocused();
  await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.mouse.click(8,500);await expect(page.locator('#main-nav')).not.toBeVisible();
  await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.setViewportSize({width:1440,height:900});await expect(page.locator('.menu-toggle')).toHaveAttribute('aria-expanded','false');
+});
+
+test('navigation stays readable and separates the call action at desktop and tablet breakpoints',async({page})=>{
+ for(const width of [1024,1200,1201,1280,1440]){
+  await page.setViewportSize({width,height:900});
+  for(const route of ['index','services','projects','contact']){
+   await page.goto(path(`${route}.html`));await page.evaluate(()=>document.fonts.ready);
+   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+   if(width<=1200){await page.getByRole('button',{name:'เปิดเมนู'}).click();}
+   const links=page.locator('#main-nav .nav-link');await expect(links).toHaveCount(4);
+   for(const link of await links.all()){
+    const layout=await link.evaluate(e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,height:r.height,overflow:e.scrollWidth>e.clientWidth};});
+    expect(layout.left).toBeGreaterThanOrEqual(12);expect(layout.right).toBeLessThanOrEqual(width-12);expect(layout.height).toBeGreaterThanOrEqual(48);expect(layout.overflow).toBe(false);
+   }
+   expect(await page.locator('#main-nav [aria-current]').evaluate(e=>getComputedStyle(e).backgroundColor)).toBe('rgb(234, 247, 255)');
+   if(width>1200){
+    const geometry=await page.evaluate(()=>{const brand=document.querySelector('header .brand').getBoundingClientRect();const nav=document.querySelector('#main-nav').getBoundingClientRect();const call=document.querySelector('.header-contact').getBoundingClientRect();return {brandRight:brand.right,navLeft:nav.left,navRight:nav.right,callLeft:call.left,callRight:call.right};});
+    expect(geometry.navLeft-geometry.brandRight).toBeGreaterThanOrEqual(12);expect(geometry.callLeft-geometry.navRight).toBeGreaterThanOrEqual(12);expect(geometry.callRight).toBeLessThanOrEqual(width-20);
+   }
+  }
+ }
 });
 
 test('homepage reference layout uses five service cards and a 3 plus 2 gallery',async({page})=>{
