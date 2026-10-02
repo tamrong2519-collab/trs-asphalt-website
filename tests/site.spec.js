@@ -10,6 +10,8 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
    await expect(page.locator('h1')).toBeVisible();
    await expect(page.locator('main')).toBeVisible();
    await page.evaluate(()=>document.fonts.ready);
+   expect(await page.locator('body').evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Kanit');
+   expect(await page.evaluate(()=>document.fonts.check('16px Kanit'))).toBe(true);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
    if(width<=760){
     const readability=await page.evaluate(()=>({
