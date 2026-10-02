@@ -29,7 +29,7 @@ const serviceIcon = s => icon(s.id==='asphalt'||s.id==='marking'?'road':s.id==='
 const call = (cls='button primary',label='') => phone ? `<a class="${cls}" href="tel:${phone}">${icon('phone')}${label || escape(b.phone)}</a>` : `<a class="${cls}" href="/contact.html">สอบถามช่องทางโทร</a>`;
 const lineButton = (label='LINE ส่งรูปหน้างาน',cls='button line') => line ? `<a class="${cls}" href="${escape(line)}" target="_blank" rel="noopener noreferrer"><span class="line-symbol" aria-hidden="true">LINE</span>${label}</a>` : '<a class="button line" href="/contact.html">สอบถามช่องทาง LINE</a>';
 const quote = `<a class="button primary" href="/contact.html#estimate">ขอประเมินราคา ${arrow}</a>`;
-const brand = `<a class="brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.svg" alt="" width="72" height="72"><span>${escape(b.name)}<small>CONSTRUCTION</small></span></a>`;
+const brand = `<a class="brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.webp" alt="" width="72" height="72"><span>${escape(b.name)}<small>CONSTRUCTION</small></span></a>`;
 const scene = (n,alt,cls='') => `<div class="scene scene-${n} ${cls}"><img src="/images/work-scenes.webp" alt="${escape(alt)}" width="1536" height="1024" loading="lazy"></div>`;
 const card = s => `<a class="service-card" href="/services.html#${s.id}">${scene(s.scene,`ภาพประกอบ${s.title}`)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${s.title}</h3><p>${s.description}</p></div><span class="card-arrow">${arrow}</span></div></a>`;
 const sectionHead = (title,copy='',action='') => `<div class="section-heading"><h2>${title}</h2>${copy?`<p>${copy}</p>`:''}${action}</div>`;

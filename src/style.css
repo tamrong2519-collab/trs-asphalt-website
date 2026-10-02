@@ -291,3 +291,6 @@ body[data-page="contact"] .service-area{padding:28px 0}
  .slide-dots button{width:30px;min-width:30px}
 }
 @media(max-width:360px){.slider-controls{gap:4px}.slide-dots button{width:26px;min-width:26px}}
+
+/* Brand artwork is displayed without an added frame or background. */
+.brand img{object-fit:contain;border:0;border-radius:0;box-shadow:none;background:transparent}
