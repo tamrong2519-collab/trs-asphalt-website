@@ -150,7 +150,7 @@ test('homepage work photos match the four service cards and automatic slides',as
   const card=page.locator(`.home-services a[href$="#${id}"] img`);
   await expect(card).toHaveAttribute('src',path(`images/${image}.webp`));
   await page.locator(`[data-slide="${index+1}"]`).click();
-  await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${image}.webp`));
+  await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${id==='gravel'?'gravel-slide':image}.webp`));
   await page.locator('.hero-scene img').evaluate(i=>i.decode());
   expect(await page.locator('.hero-scene img').evaluate(i=>getComputedStyle(i).objectFit)).toBe('cover');
  }
