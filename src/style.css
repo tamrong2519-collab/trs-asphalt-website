@@ -176,3 +176,27 @@
  .contact-email{display:grid;grid-template-columns:46px minmax(0,1fr);gap:10px 14px;align-items:center}
  .contact-email>div{display:contents}.contact-email h3{margin:0}.contact-email a{grid-column:1/-1;display:block;font-size:18px;overflow-wrap:normal;padding-top:8px}
 }
+
+/* Refine only mobile telephone and LINE actions; retain their colors and placement. */
+@media(max-width:760px){
+ .floating-contact{gap:16px}
+ .contact-panel .actions{gap:16px}
+ .float-button,
+ .contact-panel .actions>.button,
+ #estimate-result .button.line{
+  display:flex;align-items:center;justify-content:center;
+  height:52px;min-height:52px;
+  padding:12px 14px;gap:10px;
+  border-radius:14px;
+  font-size:18px;font-weight:700;line-height:1.4;
+  white-space:nowrap;flex-shrink:0;
+ }
+ .float-button{flex:1;min-width:0;flex-shrink:1}
+ .contact-panel .actions>.button{width:100%}
+ .floating-contact .float-button>.icon,
+ .contact-panel .actions>.button>.icon{width:24px;height:24px}
+ body:not([data-page="contact"]) main .button,
+ body:not([data-page="contact"]) .footer-phone{
+  scroll-margin-bottom:calc(100px + env(safe-area-inset-bottom));
+ }
+}

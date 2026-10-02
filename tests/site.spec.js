@@ -74,3 +74,30 @@ for(const width of [320,375,390,430]){
   expect(layout[0].bg).toBe('rgb(16, 45, 103)');expect(layout[1].bg).toBe('rgb(0, 168, 61)');
  });
 }
+
+for(const width of [320,375,390,430]){
+ test(`consistent mobile call and LINE actions across all pages at ${width}px`,async({page})=>{
+  await page.setViewportSize({width,height:850});
+  for(const route of ['index','services','projects','contact']){
+   await page.goto(path(`${route}.html`));await page.evaluate(()=>document.fonts.ready);
+   const selector=route==='contact'?'.contact-panel .actions>.button':'.floating-contact .float-button';
+   const buttons=page.locator(selector);await expect(buttons).toHaveCount(2);
+   const geometry=await buttons.evaluateAll(items=>items.map(b=>{
+    const r=b.getBoundingClientRect(),s=getComputedStyle(b);
+    return {height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,align:s.alignItems,justify:s.justifyContent};
+   }));
+   for(const b of geometry){expect(b.height).toBe(52);expect(b.font).toBe(18);expect(b.radius).toBe(14);expect(b.wrap).toBe('nowrap');expect(b.overflow).toBe(false);expect(b.align).toBe('center');expect(b.justify).toBe('center');expect(b.left).toBeGreaterThanOrEqual(16);expect(b.right).toBeLessThanOrEqual(width-16);}
+   if(route==='contact'){
+    expect(geometry[1].top-geometry[0].bottom).toBe(16);await expect(page.locator('.floating-contact')).not.toBeVisible();
+   }else{
+    expect(geometry[1].left-geometry[0].right).toBe(16);
+    await page.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
+    const unobstructed=await page.evaluate(()=>document.querySelector('.footer-phone').getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
+    expect(unobstructed).toBe(true);
+    await page.locator('main .button').last().scrollIntoViewIfNeeded();
+    const clearButton=await page.locator('main .button').last().evaluate(b=>b.getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
+    expect(clearButton).toBe(true);
+   }
+  }
+ });
+}
