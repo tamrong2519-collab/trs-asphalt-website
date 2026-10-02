@@ -361,3 +361,35 @@ label,input,select,textarea{font-size:16px;line-height:1.7}
 }
 @media(max-width:360px){.hero-home .hero-content{padding-top:185px}.hero-home h1{font-size:34px}.hero-home .slide-dots button{width:25px;min-width:25px}.hero-home .slider-controls{gap:2px}}
 @media(prefers-reduced-motion:reduce){.hero-home *{animation:none!important;transition:none!important}}
+
+/* Premium shared header, keeping the existing logo and contact information. */
+.site-header{background:#fffffffa;border-bottom:1px solid #e6edf4;box-shadow:0 4px 20px #09245d08;backdrop-filter:blur(12px)}
+.site-header .header-inner{min-height:88px;gap:24px}
+.site-header .brand{gap:12px;font-size:24px;font-weight:700;letter-spacing:.2px;line-height:1.2}
+.site-header .brand img{width:64px;height:64px}
+.site-header .brand small{font-size:10px;letter-spacing:4.8px;font-weight:600;margin-top:5px}
+.site-header nav{gap:24px;font-size:16px;font-weight:600}
+.site-header nav>a{min-height:48px;display:flex;align-items:center;padding:12px 0;transition:color .2s}
+.site-header nav>a:hover{color:#009ee8}
+.site-header nav>a[aria-current]:after{height:2px;bottom:4px;border-radius:2px}
+.header-contact{display:flex;align-items:center;gap:10px}
+.site-header .header-contact .button{font-size:16px;font-weight:600;min-height:48px;padding:12px 16px;gap:9px;border-radius:9px;white-space:nowrap;box-shadow:none;line-height:1.5}
+.site-header .header-call{background:#102d67;color:white;border:0}
+.site-header .header-call:hover{background:#193e85}
+.site-header .header-contact .icon{width:20px;height:20px}
+.menu-icon{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;transition:transform .2s}
+.menu-toggle[aria-expanded=true] .menu-icon{transform:rotate(90deg)}
+@media(min-width:761px) and (max-width:1150px){
+ .site-header .header-inner{gap:18px}.site-header .brand{font-size:21px;gap:10px}.site-header .brand img{width:58px;height:58px}.site-header .brand small{font-size:9px;letter-spacing:3.8px}
+ .site-header nav{gap:18px;font-size:15px}.site-header .header-contact .button{padding:12px 13px;font-size:15px}
+ .site-header .header-contact .primary{display:none}
+}
+@media(max-width:760px){
+ .site-header .header-inner{min-height:72px;gap:12px}.site-header .brand{font-size:18px;gap:9px;letter-spacing:0}.site-header .brand img{width:50px;height:50px}.site-header .brand small{font-size:8px;letter-spacing:3px;margin-top:4px}
+ .header-contact{display:none}.site-header .menu-toggle{display:grid;place-items:center;width:46px;height:46px;min-width:46px;min-height:46px;padding:10px;border:1px solid #dce6f0;background:#f7faff;border-radius:11px;color:#102d67;flex-shrink:0}
+ .site-header nav{top:72px;left:12px;right:12px;margin:8px 0 0;padding:10px;border-radius:14px;border:1px solid #e1eaf3;background:#fff;box-shadow:0 16px 40px #09245d1c;gap:5px;font-size:18px;max-height:calc(100dvh - 96px);overflow-y:auto}
+ .site-header nav>a{min-height:54px;padding:14px 16px;border-radius:9px;line-height:1.5}
+ .site-header nav>a[aria-current]{background:#edf8ff;color:#0088ca}.site-header nav>a[aria-current]:after{display:none}
+}
+@media(max-width:360px){.site-header .brand{font-size:16px;gap:8px}.site-header .brand img{width:46px;height:46px}.site-header .brand small{letter-spacing:2.5px;font-size:7px}}
+@media(prefers-reduced-motion:reduce){.site-header *{transition:none!important}}

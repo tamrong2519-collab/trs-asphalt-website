@@ -171,3 +171,17 @@ test('premium hero fades between slides and cleans up rapid transitions',async({
  await expect(page.locator('.hero-transition')).toHaveCount(0);
  await expect(page.locator('.slide-count')).toHaveText('05 / 05');
 });
+
+test('premium header provides working desktop actions and accessible mobile menu',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto(path('index.html'));
+ await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
+ await expect(page.locator('.header-contact .primary')).toHaveAttribute('href',path('contact.html#estimate'));
+ expect(await page.locator('.header-inner').evaluate(e=>e.getBoundingClientRect().height)).toBe(88);
+ await page.evaluate(()=>scrollTo(0,600));expect(await page.locator('.site-header').evaluate(e=>e.getBoundingClientRect().top)).toBe(0);
+ await page.setViewportSize({width:320,height:900});await page.evaluate(()=>scrollTo(0,0));
+ expect(await page.locator('.header-inner').evaluate(e=>e.getBoundingClientRect().height)).toBe(72);
+ await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('#main-nav')).toBeVisible();
+ await page.keyboard.press('Escape');await expect(page.locator('#main-nav')).not.toBeVisible();await expect(page.getByRole('button',{name:'เปิดเมนู'})).toBeFocused();
+ await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.mouse.click(8,500);await expect(page.locator('#main-nav')).not.toBeVisible();
+ await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.setViewportSize({width:1440,height:900});await expect(page.locator('.menu-toggle')).toHaveAttribute('aria-expanded','false');
+});
