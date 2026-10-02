@@ -7,16 +7,18 @@ export function initializeSlider({ scene, services, image }) {
  const sceneLayer = hero.querySelector('.hero-scene');
  const dots = [...hero.querySelectorAll('[data-slide]')];
  const play = hero.querySelector('.slide-play');
+ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+ let transitionVersion = 0;
  const slides = [
   { title: title.innerHTML, text: subtitle.innerHTML },
   { title: 'ลานจอดรถ<br><span>หินคลุก</span>', text: 'ปรับพื้นที่และบดอัด ให้เหมาะกับการใช้งานของคุณ' },
   { title: 'ปรับพื้นที่ด้วย<br><span>หินเกล็ด</span>', text: 'งานทางเข้าออกและลานอเนกประสงค์ เลือกวัสดุให้เหมาะกับพื้นที่' },
   { title: 'งานลูกระนาด<br><span>ยางมะตอย</span>', text: 'วางแผนตำแหน่งและรูปแบบตามสภาพหน้างาน' },
-  { title: 'งานตีเส้นจราจร<br><span>เทอร์โมพลาสติก</span>', text: 'เส้นแบ่งช่องจอดและเครื่องหมายบนพื้น เพื่อพื้นที่ที่เป็นระเบียบ' },
+  { title: 'ตีเส้นจราจร<br><span>คมชัด เป็นระเบียบ</span>', text: 'เส้นแบ่งช่องจอดและเครื่องหมายบนพื้น เพื่อพื้นที่ที่เป็นระเบียบ' },
  ];
  let index = 0;
  let timer;
- let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let paused = reducedMotion.matches;
  let hovering = false;
  let touchStart;
  hero.setAttribute('aria-roledescription', 'สไลด์');
@@ -32,15 +34,39 @@ export function initializeSlider({ scene, services, image }) {
   if (!paused && !document.hidden && !hovering && !hero.contains(document.activeElement)) timer = setInterval(() => show(index + 1), 6000);
  };
  const show = next => {
-  index = (next + slides.length) % slides.length;
+  const nextIndex = (next + slides.length) % slides.length;
+  if (nextIndex === index) return;
+  const version = ++transitionVersion;
+  hero.querySelector('.hero-transition')?.remove();
+  const outgoing = document.createElement('div');
+  outgoing.className = 'hero-transition';
+  outgoing.setAttribute('aria-hidden', 'true');
+  const snapshot = (index === 0 ? photo : sceneLayer).cloneNode(true);
+  snapshot.className = index === 0 ? 'hero-transition-photo' : 'hero-transition-scene';
+  snapshot.removeAttribute('fetchpriority');
+  outgoing.append(snapshot);
+  if (!reducedMotion.matches) hero.append(outgoing);
+  index = nextIndex;
   title.innerHTML = slides[index].title;
   subtitle.innerHTML = slides[index].text;
-  subtitle.classList.toggle('hero-services', index === 0);
+  subtitle.classList.remove('hero-services');
+  hero.querySelector('.slide-count').textContent = `${String(index + 1).padStart(2, '0')} / 05`;
   photo.hidden = index !== 0;
   sceneLayer.hidden = index === 0;
   sceneLayer.innerHTML = index ? (image ? image(services[index]) : scene(services[index].scene, `ภาพประกอบ${services[index].title}`)) : '';
   dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
   hero.dataset.activeSlide = String(index);
+  if (!reducedMotion.matches) {
+   const incoming = index ? sceneLayer.querySelector('img') : photo;
+   if (incoming) incoming.loading = 'eager';
+   const fade = () => {
+    if (version !== transitionVersion) return;
+    const animation = outgoing.animate([{opacity:1},{opacity:0}], {duration:750,easing:'ease-in-out',fill:'forwards'});
+    animation.onfinish = () => outgoing.remove();
+   };
+   if (incoming && !incoming.complete) incoming.decode().catch(()=>{}).then(fade); else fade();
+   for (const element of [title, subtitle]) element.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:600,easing:'ease-out'});
+  }
  };
  const select = next => { show(next); start(); };
  hero.querySelector('.slide-prev').addEventListener('click', () => select(index - 1));

@@ -157,3 +157,17 @@ test('homepage work photos match the four service cards and automatic slides',as
   expect(await page.locator('.hero-scene img').evaluate(i=>getComputedStyle(i).objectFit)).toBe('cover');
  }
 });
+
+test('premium hero fades between slides and cleans up rapid transitions',async({page})=>{
+ await page.goto(path('index.html'));await page.locator('.hero-image').evaluate(i=>i.decode());
+ await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
+ await expect(page.locator('.slide-count')).toHaveText('02 / 05');
+ await expect(page.locator('.hero-transition')).toHaveCount(1);
+ await expect(page.locator('.hero-transition')).toHaveCount(0);
+ await page.locator('[data-slide="2"]').click();await page.locator('[data-slide="3"]').click();
+ await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide','3');
+ await expect(page.locator('.hero-transition')).toHaveCount(0);
+ await page.emulateMedia({reducedMotion:'reduce'});await page.locator('[data-slide="4"]').click();
+ await expect(page.locator('.hero-transition')).toHaveCount(0);
+ await expect(page.locator('.slide-count')).toHaveText('05 / 05');
+});
