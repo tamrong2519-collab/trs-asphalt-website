@@ -49,7 +49,7 @@ export function initializeSlider({ scene, services, image }) {
   index = nextIndex;
   title.innerHTML = slides[index].title;
   subtitle.innerHTML = slides[index].text;
-  subtitle.classList.remove('hero-services');
+  subtitle.classList.toggle('hero-service-list', index === 0);
   hero.querySelector('.slide-count').textContent = `${String(index + 1).padStart(2, '0')} / 05`;
   photo.hidden = index !== 0;
   sceneLayer.hidden = index === 0;

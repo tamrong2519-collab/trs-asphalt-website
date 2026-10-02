@@ -173,7 +173,7 @@ test('premium hero fades between slides and cleans up rapid transitions',async({
 });
 
 test('premium header provides working desktop actions and accessible mobile menu',async({page})=>{
- await page.setViewportSize({width:1440,height:900});await page.goto(path('index.html'));
+ await page.setViewportSize({width:1440,height:900});await page.goto(path('services.html'));
  await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
  await expect(page.locator('.header-contact .primary')).toHaveAttribute('href',path('contact.html#estimate'));
  expect(await page.locator('.header-inner').evaluate(e=>e.getBoundingClientRect().height)).toBe(88);
@@ -184,4 +184,13 @@ test('premium header provides working desktop actions and accessible mobile menu
  await page.keyboard.press('Escape');await expect(page.locator('#main-nav')).not.toBeVisible();await expect(page.getByRole('button',{name:'เปิดเมนู'})).toBeFocused();
  await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.mouse.click(8,500);await expect(page.locator('#main-nav')).not.toBeVisible();
  await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.setViewportSize({width:1440,height:900});await expect(page.locator('.menu-toggle')).toHaveAttribute('aria-expanded','false');
+});
+
+test('homepage reference layout uses five service cards and a 3 plus 2 gallery',async({page})=>{
+ await page.setViewportSize({width:853,height:1280});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
+ await expect(page.locator('.home-services .service-card')).toHaveCount(5);await expect(page.locator('.sample-card')).toHaveCount(5);
+ await expect(page.locator('.header-contact a')).toHaveCount(1);await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
+ await expect(page.locator('main .cta')).toHaveCount(0);
+ const geometry=await page.evaluate(()=>{const hero=document.querySelector('.hero-home').getBoundingClientRect();const cards=[...document.querySelectorAll('.sample-card')].map(e=>e.getBoundingClientRect());return {ratio:hero.width/hero.height,rows:cards.map(e=>Math.round(e.top)),overflow:document.documentElement.scrollWidth>innerWidth};});
+ expect(geometry.ratio).toBeCloseTo(2.64,1);expect(geometry.rows[0]).toBe(geometry.rows[1]);expect(geometry.rows[1]).toBe(geometry.rows[2]);expect(geometry.rows[3]).toBe(geometry.rows[4]);expect(geometry.rows[3]).toBeGreaterThan(geometry.rows[0]);expect(geometry.overflow).toBe(false);
 });
