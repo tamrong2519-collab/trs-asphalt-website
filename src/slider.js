@@ -16,6 +16,21 @@ export function initializeSlider({ scene, services, image }) {
   { title: 'งานลูกระนาด<br><span>ยางมะตอย</span>', text: 'ทำลูกระนาดยางมะตอย เพื่อชะลอความเร็วในพื้นที่' },
   { title: 'ตีเส้นจราจร<br><span>คมชัด เป็นระเบียบ</span>', text: 'ตีเส้นถนนและช่องจอดรถด้วยสีเทอร์โมพลาสติก' },
  ];
+ // Reserve the tallest slide copy after fonts load, so automatic slides do not move the page.
+ const stabilizeCopy = () => {
+  if (!hero.classList.contains('hero-estimate')) return;
+  for (const [element, key] of [[title, 'title'], [subtitle, 'text']]) {
+   const probe = element.cloneNode(false);
+   probe.setAttribute('aria-hidden', 'true');
+   Object.assign(probe.style, {position:'absolute',visibility:'hidden',pointerEvents:'none',width:`${element.clientWidth}px`,minHeight:'0',height:'auto'});
+   element.parentElement.append(probe);
+   let height = 0;
+   for (const slide of slides) {probe.innerHTML = slide[key];height = Math.max(height, probe.getBoundingClientRect().height);}
+   probe.remove();element.style.minHeight = `${Math.ceil(height)}px`;
+  }
+ };
+ document.fonts.ready.then(stabilizeCopy);
+ window.addEventListener('resize', stabilizeCopy, {passive:true});
  let index = 0;
  let timer;
  let paused = reducedMotion.matches;
@@ -49,7 +64,7 @@ export function initializeSlider({ scene, services, image }) {
   index = nextIndex;
   title.innerHTML = slides[index].title;
   subtitle.innerHTML = slides[index].text;
-  subtitle.classList.toggle('hero-service-list', index === 0);
+  subtitle.classList.remove('hero-service-list');
   hero.querySelector('.slide-count').textContent = `${String(index + 1).padStart(2, '0')} / 05`;
   photo.hidden = index !== 0;
   sceneLayer.hidden = index === 0;
