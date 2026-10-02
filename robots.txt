@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tamrong2519-collab.github.io/trs-asphalt-website/sitemap.xml
