@@ -123,18 +123,22 @@ test('home hero advances automatically through all five slides and loops',async(
  await page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'}).click();await page.locator('header .brand').focus();await page.mouse.move(0,0);await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','1');
 });
 for(const width of [320,375,390,430]){
- test(`all five hero slides and controls fit at ${width}px`,async({page})=>{
+ test(`all five hero photos stay clear above readable copy and controls fit at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:950});await page.goto(path('index.html'));
   const hero=page.locator('.hero-home');
   for(const selector of ['.slide-prev','.slide-next']){
    const control=hero.locator(selector);await expect(control.locator('svg')).toHaveCount(1);
    const size=await control.boundingBox();expect(size.width).toBeGreaterThanOrEqual(44);expect(size.height).toBeGreaterThanOrEqual(44);
+   const photo=await hero.locator('.hero-image').boundingBox();expect(size.y+size.height).toBeLessThanOrEqual(photo.y+photo.height);
+   const floating=await page.locator('.floating-contact').boundingBox();expect(size.y+size.height).toBeLessThan(floating.y);
   }
   for(let index=0;index<5;index++){
    await page.locator(`[data-slide="${index}"]`).click();await expect(hero).toHaveAttribute('data-active-slide',String(index));
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    const within=await page.locator('.slider-controls').evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth});expect(within).toBe(true);
    for(const image of await hero.locator('img:visible').all()) await image.evaluate(i=>i.decode());
+   const composition=await hero.evaluate(e=>{const photo=e.querySelector(e.dataset.activeSlide==='0'?'.hero-image':'.hero-scene').getBoundingClientRect();return {photoHeight:photo.height,photoBottom:photo.bottom,titleTop:e.querySelector('h1').getBoundingClientRect().top};});
+   expect(composition.photoHeight).toBeGreaterThanOrEqual(230);expect(composition.titleTop-composition.photoBottom).toBeGreaterThanOrEqual(24);
   }
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','0');
   await page.getByRole('button',{name:'สไลด์ก่อนหน้า',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','4');
