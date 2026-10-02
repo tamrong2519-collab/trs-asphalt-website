@@ -23,9 +23,9 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
     expect(readability.heroFont).toBeGreaterThanOrEqual(34);expect(readability.heroFont).toBeLessThanOrEqual(44);
     expect(readability.heroHeight).toBeGreaterThanOrEqual(380);expect(readability.smallParagraphs).toEqual([]);expect(readability.smallButtons).toEqual([]);
    }
-   await expect(page.locator('nav a')).toHaveCount(4);
+   await expect(page.locator('#main-nav a')).toHaveCount(4);
    for (const img of await page.locator('img[src]').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
-   if(width<=760){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
+   if(width<=760){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('#main-nav')).toBeVisible();await page.locator('#main-nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
   }
   expect(errors).toEqual([]);
  });
@@ -55,7 +55,7 @@ test('gallery opens and closes an example photo',async({page})=>{
 test('phone and LINE buttons use confirmed contact details',async({page})=>{
  await page.goto(path('contact.html'));await expect(page.locator('.floating-contact a').first()).toHaveAttribute('href','tel:0622484089');
  await expect(page.locator('.floating-contact a').nth(1)).toHaveAttribute('href','https://line.me/ti/p/%40138wlldt');
- await expect(page.locator('a[href="mailto:tamrong2519@gmail.com"]')).toBeVisible();
+ await expect(page.locator('.contact-panel a[href="mailto:tamrong2519@gmail.com"]')).toBeVisible();
 });
 test('form message links to email without claiming an automatic submission',async({page})=>{
  await page.goto(path('contact.html#estimate'));await page.locator('#customer').fill('คุณทดสอบ');await page.locator('#phone').fill('0622484089');await page.locator('#service').selectOption('marking');await page.locator('#location').fill('ชลบุรี');
@@ -104,12 +104,13 @@ for(const width of [320,375,390,430]){
  });
 }
 
-test('contact reference layout keeps estimate form compact and accessible',async({page})=>{
- await page.goto(path('contact.html'));await expect(page.locator('#estimate-form')).not.toBeVisible();
- await expect(page.locator('.contact-photo')).toBeVisible();await expect(page.locator('.info-card')).toHaveCount(3);
- await page.locator('#estimate summary').click();await expect(page.locator('#estimate-form')).toBeVisible();
- await page.locator('#estimate summary').click();await expect(page.locator('#estimate-form')).not.toBeVisible();
- await page.goto(path('contact.html#estimate'));await expect(page.locator('#estimate-form')).toBeVisible();
+test('contact reference layout shows estimate form beside contact information',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto(path('contact.html'));
+ await expect(page.locator('#estimate-form')).toBeVisible();await expect(page.locator('.contact-panel')).toBeVisible();
+ const layout=await page.locator('.contact-layout').evaluate(e=>{const a=e.children[0].getBoundingClientRect(),b=e.children[1].getBoundingClientRect();return {left:a.right,right:b.left};});
+ expect(layout.right).toBeGreaterThan(layout.left);
+ await page.setViewportSize({width:375,height:900});
+ expect(await page.locator('.contact-layout').evaluate(e=>e.children[1].getBoundingClientRect().top>=e.children[0].getBoundingClientRect().bottom)).toBe(true);
 });
 
 test('home hero advances automatically through all five slides and loops',async({page})=>{
