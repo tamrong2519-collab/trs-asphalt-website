@@ -56,7 +56,7 @@ test('phone and LINE buttons use confirmed contact details',async({page})=>{
  await expect(page.locator('a[href="mailto:tamrong2519@gmail.com"]')).toBeVisible();
 });
 test('form message links to email without claiming an automatic submission',async({page})=>{
- await page.goto(path('contact.html'));await page.locator('#customer').fill('คุณทดสอบ');await page.locator('#phone').fill('0622484089');await page.locator('#service').selectOption('marking');await page.locator('#location').fill('ชลบุรี');
+ await page.goto(path('contact.html#estimate'));await page.locator('#customer').fill('คุณทดสอบ');await page.locator('#phone').fill('0622484089');await page.locator('#service').selectOption('marking');await page.locator('#location').fill('ชลบุรี');
  await page.getByRole('button',{name:'สร้างข้อความขอประเมินราคา'}).click();await expect(page.locator('#email-message')).toHaveAttribute('href',/^mailto:tamrong2519@gmail.com\?subject=/);
  await expect(page.locator('#message')).toHaveValue(/ตีเส้นจราจร/);
 });
@@ -101,3 +101,11 @@ for(const width of [320,375,390,430]){
   }
  });
 }
+
+test('contact reference layout keeps estimate form compact and accessible',async({page})=>{
+ await page.goto(path('contact.html'));await expect(page.locator('#estimate-form')).not.toBeVisible();
+ await expect(page.locator('.contact-photo')).toBeVisible();await expect(page.locator('.info-card')).toHaveCount(3);
+ await page.locator('#estimate summary').click();await expect(page.locator('#estimate-form')).toBeVisible();
+ await page.locator('#estimate summary').click();await expect(page.locator('#estimate-form')).not.toBeVisible();
+ await page.goto(path('contact.html#estimate'));await expect(page.locator('#estimate-form')).toBeVisible();
+});
