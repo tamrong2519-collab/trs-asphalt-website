@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
-for (const width of [320, 375, 768, 1440]) {
+for (const width of [320, 375, 390, 430, 768, 1440]) {
  test(`all pages, navigation and layout at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height: 900 });
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -9,10 +9,21 @@ for (const width of [320, 375, 768, 1440]) {
    const response=await page.goto(path(`${route}.html`));expect(response.status()).toBe(200);
    await expect(page.locator('h1')).toBeVisible();
    await expect(page.locator('main')).toBeVisible();
+   await page.evaluate(()=>document.fonts.ready);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+   if(width<=760){
+    const readability=await page.evaluate(()=>({
+     heroFont:parseFloat(getComputedStyle(document.querySelector('h1')).fontSize),
+     heroHeight:document.querySelector('.hero').getBoundingClientRect().height,
+     smallParagraphs:[...document.querySelectorAll('main p')].filter(p=>p.textContent.trim()&&parseFloat(getComputedStyle(p).fontSize)<16).map(p=>p.className),
+     smallButtons:[...document.querySelectorAll('main .button')].filter(b=>b.getBoundingClientRect().height>0&&b.getBoundingClientRect().height<52).map(b=>b.textContent.trim()),
+    }));
+    expect(readability.heroFont).toBeGreaterThanOrEqual(34);expect(readability.heroFont).toBeLessThanOrEqual(44);
+    expect(readability.heroHeight).toBeGreaterThanOrEqual(380);expect(readability.smallParagraphs).toEqual([]);expect(readability.smallButtons).toEqual([]);
+   }
    await expect(page.locator('nav a')).toHaveCount(4);
-   if(width<=760){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
    for (const img of await page.locator('img[src]').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
+   if(width<=760){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
   }
   expect(errors).toEqual([]);
  });
@@ -49,3 +60,17 @@ test('form message links to email without claiming an automatic submission',asyn
  await page.getByRole('button',{name:'สร้างข้อความขอประเมินราคา'}).click();await expect(page.locator('#email-message')).toHaveAttribute('href',/^mailto:tamrong2519@gmail.com\?subject=/);
  await expect(page.locator('#message')).toHaveValue(/ตีเส้นจราจร/);
 });
+
+for(const width of [320,375,390,430]){
+ test(`premium contact buttons and no duplicate floating controls at ${width}px`,async({page})=>{
+  await page.setViewportSize({width,height:850});await page.goto(path('contact.html'));await page.evaluate(()=>document.fonts.ready);
+  await expect(page.locator('.floating-contact')).not.toBeVisible();
+  const buttons=page.locator('.contact-panel .actions .button');await expect(buttons).toHaveCount(2);
+  await expect(buttons.nth(0)).toHaveText('โทร 062-248-4089');
+  await expect(buttons.nth(1)).toContainText('LINE @138wlldt');
+  const layout=await buttons.evaluateAll(items=>items.map(b=>{const r=b.getBoundingClientRect(),s=getComputedStyle(b);return {height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,bg:s.backgroundColor};}));
+  for(const button of layout){expect(button.height).toBeGreaterThanOrEqual(52);expect(button.height).toBeLessThanOrEqual(58);expect(button.font).toBeGreaterThanOrEqual(17);expect(button.radius).toBeGreaterThanOrEqual(14);expect(button.radius).toBeLessThanOrEqual(18);expect(button.wrap).toBe('nowrap');expect(button.overflow).toBe(false);expect(button.left).toBeGreaterThanOrEqual(16);expect(button.right).toBeLessThanOrEqual(width-16);}
+  expect(layout[1].top-layout[0].bottom).toBeGreaterThanOrEqual(12);
+  expect(layout[0].bg).toBe('rgb(16, 45, 103)');expect(layout[1].bg).toBe('rgb(0, 168, 61)');
+ });
+}
