@@ -1,0 +1,24 @@
+/* Shared, lightweight SVG arrows; the surrounding layouts stay intact. */
+.icon-arrow,.icon-chevron-left,.icon-chevron-right{flex-shrink:0;transition:transform .22s ease;fill:none}
+.button>.icon-arrow,.text-link>.icon-arrow,.estimate-disclosure>summary>.icon-arrow{width:21px;height:21px}
+.card-arrow>.icon-chevron-right{width:19px;height:19px}
+.sample-card .icon-chevron-right,.project-caption>.icon-chevron-right{width:19px;height:19px;color:var(--blue)}
+body[data-page=index] .home-services .card-arrow>.icon-chevron-right{width:18px;height:18px}
+body[data-page=index] .sample-card .icon-chevron-right{width:18px;height:18px}
+.hero-home .slider-controls button>.icon-chevron-left,.hero-home .slider-controls button>.icon-chevron-right{width:28px;height:28px;color:white}
+body[data-page=index] .hero-home .slide-prev,body[data-page=index] .hero-home .slide-next{min-width:44px;min-height:44px;display:grid;place-items:center;opacity:.85}
+@media(hover:hover) and (pointer:fine){
+ .button:hover>.icon-arrow,.text-link:hover>.icon-arrow,.service-card:hover .icon-chevron-right,.sample-card:hover .icon-chevron-right,.estimate-disclosure>summary:hover>.icon-arrow{transform:translateX(3px)}
+ body[data-page=index] .hero-home .slide-prev:hover,body[data-page=index] .hero-home .slide-next:hover{opacity:1;background:#00275028}
+ .slide-prev:hover>.icon-chevron-left{transform:translateX(-3px)}
+ .slide-next:hover>.icon-chevron-right{transform:translateX(3px)}
+}
+@media(max-width:760px){
+ body[data-page=index] .hero-home .slide-prev,body[data-page=index] .hero-home .slide-next{top:auto;bottom:12px;transform:none;width:44px;height:44px}
+ body[data-page=index] .hero-home .slide-prev{left:8px}
+ body[data-page=index] .hero-home .slide-next{left:auto;right:58px}
+ body[data-page=index] .hero-home .slide-dots button{width:22px;min-width:22px}
+ body[data-page=index] .hero-home .slide-play{right:8px}
+ .hero-home .slider-controls button>.icon-chevron-left,.hero-home .slider-controls button>.icon-chevron-right{width:25px;height:25px}
+}
+@media(prefers-reduced-motion:reduce){.icon-arrow,.icon-chevron-left,.icon-chevron-right{transition:none!important;transform:none!important}}

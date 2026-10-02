@@ -126,6 +126,10 @@ for(const width of [320,375,390,430]){
  test(`all five hero slides and controls fit at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:950});await page.goto(path('index.html'));
   const hero=page.locator('.hero-home');
+  for(const selector of ['.slide-prev','.slide-next']){
+   const control=hero.locator(selector);await expect(control.locator('svg')).toHaveCount(1);
+   const size=await control.boundingBox();expect(size.width).toBeGreaterThanOrEqual(44);expect(size.height).toBeGreaterThanOrEqual(44);
+  }
   for(let index=0;index<5;index++){
    await page.locator(`[data-slide="${index}"]`).click();await expect(hero).toHaveAttribute('data-active-slide',String(index));
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
