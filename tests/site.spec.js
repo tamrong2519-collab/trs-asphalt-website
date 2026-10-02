@@ -141,3 +141,17 @@ for(const width of [320,375,390,430]){
 test('reduced motion keeps the automatic slider paused initially',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.clock.install();await page.goto(path('index.html'));await page.clock.runFor(18000);await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide','0');await expect(page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'})).toBeVisible();
 });
+
+test('homepage work photos match the four service cards and automatic slides',async({page})=>{
+ await page.goto(path('index.html'));
+ const jobs=[['gravel','gravel-job'],['stone','stone-job'],['speed-bump','speed-bump-job'],['marking','marking-job']];
+ for(let index=0;index<jobs.length;index++){
+  const [id,image]=jobs[index];
+  const card=page.locator(`.home-services a[href$="#${id}"] img`);
+  await expect(card).toHaveAttribute('src',path(`images/${image}.webp`));
+  await page.locator(`[data-slide="${index+1}"]`).click();
+  await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${image}.webp`));
+  await page.locator('.hero-scene img').evaluate(i=>i.decode());
+  expect(await page.locator('.hero-scene img').evaluate(i=>getComputedStyle(i).objectFit)).toBe('cover');
+ }
+});

@@ -1,5 +1,5 @@
 // The home hero advances every six seconds. Pause while hidden or being used.
-export function initializeSlider({ scene, services }) {
+export function initializeSlider({ scene, services, image }) {
  const hero = document.querySelector('.hero-home');
  const title = hero.querySelector('h1');
  const subtitle = hero.querySelector('p');
@@ -38,7 +38,7 @@ export function initializeSlider({ scene, services }) {
   subtitle.classList.toggle('hero-services', index === 0);
   photo.hidden = index !== 0;
   sceneLayer.hidden = index === 0;
-  sceneLayer.innerHTML = index ? scene(services[index].scene, `ภาพประกอบ${services[index].title}`) : '';
+  sceneLayer.innerHTML = index ? (image ? image(services[index]) : scene(services[index].scene, `ภาพประกอบ${services[index].title}`)) : '';
   dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
   hero.dataset.activeSlide = String(index);
  };
