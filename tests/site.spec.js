@@ -199,14 +199,19 @@ test('homepage reference layout uses five service cards and a 3 plus 2 gallery',
  expect(geometry.ratio).toBeGreaterThan(1);expect(geometry.ratio).toBeLessThan(2);expect(geometry.rows[0]).toBe(geometry.rows[1]);expect(geometry.rows[1]).toBe(geometry.rows[2]);expect(geometry.rows[3]).toBe(geometry.rows[4]);expect(geometry.rows[3]).toBeGreaterThan(geometry.rows[0]);expect(geometry.overflow).toBe(false);
 });
 
-test('homepage hero matches requested wording, four benefits and yellow estimate button',async({page})=>{
+test('homepage hero matches requested wording, four benefits and blue phone button',async({page})=>{
  await page.goto(path('index.html'));await expect(page.locator('h1')).toHaveText('รับเหมาลาดยางมะตอยและงานหินคลุกครบวงจร');
  await expect(page.locator('.hero-copy')).toContainText('ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน');
  await expect(page.locator('.hero-copy')).toContainText('โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน');
  await expect(page.locator('.hero-copy')).toContainText('งานเสร็จตรงเวลา');await expect(page.locator('.hero-benefit')).toHaveCount(4);
  await expect(page.locator('.hero-quote-note')).toHaveText('ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น');
- const button=page.locator('.hero-quote .button');await expect(button).toHaveAttribute('href',path('contact.html#estimate'));
- expect(await button.evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(255, 213, 0)');
+ const button=page.locator('.hero-quote .button');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveText('โทร 062-248-4089');
+ expect(await button.evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(0, 159, 232)');
+ for(const width of [320,375,390,430]){
+  await page.setViewportSize({width,height:1000});await page.evaluate(()=>document.fonts.ready);
+  const layout=await button.evaluate(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,wrap:getComputedStyle(el).whiteSpace,overflow:el.scrollWidth>el.clientWidth,height:r.height};});
+  expect(layout.wrap).toBe('nowrap');expect(layout.overflow).toBe(false);expect(layout.left).toBeGreaterThanOrEqual(16);expect(layout.right).toBeLessThanOrEqual(width-16);expect(layout.height).toBeGreaterThanOrEqual(52);
+ }
 });
 
 test('mobile estimate hero keeps its height when the automatic slide changes',async({page})=>{

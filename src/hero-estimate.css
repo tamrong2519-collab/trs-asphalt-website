@@ -1,22 +1,22 @@
-/* The requested homepage hero: navy copy, white/blue backdrop and yellow quote CTA. */
+/* The requested homepage hero: navy copy, clear construction photography and a blue click-to-call CTA. */
 body[data-page=index] .hero-estimate{aspect-ratio:auto;max-height:none;min-height:640px;background:#e2f3ff}
 body[data-page=index] .hero-estimate .hero-image,body[data-page=index] .hero-estimate .hero-transition-photo{object-position:center 60%}
-body[data-page=index] .hero-estimate .hero-overlay{background:linear-gradient(90deg,#fff 0%,#ffffffed 28%,#ffffffe0 48%,#ffffff65 73%,#ffffff00 100%),linear-gradient(0deg,#ffffff88 0%,transparent 58%)}
+body[data-page=index] .hero-estimate .hero-overlay{background:linear-gradient(90deg,#fff 0%,#fffffff2 28%,#ffffffeb 46%,#ffffffa6 55%,#ffffff00 74%)}
 body[data-page=index] .hero-estimate .hero-content{padding:56px 32px 66px}
 body[data-page=index] .hero-estimate h1{font-size:clamp(38px,4.2vw,60px);line-height:1.3;letter-spacing:-.02em;color:#0a3767;font-weight:700;max-width:1080px;margin-bottom:22px;text-shadow:none}
 body[data-page=index] .hero-estimate h1 span{color:#0a3767}
 body[data-page=index] .hero-estimate .hero-copy{display:block;font-size:clamp(18px,1.85vw,24px);font-weight:500;line-height:1.65;color:#29476a;max-width:970px;margin-bottom:0;min-height:4.95em;text-wrap:pretty}
-.hero-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;max-width:980px;margin-top:30px;margin-bottom:32px}
+.hero-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;max-width:980px;margin-top:30px;margin-bottom:32px;background:linear-gradient(90deg,transparent 45%,#ffffffd9 100%);border-radius:10px}
 .hero-benefit{display:flex;gap:12px;align-items:center;color:#0a4a8c}
 .hero-benefit>.icon{width:43px;height:43px;flex-shrink:0}
 .hero-benefit>div{min-width:0}
 .hero-benefit strong{display:block;font-size:17px;line-height:1.45;color:#123f70;font-weight:600}
 .hero-benefit span{display:block;font-size:16px;line-height:1.6;color:#425a74;margin-top:4px}
 .hero-quote{width:360px;max-width:100%;text-align:center}
-body[data-page=index] .hero-estimate .hero-quote>.button{width:100%;min-height:64px;padding:15px 24px;background:#ffd500;color:#102735;box-shadow:0 4px 14px #dbae1020;border:0;border-radius:7px;font-size:24px;font-weight:600;gap:12px;justify-content:center}
-body[data-page=index] .hero-estimate .hero-quote>.button:hover{background:#f4c800}
+body[data-page=index] .hero-estimate .hero-quote>.button{width:100%;min-height:64px;padding:15px 24px;background:#009fe8;color:#fff;box-shadow:0 4px 14px #009fe829;border:0;border-radius:7px;font-size:24px;font-weight:600;gap:12px;justify-content:center;white-space:nowrap}
+body[data-page=index] .hero-estimate .hero-quote>.button:hover{background:#008bd0}
 body[data-page=index] .hero-estimate .hero-quote-note{font-size:16px;color:#294462;font-weight:600;line-height:1.65;margin:10px 0 0;min-height:0;text-align:center}
-body[data-page=index] .hero-estimate .hero-quote>.button .icon-arrow{width:24px;height:24px}
+body[data-page=index] .hero-estimate .hero-quote>.button .icon-phone{width:24px;height:24px;flex-shrink:0}
 body[data-page=index] .hero-estimate .slide-prev,body[data-page=index] .hero-estimate .slide-next{background:#fff3;border-radius:8px;opacity:.8}
 body[data-page=index] .hero-estimate .slider-controls button>.icon-chevron-left,body[data-page=index] .hero-estimate .slider-controls button>.icon-chevron-right{color:#164a7c}
 body[data-page=index] .hero-estimate .slide-dots{left:auto;right:74px;transform:none;bottom:14px}
@@ -38,16 +38,16 @@ body[data-page=index] .hero-estimate .slide-play{bottom:14px;right:16px;backgrou
 @media(max-width:760px){
  body[data-page=index] .hero-estimate{min-height:600px;align-items:center}
  body[data-page=index] .hero-estimate .hero-content{padding:44px 0 92px}
- body[data-page=index] .hero-estimate .hero-overlay{background:linear-gradient(90deg,#fffffff5,#ffffffe8 68%,#ffffffbf),linear-gradient(0deg,#fff,transparent 85%)}
+ body[data-page=index] .hero-estimate .hero-overlay{background:linear-gradient(90deg,#ffffffe8,#ffffffd9 48%,#ffffff99),linear-gradient(0deg,#fff 0%,#ffffffa6 24%,transparent 65%)}
  body[data-page=index] .hero-estimate .hero-image,body[data-page=index] .hero-estimate .hero-transition-photo{object-position:72% center}
  body[data-page=index] .hero-estimate h1{font-size:clamp(34px,9vw,42px);line-height:1.4;letter-spacing:0;margin-bottom:22px;text-wrap:pretty}
  body[data-page=index] .hero-estimate .hero-copy{font-size:18px;line-height:1.8;min-height:0;font-weight:400}
  body[data-page=index] .hero-estimate .hero-copy br{display:initial}
- .hero-benefits{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px;margin:28px 0;max-width:100%}
+ .hero-benefits{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 16px;margin:28px 0;max-width:100%;background:none}
  .hero-benefit{display:block}.hero-benefit>.icon{width:36px;height:36px;margin-bottom:9px}
  .hero-benefit strong{font-size:16px;line-height:1.6}.hero-benefit span{font-size:16px;line-height:1.6;margin-top:3px}
  .hero-quote{width:100%}
- body[data-page=index] .hero-estimate .hero-quote>.button{font-size:21px;min-height:58px;padding:14px 20px;border-radius:8px}
+ body[data-page=index] .hero-estimate .hero-quote>.button{font-size:20px;min-height:58px;padding:14px 16px;border-radius:8px}
  body[data-page=index] .hero-estimate .hero-quote-note{font-size:16px;line-height:1.75;margin-top:12px}
  body[data-page=index] .hero-estimate .slide-dots{left:50%;right:auto;transform:translateX(-50%);bottom:12px}
  body[data-page=index] .hero-estimate .slide-dots button>span{border-color:#2773ac;box-shadow:none}
