@@ -109,3 +109,35 @@ test('contact reference layout keeps estimate form compact and accessible',async
  await page.locator('#estimate summary').click();await expect(page.locator('#estimate-form')).not.toBeVisible();
  await page.goto(path('contact.html#estimate'));await expect(page.locator('#estimate-form')).toBeVisible();
 });
+
+test('home hero advances automatically through all five slides and loops',async({page})=>{
+ await page.clock.install();await page.goto(path('index.html'));
+ const hero=page.locator('.hero-home');await expect(page.locator('[data-slide]')).toHaveCount(5);
+ for(const index of [1,2,3,4,0]){
+  await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide',String(index));
+  await expect(page.locator(`[data-slide="${index}"]`)).toHaveAttribute('aria-pressed','true');
+ }
+ await page.getByRole('button',{name:'หยุดสไลด์อัตโนมัติ'}).click();await page.clock.runFor(12000);await expect(hero).toHaveAttribute('data-active-slide','0');
+ await page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'}).click();await page.locator('header .brand').focus();await page.mouse.move(0,0);await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','1');
+});
+for(const width of [320,375,390,430]){
+ test(`all five hero slides and controls fit at ${width}px`,async({page})=>{
+  await page.setViewportSize({width,height:950});await page.goto(path('index.html'));
+  const hero=page.locator('.hero-home');
+  for(let index=0;index<5;index++){
+   await page.locator(`[data-slide="${index}"]`).click();await expect(hero).toHaveAttribute('data-active-slide',String(index));
+   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+   const within=await page.locator('.slider-controls').evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth});expect(within).toBe(true);
+   for(const image of await hero.locator('img:visible').all()) await image.evaluate(i=>i.decode());
+  }
+  await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','0');
+  await page.getByRole('button',{name:'สไลด์ก่อนหน้า',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','4');
+  await hero.evaluate(e=>{
+   e.dispatchEvent(new TouchEvent('touchstart',{changedTouches:[new Touch({identifier:1,target:e,clientX:250,clientY:200})]}));
+   e.dispatchEvent(new TouchEvent('touchend',{changedTouches:[new Touch({identifier:1,target:e,clientX:100,clientY:205})]}));
+  });await expect(hero).toHaveAttribute('data-active-slide','0');
+ });
+}
+test('reduced motion keeps the automatic slider paused initially',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.clock.install();await page.goto(path('index.html'));await page.clock.runFor(18000);await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide','0');await expect(page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'})).toBeVisible();
+});
