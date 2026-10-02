@@ -1,8 +1,7 @@
-import '@fontsource/kanit/400.css';
-import '@fontsource/kanit/600.css';
-import '@fontsource/kanit/700.css';
-import '@fontsource/kanit/800.css';
-import '@fontsource/kanit/900.css';
+import '@fontsource/prompt/400.css';
+import '@fontsource/prompt/500.css';
+import '@fontsource/prompt/600.css';
+import '@fontsource/prompt/700.css';
 import './style.css';
 import { initializeSlider } from './slider.js';
 import { business as b, services, projects } from './data.js';
