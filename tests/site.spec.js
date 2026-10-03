@@ -222,10 +222,18 @@ test('reduced motion keeps the automatic slider paused initially',async({page})=
 
 test('homepage work photos match the four service cards and automatic slides',async({page})=>{
  await page.goto(path('index.html'));
- const jobs=[['gravel','gravel-job'],['stone','stone-job'],['speed-bump','speed-bump-job'],['marking','marking-job']];
+ const albums=['asphalt-road','gravel-yard','stone-yard','speed-bump-work','parking-marking'];
+ const serviceCards=page.locator('.home-services a'),sampleCards=page.locator('.sample-card');
+ await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(5);
+ for(let index=0;index<albums.length;index++){
+  const destination=path(`projects.html#${albums[index]}`);
+  await expect(serviceCards.nth(index)).toHaveAttribute('href',destination);
+  await expect(sampleCards.nth(index)).toHaveAttribute('href',destination);
+ }
+ const jobs=[['gravel','gravel-job','gravel-yard'],['stone','stone-job','stone-yard'],['speed-bump','speed-bump-job','speed-bump-work'],['marking','marking-job','parking-marking']];
  for(let index=0;index<jobs.length;index++){
-  const [id,image]=jobs[index];
-  const card=page.locator(`.home-services a[href$="#${id}"] img`);
+  const [id,image,album]=jobs[index];
+  const card=page.locator(`.home-services a[href="${path(`projects.html#${album}`)}"] img`);
   await expect(card).toHaveAttribute('src',path(`images/${image}.webp`));
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
   await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide',String(index+1));
