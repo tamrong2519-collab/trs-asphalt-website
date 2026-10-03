@@ -3,6 +3,33 @@
 body[data-page]{background:var(--premium-ivory)}
 body[data-page] #main{background:var(--premium-ivory)}
 body[data-page] .float-button{white-space:nowrap}
+/* Floating contacts share the navy-and-gold palette and compact touch targets. */
+body[data-page] .float-button{
+ height:48px;min-height:48px;padding:10px 16px;gap:10px;
+ border:1px solid #ffffff26;border-radius:14px;
+ font-size:16px;font-weight:600;line-height:1.4;
+ box-shadow:0 5px 18px #091f591a;
+ transition:background-color .18s ease,box-shadow .18s ease;
+}
+body[data-page] .float-call{background:var(--premium-navy);color:#fff;border-color:#f0d68c45}
+body[data-page] .float-call>.icon{width:20px;height:20px;color:var(--premium-gold)}
+body[data-page] .float-line{background:#007a2d;color:#fff}
+body[data-page] .float-button:focus-visible{outline:3px solid var(--premium-gold-ink);outline-offset:3px}
+@media(min-width:761px){
+ body[data-page] .floating-contact{width:224px;gap:10px}
+ body[data-page] .float-button{width:100%}
+}
+@media(hover:hover) and (pointer:fine){
+ body[data-page] .float-call:hover{background:#153577}
+ body[data-page] .float-line:hover{background:#006526}
+}
+@media(max-width:760px){
+ body[data-page] .floating-contact{
+  background:#fffdf6;border-color:var(--premium-border);border-radius:22px;
+  box-shadow:0 8px 24px #091f5914;
+ }
+ body[data-page] .float-button{padding:8px 12px;gap:8px;font-size:18px;box-shadow:none}
+}
 body[data-page] #main p{color:var(--premium-copy)}
 body[data-page] #main h2,body[data-page] #main h3{color:var(--premium-navy)}
 body[data-page] #main .section{padding-block:48px 52px}
