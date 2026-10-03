@@ -1,0 +1,187 @@
+/* The selected navy-and-gold direction, shared by all four pages. */
+:root{--premium-navy:#091f59;--premium-gold:#f0d68c;--premium-gold-ink:#af8426;--premium-ivory:#fbf8ef;--premium-border:#dfd3b7;--premium-copy:#566077}
+body[data-page]{background:var(--premium-ivory)}
+body[data-page] #main{background:var(--premium-ivory)}
+body[data-page] .float-button{white-space:nowrap}
+body[data-page] #main p{color:var(--premium-copy)}
+body[data-page] #main h2,body[data-page] #main h3{color:var(--premium-navy)}
+body[data-page] #main .section{padding-block:48px 52px}
+body[data-page] #main .section-heading{align-items:flex-start;flex-wrap:wrap;gap:22px 30px;margin-bottom:30px}
+body[data-page] #main .section-heading h2{max-width:100%;flex-shrink:1;border-left:5px solid var(--premium-gold-ink);padding-left:18px;font-size:clamp(30px,3vw,42px);line-height:1.5}
+body[data-page] #main .section-heading>p{border-left-color:#d8c89d;color:#586179}
+body[data-page] #main .button{border-radius:12px;min-height:52px;font-size:17px;line-height:1.5}
+body[data-page] #main .button.primary{background:#0077b6;color:#fff;box-shadow:0 5px 16px #0077b61c}
+body[data-page] #main .button.line{background:#007a2d;color:#fff}
+body[data-page] #main .button.outline{background:transparent;border-color:#9f8760;color:var(--premium-navy)}
+body[data-page] #main .text-link{color:#0077b6}
+
+/* The photograph stays clear on the right; the dark left side supports the type. */
+body[data-page] #main .hero{background:var(--premium-navy)}
+body[data-page] #main .hero:not(.hero-home){min-height:380px}
+body[data-page] #main .hero .hero-overlay{background:linear-gradient(90deg,#091f59 0%,#091f59fa 36%,#091f59ed 48%,#091f5999 56%,transparent 68%)}
+body[data-page] #main .hero h1{color:#fff;font-size:clamp(40px,4.2vw,62px);line-height:1.4;letter-spacing:0}
+body[data-page] #main .hero h1 span{color:var(--premium-gold)}
+body[data-page] #main .hero .hero-subtitle{color:#e0e8f6}
+body[data-page=index] #main .hero-estimate h1 span{color:#fff}
+body[data-page=index] #main .hero-estimate h1 .hero-title-secondary{color:var(--premium-gold)}
+body[data-page=index] #main .hero-estimate .hero-copy{color:#e0e8f6}
+body[data-page=index] #main .hero-estimate .hero-benefits{background:linear-gradient(90deg,transparent 36%,#091f59ed 100%)}
+body[data-page=index] #main .hero-estimate .hero-benefit{color:var(--premium-gold)}
+body[data-page=index] #main .hero-estimate .hero-benefit strong{color:#fff}
+body[data-page=index] #main .hero-estimate .hero-benefit span{color:#d9e3f4}
+body[data-page=index] #main .hero-estimate .hero-benefit>.icon-gear circle{fill:var(--premium-navy)}
+body[data-page=index] #main .hero-estimate .hero-benefit>.icon-worker path[stroke="white"]{stroke:var(--premium-navy)}
+body[data-page=index] #main .hero-estimate .hero-quote>.button{background:#0077b6;color:#fff;min-height:62px;font-size:22px}
+body[data-page=index] #main .hero-estimate .hero-quote-note{color:#e0e8f6}
+body[data-page=index] #main .hero-estimate .slide-prev,
+body[data-page=index] #main .hero-estimate .slide-next,
+body[data-page=index] #main .hero-estimate .slide-play{background:#091f59bf;color:#fff}
+body[data-page=index] #main .hero-estimate .slider-controls button>.icon-chevron-left,
+body[data-page=index] #main .hero-estimate .slider-controls button>.icon-chevron-right{color:var(--premium-gold)}
+
+body[data-page] #main .trust-strip{background:linear-gradient(110deg,#f5e6b7,#edcf7d)}
+body[data-page] #main .trust-grid h3{color:var(--premium-navy)}
+body[data-page] #main .trust-grid p{color:#32405d}
+body[data-page] #main .trust-grid .icon{color:var(--premium-navy)}
+body[data-page] #main .trust-grid>div{border-color:#091f5926}
+
+/* Warm white cards share one quiet border and shadow across services and projects. */
+body[data-page] #main :is(.service-card,.sample-card,.project-card,.process-card,.info-card){background:#fff;border-color:var(--premium-border);box-shadow:0 7px 24px #091f5907}
+body[data-page] #main .service-grid{gap:22px}
+body[data-page] #main .service-card .card-content{padding:24px;gap:14px}
+body[data-page] #main .service-card .card-content h3{line-height:1.5}
+body[data-page] #main .service-card .card-content p{font-size:16px;line-height:1.85}
+body[data-page] #main .service-icon,
+body[data-page] #main .card-arrow,
+body[data-page] #main .sample-card .icon,
+body[data-page] #main .project-caption>.icon{color:#95701d}
+body[data-page=index] #main .home-services{gap:16px}
+body[data-page=index] #main .home-services .card-content{padding:24px 18px 40px;gap:12px}
+body[data-page] #main .image-note{font-size:16px;line-height:1.8;color:#637086}
+body[data-page] #main .preparation{background:#f4e8c6;padding-block:30px}
+body[data-page] #main .preparation .icon{color:var(--premium-navy)}
+body[data-page] #main .process-card{padding:30px 24px 30px 58px;gap:16px;border-radius:16px}
+body[data-page] #main .process-card>.icon{color:#95701d}
+body[data-page] #main .step-number{width:30px;height:30px;top:14px;left:14px;font-size:16px;background:var(--premium-navy);color:var(--premium-gold)}
+body[data-page] #main .service-details{padding-block:48px 20px}
+body[data-page] #main .service-detail{gap:44px;padding-bottom:42px;margin-bottom:42px;border-bottom-color:var(--premium-border)}
+body[data-page] #main .service-detail h2{line-height:1.5}
+body[data-page] #main .checklist .icon{color:#95701d}
+body[data-page] #main .eyebrow{color:#83651e}
+
+/* A darker portfolio band lets the original work photographs lead. */
+body[data-page] #main .blue-section{background:linear-gradient(115deg,#122a53,#091f59)}
+body[data-page] #main .blue-section .section-heading h2{color:#fff;border-left-color:#edcf7d}
+body[data-page] #main .blue-section .section-heading>p{color:#e8e2d1;border-left-color:#d5ba75}
+body[data-page] #main .blue-section .section-heading .button{color:#f5dfa6;border-color:#d5ba75;background:#ffffff08}
+body[data-page] #main .blue-section>.container>.image-note{color:#dfe5ef}
+body[data-page] #main .project-caption{padding:24px;gap:16px}
+body[data-page] #main .project-caption h2{font-size:24px;line-height:1.5}
+body[data-page] #main .project-caption p{color:var(--premium-copy)}
+body[data-page] #main .photo-label{background:#091f59e8;color:#fff}
+body[data-page] #main .filters{gap:10px;margin-bottom:20px}
+body[data-page] #main .filter{max-width:100%;min-height:52px;padding:12px 18px;background:#fff;border-color:#d8c596;border-radius:999px;color:var(--premium-navy);font-size:16px;line-height:1.6;white-space:normal}
+body[data-page] #main .filter.active{background:var(--premium-gold);border-color:var(--premium-gold);color:var(--premium-navy)}
+
+body[data-page] #main .cta{background:var(--premium-navy);padding-block:42px}
+body[data-page] #main .cta h2{color:#fff;border-left-color:var(--premium-gold)}
+body[data-page] #main .cta p{color:#dce7f6}
+body[data-page] #main .cta-phone{border-color:#dbc17c66}
+body[data-page] #main .cta-phone>.icon{color:var(--premium-gold)}
+body[data-page] #main .cta-phone span{color:#e3eaf4}
+body[data-page] #main .cta-phone a{color:#fff}
+
+/* Contact and estimate panels use the same warm white material as the cards. */
+body[data-page] #main .contact-grid{gap:32px;align-items:stretch}
+body[data-page] #main .contact-panel{padding:34px;background:#fff;border:1px solid var(--premium-border);border-radius:16px;box-shadow:0 7px 24px #091f5907}
+body[data-page] #main .contact-panel .section-heading h2{font-size:32px;line-height:1.5}
+body[data-page] #main .contact-panel>p{font-size:16px;line-height:1.85}
+body[data-page] #main .contact-box{border-bottom-color:#e7dec9;padding-block:18px}
+body[data-page] #main .contact-box h3{font-size:17px;color:#566077}
+body[data-page] #main .contact-box a{color:var(--premium-navy);line-height:1.5}
+body[data-page] #main .contact-icon{background:#0077b6}
+body[data-page] #main .contact-icon.green{background:#00a83d}
+body[data-page] #main .contact-panel .actions{gap:16px;margin-top:26px}
+body[data-page] #main .info-grid{gap:24px}
+body[data-page] #main .info-card{padding:24px;border:1px solid var(--premium-border)}
+body[data-page] #main .info-card .icon{color:#95701d}
+body[data-page] #main .service-area{background:#f4e8c6;padding-block:28px}
+body[data-page] #main .service-area .icon{color:var(--premium-navy)}
+body[data-page] #main .service-area p{background:#fffdf6;border:1px solid #dfd3b7;color:var(--premium-navy)}
+body[data-page] #main .estimate-disclosure{padding-block:24px 36px}
+body[data-page] #main .estimate-disclosure>summary{background:#fff;border-color:var(--premium-border);border-radius:12px;color:var(--premium-navy);min-height:56px}
+body[data-page] #main .estimate{background:#fffdf6;border-color:var(--premium-border);border-radius:16px;padding:36px;gap:36px}
+body[data-page] #main .estimate h2{border-left-color:var(--premium-gold-ink)}
+body[data-page] #main :is(input,select,textarea){background:#fff;border-color:#bfc4cc;border-radius:10px}
+body[data-page] #main :is(input,select,textarea):focus-visible{outline-color:#a47d21;border-color:#a47d21}
+body[data-page] #main #estimate-result{border-top-color:var(--premium-border)}
+
+/* The selected footer geometry and contact colors remain familiar. */
+body[data-page] .footer-shell{background:#f3efdf}
+body[data-page] .site-footer{background:#fffdf6;border-color:#dacba8;box-shadow:0 5px 20px #091f5907}
+body[data-page] .site-footer .footer-contact>.button,
+body[data-page] .site-footer .footer-area{font-family:'Noto Sans Thai',Tahoma,sans-serif}
+body[data-page] .site-footer .footer-tagline,
+body[data-page] .site-footer .footer-secondary,
+body[data-page] .site-footer .footer-legal{border-color:#e3d8be}
+body[data-page] .site-footer .footer-stripes{background:repeating-linear-gradient(125deg,#d3ab4c 0,#d3ab4c 14px,#091f59 14px,#091f59 28px)}
+@media(hover:hover) and (pointer:fine){
+ body[data-page] #main .button.primary:hover{background:#00669d}
+ body[data-page] #main .button.line:hover{background:#006525}
+ body[data-page] #main .service-card:hover{box-shadow:0 10px 26px #091f5912}
+ body[data-page] #main .filter:not(.active):hover{background:#fff6dc}
+}
+@media(min-width:761px) and (max-width:1100px){
+ body[data-page] #main .section{padding-block:36px 40px}
+ body[data-page=index] #main .home-services{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+ body[data-page=index] #main .home-services>.service-card{grid-column:auto}
+ body[data-page] #main .contact-grid{grid-template-columns:1fr 1fr;gap:24px}
+ body[data-page] #main .contact-panel{padding:26px 22px}
+ body[data-page] #main .contact-panel .section-heading h2{font-size:28px}
+ body[data-page] #main .process-grid{grid-template-columns:1fr;gap:18px}
+ body[data-page] #main .process-card{padding-block:24px}
+}
+@media(max-width:760px){
+ body[data-page] #main .section{padding-block:32px 36px}
+ body[data-page] #main .section-heading{display:block;margin-bottom:24px}
+ body[data-page] #main .section-heading h2{font-size:30px;line-height:1.5;padding-left:16px}
+ body[data-page] #main .section-heading>p{border:0;padding:0;margin-top:12px;max-width:100%;font-size:16px;line-height:1.85}
+ body[data-page] #main .section-heading .button{margin-top:16px}
+ body[data-page] #main .hero h1{font-size:clamp(34px,9vw,44px);line-height:1.4}
+ body[data-page] #main .hero:not(.hero-home){min-height:380px}
+ body[data-page=index] #main .hero-estimate{background:linear-gradient(155deg,#0d2a5c,#091f59)}
+ body[data-page=index] #main .hero-estimate .hero-overlay{background:none}
+ body[data-page=index] #main .hero-estimate .hero-benefits{background:none}
+ body[data-page=index] #main .hero-estimate .hero-benefit>.icon{color:#fff}
+ body[data-page=index] #main .hero-estimate .hero-quote>.button{min-height:58px;font-size:20px}
+ body[data-page] #main .service-grid{gap:24px}
+ body[data-page] #main .service-card .card-content{padding:24px 20px 40px;gap:14px}
+ body[data-page=index] #main .home-services .card-content{display:flex;padding:24px 20px 40px;gap:14px}
+ body[data-page] #main .service-icon>.icon{width:36px;height:40px}
+ body[data-page] #main .service-card .card-content h3{font-size:22px;line-height:1.5}
+ body[data-page] #main .process-card{padding:28px 20px 28px 54px}
+ body[data-page] #main .process-card h3{font-size:22px}
+ body[data-page] #main .service-details{padding-block:32px 8px}
+ body[data-page] #main .service-detail{grid-template-columns:minmax(0,1fr);gap:26px;margin-bottom:34px;padding-bottom:34px}
+ body[data-page] #main .service-detail h2{font-size:30px}
+ body[data-page] #main .project-caption{padding:22px 18px;gap:14px}
+ body[data-page] #main .project-caption h2{font-size:23px}
+ body[data-page] #main .filter{padding:12px 15px}
+ body[data-page] #main .cta{padding-block:36px}
+ body[data-page] #main .contact-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+ body[data-page] #main .contact-panel{padding:26px 20px}
+ body[data-page] #main .contact-panel .section-heading h2{font-size:30px}
+ body[data-page] #main .contact-box{gap:14px;padding-block:18px}
+ body[data-page] #main .contact-email a{font-size:18px;overflow-wrap:anywhere}
+ body[data-page=contact] #main .contact-panel .actions{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:28px}
+ body[data-page=contact] #main .contact-panel .actions>.button{width:100%;height:52px;min-height:52px;padding:12px 16px;gap:12px;border:0;border-radius:14px;font-size:18px;line-height:1.4;white-space:nowrap;box-shadow:none}
+ body[data-page=contact] #main .contact-panel .actions>.button.primary{background:#102d67;color:#fff}
+ body[data-page=contact] #main .contact-panel .actions>.button.line{background:#00a83d;color:#fff}
+ body[data-page] #main .info-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+ body[data-page] #main .info-card{padding:22px 20px}
+ body[data-page] #main .service-area .container{flex-wrap:wrap;gap:16px}
+ body[data-page] #main .service-area h2{font-size:28px;line-height:1.5}
+ body[data-page] #main .service-area p{flex-basis:100%;padding:18px;font-size:17px;line-height:1.85}
+ body[data-page] #main .estimate{grid-template-columns:minmax(0,1fr);padding:26px 18px;gap:24px}
+ body[data-page] #main .estimate .button{white-space:normal}
+}

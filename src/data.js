@@ -8,7 +8,7 @@ export const business = {
   hours: 'กรุณาติดต่อเพื่อสอบถามเวลาทำการ',
 };
 export const services = [
-  { id: 'asphalt', number: '01', title: 'ลาดยางมะตอย', subtitle: 'ปูยางแอสฟัลท์', scene: 0, image: '/images/work-scenes.webp', description: 'รับปูยางแอสฟัลท์สำหรับถนนและลานจอดรถ', details: ['สำรวจสภาพพื้นที่และระดับผิวทาง', 'วางแผนเตรียมพื้นและการระบายน้ำ', 'ปูยางแอสฟัลท์และบดอัดผิวทาง'] },
+  { id: 'asphalt', number: '01', title: 'ลาดยางมะตอย', subtitle: 'ปูยางแอสฟัลท์', scene: 0, image: '/images/hero-daylight.webp', description: 'ปูยางแอสฟัลท์สำหรับถนนและลานจอดรถ', details: ['สำรวจสภาพพื้นที่และระดับผิวทาง', 'วางแผนเตรียมพื้นและการระบายน้ำ', 'ปูยางแอสฟัลท์และบดอัดผิวทาง'] },
   { id: 'gravel', slideImage: '/images/gravel-slide.webp', homeImage: '/images/gravel-job.webp', number: '02', title: 'ลานจอดรถหินคลุก', subtitle: 'เกลี่ยและบดอัดหินคลุก', scene: 1, image: '/images/work-scenes.webp', description: 'เกลี่ยและบดอัดหินคลุก สำหรับลานจอดรถและทางเข้าออก', details: ['ประเมินระดับและสภาพพื้นเดิม', 'เลือกวัสดุให้เหมาะกับการใช้งาน', 'เกลี่ยปรับระดับและบดอัดพื้นที่'] },
   { id: 'stone', homeImage: '/images/stone-job.webp', number: '03', title: 'งานหินเกล็ด', subtitle: 'ปรับพื้นที่และทางเข้าออก', scene: 2, image: '/images/work-scenes.webp', description: 'ปรับพื้นด้วยหินเกล็ด สำหรับลานและพื้นที่ใช้งาน', details: ['สำรวจสภาพพื้นเดิม', 'วางแผนวัสดุและระดับพื้นที่', 'เกลี่ยและบดอัดให้เหมาะกับงาน'] },
   { id: 'speed-bump', homeImage: '/images/speed-bump-job.webp', number: '04', title: 'ลูกระนาดยางมะตอย', subtitle: 'ชะลอความเร็วในพื้นที่', scene: 3, image: '/images/work-scenes.webp', description: 'ทำลูกระนาดยางมะตอย เพื่อชะลอความเร็วในพื้นที่', details: ['สำรวจตำแหน่งติดตั้ง', 'กำหนดรูปแบบตามการใช้งาน', 'จัดทำผิวและเครื่องหมายที่เหมาะสม'] },

@@ -300,7 +300,7 @@ test('homepage hero matches requested wording, four benefits and blue phone butt
  await expect(page.locator('.hero-copy')).toContainText('งานเสร็จตรงเวลา');await expect(page.locator('.hero-benefit')).toHaveCount(4);
  await expect(page.locator('.hero-quote-note')).toHaveText('ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น');
  const button=page.locator('.hero-quote .button');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveText('โทร 062-248-4089');
- expect(await button.evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(0, 159, 232)');
+ expect(await button.evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(0, 119, 182)');
  for(const width of [320,375,390,430]){
   await page.setViewportSize({width,height:1000});await page.evaluate(()=>document.fonts.ready);
   const layout=await button.evaluate(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,wrap:getComputedStyle(el).whiteSpace,overflow:el.scrollWidth>el.clientWidth,height:r.height};});

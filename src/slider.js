@@ -24,7 +24,8 @@ export function initializeSlider({ scene, services, image }) {
    Object.assign(probe.style, {position:'absolute',visibility:'hidden',pointerEvents:'none',width:`${element.clientWidth}px`,minHeight:'0',height:'auto'});
    element.parentElement.append(probe);
    let height = 0;
-   for (const slide of slides) {probe.innerHTML = slide[key];height = Math.max(height, probe.getBoundingClientRect().height);}
+   // Thai marks can extend beyond the line box; include the full rendered text height.
+   for (const slide of slides) {probe.innerHTML = slide[key];height = Math.max(height, probe.getBoundingClientRect().height, probe.scrollHeight);}
    probe.remove();element.style.minHeight = `${Math.ceil(height)}px`;
   }
  };
