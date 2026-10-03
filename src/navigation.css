@@ -75,7 +75,7 @@ body[data-page] .site-header .header-contact .line-symbol{width:18px;height:18px
  body[data-page] .site-header #main-nav>.nav-link{min-width:44px;padding:12px 0}
  body[data-page] .site-header #main-nav>.nav-link::after{left:0;right:0}
  body[data-page] .site-header .header-contact{
-  grid-column:1;grid-row:3;width:min(100%,324px);
+  grid-column:1;grid-row:3;width:min(100%,324px);justify-self:center;margin-inline:auto;
  }
  body[data-page] .site-header .header-contact .button{
   padding:6px 4px;font-size:13px;

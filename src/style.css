@@ -74,10 +74,21 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .footer-phone{margin:0;font-size:20px;min-height:48px}
  .footer-stripes{height:24px}
  footer{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
- .floating-contact{left:0;right:0;bottom:0;flex-direction:row;gap:12px;background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid #d6eaf7;padding:12px 20px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -3px 18px #091f5910}
- .float-button{flex:1;min-width:0;min-height:56px;border:0;border-radius:14px;padding:14px 16px;gap:10px;font-size:17px;line-height:1.5;box-shadow:none;white-space:nowrap}
- .float-button .icon{width:24px;height:24px}
- .float-button .line-symbol{width:29px;height:29px;font-size:8px}
+ /* Compact contact dock stays centered and clear of the browser's safe area. */
+ .floating-contact{
+  width:min(360px,calc(100% - 32px));left:50%;right:auto;
+  bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);
+  flex-direction:row;gap:12px;padding:8px;
+  background:#fffffff5;backdrop-filter:blur(12px);
+  border:1px solid #dce5ec;border-radius:24px;box-shadow:0 6px 24px #091f591c;
+ }
+ .float-button{
+  flex:1;min-width:0;height:48px;min-height:48px;border:0;border-radius:999px;
+  padding:8px 12px;gap:8px;font-size:18px;line-height:1.4;
+  box-shadow:none;white-space:nowrap;
+ }
+ .float-button .icon{width:20px;height:20px}
+ .float-button .line-symbol{width:22px;height:22px;font-size:7px}
  .float-label-desktop{display:none}.float-label-mobile{display:inline}
  .preparation{padding:30px 0}
  .preparation .container{gap:18px;align-items:flex-start}
@@ -165,7 +176,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .contact-panel .button{font-size:17px;padding:12px 14px;gap:10px}
  .contact-box{gap:12px}.contact-box a{font-size:18px}.contact-icon{width:40px;height:40px}
  .estimate{padding:24px 16px}
- .floating-contact{padding-left:16px;padding-right:16px}
 }
 .float-label-mobile{display:none}
 @media(max-width:760px){.float-label-mobile{display:inline}}
@@ -181,9 +191,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 /* Refine only mobile telephone and LINE actions; retain their colors and placement. */
 @media(max-width:760px){
- .floating-contact{gap:16px}
  .contact-panel .actions{gap:16px}
- .float-button,
  .contact-panel .actions>.button,
  #estimate-result .button.line{
   display:flex;align-items:center;justify-content:center;
@@ -193,9 +201,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   font-size:18px;font-weight:700;line-height:1.4;
   white-space:nowrap;flex-shrink:0;
  }
- .float-button{flex:1;min-width:0;flex-shrink:1}
  .contact-panel .actions>.button{width:100%}
- .floating-contact .float-button>.icon,
  .contact-panel .actions>.button>.icon{width:24px;height:24px}
  body:not([data-page="contact"]) main .button,
  body:not([data-page="contact"]) .footer-phone{

@@ -108,15 +108,23 @@ for(const width of [320,375,390,430]){
    const buttons=page.locator(selector);await expect(buttons).toHaveCount(2);
    const geometry=await buttons.evaluateAll(items=>items.map(b=>{
     const r=b.getBoundingClientRect(),s=getComputedStyle(b);
-    return {height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,align:s.alignItems,justify:s.justifyContent};
+    return {width:r.width,height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,align:s.alignItems,justify:s.justifyContent};
    }));
-   for(const b of geometry){expect(b.height).toBe(52);expect(b.font).toBe(18);expect(b.radius).toBe(14);expect(b.wrap).toBe('nowrap');expect(b.overflow).toBe(false);expect(b.align).toBe('center');expect(b.justify).toBe('center');expect(b.left).toBeGreaterThanOrEqual(16);expect(b.right).toBeLessThanOrEqual(width-16);}
+   for(const b of geometry){expect(b.height).toBe(route==='contact'?52:48);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.font).toBe(18);if(route==='contact')expect(b.radius).toBe(14);else expect(b.radius).toBeGreaterThanOrEqual(b.height/2);expect(b.wrap).toBe('nowrap');expect(b.overflow).toBe(false);expect(b.align).toBe('center');expect(b.justify).toBe('center');expect(b.left).toBeGreaterThanOrEqual(16);expect(b.right).toBeLessThanOrEqual(width-16);}
    if(route==='contact'){
     expect(geometry[1].top-geometry[0].bottom).toBe(16);await expect(page.locator('.floating-contact')).not.toBeVisible();
    }else{
-    expect(geometry[1].left-geometry[0].right).toBe(16);
+    expect(geometry[1].left-geometry[0].right).toBeCloseTo(12,1);
+    expect(geometry[0].width).toBeCloseTo(geometry[1].width,1);
+    expect(geometry[0].top).toBeCloseTo(geometry[1].top,1);
+    const dock=await page.locator('.floating-contact').evaluate(e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,bottom:r.bottom};});
+    expect(dock.width).toBeCloseTo(Math.min(360,width-32),1);
+    expect(dock.left).toBeGreaterThanOrEqual(16);expect(dock.right).toBeLessThanOrEqual(width-16);
+    expect(dock.left).toBeCloseTo(width-dock.right,0);
+    expect(850-dock.bottom).toBeGreaterThanOrEqual(12);
+    expect(geometry[0].left-dock.left).toBeGreaterThanOrEqual(8);expect(dock.right-geometry[1].right).toBeGreaterThanOrEqual(8);
     await page.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
-    const unobstructed=await page.evaluate(()=>document.querySelector('.footer-phone').getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
+    const unobstructed=await page.evaluate(()=>document.querySelector('.site-footer').getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
     expect(unobstructed).toBe(true);
     await page.locator('main .button').last().scrollIntoViewIfNeeded();
     const clearButton=await page.locator('main .button').last().evaluate(b=>b.getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
@@ -245,6 +253,7 @@ test('reference header keeps compact equal-sized contacts readable on every page
    }));
    for(const contact of contactLayout){expect(contact.left).toBeGreaterThanOrEqual(12);expect(contact.right).toBeLessThanOrEqual(width-12);expect(contact.height).toBeCloseTo(40,1);expect(contact.radius).toBeGreaterThanOrEqual(contact.height/2);expect(contact.font).toBeGreaterThanOrEqual(width>760?14:13);expect(contact.wrap).toBe('nowrap');expect(contact.overflow).toBe(false);expect(contact.textClipped).toBe(false);expect(contact.iconWidth).toBeLessThanOrEqual(18);expect(contact.iconHeight).toBeLessThanOrEqual(18);}
    const [call,line]=contactLayout;expect(call.width).toBeCloseTo(line.width,1);expect(call.height).toBeCloseTo(line.height,1);expect(call.radius).toBeCloseTo(line.radius,1);expect(call.right<=line.left-7||line.right<=call.left-7||call.bottom<=line.top-7||line.bottom<=call.top-7).toBe(true);
+   if(width<=760)expect(call.left).toBeCloseTo(width-line.right,0);
    await expect(page.locator('.menu-toggle')).toHaveCount(0);
    await expect(page.locator('#main-nav')).toBeVisible();
    const links=page.locator('#main-nav .nav-link');await expect(links).toHaveCount(4);

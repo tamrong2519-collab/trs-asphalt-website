@@ -33,6 +33,7 @@ for (const width of [320, 375, 390, 430]) {
     for (const link of layout.navigation) { expect(link.font).toBeGreaterThanOrEqual(14); expect(link.height).toBeGreaterThanOrEqual(44); expect(link.overflow).toBe(false); }
     expect(layout.contacts).toHaveLength(2);
     expect(layout.contacts[0].width).toBeCloseTo(layout.contacts[1].width, 1);
+    expect(layout.contacts[0].left).toBeCloseTo(width - layout.contacts[1].right, 0);
     for (const contact of layout.contacts) { expect(contact.height).toBeCloseTo(40, 1); expect(contact.overflow).toBe(false); }
     expect(layout.photoCards.length).toBeGreaterThan(0);
     for (const photo of layout.photoCards) { expect(photo.left).toBeGreaterThanOrEqual(-1); expect(photo.right).toBeLessThanOrEqual(width + 1); }
@@ -47,9 +48,9 @@ for (const width of [320, 375, 390, 430]) {
     if (route === 'contact') await expect(page.locator('.floating-contact')).not.toBeVisible();
     else {
      await expect(page.locator('.floating-contact')).toBeVisible();
-     for (const button of await page.locator('.floating-contact a').all()) expect((await button.boundingBox()).height).toBe(52);
+     for (const button of await page.locator('.floating-contact a').all()) expect((await button.boundingBox()).height).toBe(48);
      await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
-     const clearFooter = await page.evaluate(() => document.querySelector('.footer-phone').getBoundingClientRect().bottom <= document.querySelector('.floating-contact').getBoundingClientRect().top);
+     const clearFooter = await page.evaluate(() => document.querySelector('.site-footer').getBoundingClientRect().bottom <= document.querySelector('.floating-contact').getBoundingClientRect().top);
      expect(clearFooter).toBe(true);
     }
    }
