@@ -21,6 +21,10 @@ const gravelPhotos = [
  ['gravel-job-05.webp', 'ผิวหินคลุกและพื้นที่ลานจอดรถ'],
  ['gravel-job-06.webp', 'กองหินคลุกเตรียมเกลี่ยและบดอัดพื้นลาน'],
  ['gravel-job-07.webp', 'เตรียมวัสดุหินคลุกสำหรับลานจอดรถ'],
+ ['gravel-job-08.webp', 'กองหินคลุกและพื้นที่ลานก่อนเกลี่ยปรับระดับ'],
+ ['gravel-job-09.webp', 'ภาพแนวตั้งของวัสดุหินคลุกเตรียมปรับพื้นลาน'],
+ ['gravel-job-10.webp', 'รถขุดเตรียมเกลี่ยหินคลุกในลานจอดรถ'],
+ ['gravel-job-11.webp', 'เครื่องจักรเตรียมพื้นลานก่อนลงหินคลุก'],
 ];
 
 async function expectPhoto(page, photos, index) {
@@ -35,6 +39,7 @@ async function expectPhoto(page, photos, index) {
   'asphalt-job-09.webp': [1280, 720],
   'gravel-job-05.webp': [960, 1280],
   'gravel-job-06.webp': [960, 1280],
+  'gravel-job-09.webp': [960, 1280],
  }[file];
  if (expectedDimensions) {
   const photoLayout = await image.evaluate(element => {
@@ -56,7 +61,7 @@ test('portfolio groups all five services with the supplied asphalt work photos f
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-photo-count')).toHaveText('9 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
- await expect(page.locator('.project-row[data-category="gravel"] .project-photo-count')).toHaveText('7 ภาพ');
+ await expect(page.locator('.project-row[data-category="gravel"] .project-photo-count')).toHaveText('11 ภาพ');
  for (const category of ['asphalt', 'gravel', 'stone', 'speed-bump', 'marking']) {
   const row = page.locator(`.project-row[data-category="${category}"]`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
