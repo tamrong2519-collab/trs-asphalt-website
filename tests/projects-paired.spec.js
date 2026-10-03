@@ -8,6 +8,10 @@ const asphaltPhotos = [
  ['asphalt-job-03.webp', 'รถบดเก็บผิวลาดยางมะตอยข้างอาคาร'],
  ['asphalt-job-04.webp', 'งานบดอัดยางมะตอยบริเวณทางเข้าอาคาร'],
  ['asphalt-job-05.webp', 'งานลาดยางมะตอยบริเวณทางโค้งและลานอาคาร'],
+ ['asphalt-job-06.webp', 'ผิวถนนลาดยางมะตอยและพื้นที่ทางเข้าอาคาร'],
+ ['asphalt-job-07.webp', 'รายละเอียดผิวลาดยางมะตอยและขอบทาง'],
+ ['asphalt-job-08.webp', 'ภาพรวมถนนลาดยางมะตอยบริเวณอาคาร'],
+ ['asphalt-job-09.webp', 'ทีมงานและเครื่องจักรขณะปูยางมะตอย'],
 ];
 
 async function expectPhoto(page, photos, index) {
@@ -18,6 +22,14 @@ async function expectPhoto(page, photos, index) {
  await expect(page.locator('#image-caption')).toHaveText(alt);
  await image.evaluate(element => element.decode());
  expect(await image.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0)).toBe(true);
+ if (file === 'asphalt-job-09.webp') {
+  const widePhoto = await image.evaluate(element => {
+   const rect = element.getBoundingClientRect(), frame = element.parentElement.getBoundingClientRect();
+   return { width: element.naturalWidth, height: element.naturalHeight, fit: getComputedStyle(element).objectFit, insideFrame: rect.left >= frame.left - 1 && rect.right <= frame.right + 1 && rect.top >= frame.top - 1 && rect.bottom <= frame.bottom + 1 };
+  });
+  expect(widePhoto.width).toBe(1280); expect(widePhoto.height).toBe(720);
+  expect(widePhoto.fit).toBe('contain'); expect(widePhoto.insideFrame).toBe(true);
+ }
 }
 
 test('portfolio groups all five services with the supplied asphalt work photos first', async ({ page }) => {
@@ -28,7 +40,7 @@ test('portfolio groups all five services with the supplied asphalt work photos f
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('src', path('images/asphalt-job-01.webp'));
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('alt', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
- await expect(rows.first().locator('.project-photo-count')).toHaveText('5 ภาพ');
+ await expect(rows.first().locator('.project-photo-count')).toHaveText('9 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
  for (const category of ['asphalt', 'gravel', 'stone', 'speed-bump', 'marking']) {
   const row = page.locator(`.project-row[data-category="${category}"]`);
