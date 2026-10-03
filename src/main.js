@@ -8,6 +8,7 @@ import './arrows.css';
 import './hero-estimate.css';
 import './navigation.css';
 import './typography.css';
+import './photo-frames.css';
 import { initializeSlider } from './slider.js';
 import { business as b, services, projects } from './data.js';
 const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

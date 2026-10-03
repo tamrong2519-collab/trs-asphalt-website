@@ -1,0 +1,15 @@
+/* Use one rounded rectangle for work photos throughout the website. */
+:root{--photo-radius:16px}
+
+body[data-page] #main :is(.hero,.scene,.photo-button,.service-card,.sample-card,.project-card,.info-card){
+ border-radius:var(--photo-radius);
+ overflow:hidden;
+}
+
+body[data-page] #main :is(.hero-image,.hero-scene,.hero-transition,.hero-transition-photo,.hero-transition-scene){
+ border-radius:var(--photo-radius);
+}
+body[data-page] #main :is(.hero-scene,.hero-transition,.hero-transition-scene){overflow:hidden}
+
+#lightbox-image{border-radius:var(--photo-radius);overflow:hidden}
+#lightbox-image>img{border-radius:var(--photo-radius)}
