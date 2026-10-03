@@ -85,7 +85,7 @@ test('project filters show the selected category and retain honest photo labels'
   }
   if(category==='marking'){
    await expect(row).toHaveAttribute('id','parking-marking');
-   await expect(row.locator('.project-photo-count')).toHaveText('6 ภาพ');
+   await expect(row.locator('.project-photo-count')).toHaveText('11 ภาพ');
    await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/marking-job.webp'));
   }
  }
@@ -104,10 +104,10 @@ test('gallery keeps the marking cover and opens the accessible parking photo',as
  await trigger.click();await expect(page.locator('#lightbox')).toBeVisible();
  await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจร');
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/marking-job.webp'),page.url()).href);
- await expect(page.locator('#image-count')).toHaveText('1 / 6');
+ await expect(page.locator('#image-count')).toHaveText('1 / 11');
  await expect(page.getByRole('button',{name:'ภาพก่อนหน้า',exact:true})).toBeEnabled();await expect(page.getByRole('button',{name:'ภาพถัดไป',exact:true})).toBeEnabled();
  await page.getByRole('button',{name:'ภาพถัดไป',exact:true}).click();
- await expect(page.locator('#image-count')).toHaveText('2 / 6');
+ await expect(page.locator('#image-count')).toHaveText('2 / 11');
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/marking-job-02.webp'),page.url()).href);
  await expect(page.locator('#image-caption')).toHaveText('ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่');
  await page.getByRole('button',{name:'ปิดภาพ',exact:true}).click();await expect(page.locator('#lightbox')).not.toBeVisible();await expect(trigger).toBeFocused();
