@@ -40,7 +40,7 @@ body[data-page=index] .hero-estimate .slide-play{bottom:14px;right:16px;backgrou
 }
 @media(max-width:760px){
  body[data-page=index] .hero-estimate{--hero-photo-height:clamp(230px,66vw,290px);min-height:600px;align-items:flex-start;background:#fff}
- body[data-page=index] .hero-estimate .hero-content{padding:calc(var(--hero-photo-height) + 28px) 0 40px}
+ body[data-page=index] .hero-estimate .hero-content{padding:calc(var(--hero-photo-height) + 28px) 0 40px;text-align:center}
  /* Keep every slide unobscured; readable copy follows the photo on small screens. */
  body[data-page=index] .hero-estimate .hero-overlay{background:none}
  body[data-page=index] .hero-estimate .hero-image,
