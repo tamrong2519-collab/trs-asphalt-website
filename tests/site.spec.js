@@ -83,11 +83,11 @@ test('production HTML contains indexable Thai content without JS',async()=>{
  }
 });
 
-test('gallery shows the stone work photo and disables single-photo navigation',async({page})=>{
+test('gallery shows the marking work photo and disables single-photo navigation',async({page})=>{
  await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(5);
- const trigger=page.locator('.project-row[data-category="stone"] .photo-button');
+ const trigger=page.locator('.project-row[data-category="marking"] .photo-button');
  await trigger.click();await expect(page.locator('#lightbox')).toBeVisible();
- await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานหินเกล็ด');
+ await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจร');
  await expect(page.locator('#image-count')).toHaveText('1 / 1');
  await expect(page.getByRole('button',{name:'ภาพก่อนหน้า',exact:true})).toBeDisabled();await expect(page.getByRole('button',{name:'ภาพถัดไป',exact:true})).toBeDisabled();
  await page.getByRole('button',{name:'ปิดภาพ',exact:true}).click();await expect(page.locator('#lightbox')).not.toBeVisible();await expect(trigger).toBeFocused();

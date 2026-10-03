@@ -52,7 +52,14 @@ export const projects = [
   {
     id: 'stone-yard', category: 'stone', title: 'งานหินเกล็ด',
     location: '', description: 'ปรับพื้นลานและพื้นที่ทางเข้าออก',
-    images: [{ src: '/images/stone-job.webp', alt: 'ภาพหน้างานหินเกล็ด' }],
+    images: [
+      { src: '/images/stone-job.webp', alt: 'ภาพหน้างานหินเกล็ด' },
+      { src: '/images/stone-job-02.webp', alt: 'ภาพรวมลานหินเกล็ดบริเวณอาคาร' },
+      { src: '/images/stone-job-03.webp', alt: 'ลานหินเกล็ดและพื้นที่ทางเข้าอาคาร' },
+      { src: '/images/stone-job-04.webp', alt: 'ผิวลานหินเกล็ดและพื้นที่ใช้งาน' },
+      { src: '/images/stone-job-05.webp', alt: 'งานหินเกล็ดรอบอาคารและแนวต้นไม้' },
+      { src: '/images/stone-job-06.webp', alt: 'รถบดบดอัดพื้นลานหินเกล็ด' },
+    ],
   },
   {
     id: 'speed-bump-work', category: 'speed-bump', title: 'งานลูกระนาดยางมะตอย',
