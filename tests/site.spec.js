@@ -256,13 +256,31 @@ test('reference header keeps compact equal-sized contacts readable on every page
  }
 });
 
-test('homepage reference layout uses five service cards and a 3 plus 2 gallery',async({page})=>{
- await page.setViewportSize({width:853,height:1280});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
- await expect(page.locator('.home-services .service-card')).toHaveCount(5);await expect(page.locator('.sample-card')).toHaveCount(5);
- await expect(page.locator('.header-contact a')).toHaveCount(2);await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
- await expect(page.locator('main .cta')).toHaveCount(0);
- const geometry=await page.evaluate(()=>{const hero=document.querySelector('.hero-home').getBoundingClientRect();const cards=[...document.querySelectorAll('.sample-card')].map(e=>e.getBoundingClientRect());return {ratio:hero.width/hero.height,rows:cards.map(e=>Math.round(e.top)),overflow:document.documentElement.scrollWidth>innerWidth};});
- expect(geometry.ratio).toBeGreaterThan(1);expect(geometry.ratio).toBeLessThan(2);expect(geometry.rows[0]).toBe(geometry.rows[1]);expect(geometry.rows[1]).toBe(geometry.rows[2]);expect(geometry.rows[3]).toBe(geometry.rows[4]);expect(geometry.rows[3]).toBeGreaterThan(geometry.rows[0]);expect(geometry.overflow).toBe(false);
+test('homepage gallery keeps five equal photo cards centered on desktop and tablet and stacked on mobile',async({page})=>{
+ for(const width of [320,375,390,430,768,853,1024,1280,1440]){
+  await page.setViewportSize({width,height:1280});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
+  await expect(page.locator('.home-services .service-card')).toHaveCount(5);await expect(page.locator('.sample-card')).toHaveCount(5);
+  await expect(page.locator('.header-contact a')).toHaveCount(2);await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
+  await expect(page.locator('main .cta')).toHaveCount(0);await expect(page.locator('.blue-section .image-note')).toHaveCount(0);
+  const geometry=await page.evaluate(()=>{
+   const grid=document.querySelector('.sample-grid').getBoundingClientRect(),hero=document.querySelector('.hero-home').getBoundingClientRect();
+   const cards=[...document.querySelectorAll('.sample-card')].map(e=>{const r=e.getBoundingClientRect(),photo=e.querySelector('.scene').getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height,photoWidth:photo.width,photoHeight:photo.height};});
+   return {gridCenter:(grid.left+grid.right)/2,cards,heroRatio:hero.width/hero.height,overflow:document.documentElement.scrollWidth>innerWidth};
+  });
+  expect(geometry.overflow).toBe(false);
+  if(width===853){expect(geometry.heroRatio).toBeGreaterThan(1);expect(geometry.heroRatio).toBeLessThan(2);}
+  for(const card of geometry.cards){expect(card.width).toBeCloseTo(geometry.cards[0].width,0);expect(card.height).toBeCloseTo(geometry.cards[0].height,0);expect(card.photoWidth).toBeCloseTo(geometry.cards[0].photoWidth,0);expect(card.photoHeight).toBeCloseTo(geometry.cards[0].photoHeight,0);expect(card.photoWidth/card.photoHeight).toBeCloseTo(1.6,2);expect(card.left).toBeGreaterThanOrEqual(16);expect(card.right).toBeLessThanOrEqual(width-16);}
+  const [a,b,c,d,e]=geometry.cards;
+  if(width>1100){
+   expect(a.top).toBeCloseTo(b.top,0);expect(b.top).toBeCloseTo(c.top,0);expect(b.left).toBeGreaterThanOrEqual(a.right);expect(c.left).toBeGreaterThanOrEqual(b.right);expect(d.top).toBeCloseTo(e.top,0);expect(e.left).toBeGreaterThanOrEqual(d.right);expect(d.top).toBeGreaterThanOrEqual(a.bottom);expect((d.left+e.right)/2).toBeCloseTo(geometry.gridCenter,0);
+  }else if(width>760){
+   expect(a.top).toBeCloseTo(b.top,0);expect(b.left).toBeGreaterThanOrEqual(a.right);expect(c.top).toBeCloseTo(d.top,0);expect(d.left).toBeGreaterThanOrEqual(c.right);expect(c.top).toBeGreaterThanOrEqual(a.bottom);expect(e.top).toBeGreaterThanOrEqual(c.bottom);expect((e.left+e.right)/2).toBeCloseTo(geometry.gridCenter,0);
+  }else{
+   for(let index=1;index<geometry.cards.length;index++){expect(geometry.cards[index].left).toBeCloseTo(a.left,0);expect(geometry.cards[index].top).toBeGreaterThanOrEqual(geometry.cards[index-1].bottom);}
+  }
+ }
+ await page.goto(path('services.html'));await expect(page.locator('.image-note').first()).toContainText('ภาพประกอบบริการ');
+ await page.goto(path('projects.html'));await expect(page.locator('#empty-projects')).toContainText('ภาพตัวอย่างประกอบบริการ');
 });
 
 test('homepage hero matches requested wording, four benefits and blue phone button',async({page})=>{
