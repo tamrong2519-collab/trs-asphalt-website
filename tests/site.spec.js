@@ -25,12 +25,12 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
    if(width<=760){
     const readability=await page.evaluate(()=>({
      heroFont:parseFloat(getComputedStyle(document.querySelector('h1')).fontSize),
-     heroHeight:document.querySelector('.hero').getBoundingClientRect().height,
+     heroHeight:document.querySelector('.hero, .paired-hero').getBoundingClientRect().height,
      smallParagraphs:[...document.querySelectorAll('main p')].filter(p=>p.textContent.trim()&&parseFloat(getComputedStyle(p).fontSize)<16).map(p=>p.className),
      smallButtons:[...document.querySelectorAll('main .button')].filter(b=>b.getBoundingClientRect().height>0&&b.getBoundingClientRect().height<52).map(b=>b.textContent.trim()),
     }));
     expect(readability.heroFont).toBeGreaterThanOrEqual(34);expect(readability.heroFont).toBeLessThanOrEqual(44);
-    expect(readability.heroHeight).toBeGreaterThanOrEqual(380);expect(readability.smallParagraphs).toEqual([]);expect(readability.smallButtons).toEqual([]);
+    expect(readability.heroHeight).toBeGreaterThanOrEqual(route==='services'?220:380);expect(readability.smallParagraphs).toEqual([]);expect(readability.smallButtons).toEqual([]);
    }
    await expect(page.locator('#main-nav a')).toHaveCount(4);
    await expect(page.locator('#main-nav a')).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);

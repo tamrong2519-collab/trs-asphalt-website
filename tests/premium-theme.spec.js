@@ -31,7 +31,7 @@ async function inspectReadability(page) {
    }
   }
   let contrastChecks = 0;
-  const copy = document.querySelectorAll('main .card-content :is(p,h3), main .sample-card h3, main .project-caption :is(p,h2), main .contact-panel :is(p,h2), main .info-card :is(p,h3), main .process-card :is(p,h3), main .service-detail :is(p,h2), main .checklist li');
+  const copy = document.querySelectorAll('main .card-content :is(p,h3), main .sample-card h3, main .project-caption :is(p,h2), main .contact-panel :is(p,h2), main .info-card :is(p,h3), main .process-card :is(p,h3), main .service-detail :is(p,h2), main .checklist li, main .paired-copy :is(p,h2), main .paired-checks li, main .paired-process-grid :is(p,h3)');
   for (const element of [...copy].filter(visible)) {
    const layers = []; let gradient = false;
    for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
@@ -71,6 +71,30 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
     expect(readability.problems, route).toEqual([]); expect(readability.contrastChecks, route).toBeGreaterThan(0);
     expect(readability.innerWidth).toBe(width); expect(readability.scrollWidth).toBeLessThanOrEqual(width);
     if (mobile) expect(readability.scale).toBeCloseTo(1, 3);
+    if (route === 'services') {
+     const rows = page.locator('.paired-service');
+     await expect(rows).toHaveCount(5);
+     await expect(page.locator('.feature-services')).toHaveCount(0);
+     const pairedLayout = await rows.evaluateAll(items => items.map(element => {
+      const photo = element.querySelector('.paired-photo').getBoundingClientRect();
+      const copy = element.querySelector('.paired-copy').getBoundingClientRect();
+      return { photo: { left: photo.left, right: photo.right, top: photo.top, bottom: photo.bottom, width: photo.width, height: photo.height }, copy: { left: copy.left, right: copy.right, top: copy.top, bottom: copy.bottom } };
+     }));
+     for (let index = 0; index < pairedLayout.length; index++) {
+      const { photo, copy } = pairedLayout[index];
+      expect(photo.width).toBeCloseTo(pairedLayout[0].photo.width, 0);
+      expect(photo.height).toBeCloseTo(pairedLayout[0].photo.height, 0);
+      if (mobile) {
+       expect(copy.top - photo.bottom).toBeGreaterThanOrEqual(16);
+       expect(copy.left).toBeCloseTo(photo.left, 0);
+       expect(copy.right).toBeCloseTo(photo.right, 0);
+      } else if (width === 1440) {
+       expect(photo.top).toBeLessThan(copy.bottom);
+       expect(copy.top).toBeLessThan(photo.bottom);
+       expect(index % 2 === 0 ? copy.left - photo.right : photo.left - copy.right).toBeGreaterThanOrEqual(24);
+      }
+     }
+    }
     await expect(page.locator('#main-nav [aria-current="page"]')).toHaveAttribute('href', path(route));
     await expect(page.locator('.header-call')).toHaveAttribute('href', phone);
     await expect(page.locator('.header-line')).toHaveAttribute('href', line);
@@ -144,10 +168,24 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   expect(dimensions.width).toBeGreaterThanOrEqual(1200); expect(dimensions.height).toBeGreaterThanOrEqual(900);
  };
  await page.goto(path('services'));
+ await expect(page.locator('.paired-service')).toHaveCount(5);
+ await expect(page.locator('.paired-service#asphalt img')).toHaveAttribute('src', photoPath('hero-daylight.webp'));
+ await expect(page.locator('.paired-service#asphalt img')).toHaveAttribute('alt', /ภาพประกอบ/);
  for (const [id, file] of jobs) {
-  await loadedPhoto(page.locator(`.feature-services a[href$="#${id}"] img`), file);
-  await loadedPhoto(page.locator(`.service-detail#${id} img`), file);
+  await loadedPhoto(page.locator(`.paired-service#${id} img`), file);
  }
+ for (const id of ['asphalt', ...jobs.map(([id]) => id)]) {
+  const row = page.locator(`.paired-service#${id}`);
+  await expect(row.locator('img')).toHaveCount(1);
+  const estimateLink = row.locator('.paired-quote');
+  await expect(estimateLink).toHaveText('ขอประเมินงานนี้');
+  await expect(estimateLink).toHaveAccessibleName(/^ขอประเมินงาน.+/);
+  await expect(estimateLink).toHaveAttribute('href', `${process.env.SITE_BASE || '/'}contact.html?service=${id}#estimate`);
+ }
+ await page.locator('.paired-service#gravel .paired-quote').click();
+ await expect(page).toHaveURL(/contact\.html\?service=gravel#estimate$/);
+ await expect(page.locator('#estimate-form')).toBeVisible();
+ await expect(page.locator('#service')).toHaveValue('gravel');
  await page.goto(path('projects'));
  for (const [, file] of jobs) await loadedPhoto(page.locator(`.project-card img[src="${photoPath(file)}"]`), file);
  await page.getByRole('button', { name: 'ลานจอดรถหินคลุก', exact: true }).click();
