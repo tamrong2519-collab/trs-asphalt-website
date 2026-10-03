@@ -5,7 +5,8 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
  test(`all pages, navigation and layout at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height: 900 });
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  for (const route of ['index','services','projects','contact']) {
+  const routes=['index','services','projects','contact'];
+  for (const route of routes) {
    const response=await page.goto(path(`${route}.html`));expect(response.status()).toBe(200);
    await expect(page.locator('h1')).toBeVisible();
    await expect(page.locator('main')).toBeVisible();
@@ -31,13 +32,22 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
     expect(readability.heroFont).toBeGreaterThanOrEqual(34);expect(readability.heroFont).toBeLessThanOrEqual(44);
     expect(readability.heroHeight).toBeGreaterThanOrEqual(380);expect(readability.smallParagraphs).toEqual([]);expect(readability.smallButtons).toEqual([]);
    }
-   await expect(page.locator('nav a')).toHaveCount(4);
-   await expect(page.locator('nav a')).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);
-   await expect(page.locator('nav a[aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
+   await expect(page.locator('#main-nav a')).toHaveCount(4);
+   await expect(page.locator('#main-nav a')).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);
+   await expect(page.locator('#main-nav a[aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
    await expect(page.locator('.menu-toggle')).toHaveCount(0);
-   for(const link of await page.locator('nav a').all()) await expect(link).toBeVisible();
+   for(const link of await page.locator('#main-nav a').all()) await expect(link).toBeVisible();
+   const footer=page.getByRole('navigation',{name:'เมนูส่วนท้าย'}),footerLinks=footer.locator('a');
+   await expect(footerLinks).toHaveCount(4);await expect(footerLinks).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);
+   for(let index=0;index<routes.length;index++){await expect(footerLinks.nth(index)).toHaveAttribute('href',path(`${routes[index]}.html`));await expect(footerLinks.nth(index)).toBeVisible();}
+   await expect(footer.locator('[aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
    for (const img of await page.locator('img[src]').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
-   await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);
+   if(width>760){await page.evaluate(()=>scrollTo(0,document.documentElement.scrollHeight));await expect(page.locator('.floating-contact')).not.toBeVisible();}
+   const nextRoute=routes[(routes.indexOf(route)+1)%routes.length];
+   await footer.locator(`a[href="${path(`${nextRoute}.html`)}"]`).click();await expect(page).toHaveURL(new RegExp(`/${nextRoute}\\.html$`));
+   if(width>760){await page.evaluate(()=>scrollTo(0,0));await expect(page.locator('.floating-contact')).toBeVisible();}
+   await page.locator('#main-nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);
+   if(width>760){await page.evaluate(()=>scrollTo(0,0));await expect(page.locator('.floating-contact')).toBeVisible();}
   }
   expect(errors).toEqual([]);
  });

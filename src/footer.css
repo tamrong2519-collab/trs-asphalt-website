@@ -1,0 +1,46 @@
+/* Compact footer selected from example 5: brand, contacts, navigation and a thin road stripe. */
+body[data-page] .site-footer{background:#f9fbfd;border-top:1px solid #e0e9f0;color:var(--navy)}
+body[data-page] .site-footer .footer-top{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:30px;align-items:center;padding:29px 0 23px}
+body[data-page] .site-footer .footer-brand{gap:14px;min-width:0;font-weight:700;letter-spacing:0}
+body[data-page] .site-footer .footer-brand img{width:60px;height:60px;flex-shrink:0}
+body[data-page] .site-footer .footer-wordmark{display:block;line-height:1.2}
+body[data-page] .site-footer .footer-trs{display:block;font-size:24px;font-weight:700}
+body[data-page] .site-footer .footer-name{display:block;font-size:16px;font-weight:700;margin-top:4px}
+body[data-page] .site-footer .footer-brand small{font-size:10px;font-weight:600;letter-spacing:3.6px;line-height:1.4;margin-top:5px}
+body[data-page] .site-footer .footer-tagline{border-left:1px solid #cdddea;padding-left:24px;line-height:1.6}
+body[data-page] .site-footer .footer-tagline strong{font-size:17px;font-weight:600}
+body[data-page] .site-footer p{display:block;border:0;padding:0;margin:0;font-size:16px;font-weight:400;line-height:1.8;color:var(--muted)}
+body[data-page] .site-footer .footer-contact{display:flex;justify-self:end;gap:12px}
+body[data-page] .site-footer .footer-contact>.button{display:flex;align-items:center;justify-content:center;width:175px;height:48px;min-height:48px;margin:0;padding:10px 14px;gap:9px;border-radius:999px;font-size:17px;font-weight:500;line-height:1.5;white-space:nowrap;box-shadow:none}
+body[data-page] .site-footer .footer-contact>.button .icon{width:20px;height:20px}
+body[data-page] .site-footer .footer-contact>.button .line-symbol{width:25px;height:25px;font-size:7px}
+body[data-page] .site-footer .footer-secondary{display:flex;justify-content:space-between;align-items:center;gap:24px;border-top:1px solid #e0e9f0;padding:13px 0}
+body[data-page] .site-footer .footer-nav{display:flex;position:static;flex-direction:row;align-items:center;gap:22px;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;max-height:none;overflow:visible;font-size:16px;font-weight:500}
+body[data-page] .site-footer .footer-nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 0;white-space:nowrap;background:transparent;border-radius:0}
+body[data-page] .site-footer .footer-nav a::after{content:none}
+body[data-page] .site-footer .footer-nav a[aria-current],body[data-page] .site-footer .footer-nav a:hover{color:#009fe8}
+body[data-page] .site-footer .footer-area{text-align:right}
+body[data-page] .site-footer .footer-legal{display:flex;justify-content:space-between;gap:24px;border-top:1px solid #e0e9f0;padding:13px 0;color:#627590;font-size:14px;font-weight:400;line-height:1.8}
+body[data-page] .site-footer .footer-stripes{height:8px;background:repeating-linear-gradient(125deg,#20b0ed 0,#20b0ed 14px,#e0f4ff 14px,#e0f4ff 28px)}
+@media(min-width:761px){body[data-page] .floating-contact.is-over-footer{visibility:hidden;pointer-events:none}}
+@media(max-width:1100px) and (min-width:761px){
+ body[data-page] .site-footer .footer-top{grid-template-columns:auto minmax(0,1fr);gap:22px}
+ body[data-page] .site-footer .footer-contact{grid-column:1/-1;justify-self:start}
+ body[data-page] .site-footer .footer-secondary{align-items:flex-start;flex-direction:column;gap:6px}
+ body[data-page] .site-footer .footer-area{text-align:left}
+}
+@media(max-width:760px){
+ body[data-page] .site-footer{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+ body[data-page=contact] .site-footer{padding-bottom:0}
+ body[data-page] .site-footer .container{width:calc(100% - 32px)}
+ body[data-page] .site-footer .footer-top{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding:28px 0 22px}
+ body[data-page] .site-footer .footer-brand{gap:12px}
+ body[data-page] .site-footer .footer-brand img{width:58px;height:58px}
+ body[data-page] .site-footer .footer-tagline{border:0;padding:0}
+ body[data-page] .site-footer .footer-contact{width:100%;display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+ body[data-page] .site-footer .footer-contact>.button{width:100%;height:52px;min-height:52px;font-size:18px;padding:12px 16px}
+ body[data-page] .site-footer .footer-secondary{display:flex;align-items:flex-start;flex-direction:column;gap:16px;padding:16px 0 20px}
+ body[data-page] .site-footer .footer-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:4px 16px;font-size:16px}
+ body[data-page] .site-footer .footer-area{text-align:left}
+ body[data-page] .site-footer .footer-legal{flex-direction:column;gap:5px;padding:16px 0}
+}
