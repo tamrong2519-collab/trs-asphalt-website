@@ -62,6 +62,16 @@ export const projects = [
     ],
   },
   {
+    id: 'stone-building-yard', category: 'stone', title: 'งานลานหินเกล็ดรอบอาคาร',
+    location: '', description: 'ปรับพื้นหินเกล็ดข้างอาคารและแนวต้นไม้',
+    images: [
+      { src: '/images/stone-building-01.webp', alt: 'ภาพหน้างานลานหินเกล็ดข้างอาคาร' },
+      { src: '/images/stone-building-02.webp', alt: 'ลานหินเกล็ดรอบต้นไม้และแนวกำแพง' },
+      { src: '/images/stone-building-03.webp', alt: 'พื้นหินเกล็ดบริเวณทางเดินข้างอาคาร' },
+      { src: '/images/stone-building-04.webp', alt: 'ภาพรวมลานหินเกล็ดรอบอาคารและแนวต้นไม้' },
+    ],
+  },
+  {
     id: 'speed-bump-work', category: 'speed-bump', title: 'งานลูกระนาดยางมะตอย',
     location: '', description: 'จัดทำลูกระนาดและเครื่องหมายชะลอความเร็ว',
     images: [{ src: '/images/speed-bump-job.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอย' }],

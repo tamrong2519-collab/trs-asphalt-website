@@ -116,6 +116,7 @@ body[data-page="projects"] #main .projects-paired {
 }
 body[data-page="projects"] #main .project-row {
   display:grid;
+  scroll-margin-top:128px;
   grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);
   gap:52px;
   align-items:center;
@@ -359,6 +360,11 @@ body[data-page="projects"] #image-caption {
     transform:scale(1.025);
   }
 }
+@media (max-width:1200px) {
+  body[data-page="projects"] #main .project-row {
+    scroll-margin-top:160px;
+  }
+}
 @media (max-width:1000px) {
   body[data-page="projects"] #main .project-row {
     gap:30px;
@@ -410,6 +416,7 @@ body[data-page="projects"] #image-caption {
   body[data-page="projects"] #main .project-row,
   body[data-page="projects"] #main .project-row:nth-child(even) {
     grid-template-columns:minmax(0,1fr);
+    scroll-margin-top:210px;
     gap:24px;
     padding-bottom:30px;
   }

@@ -146,7 +146,7 @@ if(page==='projects') {
   document.getElementById('project-grid').innerHTML=localPaths(items.map(p=>{
    const s=services.find(s=>s.id===p.category), index=groups.indexOf(p), cover=p.images[0];
    const label=p.imageKind==='illustration'?'ดูภาพประกอบ':'ดูภาพหน้างาน';
-   return `<article class="project-card project-row" data-category="${escape(p.category)}">
+   return `<article class="project-card project-row" id="${escape(p.id)}" data-category="${escape(p.category)}">
     <button type="button" class="photo-button project-cover" data-project="${index}" aria-label="${label}: ${escape(p.title)}"><img src="${escape(cover.src)}" alt="${escape(cover.alt)}" width="1280" height="960" loading="lazy"><span class="project-view" aria-hidden="true">${arrow}</span></button>
     <div class="project-copy"><span class="project-category">${escape(s.title)}</span><h3>${escape(p.title)}</h3>${p.location?`<p class="project-location">${icon('pin')}${escape(p.location)}</p>`:''}<p>${escape(p.description)}</p>
      ${p.imageKind==='illustration'?'<p class="project-image-note">ภาพประกอบงานลาดยางมะตอย</p>':''}

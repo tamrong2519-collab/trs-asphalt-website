@@ -65,7 +65,8 @@ test('project filters show the selected category and retain honest photo labels'
   const filter=page.locator(`[data-filter="${category}"]`);await filter.click();
   await expect(filter).toHaveAttribute('aria-pressed','true');
   await expect(page.locator('[data-filter][aria-pressed="true"]')).toHaveCount(1);
-  const row=page.locator('.project-row:visible');await expect(row).toHaveCount(1);await expect(row).toHaveAttribute('data-category',category);
+  const row=page.locator('.project-row:visible');await expect(row).toHaveCount(category==='stone'?2:1);
+  for(const item of await row.all())await expect(item).toHaveAttribute('data-category',category);
   await expect(page.locator('#empty-projects')).not.toBeVisible();
   if(category==='asphalt'){
    await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/asphalt-job-01.webp'));
@@ -73,8 +74,12 @@ test('project filters show the selected category and retain honest photo labels'
    await expect(row.locator('.project-photo-count')).toHaveText('9 ภาพ');
    await expect(row.locator('.project-image-note')).toHaveCount(0);
   }
+  if(category==='stone'){
+   expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['stone-yard','stone-building-yard']);
+   await expect(row.locator('.project-photo-count')).toHaveText(['6 ภาพ','4 ภาพ']);
+  }
  }
- await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(5);
+ await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(6);
  await expect(page.locator('.project-row:visible').first()).toHaveAttribute('data-category','asphalt');
 });
 test('production HTML contains indexable Thai content without JS',async()=>{
@@ -84,7 +89,7 @@ test('production HTML contains indexable Thai content without JS',async()=>{
 });
 
 test('gallery shows the marking work photo and disables single-photo navigation',async({page})=>{
- await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(5);
+ await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(6);
  const trigger=page.locator('.project-row[data-category="marking"] .photo-button');
  await trigger.click();await expect(page.locator('#lightbox')).toBeVisible();
  await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจร');
