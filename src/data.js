@@ -18,10 +18,12 @@ export const services = [
 // รูปแรกเป็นหน้าปก; location เว้นว่างได้; imageKind: 'illustration' ใช้กับภาพประกอบเท่านั้น
 export const projects = [
   {
-    id: 'asphalt-preview', category: 'asphalt', title: 'งานลาดยางมะตอย',
-    location: '', description: 'งานปูยางแอสฟัลท์สำหรับถนนและลานจอดรถ',
-    imageKind: 'illustration',
-    images: [{ src: '/images/hero-daylight.webp', alt: 'ภาพประกอบงานลาดยางมะตอย' }],
+    id: 'asphalt-road', category: 'asphalt', title: 'งานลาดยางมะตอย',
+    location: '', description: 'งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร',
+    images: [
+      { src: '/images/asphalt-job-01.webp', alt: 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร' },
+      { src: '/images/asphalt-job-02.webp', alt: 'ภาพหน้างานลาดยางมะตอยและรถบดบริเวณอาคาร' },
+    ],
   },
   {
     id: 'gravel-yard', category: 'gravel', title: 'งานลานจอดรถหินคลุก',

@@ -67,7 +67,12 @@ test('project filters show the selected category and retain honest photo labels'
   await expect(page.locator('[data-filter][aria-pressed="true"]')).toHaveCount(1);
   const row=page.locator('.project-row:visible');await expect(row).toHaveCount(1);await expect(row).toHaveAttribute('data-category',category);
   await expect(page.locator('#empty-projects')).not.toBeVisible();
-  if(category==='asphalt')await expect(row).toContainText('ภาพประกอบงานลาดยางมะตอย');
+  if(category==='asphalt'){
+   await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/asphalt-job-01.webp'));
+   await expect(row.locator('.project-cover img')).toHaveAttribute('alt','ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
+   await expect(row.locator('.project-photo-count')).toHaveText('2 ภาพ');
+   await expect(row.locator('.project-image-note')).toHaveCount(0);
+  }
  }
  await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(5);
  await expect(page.locator('.project-row:visible').first()).toHaveAttribute('data-category','asphalt');
@@ -78,13 +83,14 @@ test('production HTML contains indexable Thai content without JS',async()=>{
  }
 });
 
-test('gallery clearly labels the asphalt illustration and disables single-photo navigation',async({page})=>{
+test('gallery shows the stone work photo and disables single-photo navigation',async({page})=>{
  await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(5);
- await page.locator('.photo-button').first().click();await expect(page.locator('#lightbox')).toBeVisible();
- await expect(page.locator('#image-caption')).toHaveText('ภาพประกอบงานลาดยางมะตอย');
+ const trigger=page.locator('.project-row[data-category="stone"] .photo-button');
+ await trigger.click();await expect(page.locator('#lightbox')).toBeVisible();
+ await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานหินเกล็ด');
  await expect(page.locator('#image-count')).toHaveText('1 / 1');
  await expect(page.getByRole('button',{name:'ภาพก่อนหน้า',exact:true})).toBeDisabled();await expect(page.getByRole('button',{name:'ภาพถัดไป',exact:true})).toBeDisabled();
- await page.getByRole('button',{name:'ปิดภาพ',exact:true}).click();await expect(page.locator('#lightbox')).not.toBeVisible();await expect(page.locator('.photo-button').first()).toBeFocused();
+ await page.getByRole('button',{name:'ปิดภาพ',exact:true}).click();await expect(page.locator('#lightbox')).not.toBeVisible();await expect(trigger).toBeFocused();
 });
 test('phone and LINE buttons use confirmed contact details',async({page})=>{
  await page.goto(path('contact.html'));await expect(page.locator('.floating-contact a').first()).toHaveAttribute('href','tel:0622484089');
@@ -311,7 +317,7 @@ test('homepage gallery keeps five equal photo cards centered on desktop and tabl
   }
  }
  await page.goto(path('services.html'));await expect(page.locator('.image-note').first()).toContainText('ภาพประกอบบริการ');
- await page.goto(path('projects.html'));await expect(page.locator('.project-row').first()).toContainText('ภาพประกอบงานลาดยางมะตอย');await expect(page.locator('#empty-projects')).not.toBeVisible();
+ await page.goto(path('projects.html'));await expect(page.locator('.project-row').first().locator('.project-cover img')).toHaveAttribute('src',path('images/asphalt-job-01.webp'));await expect(page.locator('#empty-projects')).not.toBeVisible();
 });
 
 test('homepage hero matches requested wording, four benefits and blue phone button',async({page})=>{
