@@ -31,7 +31,7 @@ async function inspectReadability(page) {
    }
   }
   let contrastChecks = 0;
-  const copy = document.querySelectorAll('main .card-content :is(p,h3), main .sample-card h3, main .project-caption :is(p,h2), main .contact-panel :is(p,h2), main .info-card :is(p,h3), main .process-card :is(p,h3), main .service-detail :is(p,h2), main .checklist li, main .paired-copy :is(p,h2), main .paired-checks li, main .paired-process-grid :is(p,h3)');
+  const copy = document.querySelectorAll('main .card-content :is(p,h3), main .sample-card h3, main .project-caption :is(p,h2), main .project-copy :is(p,h2,h3), main .contact-panel :is(p,h2), main .info-card :is(p,h3), main .process-card :is(p,h3), main .service-detail :is(p,h2), main .checklist li, main .paired-copy :is(p,h2), main .paired-checks li, main .paired-process-grid :is(p,h3)');
   for (const element of [...copy].filter(visible)) {
    const layers = []; let gradient = false;
    for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
@@ -91,6 +91,28 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
       } else if (width === 1440) {
        expect(photo.top).toBeLessThan(copy.bottom);
        expect(copy.top).toBeLessThan(photo.bottom);
+       expect(index % 2 === 0 ? copy.left - photo.right : photo.left - copy.right).toBeGreaterThanOrEqual(24);
+      }
+     }
+    }
+    if (route === 'projects') {
+     const rows = page.locator('.project-row'); await expect(rows).toHaveCount(5);
+     await expect(rows.first()).toHaveAttribute('data-category', 'asphalt');
+     const projectLayout = await rows.evaluateAll(items => items.map(element => {
+      const photo = element.querySelector('.project-cover').getBoundingClientRect();
+      const copy = element.querySelector('.project-copy').getBoundingClientRect();
+      return { photo: { left: photo.left, right: photo.right, top: photo.top, bottom: photo.bottom, width: photo.width, height: photo.height }, copy: { left: copy.left, right: copy.right, top: copy.top, bottom: copy.bottom } };
+     }));
+     for (let index = 0; index < projectLayout.length; index++) {
+      const { photo, copy } = projectLayout[index];
+      expect(photo.width).toBeCloseTo(projectLayout[0].photo.width, 0);
+      expect(photo.height).toBeCloseTo(projectLayout[0].photo.height, 0);
+      expect(photo.left).toBeGreaterThanOrEqual(16); expect(photo.right).toBeLessThanOrEqual(width - 16);
+      if (mobile) {
+       expect(copy.top - photo.bottom).toBeGreaterThanOrEqual(16);
+       expect(copy.left).toBeCloseTo(photo.left, 0); expect(copy.right).toBeCloseTo(photo.right, 0);
+      } else if (width === 1440) {
+       expect(photo.top).toBeLessThan(copy.bottom); expect(copy.top).toBeLessThan(photo.bottom);
        expect(index % 2 === 0 ? copy.left - photo.right : photo.left - copy.right).toBeGreaterThanOrEqual(24);
       }
      }
@@ -187,10 +209,10 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  await expect(page.locator('#estimate-form')).toBeVisible();
  await expect(page.locator('#service')).toHaveValue('gravel');
  await page.goto(path('projects'));
- for (const [, file] of jobs) await loadedPhoto(page.locator(`.project-card img[src="${photoPath(file)}"]`), file);
+ for (const [, file] of jobs) await loadedPhoto(page.locator(`.project-row .project-cover img[src="${photoPath(file)}"]`), file);
  await page.getByRole('button', { name: 'ลานจอดรถหินคลุก', exact: true }).click();
- await expect(page.locator('.project-card')).toHaveCount(1);
- await page.locator('.photo-button').click();
+ await expect(page.locator('.project-row:visible')).toHaveCount(1);
+ await page.locator('.project-cover:visible').click();
  await expect(page.locator('#lightbox')).toBeVisible();
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', new URL(photoPath('gravel-job.webp'), page.url()).href);
  await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานลานจอดรถหินคลุก');

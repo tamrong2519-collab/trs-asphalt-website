@@ -12,6 +12,7 @@ import './photo-frames.css';
 import './footer.css';
 import './premium-theme.css';
 import './services-paired.css';
+import './projects-paired.css';
 import { initializeSlider } from './slider.js';
 import { business as b, services, projects } from './data.js';
 const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -86,7 +87,26 @@ const servicePage = `
 <section class="paired-cta"><div class="container paired-cta-inner"><div><h2>ปรึกษางานของคุณกับเรา</h2><p>ส่งประเภทงาน ขนาดพื้นที่ และรูปหน้างาน<br>ทีมงานพร้อมให้คำแนะนำและประเมินเบื้องต้น</p></div>
  <div class="paired-actions">${call('button primary paired-phone',`โทร ${escape(b.phone)}`)}${lineButton(`LINE ${escape(b.lineId)}`,'button line paired-line')}</div>
 </div></section>`;
-const projectPage = `${banner('ผลงาน<span>ของเรา</span>','งานถนนและพื้นที่ใช้งานที่เราให้บริการ')}<section class="blue-section"><div class="container section">${sectionHead('ภาพหน้างานและบริการ','เลือกดูภาพตามประเภทงาน')}<div class="filters" aria-label="กรองประเภทผลงาน"><button class="filter active" data-filter="all" aria-pressed="true">ทั้งหมด</button>${services.map(s=>`<button class="filter" data-filter="${s.id}" aria-pressed="false">${s.title}</button>`).join('')}</div><p id="empty-projects" class="image-note">ภาพตัวอย่างประกอบบริการลาดยางมะตอย และภาพหน้างาน 4 ประเภท</p><div id="project-grid" class="project-grid"></div></div></section>${cta}<dialog id="lightbox"><button id="close-lightbox" class="close-button" aria-label="ปิดภาพ">✕</button><div id="lightbox-image"></div><p id="image-caption"></p></dialog>`;
+const projectPage = `
+<section class="projects-hero">
+ <img class="projects-hero-image" src="/images/marking-job.webp" alt="ภาพหน้างานลานจอดรถและเส้นจราจร" width="1280" height="960" fetchpriority="high">
+ <div class="container"><span class="projects-eyebrow">${escape(b.name)} CONSTRUCTION</span><h1>ผลงาน<span>ของเรา</span></h1><p>งานถนนและพื้นที่ใช้งาน<br>ชมภาพงานตามประเภทที่คุณสนใจ</p></div>
+</section>
+<section class="projects-filter-band"><div class="container">
+ <div class="filters" aria-label="กรองประเภทผลงาน"><button type="button" class="filter active" data-filter="all" aria-pressed="true" aria-controls="project-grid">ทั้งหมด</button>${services.map(s=>`<button type="button" class="filter" data-filter="${s.id}" aria-pressed="false" aria-controls="project-grid">${s.title}</button>`).join('')}</div>
+ <p id="project-filter-status" class="visually-hidden" role="status"></p>
+</div></section>
+<section class="projects-content"><div class="container">
+ <div class="projects-heading"><div><span class="projects-eyebrow">งานถนนและพื้นที่ใช้งาน</span><h2>ผลงานที่ผ่านมา</h2></div><p>ลาดยางมะตอย หินคลุก หินเกล็ด<br>ลูกระนาด และตีเส้นจราจร</p></div>
+ <p id="empty-projects" hidden>ยังไม่มีชุดภาพในหมวดนี้</p><div id="project-grid" class="projects-paired"></div>
+</div></section>
+${cta}
+<dialog id="lightbox" aria-labelledby="lightbox-title">
+ <div class="lightbox-header"><h2 id="lightbox-title"></h2><button type="button" id="close-lightbox" class="close-button" aria-label="ปิดภาพ">✕</button></div>
+ <div id="lightbox-image"></div>
+ <div class="lightbox-navigation"><button type="button" id="lightbox-prev" aria-label="ภาพก่อนหน้า">${icon('chevron-left')}</button><span id="image-count" role="status" aria-label="ลำดับภาพ"></span><button type="button" id="lightbox-next" aria-label="ภาพถัดไป">${chevron}</button></div>
+ <p id="image-caption"></p>
+</dialog>`;
 const estimateForm = `<section class="container section"><div id="estimate" class="estimate"><div><p class="eyebrow">REQUEST AN ESTIMATE</p><h2>ขอประเมินราคา</h2><p>กรอกข้อมูล แล้วส่งข้อความผ่าน LINE หรืออีเมล</p><p class="form-note">หลังสร้างข้อความ เลือกส่งผ่าน LINE หรืออีเมล</p></div><div><form id="estimate-form"><div class="form-row"><div><label for="customer">ชื่อผู้ติดต่อ <span>*</span></label><input id="customer" name="customer" autocomplete="name" maxlength="100" required></div><div><label for="phone">เบอร์โทรติดต่อกลับ <span>*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9+ ()-]{8,20}" maxlength="20" required></div></div><label for="service">บริการที่สนใจ <span>*</span></label><select id="service" name="service" required><option value="">เลือกบริการ</option>${services.map(s=>`<option value="${s.id}">${s.title}</option>`).join('')}</select><div class="form-row"><div><label for="location">จังหวัด / พื้นที่หน้างาน <span>*</span></label><input id="location" name="location" maxlength="150" required></div><div><label for="area">ขนาดพื้นที่โดยประมาณ</label><input id="area" name="area" placeholder="เช่น 200 ตร.ม." maxlength="100"></div></div><label for="details">รายละเอียดเพิ่มเติม</label><textarea id="details" name="details" rows="3" maxlength="2000" placeholder="สภาพพื้นเดิมและช่วงเวลาที่ต้องการ"></textarea><button class="button primary" type="submit">สร้างข้อความขอประเมินราคา ${arrow}</button></form><div id="estimate-result" hidden><h3>ข้อความพร้อมส่ง</h3><textarea id="message" rows="9" readonly aria-label="ข้อความขอประเมินราคา"></textarea><div class="actions"><button class="button primary" id="copy-message">คัดลอกข้อความ</button>${lineButton('เปิด LINE')}${b.email?'<a class="button outline" id="email-message">ส่งทางอีเมล</a>':''}</div><p id="copy-status" role="status"></p></div></div></div></section>`;
 const contactPage = `${banner('ติดต่อเรา','ปรึกษาฟรี พร้อมประเมินหน้างาน')}<section class="container section contact-grid">${serviceImage({...services[1],homeImage:services[1].slideImage},'contact-photo')}<div class="contact-panel">${sectionHead('ช่องทางการติดต่อ')}<p>ปรึกษาฟรี ส่งรูปหน้างานเพื่อขอประเมินราคา</p><div class="contact-box"><span class="contact-icon">${icon('phone')}</span><div><h3>โทรศัพท์</h3><a href="tel:${phone}">${escape(b.phone)}</a></div></div><div class="contact-box"><span class="contact-icon green"><span class="line-symbol">LINE</span></span><div><h3>LINE</h3><a href="${escape(line)}" target="_blank" rel="noopener noreferrer">${escape(b.lineId || 'เพิ่มเพื่อน')}</a></div></div><div class="contact-box contact-email"><span class="contact-icon">${icon('mail')}</span><div><h3>อีเมล</h3><a href="mailto:${escape(b.email)}">${escape(b.email)}</a></div></div><div class="actions">${call('button primary',`โทร ${escape(b.phone)}`)}${lineButton(`LINE ${escape(b.lineId)}`)}</div></div></section><section class="blue-section"><div class="container section">${sectionHead('ข้อมูลสำหรับประเมินราคา','แจ้งประเภทงาน ขนาดพื้นที่ และรูปหน้างาน')}<div class="info-grid">${[['road','ประเภทงาน','เลือกบริการที่ต้องการ',0],['gravel','ขนาดพื้นที่','แจ้งกว้าง × ยาว หรือพื้นที่รวม',1],['camera','สถานที่และรูปหน้างาน','ส่งตำแหน่งและภาพพื้นเดิม',4]].map(([i,t,d,n])=>`<article class="info-card"><div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>${serviceImage(services[n])}</article>`).join('')}</div></div></section><section class="service-area"><div class="container">${icon('pin')}<h2>พื้นที่ให้บริการ</h2><p>${escape(b.serviceArea)}</p></div></section><details id="estimate" class="estimate-disclosure container"><summary>ส่งรายละเอียดขอประเมินราคา ${arrow}</summary>${estimateForm.replace('id="estimate"','id="estimate-panel"')}</details>`;
 document.getElementById('app').innerHTML = localPaths(`<a class="skip-link" href="#main">ข้ามไปเนื้อหา</a><header class="site-header"><div class="container header-inner">${headerBrand}<nav id="main-nav" aria-label="เมนูหลัก">${nav.map(([id,t])=>`<a class="nav-link" href="/${id}.html" ${id===page?'aria-current="page"':''}><span>${t}</span></a>`).join('')}</nav><div class="header-contact">${call('button header-call',`โทร ${escape(b.phone)}`)}${lineButton(escape(b.lineId),'button header-line')}</div></div></header><main id="main">${({index:home,services:servicePage,projects:projectPage,contact:contactPage})[page] || home}</main><div class="footer-shell"><footer class="site-footer"><div class="footer-content"><div class="footer-top">${brand}<div class="footer-tagline"><strong>งานถนนคุณภาพ</strong><p>ครบจบในทีมเดียว</p></div><div class="footer-contact">${call('button primary footer-phone')}${lineButton(escape(b.lineId),'button line footer-line')}</div></div><div class="footer-secondary"><nav class="footer-nav" aria-label="เมนูส่วนท้าย">${nav.map(([id,t])=>`<a href="/${id}.html" ${id===page?'aria-current="page"':''}>${t}</a>`).join('')}</nav><p class="footer-area">${escape(b.serviceArea).replace('กรุงเทพฯ และปริมณฑล','กรุงเทพฯ–ปริมณฑล').replaceAll(' • ',' · ')}</p></div><div class="footer-legal"><span>© ${new Date().getFullYear()} ${escape(b.name)} CONSTRUCTION</span><span>งานถนนคุณภาพ ครบจบในทีมเดียว</span></div></div><div class="footer-stripes" aria-hidden="true"></div></footer></div><div class="floating-contact" aria-label="ติดต่อด่วน">${call('float-button float-call',`<span class="float-label-desktop">โทร ${escape(b.phone)}</span><span class="float-label-mobile">โทรเลย</span>`)}${lineButton('<span class="float-label-desktop">LINE ส่งรูปหน้างาน</span><span class="float-label-mobile">LINE</span>','float-button float-line')}</div>`);
@@ -118,22 +138,63 @@ if(page==='contact') {
  });
 }
 if(page==='projects') {
+ const groups=projects.filter(p=>p.images?.length && services.some(s=>s.id===p.category));
  const render=category=>{
-  const items=projects.filter(p=>category==='all'||p.category===category);
+  const items=groups.filter(p=>category==='all'||p.category===category);
   document.getElementById('empty-projects').hidden=items.length>0;
-  const examples=services.filter(s=>category==='all'||s.id===category);
-  document.getElementById('project-grid').innerHTML=localPaths(items.length ? items.map(p=>`<article class="project-card"><div class="project-photos">${p.images.map(img=>`<button class="photo-button" data-image="${escape(img.src)}" data-alt="${escape(img.alt)}"><img src="${escape(img.src)}" alt="${escape(img.alt)}" loading="lazy" width="1200" height="700"></button>`).join('')}</div><div class="project-caption"><h2>${escape(p.title)}</h2><p>${escape(p.location)}</p><p>${escape(p.description)}</p></div></article>`).join('') : examples.map(s=>`<article class="project-card"><button class="photo-button" data-image="${escape(s.homeImage || s.image)}" data-alt="${s.homeImage?'ภาพหน้างาน':'ภาพตัวอย่างประกอบบริการ'}${escape(s.title)}">${serviceImage(s)}<span class="photo-label">${s.homeImage?'ภาพหน้างาน':'ภาพประกอบ'}</span></button><div class="project-caption">${serviceIcon(s)}<div><h2>${s.title}</h2><p>${s.description}</p></div>${chevron}</div></article>`).join(''));
+  document.getElementById('project-filter-status').textContent=`แสดง ${items.length} ชุดภาพ`;
+  document.getElementById('project-grid').innerHTML=localPaths(items.map(p=>{
+   const s=services.find(s=>s.id===p.category), index=groups.indexOf(p), cover=p.images[0];
+   const label=p.imageKind==='illustration'?'ดูภาพประกอบ':'ดูภาพหน้างาน';
+   return `<article class="project-card project-row" data-category="${escape(p.category)}">
+    <button type="button" class="photo-button project-cover" data-project="${index}" aria-label="${label}: ${escape(p.title)}"><img src="${escape(cover.src)}" alt="${escape(cover.alt)}" width="1280" height="960" loading="lazy"><span class="project-view" aria-hidden="true">${arrow}</span></button>
+    <div class="project-copy"><span class="project-category">${escape(s.title)}</span><h3>${escape(p.title)}</h3>${p.location?`<p class="project-location">${icon('pin')}${escape(p.location)}</p>`:''}<p>${escape(p.description)}</p>
+     ${p.imageKind==='illustration'?'<p class="project-image-note">ภาพประกอบงานลาดยางมะตอย</p>':''}
+     <div class="project-actions"><button type="button" class="project-gallery-open" data-project="${index}" aria-label="${label}ทั้งหมด: ${escape(p.title)}">${label}${p.images.length>1?`<span class="project-photo-count">${p.images.length} ภาพ</span>`:''}${arrow}</button><a class="project-quote" href="/contact.html?service=${encodeURIComponent(p.category)}#estimate" aria-label="ปรึกษางานลักษณะนี้: ${escape(p.title)}">ปรึกษางานลักษณะนี้ ${arrow}</a></div>
+    </div>
+   </article>`;
+  }).join(''));
  };
  render('all');
  document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>{x.classList.toggle('active',x===btn);x.setAttribute('aria-pressed',String(x===btn));});render(btn.dataset.filter);}));
  const dialog=document.getElementById('lightbox');
+ const imageContainer=document.getElementById('lightbox-image');
+ const galleryImage=document.createElement('img');galleryImage.draggable=false;imageContainer.append(galleryImage);
+ const previous=document.getElementById('lightbox-prev'), next=document.getElementById('lightbox-next');
+ let currentGroup, imageIndex=0, galleryTrigger, swipeStart;
+ const showImage=()=>{
+  const photo=currentGroup.images[imageIndex];
+  galleryImage.src=new URL(photo.src.startsWith('/')?`${base}${photo.src.slice(1)}`:photo.src,document.baseURI).href;
+  galleryImage.alt=photo.alt || currentGroup.title;
+  document.getElementById('lightbox-title').textContent=currentGroup.title;
+  document.getElementById('image-caption').textContent=photo.alt || currentGroup.title;
+  document.getElementById('image-count').textContent=`${imageIndex+1} / ${currentGroup.images.length}`;
+  previous.disabled=next.disabled=currentGroup.images.length<2;
+ };
+ const move=step=>{
+  if(!currentGroup || currentGroup.images.length<2)return;
+  imageIndex=(imageIndex+step+currentGroup.images.length)%currentGroup.images.length;showImage();
+ };
  document.getElementById('project-grid').addEventListener('click',e=>{
-  const btn=e.target.closest('.photo-button');if(!btn)return;
-  document.getElementById('lightbox-image').innerHTML=btn.dataset.scene!==undefined ? localPaths(scene(Number(btn.dataset.scene),btn.dataset.alt)) : `<img src="${escape(btn.querySelector('img').src)}" alt="${escape(btn.dataset.alt)}">`;
-  document.getElementById('image-caption').textContent=btn.dataset.alt;dialog.showModal();
+  const btn=e.target.closest('[data-project]');if(!btn)return;
+  currentGroup=groups[Number(btn.dataset.project)];if(!currentGroup)return;
+  imageIndex=0;galleryTrigger=btn;showImage();dialog.showModal();
  });
+ previous.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
+ dialog.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();move(e.key==='ArrowLeft'?-1:1);}
+  if(e.key==='Tab'){
+   const buttons=[...dialog.querySelectorAll('button:not(:disabled)')],first=buttons[0],last=buttons.at(-1);
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+ });
+ imageContainer.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')swipeStart={x:e.clientX,y:e.clientY};});
+ imageContainer.addEventListener('pointerup',e=>{if(!swipeStart)return;const dx=e.clientX-swipeStart.x,dy=e.clientY-swipeStart.y;swipeStart=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))move(dx<0?1:-1);});
+ imageContainer.addEventListener('pointercancel',()=>{swipeStart=null;});
  document.getElementById('close-lightbox').addEventListener('click',()=>dialog.close());
- dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+ dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
+ dialog.addEventListener('close',()=>{swipeStart=null;galleryTrigger?.focus({preventScroll:true});});
 }
 if(safeURL(siteURL)) {
  const url=new URL(page==='index'?'':`${page}.html`,siteURL.endsWith('/')?siteURL:`${siteURL}/`).href;

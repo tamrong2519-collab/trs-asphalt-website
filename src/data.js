@@ -14,6 +14,36 @@ export const services = [
   { id: 'speed-bump', homeImage: '/images/speed-bump-job.webp', number: '04', title: 'ลูกระนาดยางมะตอย', subtitle: 'ชะลอความเร็วในพื้นที่', scene: 3, image: '/images/work-scenes.webp', description: 'ทำลูกระนาดยางมะตอย เพื่อชะลอความเร็วในพื้นที่', details: ['สำรวจตำแหน่งติดตั้ง', 'กำหนดรูปแบบตามการใช้งาน', 'จัดทำผิวและเครื่องหมายที่เหมาะสม'] },
   { id: 'marking', homeImage: '/images/marking-job.webp', number: '05', title: 'ตีเส้นจราจร', subtitle: 'สีเทอร์โมพลาสติก', scene: 4, image: '/images/work-scenes.webp', description: 'ตีเส้นถนนและช่องจอดรถด้วยสีเทอร์โมพลาสติก', details: ['วางผังช่องจอดและเส้นจราจร', 'เตรียมผิวก่อนทำเครื่องหมาย', 'ตีเส้นด้วยสีเทอร์โมพลาสติก'] },
 ];
-// เพิ่มผลงานจริงได้หลายภาพต่อรายการ โดยใช้รูปใน public/images/
-// { title, category: 'asphalt', location, description, images: [{src, alt}] }
-export const projects = [];
+// 1 รายการ = 1 ชุดภาพ เพิ่มโครงการใหม่โดยคัดลอกรายการและเปลี่ยนข้อมูลจริง
+// รูปแรกเป็นหน้าปก; location เว้นว่างได้; imageKind: 'illustration' ใช้กับภาพประกอบเท่านั้น
+export const projects = [
+  {
+    id: 'asphalt-preview', category: 'asphalt', title: 'งานลาดยางมะตอย',
+    location: '', description: 'งานปูยางแอสฟัลท์สำหรับถนนและลานจอดรถ',
+    imageKind: 'illustration',
+    images: [{ src: '/images/hero-daylight.webp', alt: 'ภาพประกอบงานลาดยางมะตอย' }],
+  },
+  {
+    id: 'gravel-yard', category: 'gravel', title: 'งานลานจอดรถหินคลุก',
+    location: '', description: 'เกลี่ยและบดอัดพื้นลานสำหรับการใช้งาน',
+    images: [
+      { src: '/images/gravel-job.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุก' },
+      { src: '/images/gravel-slide.webp', alt: 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก' },
+    ],
+  },
+  {
+    id: 'stone-yard', category: 'stone', title: 'งานหินเกล็ด',
+    location: '', description: 'ปรับพื้นลานและพื้นที่ทางเข้าออก',
+    images: [{ src: '/images/stone-job.webp', alt: 'ภาพหน้างานหินเกล็ด' }],
+  },
+  {
+    id: 'speed-bump-work', category: 'speed-bump', title: 'งานลูกระนาดยางมะตอย',
+    location: '', description: 'จัดทำลูกระนาดและเครื่องหมายชะลอความเร็ว',
+    images: [{ src: '/images/speed-bump-job.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอย' }],
+  },
+  {
+    id: 'parking-marking', category: 'marking', title: 'งานตีเส้นจราจร',
+    location: '', description: 'จัดช่องจอดรถและพื้นที่ใช้งานให้เป็นระเบียบ',
+    images: [{ src: '/images/marking-job.webp', alt: 'ภาพหน้างานตีเส้นจราจร' }],
+  },
+];
