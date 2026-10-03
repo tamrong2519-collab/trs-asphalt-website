@@ -26,9 +26,8 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
    await expect(page.locator('nav a')).toHaveCount(4);
    await expect(page.locator('nav a')).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);
    await expect(page.locator('nav a[aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
-   await expect(page.locator('nav .nav-icon[aria-hidden="true"]')).toHaveCount(4);
    for (const img of await page.locator('img[src]').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
-   if(width<=1200){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
+   if(await page.getByRole('button',{name:'เปิดเมนู'}).isVisible()){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
   }
   expect(errors).toEqual([]);
  });
@@ -126,13 +125,13 @@ test('home hero advances automatically through all five slides and loops',async(
  await page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'}).click();await page.locator('header .brand').focus();await page.mouse.move(0,0);await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','1');
 });
 for(const width of [320,375,390,430]){
- test(`all five hero photos stay clear above readable copy and controls fit at ${width}px`,async({page})=>{
+ test(`all five hero photos stay clear below the title and controls fit at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:950});await page.goto(path('index.html'));
   const hero=page.locator('.hero-home');
   for(const selector of ['.slide-prev','.slide-next']){
    const control=hero.locator(selector);await expect(control.locator('svg')).toHaveCount(1);
    const size=await control.boundingBox();expect(size.width).toBeGreaterThanOrEqual(44);expect(size.height).toBeGreaterThanOrEqual(44);
-   const photo=await hero.locator('.hero-image').boundingBox();expect(size.y+size.height).toBeLessThanOrEqual(photo.y+photo.height);
+   const photo=await hero.locator('.hero-media').boundingBox();expect(size.y).toBeGreaterThanOrEqual(photo.y);expect(size.y+size.height).toBeLessThanOrEqual(photo.y+photo.height);
    const floating=await page.locator('.floating-contact').boundingBox();expect(size.y+size.height).toBeLessThan(floating.y);
   }
   for(let index=0;index<5;index++){
@@ -140,8 +139,8 @@ for(const width of [320,375,390,430]){
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    const within=await page.locator('.slider-controls').evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth});expect(within).toBe(true);
    for(const image of await hero.locator('img:visible').all()) await image.evaluate(i=>i.decode());
-   const composition=await hero.evaluate(e=>{const photo=e.querySelector(e.dataset.activeSlide==='0'?'.hero-image':'.hero-scene').getBoundingClientRect();return {photoHeight:photo.height,photoBottom:photo.bottom,titleTop:e.querySelector('h1').getBoundingClientRect().top};});
-   expect(composition.photoHeight).toBeGreaterThanOrEqual(230);expect(composition.titleTop-composition.photoBottom).toBeGreaterThanOrEqual(24);
+   const composition=await hero.evaluate(e=>{const photo=e.querySelector(e.dataset.activeSlide==='0'?'.hero-image':'.hero-scene').getBoundingClientRect();return {photoHeight:photo.height,photoTop:photo.top,titleBottom:e.querySelector('.hero-content').getBoundingClientRect().bottom};});
+   expect(composition.photoHeight).toBeGreaterThanOrEqual(230);expect(composition.photoTop).toBeGreaterThanOrEqual(composition.titleBottom-1);
   }
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','0');
   await page.getByRole('button',{name:'สไลด์ก่อนหน้า',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','4');
@@ -183,34 +182,46 @@ test('premium hero fades between slides and cleans up rapid transitions',async({
  await expect(page.locator('.slide-count')).toHaveText('05 / 05');
 });
 
-test('premium header provides working desktop actions and accessible mobile menu',async({page})=>{
+test('reference header provides working contacts and an accessible mobile menu',async({page})=>{
  await page.setViewportSize({width:1440,height:900});await page.goto(path('services.html'));
  await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
- await expect(page.locator('.header-contact .primary')).toHaveAttribute('href',path('contact.html#estimate'));
- expect(await page.locator('.header-inner').evaluate(e=>e.getBoundingClientRect().height)).toBe(88);
+ await expect(page.locator('.header-contact a[href="https://line.me/ti/p/%40138wlldt"]')).toBeVisible();
  await page.evaluate(()=>scrollTo(0,600));expect(await page.locator('.site-header').evaluate(e=>e.getBoundingClientRect().top)).toBe(0);
  await page.setViewportSize({width:320,height:900});await page.evaluate(()=>scrollTo(0,0));
- expect(await page.locator('.header-inner').evaluate(e=>e.getBoundingClientRect().height)).toBe(72);
  await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('#main-nav')).toBeVisible();
  await page.keyboard.press('Escape');await expect(page.locator('#main-nav')).not.toBeVisible();await expect(page.getByRole('button',{name:'เปิดเมนู'})).toBeFocused();
  await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.mouse.click(8,500);await expect(page.locator('#main-nav')).not.toBeVisible();
  await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.setViewportSize({width:1440,height:900});await expect(page.locator('.menu-toggle')).toHaveAttribute('aria-expanded','false');
 });
 
-test('navigation stays readable and separates the call action at desktop and tablet breakpoints',async({page})=>{
- for(const width of [1024,1200,1201,1280,1440]){
+test('reference header keeps both contacts readable on every page and breakpoint',async({page})=>{
+ for(const width of [320,375,390,430,768,1024,1200,1201,1280,1440]){
   await page.setViewportSize({width,height:900});
   for(const route of ['index','services','projects','contact']){
    await page.goto(path(`${route}.html`));await page.evaluate(()=>document.fonts.ready);
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-   if(width<=1200){await page.getByRole('button',{name:'เปิดเมนู'}).click();}
+   await expect(page.locator('header .brand')).toContainText('TRS');
+   await expect(page.locator('header .brand')).toContainText('TAMRONGSAK');
+   await expect(page.locator('header .brand')).toContainText('CONSTRUCTION');
+   await expect(page.locator('header .brand img')).toHaveAttribute('src',path('images/logo.webp'));
+   const contacts=page.locator('.header-contact a');await expect(contacts).toHaveCount(2);
+   await expect(contacts.nth(0)).toHaveAttribute('href','tel:0622484089');
+   await expect(contacts.nth(0)).toHaveText('โทร 062-248-4089');
+   await expect(contacts.nth(1)).toHaveAttribute('href','https://line.me/ti/p/%40138wlldt');
+   await expect(contacts.nth(1)).toContainText('@138wlldt');
+   for(const contact of await contacts.all()) await expect(contact).toBeVisible();
+   const contactLayout=await contacts.evaluateAll(items=>items.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,height:r.height,font:parseFloat(s.fontSize),wrap:s.whiteSpace,overflow:e.scrollWidth>e.clientWidth};}));
+   for(const contact of contactLayout){expect(contact.left).toBeGreaterThanOrEqual(12);expect(contact.right).toBeLessThanOrEqual(width-12);expect(contact.height).toBeGreaterThanOrEqual(52);expect(contact.font).toBeGreaterThanOrEqual(16);expect(contact.wrap).toBe('nowrap');expect(contact.overflow).toBe(false);}
+   const [call,line]=contactLayout;expect(call.right<=line.left-7||line.right<=call.left-7||call.bottom<=line.top-7||line.bottom<=call.top-7).toBe(true);
+   const toggle=page.getByRole('button',{name:'เปิดเมนู'}),collapsed=await toggle.isVisible();
+   if(collapsed){await toggle.click();}
    const links=page.locator('#main-nav .nav-link');await expect(links).toHaveCount(4);
+   await expect(page.locator('#main-nav [aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
    for(const link of await links.all()){
     const layout=await link.evaluate(e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,height:r.height,overflow:e.scrollWidth>e.clientWidth};});
     expect(layout.left).toBeGreaterThanOrEqual(12);expect(layout.right).toBeLessThanOrEqual(width-12);expect(layout.height).toBeGreaterThanOrEqual(48);expect(layout.overflow).toBe(false);
    }
-   expect(await page.locator('#main-nav [aria-current]').evaluate(e=>getComputedStyle(e).backgroundColor)).toBe('rgb(234, 247, 255)');
-   if(width>1200){
+   if(!collapsed){
     const geometry=await page.evaluate(()=>{const brand=document.querySelector('header .brand').getBoundingClientRect();const nav=document.querySelector('#main-nav').getBoundingClientRect();const call=document.querySelector('.header-contact').getBoundingClientRect();return {brandRight:brand.right,navLeft:nav.left,navRight:nav.right,callLeft:call.left,callRight:call.right};});
     expect(geometry.navLeft-geometry.brandRight).toBeGreaterThanOrEqual(12);expect(geometry.callLeft-geometry.navRight).toBeGreaterThanOrEqual(12);expect(geometry.callRight).toBeLessThanOrEqual(width-20);
    }
@@ -218,27 +229,29 @@ test('navigation stays readable and separates the call action at desktop and tab
  }
 });
 
-test('homepage reference layout uses five service cards and a 3 plus 2 gallery',async({page})=>{
+test('homepage keeps five service cards and a 3 plus 2 gallery below the reference hero',async({page})=>{
  await page.setViewportSize({width:853,height:1280});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
  await expect(page.locator('.home-services .service-card')).toHaveCount(5);await expect(page.locator('.sample-card')).toHaveCount(5);
- await expect(page.locator('.header-contact a')).toHaveCount(1);await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
+ await expect(page.locator('.header-contact a')).toHaveCount(2);await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
  await expect(page.locator('main .cta')).toHaveCount(0);
- const geometry=await page.evaluate(()=>{const hero=document.querySelector('.hero-home').getBoundingClientRect();const cards=[...document.querySelectorAll('.sample-card')].map(e=>e.getBoundingClientRect());return {ratio:hero.width/hero.height,rows:cards.map(e=>Math.round(e.top)),overflow:document.documentElement.scrollWidth>innerWidth};});
- expect(geometry.ratio).toBeGreaterThan(1);expect(geometry.ratio).toBeLessThan(2);expect(geometry.rows[0]).toBe(geometry.rows[1]);expect(geometry.rows[1]).toBe(geometry.rows[2]);expect(geometry.rows[3]).toBe(geometry.rows[4]);expect(geometry.rows[3]).toBeGreaterThan(geometry.rows[0]);expect(geometry.overflow).toBe(false);
+ const geometry=await page.evaluate(()=>{const hero=document.querySelector('.hero-home').getBoundingClientRect();const services=document.querySelector('.home-services').getBoundingClientRect();const cards=[...document.querySelectorAll('.sample-card')].map(e=>e.getBoundingClientRect());return {heroBottom:hero.bottom,servicesTop:services.top,rows:cards.map(e=>Math.round(e.top)),overflow:document.documentElement.scrollWidth>innerWidth};});
+ expect(geometry.servicesTop).toBeGreaterThan(geometry.heroBottom);expect(geometry.rows[0]).toBe(geometry.rows[1]);expect(geometry.rows[1]).toBe(geometry.rows[2]);expect(geometry.rows[3]).toBe(geometry.rows[4]);expect(geometry.rows[3]).toBeGreaterThan(geometry.rows[0]);expect(geometry.overflow).toBe(false);
 });
 
-test('homepage hero matches requested wording, four benefits and blue phone button',async({page})=>{
- await page.goto(path('index.html'));await expect(page.locator('h1')).toHaveText('รับเหมาลาดยางมะตอยและงานหินคลุกครบวงจร');
- await expect(page.locator('.hero-copy')).toContainText('ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน');
- await expect(page.locator('.hero-copy')).toContainText('โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน');
- await expect(page.locator('.hero-copy')).toContainText('งานเสร็จตรงเวลา');await expect(page.locator('.hero-benefit')).toHaveCount(4);
- await expect(page.locator('.hero-quote-note')).toHaveText('ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น');
- const button=page.locator('.hero-quote .button');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveText('โทร 062-248-4089');
+test('homepage editorial hero matches the title, concise copy and two contact actions',async({page})=>{
+ await page.goto(path('index.html'));await expect(page.locator('h1')).toHaveText('รับเหมางานถนนและปูยางมะตอย');
+ await expect(page.locator('.hero-copy')).toContainText('ถนน ลานจอดรถ และพื้นที่ใช้งาน');
+ await expect(page.locator('.hero-copy')).toContainText('โดยทีมงานมืออาชีพ');
+ const button=page.locator('.hero-quote .hero-call');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveText('โทร 062-248-4089');
+ const line=page.locator('.hero-quote .hero-line');await expect(line).toHaveAttribute('href','https://line.me/ti/p/%40138wlldt');await expect(line).toContainText('@138wlldt');
  expect(await button.evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(0, 159, 232)');
- for(const width of [320,375,390,430]){
+ for(const width of [320,375,390,430,768,1024,1440]){
   await page.setViewportSize({width,height:1000});await page.evaluate(()=>document.fonts.ready);
-  const layout=await button.evaluate(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,wrap:getComputedStyle(el).whiteSpace,overflow:el.scrollWidth>el.clientWidth,height:r.height};});
-  expect(layout.wrap).toBe('nowrap');expect(layout.overflow).toBe(false);expect(layout.left).toBeGreaterThanOrEqual(16);expect(layout.right).toBeLessThanOrEqual(width-16);expect(layout.height).toBeGreaterThanOrEqual(52);
+  for(const contact of [button,line]){
+   await expect(contact).toBeVisible();const layout=await contact.evaluate(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,wrap:getComputedStyle(el).whiteSpace,overflow:el.scrollWidth>el.clientWidth,height:r.height};});
+   expect(layout.wrap).toBe('nowrap');expect(layout.overflow).toBe(false);expect(layout.left).toBeGreaterThanOrEqual(16);expect(layout.right).toBeLessThanOrEqual(width-16);expect(layout.height).toBeGreaterThanOrEqual(52);
+  }
+  const composition=await page.locator('.hero-home').evaluate(e=>{const title=e.querySelector('.hero-content').getBoundingClientRect(),photo=e.querySelector('.hero-media').getBoundingClientRect();return {titleBottom:title.bottom,photoTop:photo.top};});expect(composition.photoTop).toBeGreaterThanOrEqual(composition.titleBottom-1);
  }
 });
 
