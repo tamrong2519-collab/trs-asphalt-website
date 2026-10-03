@@ -26,8 +26,10 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
    await expect(page.locator('nav a')).toHaveCount(4);
    await expect(page.locator('nav a')).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);
    await expect(page.locator('nav a[aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
+   await expect(page.locator('.menu-toggle')).toHaveCount(0);
+   for(const link of await page.locator('nav a').all()) await expect(link).toBeVisible();
    for (const img of await page.locator('img[src]').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
-   if(await page.getByRole('button',{name:'เปิดเมนู'}).isVisible()){await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('nav')).toBeVisible();await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);}
+   await page.locator('nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);
   }
   expect(errors).toEqual([]);
  });
@@ -182,16 +184,22 @@ test('premium hero fades between slides and cleans up rapid transitions',async({
  await expect(page.locator('.slide-count')).toHaveText('05 / 05');
 });
 
-test('reference header provides working contacts and an accessible mobile menu',async({page})=>{
+test('reference text navigation supports direct clicks and keyboard access without a menu toggle',async({page})=>{
  await page.setViewportSize({width:1440,height:900});await page.goto(path('services.html'));
  await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
  await expect(page.locator('.header-contact a[href="https://line.me/ti/p/%40138wlldt"]')).toBeVisible();
  await page.evaluate(()=>scrollTo(0,600));expect(await page.locator('.site-header').evaluate(e=>e.getBoundingClientRect().top)).toBe(0);
- await page.setViewportSize({width:320,height:900});await page.evaluate(()=>scrollTo(0,0));
- await page.getByRole('button',{name:'เปิดเมนู'}).click();await expect(page.locator('#main-nav')).toBeVisible();
- await page.keyboard.press('Escape');await expect(page.locator('#main-nav')).not.toBeVisible();await expect(page.getByRole('button',{name:'เปิดเมนู'})).toBeFocused();
- await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.mouse.click(8,500);await expect(page.locator('#main-nav')).not.toBeVisible();
- await page.getByRole('button',{name:'เปิดเมนู'}).click();await page.setViewportSize({width:1440,height:900});await expect(page.locator('.menu-toggle')).toHaveAttribute('aria-expanded','false');
+ for(const width of [320,375,390,430,1440]){
+  await page.setViewportSize({width,height:900});await page.goto(path('index.html'));
+  await expect(page.locator('.menu-toggle')).toHaveCount(0);
+  await expect(page.locator('#main-nav')).toBeVisible();
+  for(const link of await page.locator('#main-nav a').all()) await expect(link).toBeVisible();
+  await page.locator('#main-nav a').nth(2).click();await expect(page).toHaveURL(/projects.html/);
+  await page.locator('header .brand').focus();await page.keyboard.press('Tab');await expect(page.locator('#main-nav a').nth(0)).toBeFocused();
+  await page.keyboard.press('Tab');await expect(page.locator('#main-nav a').nth(1)).toBeFocused();
+  await page.keyboard.press('Enter');await expect(page).toHaveURL(/services.html/);
+  await page.locator('#main-nav a').nth(3).focus();await page.keyboard.press('Enter');await expect(page).toHaveURL(/contact.html/);
+ }
 });
 
 test('reference header keeps both contacts readable on every page and breakpoint',async({page})=>{
@@ -213,17 +221,20 @@ test('reference header keeps both contacts readable on every page and breakpoint
    const contactLayout=await contacts.evaluateAll(items=>items.map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,height:r.height,font:parseFloat(s.fontSize),wrap:s.whiteSpace,overflow:e.scrollWidth>e.clientWidth};}));
    for(const contact of contactLayout){expect(contact.left).toBeGreaterThanOrEqual(12);expect(contact.right).toBeLessThanOrEqual(width-12);expect(contact.height).toBeGreaterThanOrEqual(52);expect(contact.font).toBeGreaterThanOrEqual(16);expect(contact.wrap).toBe('nowrap');expect(contact.overflow).toBe(false);}
    const [call,line]=contactLayout;expect(call.right<=line.left-7||line.right<=call.left-7||call.bottom<=line.top-7||line.bottom<=call.top-7).toBe(true);
-   const toggle=page.getByRole('button',{name:'เปิดเมนู'}),collapsed=await toggle.isVisible();
-   if(collapsed){await toggle.click();}
+   await expect(page.locator('.menu-toggle')).toHaveCount(0);
+   await expect(page.locator('#main-nav')).toBeVisible();
    const links=page.locator('#main-nav .nav-link');await expect(links).toHaveCount(4);
    await expect(page.locator('#main-nav [aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
    for(const link of await links.all()){
-    const layout=await link.evaluate(e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,height:r.height,overflow:e.scrollWidth>e.clientWidth};});
-    expect(layout.left).toBeGreaterThanOrEqual(12);expect(layout.right).toBeLessThanOrEqual(width-12);expect(layout.height).toBeGreaterThanOrEqual(48);expect(layout.overflow).toBe(false);
+    await expect(link).toBeVisible();
+    const layout=await link.evaluate(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);const range=document.createRange();range.selectNodeContents(e.querySelector('span'));const text=range.getBoundingClientRect();return {left:r.left,right:r.right,height:r.height,overflow:e.scrollWidth>e.clientWidth,wrap:s.whiteSpace,textLeft:text.left,textRight:text.right};});
+    expect(layout.left).toBeGreaterThanOrEqual(12);expect(layout.right).toBeLessThanOrEqual(width-12);expect(layout.height).toBeGreaterThanOrEqual(44);expect(layout.overflow).toBe(false);expect(layout.wrap).toBe('nowrap');expect(layout.textLeft).toBeGreaterThanOrEqual(layout.left-1);expect(layout.textRight).toBeLessThanOrEqual(layout.right+1);
    }
+   const linkPositions=await links.evaluateAll(items=>items.map(e=>{const r=e.getBoundingClientRect();return {top:r.top,left:r.left,right:r.right};}));
+   for(let index=1;index<linkPositions.length;index++){expect(linkPositions[index].top).toBeCloseTo(linkPositions[0].top,0);expect(linkPositions[index].left).toBeGreaterThanOrEqual(linkPositions[index-1].right);}
    const activeStyle=await page.locator('#main-nav [aria-current]').evaluate(e=>({color:getComputedStyle(e).color,background:getComputedStyle(e).backgroundColor,underlineHeight:parseFloat(getComputedStyle(e,'::after').height),underlineTransform:getComputedStyle(e,'::after').transform}));
    expect(activeStyle.color).toBe('rgb(0, 159, 232)');expect(activeStyle.background).toBe('rgba(0, 0, 0, 0)');expect(activeStyle.underlineHeight).toBeGreaterThanOrEqual(2);expect(activeStyle.underlineTransform).toBe('matrix(1, 0, 0, 1, 0, 0)');
-   if(!collapsed){
+   if(width>1200){
     const geometry=await page.evaluate(()=>{const brand=document.querySelector('header .brand').getBoundingClientRect();const nav=document.querySelector('#main-nav').getBoundingClientRect();const call=document.querySelector('.header-contact').getBoundingClientRect();return {brandRight:brand.right,navLeft:nav.left,navRight:nav.right,callLeft:call.left,callRight:call.right};});
     expect(geometry.navLeft-geometry.brandRight).toBeGreaterThanOrEqual(12);expect(geometry.callLeft-geometry.navRight).toBeGreaterThanOrEqual(12);expect(geometry.callRight).toBeLessThanOrEqual(width-20);
    }

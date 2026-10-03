@@ -7,7 +7,7 @@ body[data-page] .site-header .brand-wordmark{display:flex;flex-direction:column;
 body[data-page] .site-header .brand-trs{display:block;font-size:42px;font-weight:700;line-height:.98;letter-spacing:-1px}
 body[data-page] .site-header .brand-name{display:block;margin-top:2px;font-size:18px;font-weight:600;line-height:1.2;letter-spacing:1.3px}
 body[data-page] .site-header .brand small{display:block;margin-top:5px;font-size:10px;font-weight:500;line-height:1.2;letter-spacing:4.3px}
-body[data-page] .site-header #main-nav{display:flex;align-items:center;gap:16px;margin-left:auto;font-size:16px;font-weight:500;flex-shrink:0}
+body[data-page] .site-header #main-nav{display:flex;position:static;flex-direction:row;align-items:center;gap:16px;margin-left:auto;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;max-height:none;overflow:visible;font-size:16px;font-weight:500;flex-shrink:0}
 body[data-page] .site-header #main-nav>.nav-link{
  display:flex;align-items:center;justify-content:center;position:relative;
  min-height:48px;padding:12px 3px;border-radius:0;
@@ -33,15 +33,6 @@ body[data-page] .site-header .header-call{background:#009fe8;color:#fff}
 body[data-page] .site-header .header-contact .header-line{background:#00a83d;color:#fff;border-radius:12px}
 body[data-page] .site-header .header-contact .icon{width:22px;height:22px;flex-shrink:0}
 body[data-page] .site-header .header-contact .line-symbol{width:27px;height:27px;font-size:8px;flex-shrink:0}
-body[data-page] .site-header .menu-toggle{display:none}
-body[data-page] .site-header .menu-icon{width:24px;height:24px}
-body[data-page] .site-header .menu-toggle[aria-expanded=true] .menu-icon{transform:none}
-body[data-page] .site-header .menu-icon>path{transition:transform .2s ease,opacity .2s ease}
-body[data-page] .site-header .menu-top{transform-origin:12px 7px}
-body[data-page] .site-header .menu-bottom{transform-origin:12px 17px}
-body[data-page] .site-header .menu-toggle[aria-expanded=true] .menu-top{transform:translateY(5px) rotate(45deg)}
-body[data-page] .site-header .menu-toggle[aria-expanded=true] .menu-middle{opacity:0}
-body[data-page] .site-header .menu-toggle[aria-expanded=true] .menu-bottom{transform:translateY(-5px) rotate(-45deg)}
 @media(hover:hover) and (pointer:fine){
  body[data-page] .site-header #main-nav>.nav-link:hover{background:transparent;color:#009fe8}
  body[data-page] .site-header #main-nav>.nav-link:hover::after{transform:scaleX(1)}
@@ -49,44 +40,41 @@ body[data-page] .site-header .menu-toggle[aria-expanded=true] .menu-bottom{trans
  body[data-page] .site-header .header-line:hover{background:#009334;box-shadow:0 4px 12px #00a83d26;transform:none}
 }
 @media(max-width:1200px){
- body[data-page] .site-header .header-inner{min-height:94px;gap:18px}
- body[data-page] .site-header .brand{margin-right:auto}
+ body[data-page] .site-header .header-inner{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  min-height:0;padding:14px 0 6px;gap:4px 18px;
+ }
+ body[data-page] .site-header .brand{grid-column:1;grid-row:1;margin-right:auto}
  body[data-page] .site-header .brand img{width:68px;height:68px}
  body[data-page] .site-header .brand-trs{font-size:36px}
  body[data-page] .site-header .brand-name{font-size:16px;letter-spacing:1px}
  body[data-page] .site-header .brand small{font-size:9px;letter-spacing:3.7px}
- body[data-page] .site-header .header-contact{order:2}
- body[data-page] .site-header .menu-toggle{
-  display:grid;place-items:center;order:3;width:46px;height:46px;
-  min-width:46px;min-height:46px;padding:10px;flex-shrink:0;
-  border:1px solid #dce6f0;border-radius:12px;background:#fff;color:#102d67;
- }
+ body[data-page] .site-header .header-contact{grid-column:2;grid-row:1}
  body[data-page] .site-header #main-nav{
-  display:none;position:absolute;top:100%;left:0;right:0;z-index:1;
-  flex-direction:column;align-items:stretch;margin:8px 0 0;padding:10px;
-  border:1px solid #e1eaf3;border-radius:14px;background:#fff;
-  box-shadow:0 16px 40px #09245d1c;font-size:18px;gap:4px;
-  max-height:calc(100dvh - 118px);overflow-y:auto;
+  grid-column:1/-1;grid-row:2;justify-content:center;
+  width:100%;margin:0;gap:30px;
  }
- body[data-page] .site-header #main-nav.open{display:flex;animation:nav-appear .2s ease-out}
- body[data-page] .site-header #main-nav>.nav-link{justify-content:flex-start;min-height:54px;padding:14px 16px}
- body[data-page] .site-header #main-nav>.nav-link::after{left:16px;right:auto;width:36px;bottom:7px}
 }
 @media(max-width:760px){
  body[data-page] .site-header .header-inner{
-  display:grid;grid-template-columns:minmax(0,1fr) 46px;
-  width:calc(100% - 24px);min-height:0;gap:10px 12px;padding:10px 0 12px;
+  grid-template-columns:minmax(0,1fr);
+  width:calc(100% - 24px);gap:6px;padding:10px 0 12px;
  }
- body[data-page] .site-header .brand{grid-column:1;grid-row:1;gap:10px;margin:0}
+ body[data-page] .site-header .brand{grid-column:1;grid-row:1;gap:10px;margin:0;justify-self:start}
  body[data-page] .site-header .brand img{width:58px;height:58px}
  body[data-page] .site-header .brand-wordmark{padding-left:10px}
  body[data-page] .site-header .brand-trs{font-size:31px;letter-spacing:-.5px}
  body[data-page] .site-header .brand-name{font-size:14px;letter-spacing:.9px;margin-top:2px}
  body[data-page] .site-header .brand small{font-size:8px;letter-spacing:3.3px;margin-top:4px}
- body[data-page] .site-header .menu-toggle{grid-column:2;grid-row:1;order:0}
+ body[data-page] .site-header #main-nav{
+  grid-column:1;grid-row:2;justify-content:space-between;
+  gap:8px;font-size:clamp(14px,4.4vw,16px);
+ }
+ body[data-page] .site-header #main-nav>.nav-link{min-width:44px;padding:12px 0}
+ body[data-page] .site-header #main-nav>.nav-link::after{left:0;right:0}
  body[data-page] .site-header .header-contact{
   display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
-  grid-column:1/-1;grid-row:2;gap:8px;width:100%;order:0;
+  grid-column:1;grid-row:3;gap:8px;width:100%;
  }
  body[data-page] .site-header .header-contact .button{
   width:100%;min-width:0;min-height:52px;padding:12px 8px;
@@ -96,7 +84,6 @@ body[data-page] .site-header .menu-toggle[aria-expanded=true] .menu-bottom{trans
  body[data-page] .site-header .header-contact .header-line{border-radius:14px}
  body[data-page] .site-header .header-contact .icon{width:22px;height:22px}
  body[data-page] .site-header .header-contact .line-symbol{width:24px;height:24px;font-size:7px}
- body[data-page] .site-header #main-nav{left:0;right:0;max-height:calc(100dvh - 170px)}
 }
 @media(max-width:360px){
  body[data-page] .site-header .brand{gap:8px}
@@ -109,5 +96,4 @@ body[data-page] .site-header .menu-toggle[aria-expanded=true] .menu-bottom{trans
  body[data-page] .site-header .header-contact .icon{width:18px;height:18px}
  body[data-page] .site-header .header-contact .line-symbol{width:22px;height:22px}
 }
-@keyframes nav-appear{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){body[data-page] .site-header,body[data-page] .site-header *{animation:none!important;transition:none!important}}
