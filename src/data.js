@@ -72,6 +72,17 @@ export const projects = [
     ],
   },
   {
+    id: 'stone-home-yard', category: 'stone', title: 'งานหินเกล็ดรอบบ้าน',
+    location: '', description: 'ปรับพื้นหินเกล็ดรอบบ้านและพื้นที่ทางเดิน',
+    images: [
+      { src: '/images/stone-home-01.webp', alt: 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน' },
+      { src: '/images/stone-home-02.webp', alt: 'พื้นหินเกล็ดรอบต้นไม้และทางเดินข้างบ้าน' },
+      { src: '/images/stone-home-03.webp', alt: 'งานหินเกล็ดข้างบ้านและแนวกำแพง' },
+      { src: '/images/stone-home-04.webp', alt: 'ลานหินเกล็ดบริเวณทางเข้าบ้าน' },
+      { src: '/images/stone-home-05.webp', alt: 'พื้นหินเกล็ดตลอดแนวด้านข้างบ้าน' },
+    ],
+  },
+  {
     id: 'speed-bump-work', category: 'speed-bump', title: 'งานลูกระนาดยางมะตอย',
     location: '', description: 'จัดทำลูกระนาดและเครื่องหมายชะลอความเร็ว',
     images: [{ src: '/images/speed-bump-job.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอย' }],
