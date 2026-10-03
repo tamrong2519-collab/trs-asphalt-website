@@ -1,12 +1,13 @@
-import '@fontsource/prompt/400.css';
-import '@fontsource/prompt/500.css';
-import '@fontsource/prompt/600.css';
-import '@fontsource/prompt/700.css';
+import '@fontsource/noto-sans-thai/400.css';
+import '@fontsource/noto-sans-thai/500.css';
+import '@fontsource/noto-sans-thai/600.css';
+import '@fontsource/noto-sans-thai/700.css';
 import './style.css';
 import './home-reference.css';
 import './arrows.css';
 import './hero-estimate.css';
 import './navigation.css';
+import './typography.css';
 import { initializeSlider } from './slider.js';
 import { business as b, services, projects } from './data.js';
 const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

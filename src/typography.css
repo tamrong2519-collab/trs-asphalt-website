@@ -1,0 +1,54 @@
+/* One self-hosted Thai font and a consistent reading hierarchy on all four pages. */
+:root{font-family:'Noto Sans Thai',Tahoma,sans-serif;font-size:16px}
+body{font-weight:400;line-height:1.75}
+
+body[data-page] #main h1{font-weight:700;line-height:1.55;letter-spacing:0;text-wrap:balance}
+body[data-page] #main h2{font-weight:700;line-height:1.45;letter-spacing:0;text-wrap:balance}
+body[data-page] #main h3{font-weight:600;line-height:1.5;letter-spacing:0;text-wrap:balance}
+body[data-page] #main p{
+ font-size:16px;font-weight:400;line-height:1.8;letter-spacing:0;
+ text-wrap:pretty;overflow-wrap:break-word;
+}
+body[data-page] #main .hero-copy{font-size:clamp(18px,1.5vw,21px);line-height:1.8}
+body[data-page] #main .hero-subtitle{font-size:clamp(18px,2vw,22px);line-height:1.7}
+body[data-page] #main .hero-benefit strong{font-weight:600;line-height:1.5}
+body[data-page] #main .hero-benefit span{line-height:1.7}
+body[data-page] #main .hero-quote-note{font-weight:500}
+body[data-page] #main .card-content h3,
+body[data-page] #main .process-card h3,
+body[data-page] #main .info-card h3{margin-bottom:8px}
+
+/* Let Thai copy use the available text column without pushing its icons aside. */
+body[data-page] #main .card-content>div,
+body[data-page] #main .project-caption>div{min-width:0;flex:1}
+body[data-page] #main .process-card>div,
+body[data-page] #main .info-card>div:first-child>div,
+body[data-page] #main .preparation .container>div,
+body[data-page] #main .service-detail>div{min-width:0}
+body[data-page] #main .sample-card h3{min-width:0;flex:1}
+body[data-page] #main .checklist li{font-size:16px;line-height:1.8}
+body[data-page] #main .eyebrow{font-size:16px;font-weight:500;line-height:1.7;letter-spacing:0}
+body[data-page] #main .estimate .eyebrow{letter-spacing:.08em}
+body[data-page] #main .photo-label{font-size:14px;font-weight:500;line-height:1.5}
+body[data-page] #main .filter{font-size:16px;font-weight:500;line-height:1.5}
+body[data-page] #main .button,
+body[data-page] #main .text-link,
+body[data-page] .float-button{font-weight:500}
+body[data-page] #main .text-link{font-size:16px;line-height:1.7}
+body[data-page] #main .contact-box h3{font-size:17px;font-weight:500}
+body[data-page] #main .contact-box a{font-weight:600;line-height:1.5}
+body[data-page] #main .cta-phone span{font-size:16px;line-height:1.7}
+body[data-page] #main .service-area p{font-size:17px;font-weight:500}
+
+/* A 16px field font remains readable and avoids iOS zoom when entering details. */
+body[data-page] #main label,
+body[data-page] #main input,
+body[data-page] #main select,
+body[data-page] #main textarea{font-size:16px;line-height:1.7;letter-spacing:0}
+body[data-page] #main label{font-weight:500}
+body[data-page] #main .estimate-disclosure summary{font-size:17px;font-weight:500;line-height:1.7}
+body[data-page] footer p{font-size:16px;font-weight:400;line-height:1.7}
+
+@media(max-width:760px){
+ body[data-page] #main h1{font-size:clamp(34px,9vw,42px)}
+}

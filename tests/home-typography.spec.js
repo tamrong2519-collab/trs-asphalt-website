@@ -5,8 +5,8 @@ const widths = [320, 375, 390, 430, 768, 853, 1024, 1440];
 
 // Inspect rendered text after Thai fonts load, rather than assuming a particular
 // heading structure or asserting the CSS used to make the copy readable.
-async function inspectCopy(page, selector, minimumFontSize) {
- return page.locator(selector).evaluateAll((elements, minimum) => {
+async function inspectCopy(page, selector, minimumFontSize, minimumLineHeight = 0) {
+ return page.locator(selector).evaluateAll((elements, { minimum, minimumLine }) => {
   const tolerance = 1;
   const clips = value => value === 'hidden' || value === 'clip';
   const problems = [];
@@ -17,6 +17,9 @@ async function inspectCopy(page, selector, minimumFontSize) {
    const text = element.textContent.trim();
    if (minimum && parseFloat(style.fontSize) < minimum) {
     problems.push({ text, problem: 'small text', fontSize: style.fontSize });
+   }
+   if (minimumLine && parseFloat(style.lineHeight) / parseFloat(style.fontSize) < minimumLine - .01) {
+    problems.push({ text, problem: 'tight line spacing', lineHeight: style.lineHeight, fontSize: style.fontSize });
    }
    if (element.scrollWidth > element.clientWidth + tolerance || element.scrollHeight > element.clientHeight + tolerance) {
     problems.push({ text, problem: 'text exceeds its available space' });
@@ -46,7 +49,7 @@ async function inspectCopy(page, selector, minimumFontSize) {
    }
   }
   return problems;
- }, minimumFontSize);
+ }, { minimum: minimumFontSize, minimumLine: minimumLineHeight });
 }
 
 for (const width of widths) {
@@ -55,8 +58,11 @@ for (const width of widths) {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(homePath);
   await page.evaluate(() => document.fonts.ready);
+  expect(await page.locator('body').evaluate(element => getComputedStyle(element).fontFamily)).toContain('Noto Sans Thai');
+  expect(await page.evaluate(() => document.fonts.check('16px "Noto Sans Thai"'))).toBe(true);
 
   expect(await inspectCopy(page, 'main p, .hero-benefit strong, .hero-benefit span', 16)).toEqual([]);
+  expect(await inspectCopy(page, 'main p', 16, 1.65)).toEqual([]);
   expect(await inspectCopy(page, 'main h1, main h2, main h3')).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
@@ -69,7 +75,8 @@ for (const width of widths) {
    await expect(dots.nth(index)).toHaveAttribute('aria-pressed', 'true');
    await expect(hero.locator('h1')).toBeVisible();
    await expect(hero.locator('.hero-copy')).toBeVisible();
-   expect(await inspectCopy(page, '.hero-home h1, .hero-home .hero-copy')).toEqual([]);
+   expect(await inspectCopy(page, '.hero-home h1', 34)).toEqual([]);
+   expect(await inspectCopy(page, '.hero-home .hero-copy', 16, 1.65)).toEqual([]);
    const height = await hero.evaluate(element => element.getBoundingClientRect().height);
    expect(Math.abs(height - originalHeight)).toBeLessThanOrEqual(1);
    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
