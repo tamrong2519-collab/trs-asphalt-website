@@ -156,7 +156,7 @@ body[data-page="services"] #main .paired-copy > p {
 }
 body[data-page="services"] #main .paired-checks {
   display:grid;
-  gap:9px;
+  gap:12px;
   list-style:none;
   margin:20px 0 0;
   padding:0;
@@ -164,17 +164,25 @@ body[data-page="services"] #main .paired-checks {
 body[data-page="services"] #main .paired-checks li {
   display:flex;
   align-items:flex-start;
-  gap:9px;
+  gap:12px;
   color:#46546d;
   font-size:16px;
   line-height:1.8;
 }
-body[data-page="services"] #main .paired-checks .icon {
+body[data-page="services"] #main .paired-check-mark {
+  display:inline-grid;
+  place-items:center;
   flex:none;
-  width:16px;
-  height:16px;
-  margin-top:6px;
-  color:var(--premium-gold-ink);
+  width:24px;
+  height:24px;
+  margin-top:2px;
+  border:1px solid var(--premium-border);
+  border-radius:50%;
+  background:#f6f0df;
+  color:#8b6820;
+}
+body[data-page="services"] #main .paired-checks li > span:last-child {
+  min-width:0;
 }
 body[data-page="services"] #main .paired-actions {
   display:flex;

@@ -63,6 +63,7 @@ const banner = (title,text,home=false) => `<section class="hero ${home?'hero-hom
 const cta = `<section class="cta"><div class="container cta-inner"><div><h2>ติดต่อเรา</h2><p>ปรึกษาฟรี<br>ส่งรูปหน้างานเพื่อขอประเมินราคา</p></div><div class="cta-phone">${icon('phone')}<div><span>โทรเลย</span><a href="tel:${phone}">${escape(b.phone)}</a></div></div><a class="button primary" href="/contact.html#estimate">ขอประเมินราคา ${arrow}</a></div></section>`;
 const samples = (large=false) => `<div class="sample-grid ${large?'large':''}">${services.map(s=>`<a class="sample-card" href="/services.html#${s.id}">${serviceImage(s)}<div>${icon('pin')}<h3>${s.title}</h3>${chevron}</div></a>`).join('')}</div>`;
 const home = `${banner('<span class="hero-title-primary"><span class="hero-title-word">รับเหมา</span><wbr><span class="hero-title-word">ลาดยางมะตอย</span></span><span class="hero-title-secondary">และงานหินคลุกครบวงจร</span>','<span class="hero-copy-line">ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน</span> <span class="hero-copy-line">โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน</span> <span class="hero-copy-line">งานเสร็จตรงเวลา</span>',true)}<section class="trust-strip"><div class="container trust-grid">${[['helmet','สำรวจหน้างานฟรี','ประเมินพื้นที่ก่อนเริ่มงาน'],['work','เครื่องจักรพร้อม','วางแผนเครื่องจักรให้เหมาะกับงาน'],['handshake','ดูแลตั้งแต่ต้นจนจบ','ให้คำปรึกษาและวางแผนงาน']].map(([i,t,d])=>`<div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>`).join('')}</div></section><section class="container section">${sectionHead('บริการของเรา','งานถนนและพื้นที่ใช้งาน สำหรับบ้าน ธุรกิจ และโครงการ')}<div class="service-grid home-services">${services.map(card).join('')}</div></section><section class="blue-section"><div class="container section">${sectionHead('ผลงานที่ผ่านมา','ภาพหน้างานหินคลุก หินเกล็ด ลูกระนาด และตีเส้น',`<a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a>`)}${samples()}</div></section>`;
+const serviceCheckMark = '<span class="paired-check-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" focusable="false"><path d="m2.5 8.2 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 const servicePage = `
 <section class="paired-hero">
  <img class="paired-hero-image" src="/images/hero-sharp.webp" alt="ภาพประกอบทีมงานและเครื่องจักรลาดยางมะตอย" width="1536" height="1024" fetchpriority="high">
@@ -74,7 +75,7 @@ const servicePage = `
   <article id="${escape(s.id)}" class="paired-service">
    ${serviceImage(s,'paired-photo')}
    <div class="paired-copy"><span class="paired-number">${escape(s.number)} / ${escape(s.subtitle)}</span><h2>${escape(s.title)}</h2><p>${escape(s.description)}</p>
-    <ul class="paired-checks">${s.details.map(d=>`<li>${icon('check')}<span>${escape(d)}</span></li>`).join('')}</ul>
+    <ul class="paired-checks">${s.details.map(d=>`<li>${serviceCheckMark}<span>${escape(d)}</span></li>`).join('')}</ul>
     <div class="paired-actions"><a class="button paired-quote" href="/contact.html?service=${encodeURIComponent(s.id)}#estimate" aria-label="ขอประเมินงานนี้: ${escape(s.title)}">ขอประเมินงานนี้ ${arrow}</a></div>
    </div>
   </article>`).join('')}
