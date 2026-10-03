@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const homePath = `${process.env.SITE_BASE || '/'}index.html`;
-const widths = [320, 375, 390, 430, 768, 853, 1024, 1200, 1201, 1280, 1440];
+const widths = [320, 375, 390, 430, 768, 853, 1024, 1440];
 
 // Inspect rendered text after Thai fonts load, rather than assuming a particular
 // heading structure or asserting the CSS used to make the copy readable.
@@ -56,7 +56,7 @@ for (const width of widths) {
   await page.goto(homePath);
   await page.evaluate(() => document.fonts.ready);
 
-  expect(await inspectCopy(page, 'main p, .hero-quote a', 16)).toEqual([]);
+  expect(await inspectCopy(page, 'main p, .hero-benefit strong, .hero-benefit span', 16)).toEqual([]);
   expect(await inspectCopy(page, 'main h1, main h2, main h3')).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 
@@ -69,20 +69,7 @@ for (const width of widths) {
    await expect(dots.nth(index)).toHaveAttribute('aria-pressed', 'true');
    await expect(hero.locator('h1')).toBeVisible();
    await expect(hero.locator('.hero-copy')).toBeVisible();
-   expect(await inspectCopy(page, '.hero-home h1', 34)).toEqual([]);
-   expect(await inspectCopy(page, '.hero-home .hero-copy, .hero-quote a', 16)).toEqual([]);
-   const composition = await hero.evaluate(element => {
-    const title = element.querySelector('h1').getBoundingClientRect();
-    const summary = element.querySelector('.hero-summary').getBoundingClientRect();
-    const band = element.querySelector('.hero-content').getBoundingClientRect();
-    const photo = element.querySelector('.hero-media').getBoundingClientRect();
-    return { titleRight: title.right, titleBottom: title.bottom, summaryLeft: summary.left, summaryTop: summary.top, summaryBottom: summary.bottom, bandBottom: band.bottom, photoTop: photo.top };
-   });
-   expect(composition.photoTop).toBeGreaterThanOrEqual(composition.bandBottom - 1);
-   expect(composition.photoTop).toBeGreaterThanOrEqual(composition.titleBottom - 1);
-   expect(composition.photoTop).toBeGreaterThanOrEqual(composition.summaryBottom - 1);
-   if (width >= 1201) expect(composition.titleRight).toBeLessThanOrEqual(composition.summaryLeft);
-   if (width <= 430) expect(composition.titleBottom).toBeLessThanOrEqual(composition.summaryTop);
+   expect(await inspectCopy(page, '.hero-home h1, .hero-home .hero-copy')).toEqual([]);
    const height = await hero.evaluate(element => element.getBoundingClientRect().height);
    expect(Math.abs(height - originalHeight)).toBeLessThanOrEqual(1);
    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

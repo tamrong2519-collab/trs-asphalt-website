@@ -1,7 +1,6 @@
 // The home hero advances every six seconds. Pause while hidden or being used.
 export function initializeSlider({ scene, services, image }) {
  const hero = document.querySelector('.hero-home');
- const media = hero.querySelector('.hero-media') || hero;
  const title = hero.querySelector('h1');
  const subtitle = hero.querySelector('p');
  const photo = hero.querySelector('.hero-image');
@@ -61,7 +60,7 @@ export function initializeSlider({ scene, services, image }) {
   snapshot.className = index === 0 ? 'hero-transition-photo' : 'hero-transition-scene';
   snapshot.removeAttribute('fetchpriority');
   outgoing.append(snapshot);
-  if (!reducedMotion.matches) media.append(outgoing);
+  if (!reducedMotion.matches) hero.append(outgoing);
   index = nextIndex;
   title.innerHTML = slides[index].title;
   subtitle.innerHTML = slides[index].text;
