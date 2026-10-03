@@ -88,6 +88,13 @@ export const projects = [
   {
     id: 'parking-marking', category: 'marking', title: 'งานตีเส้นจราจร',
     location: '', description: 'จัดช่องจอดรถและพื้นที่ใช้งานให้เป็นระเบียบ',
-    images: [{ src: '/images/marking-job.webp', alt: 'ภาพหน้างานตีเส้นจราจร' }],
+    images: [
+      { src: '/images/marking-job.webp', alt: 'ภาพหน้างานตีเส้นจราจร' },
+      { src: '/images/marking-job-02.webp', alt: 'ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่' },
+      { src: '/images/marking-job-03.webp', alt: 'งานตีเส้นช่องจอดรถตามแนวอาคาร' },
+      { src: '/images/marking-job-04.webp', alt: 'ภาพรวมเส้นแบ่งช่องจอดรถข้างอาคาร' },
+      { src: '/images/marking-job-05.webp', alt: 'งานตีเส้นช่องจอดรถและลูกศรจราจร' },
+      { src: '/images/marking-job-06.webp', alt: 'ลูกศรบอกทิศทางและเส้นจราจรภายในอาคาร' },
+    ],
   },
 ];

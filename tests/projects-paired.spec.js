@@ -53,6 +53,14 @@ const speedBumpPhotos = [
  ['speed-bump-job-07.webp', 'ภาพรวมงานทำลูกระนาดยางมะตอยและเครื่องหมายชะลอความเร็ว'],
  ['speed-bump-job-08.webp', 'งานลูกระนาดยางมะตอยบริเวณทางเข้าอาคาร'],
 ];
+const markingPhotos = [
+ ['marking-job.webp', 'ภาพหน้างานตีเส้นจราจร'],
+ ['marking-job-02.webp', 'ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่'],
+ ['marking-job-03.webp', 'งานตีเส้นช่องจอดรถตามแนวอาคาร'],
+ ['marking-job-04.webp', 'ภาพรวมเส้นแบ่งช่องจอดรถข้างอาคาร'],
+ ['marking-job-05.webp', 'งานตีเส้นช่องจอดรถและลูกศรจราจร'],
+ ['marking-job-06.webp', 'ลูกศรบอกทิศทางและเส้นจราจรภายในอาคาร'],
+];
 
 async function expectPhoto(page, photos, index) {
  const [file, alt] = photos[index], image = page.locator('#lightbox-image img');
@@ -84,6 +92,12 @@ async function expectPhoto(page, photos, index) {
   'speed-bump-job-06.webp': [1280, 960],
   'speed-bump-job-07.webp': [1280, 960],
   'speed-bump-job-08.webp': [1280, 960],
+  'marking-job.webp': [1280, 960],
+  'marking-job-02.webp': [1280, 960],
+  'marking-job-03.webp': [1280, 960],
+  'marking-job-04.webp': [1280, 960],
+  'marking-job-05.webp': [1280, 960],
+  'marking-job-06.webp': [1280, 960],
  }[file];
  if (expectedDimensions) {
   const photoLayout = await image.evaluate(element => {
@@ -112,6 +126,8 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
  await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('8 ภาพ');
  await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/speed-bump-job.webp'));
+ await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('6 ภาพ');
+ await expect(page.locator('#parking-marking .project-cover img')).toHaveAttribute('src', path('images/marking-job.webp'));
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
@@ -158,6 +174,7 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
   ['gravel-yard', 'หินคลุก', gravelPhotos],
   ['stone-yard', 'งานหินเกล็ด', stonePhotos],
   ['speed-bump-work', 'งานลูกระนาดยางมะตอย', speedBumpPhotos],
+  ['parking-marking', 'งานตีเส้นจราจร', markingPhotos],
  ]) {
   const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
   await trigger.click();
@@ -188,8 +205,8 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
 });
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {
- // Traverse all four full albums with browser-generated gestures in both directions.
- test.setTimeout(60000);
+ // Traverse all five full albums with browser-generated gestures in both directions.
+ test.setTimeout(90000);
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1, reducedMotion: 'reduce' });
  try {
   const page = await context.newPage(); await page.goto(path('projects.html'));
@@ -202,7 +219,7 @@ test('mobile project gallery supports touch swipes without overflowing the scree
    // Let Chromium generate the complete trusted touch gesture sequence.
    await session.send('Input.synthesizeScrollGesture', { x: start, y, xDistance: end - start, yDistance: 0, gestureSourceType: 'touch', speed: 600 });
   };
-  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos], ['speed-bump-work', speedBumpPhotos]]) {
+  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos], ['speed-bump-work', speedBumpPhotos], ['parking-marking', markingPhotos]]) {
    const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
    await trigger.tap(); await expect(page.locator('#lightbox')).toBeVisible();
    await expectPhoto(page, photos, 0);

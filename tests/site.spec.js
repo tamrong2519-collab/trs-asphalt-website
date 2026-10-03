@@ -83,6 +83,11 @@ test('project filters show the selected category and retain honest photo labels'
    await expect(row.locator('.project-photo-count')).toHaveText('8 ภาพ');
    await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/speed-bump-job.webp'));
   }
+  if(category==='marking'){
+   await expect(row).toHaveAttribute('id','parking-marking');
+   await expect(row.locator('.project-photo-count')).toHaveText('6 ภาพ');
+   await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/marking-job.webp'));
+  }
  }
  await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(5);
  await expect(page.locator('.project-row:visible').first()).toHaveAttribute('data-category','asphalt');
@@ -93,13 +98,18 @@ test('production HTML contains indexable Thai content without JS',async()=>{
  }
 });
 
-test('gallery shows the marking work photo and disables single-photo navigation',async({page})=>{
+test('gallery keeps the marking cover and opens the accessible parking photo',async({page})=>{
  await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(5);
  const trigger=page.locator('.project-row[data-category="marking"] .photo-button');
  await trigger.click();await expect(page.locator('#lightbox')).toBeVisible();
  await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจร');
- await expect(page.locator('#image-count')).toHaveText('1 / 1');
- await expect(page.getByRole('button',{name:'ภาพก่อนหน้า',exact:true})).toBeDisabled();await expect(page.getByRole('button',{name:'ภาพถัดไป',exact:true})).toBeDisabled();
+ await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/marking-job.webp'),page.url()).href);
+ await expect(page.locator('#image-count')).toHaveText('1 / 6');
+ await expect(page.getByRole('button',{name:'ภาพก่อนหน้า',exact:true})).toBeEnabled();await expect(page.getByRole('button',{name:'ภาพถัดไป',exact:true})).toBeEnabled();
+ await page.getByRole('button',{name:'ภาพถัดไป',exact:true}).click();
+ await expect(page.locator('#image-count')).toHaveText('2 / 6');
+ await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/marking-job-02.webp'),page.url()).href);
+ await expect(page.locator('#image-caption')).toHaveText('ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่');
  await page.getByRole('button',{name:'ปิดภาพ',exact:true}).click();await expect(page.locator('#lightbox')).not.toBeVisible();await expect(trigger).toBeFocused();
 });
 test('phone and LINE buttons use confirmed contact details',async({page})=>{
