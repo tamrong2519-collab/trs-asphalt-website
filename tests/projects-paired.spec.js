@@ -43,6 +43,13 @@ const stonePhotos = [
  ['stone-home-04.webp', 'ลานหินเกล็ดบริเวณทางเข้าบ้าน'],
  ['stone-home-05.webp', 'พื้นหินเกล็ดตลอดแนวด้านข้างบ้าน'],
 ];
+const speedBumpPhotos = [
+ ['speed-bump-job.webp', 'ภาพหน้างานลูกระนาดยางมะตอย'],
+ ['speed-bump-job-02.webp', 'รถบดบดอัดงานลูกระนาดยางมะตอย'],
+ ['speed-bump-job-03.webp', 'ทีมงานเกลี่ยยางมะตอยสำหรับลูกระนาด'],
+ ['speed-bump-job-04.webp', 'ผิวลูกระนาดยางมะตอยระหว่างเก็บงาน'],
+ ['speed-bump-job-05.webp', 'งานปูและปรับผิวลูกระนาดยางมะตอย'],
+];
 
 async function expectPhoto(page, photos, index) {
  const [file, alt] = photos[index], image = page.locator('#lightbox-image img');
@@ -66,6 +73,11 @@ async function expectPhoto(page, photos, index) {
   'stone-home-03.webp': [960, 1280],
   'stone-home-04.webp': [1280, 960],
   'stone-home-05.webp': [960, 1280],
+  'speed-bump-job.webp': [1280, 960],
+  'speed-bump-job-02.webp': [960, 1280],
+  'speed-bump-job-03.webp': [960, 1280],
+  'speed-bump-job-04.webp': [960, 1280],
+  'speed-bump-job-05.webp': [960, 1280],
  }[file];
  if (expectedDimensions) {
   const photoLayout = await image.evaluate(element => {
@@ -92,6 +104,8 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('15 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-job.webp'));
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
+ await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('5 ภาพ');
+ await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/speed-bump-job.webp'));
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
@@ -137,6 +151,7 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
   ['asphalt-road', 'ลาดยางมะตอย', asphaltPhotos],
   ['gravel-yard', 'หินคลุก', gravelPhotos],
   ['stone-yard', 'งานหินเกล็ด', stonePhotos],
+  ['speed-bump-work', 'งานลูกระนาดยางมะตอย', speedBumpPhotos],
  ]) {
   const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
   await trigger.click();
@@ -167,7 +182,7 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
 });
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {
- // Traverse all three full albums with browser-generated gestures in both directions.
+ // Traverse all four full albums with browser-generated gestures in both directions.
  test.setTimeout(60000);
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1, reducedMotion: 'reduce' });
  try {
@@ -181,7 +196,7 @@ test('mobile project gallery supports touch swipes without overflowing the scree
    // Let Chromium generate the complete trusted touch gesture sequence.
    await session.send('Input.synthesizeScrollGesture', { x: start, y, xDistance: end - start, yDistance: 0, gestureSourceType: 'touch', speed: 600 });
   };
-  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos]]) {
+  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos], ['speed-bump-work', speedBumpPhotos]]) {
    const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
    await trigger.tap(); await expect(page.locator('#lightbox')).toBeVisible();
    await expectPhoto(page, photos, 0);

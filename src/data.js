@@ -74,7 +74,13 @@ export const projects = [
   {
     id: 'speed-bump-work', category: 'speed-bump', title: 'งานลูกระนาดยางมะตอย',
     location: '', description: 'จัดทำลูกระนาดและเครื่องหมายชะลอความเร็ว',
-    images: [{ src: '/images/speed-bump-job.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอย' }],
+    images: [
+      { src: '/images/speed-bump-job.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอย' },
+      { src: '/images/speed-bump-job-02.webp', alt: 'รถบดบดอัดงานลูกระนาดยางมะตอย' },
+      { src: '/images/speed-bump-job-03.webp', alt: 'ทีมงานเกลี่ยยางมะตอยสำหรับลูกระนาด' },
+      { src: '/images/speed-bump-job-04.webp', alt: 'ผิวลูกระนาดยางมะตอยระหว่างเก็บงาน' },
+      { src: '/images/speed-bump-job-05.webp', alt: 'งานปูและปรับผิวลูกระนาดยางมะตอย' },
+    ],
   },
   {
     id: 'parking-marking', category: 'marking', title: 'งานตีเส้นจราจร',

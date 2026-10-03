@@ -78,6 +78,11 @@ test('project filters show the selected category and retain honest photo labels'
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['stone-yard']);
    await expect(row.locator('.project-photo-count')).toHaveText('15 ภาพ');
   }
+  if(category==='speed-bump'){
+   await expect(row).toHaveAttribute('id','speed-bump-work');
+   await expect(row.locator('.project-photo-count')).toHaveText('5 ภาพ');
+   await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/speed-bump-job.webp'));
+  }
  }
  await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(5);
  await expect(page.locator('.project-row:visible').first()).toHaveAttribute('data-category','asphalt');
