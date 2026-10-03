@@ -22,17 +22,17 @@ body[data-page] .site-header #main-nav>.nav-link::after{
 }
 body[data-page] .site-header #main-nav>.nav-link[aria-current]::after,
 body[data-page] .site-header #main-nav>.nav-link:focus-visible::after{transform:scaleX(1)}
-body[data-page] .site-header .header-contact{display:flex;align-items:center;gap:10px;padding:0;border:0;flex-shrink:0}
+body[data-page] .site-header .header-contact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:8px;width:360px;max-width:100%;padding:0;border:0;flex-shrink:0}
 body[data-page] .site-header .header-contact .button{
- display:inline-flex;align-items:center;justify-content:center;gap:9px;
- min-height:52px;padding:12px 17px;border:0;border-radius:999px;
- font-size:16px;font-weight:500;line-height:1.4;white-space:nowrap;box-shadow:none;
+ display:inline-flex;align-items:center;justify-content:center;gap:6px;
+ width:100%;min-width:0;height:44px;min-height:44px;padding:8px;border:0;border-radius:999px;
+ font-size:15px;font-weight:500;line-height:1.4;white-space:nowrap;box-shadow:none;
  transition:background-color .2s,box-shadow .2s;
 }
 body[data-page] .site-header .header-call{background:#009fe8;color:#fff}
 body[data-page] .site-header .header-contact .header-line{background:#00a83d;color:#fff;border-radius:12px}
-body[data-page] .site-header .header-contact .icon{width:22px;height:22px;flex-shrink:0}
-body[data-page] .site-header .header-contact .line-symbol{width:27px;height:27px;font-size:8px;flex-shrink:0}
+body[data-page] .site-header .header-contact .icon{width:18px;height:18px;flex-shrink:0}
+body[data-page] .site-header .header-contact .line-symbol{width:20px;height:20px;font-size:6px;flex-shrink:0}
 @media(hover:hover) and (pointer:fine){
  body[data-page] .site-header #main-nav>.nav-link:hover{background:transparent;color:#009fe8}
  body[data-page] .site-header #main-nav>.nav-link:hover::after{transform:scaleX(1)}
@@ -73,17 +73,16 @@ body[data-page] .site-header .header-contact .line-symbol{width:27px;height:27px
  body[data-page] .site-header #main-nav>.nav-link{min-width:44px;padding:12px 0}
  body[data-page] .site-header #main-nav>.nav-link::after{left:0;right:0}
  body[data-page] .site-header .header-contact{
-  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
-  grid-column:1;grid-row:3;gap:8px;width:100%;
+  grid-column:1;grid-row:3;width:min(100%,360px);
  }
  body[data-page] .site-header .header-contact .button{
-  width:100%;min-width:0;min-height:52px;padding:12px 8px;
-  border-radius:16px;font-size:16px;line-height:1.4;gap:6px;
+  height:44px;min-height:44px;padding:8px;
+  border-radius:16px;font-size:14px;line-height:1.4;gap:5px;
  }
  body[data-page] .site-header .header-contact .header-call{border-radius:999px}
  body[data-page] .site-header .header-contact .header-line{border-radius:14px}
- body[data-page] .site-header .header-contact .icon{width:22px;height:22px}
- body[data-page] .site-header .header-contact .line-symbol{width:24px;height:24px;font-size:7px}
+ body[data-page] .site-header .header-contact .icon{width:18px;height:18px}
+ body[data-page] .site-header .header-contact .line-symbol{width:20px;height:20px;font-size:6px}
 }
 @media(max-width:360px){
  body[data-page] .site-header .brand{gap:8px}
@@ -91,9 +90,8 @@ body[data-page] .site-header .header-contact .line-symbol{width:27px;height:27px
  body[data-page] .site-header .brand-trs{font-size:29px}
  body[data-page] .site-header .brand-name{font-size:13px;letter-spacing:.7px}
  body[data-page] .site-header .brand small{font-size:7px;letter-spacing:3.2px}
- body[data-page] .site-header .header-contact{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
- body[data-page] .site-header .header-contact .button{padding-right:4px;padding-left:4px;gap:4px}
- body[data-page] .site-header .header-contact .icon{width:18px;height:18px}
- body[data-page] .site-header .header-contact .line-symbol{width:22px;height:22px}
+ body[data-page] .site-header .header-contact .button{font-size:13px;padding-right:4px;padding-left:4px;gap:4px}
+ body[data-page] .site-header .header-contact .icon{width:16px;height:16px}
+ body[data-page] .site-header .header-contact .line-symbol{width:18px;height:18px}
 }
 @media(prefers-reduced-motion:reduce){body[data-page] .site-header,body[data-page] .site-header *{animation:none!important;transition:none!important}}
