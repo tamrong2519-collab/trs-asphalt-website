@@ -278,19 +278,16 @@ body[data-page="contact"] .service-area{padding:28px 0}
 .hero-home .hero-overlay{z-index:-1}
 .slider-controls{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;color:#fff}
 .slider-controls button{display:grid;place-items:center;flex-shrink:0;min-width:44px;height:44px;border:1px solid #ffffff55;border-radius:10px;background:#032e6570;color:#fff;font-size:25px;line-height:1;padding:0}
-.slide-dots{display:flex;align-items:center;gap:0}
-.slide-dots button{border:0;background:transparent;min-width:32px;width:32px}
-.slide-dots button>span{width:9px;height:9px;border-radius:50%;background:#ffffffb3;transition:background .2s,transform .2s}
-.slide-dots button[aria-pressed="true"]>span{background:#22b8f0;transform:scale(1.3)}
+
 .slider-controls .slide-play{font-size:17px}
 @media(max-width:760px){
  .hero-home .hero-content{padding-bottom:108px}
  .hero-home h1{min-height:2.8em}
  .hero-home p{min-height:5.4em}
  .slider-controls{gap:6px;bottom:20px}
- .slide-dots button{width:30px;min-width:30px}
+
 }
-@media(max-width:360px){.slider-controls{gap:4px}.slide-dots button{width:26px;min-width:26px}}
+@media(max-width:360px){.slider-controls{gap:4px}}
 
 /* Brand artwork is displayed without an added frame or background. */
 .brand img{object-fit:contain;border:0;border-radius:0;box-shadow:none;background:transparent}
@@ -336,9 +333,7 @@ label,input,select,textarea{font-size:16px;line-height:1.7}
 .hero-home .slider-controls{bottom:30px;gap:10px;padding:6px 10px;border:1px solid #ffffff25;border-radius:40px;background:#031b396b;backdrop-filter:blur(8px)}
 .hero-home .slider-controls button{border:0;border-radius:50%;background:transparent;min-width:44px;height:44px;color:white}
 .hero-home .slider-controls button:hover{background:#ffffff15}
-.hero-home .slide-dots{gap:0}.hero-home .slide-dots button{width:32px;min-width:32px}
-.hero-home .slide-dots button>span{width:7px;height:7px;background:#c6d9e7aa;transform:none;transition:width .3s,background .3s;border-radius:10px}
-.hero-home .slide-dots button[aria-pressed=true]>span{width:22px;background:#32c1f4;transform:none}
+
 .hero-transition{position:absolute;inset:0;z-index:-2;pointer-events:none;background:#031b39}
 .hero-transition-photo,.hero-transition-scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 48%}
 .hero-transition-scene>.scene{width:100%;height:100%;aspect-ratio:auto}
@@ -355,11 +350,11 @@ label,input,select,textarea{font-size:16px;line-height:1.7}
  .hero-home .actions{margin-top:24px;gap:12px}
  .hero-home .button{font-size:18px;min-height:54px;padding:14px 20px;border-radius:10px}
  .hero-home .slider-controls{bottom:24px;gap:4px;padding:4px 8px}
- .hero-home .slide-dots button{width:28px;min-width:28px}
+
  .hero-home .hero-scene>.work-photo>img,.hero-transition-scene>.work-photo>img{object-position:60% top}
  .hero-transition-photo{object-position:68% top}
 }
-@media(max-width:360px){.hero-home .hero-content{padding-top:185px}.hero-home h1{font-size:34px}.hero-home .slide-dots button{width:25px;min-width:25px}.hero-home .slider-controls{gap:2px}}
+@media(max-width:360px){.hero-home .hero-content{padding-top:185px}.hero-home h1{font-size:34px}.hero-home .slider-controls{gap:2px}}
 @media(prefers-reduced-motion:reduce){.hero-home *{animation:none!important;transition:none!important}}
 
 /* Premium shared header, keeping the existing logo and contact information. */

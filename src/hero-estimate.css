@@ -24,9 +24,7 @@ body[data-page=index] .hero-estimate .hero-quote-note{font-size:16px;color:#2944
 body[data-page=index] .hero-estimate .hero-quote>.button .icon-phone{width:24px;height:24px;flex-shrink:0}
 body[data-page=index] .hero-estimate .slide-prev,body[data-page=index] .hero-estimate .slide-next{background:#fff3;border-radius:8px;opacity:.8}
 body[data-page=index] .hero-estimate .slider-controls button>.icon-chevron-left,body[data-page=index] .hero-estimate .slider-controls button>.icon-chevron-right{color:#164a7c}
-body[data-page=index] .hero-estimate .slide-dots{left:auto;right:74px;transform:none;bottom:14px}
-body[data-page=index] .hero-estimate .slide-dots button>span{width:8px;height:8px;background:transparent;border:1.5px solid white;box-shadow:0 0 1px #184363}
-body[data-page=index] .hero-estimate .slide-dots button[aria-pressed=true]>span{width:9px;height:9px;background:white}
+
 body[data-page=index] .hero-estimate .slide-play{bottom:14px;right:16px;background:#ffffffa6;color:#164a7c;border-radius:8px;opacity:1}
 @media(min-width:761px) and (max-width:1100px){
  body[data-page=index] .hero-estimate{min-height:560px}
@@ -62,9 +60,7 @@ body[data-page=index] .hero-estimate .slide-play{bottom:14px;right:16px;backgrou
  .hero-quote{width:100%}
  body[data-page=index] .hero-estimate .hero-quote>.button{font-size:20px;min-height:58px;padding:14px 16px;border-radius:8px}
  body[data-page=index] .hero-estimate .hero-quote-note{font-size:16px;line-height:1.75;margin-top:12px}
- body[data-page=index] .hero-estimate .slide-dots{left:50%;right:auto;transform:translateX(-50%);top:calc(var(--hero-photo-height) - 52px);bottom:auto;background:#031b3966;border-radius:22px}
- body[data-page=index] .hero-estimate .slide-dots button>span{border-color:#fff;box-shadow:none}
- body[data-page=index] .hero-estimate .slide-dots button[aria-pressed=true]>span{background:#fff}
+
  body[data-page=index] .hero-estimate .slide-play{right:8px;top:calc(var(--hero-photo-height) - 52px);bottom:auto;background:#ffffffe6;color:#164a7c}
  body[data-page=index] .hero-estimate .slide-prev,body[data-page=index] .hero-estimate .slide-next{top:calc(var(--hero-photo-height) - 52px);bottom:auto;background:#ffffffe6;opacity:1}
 }

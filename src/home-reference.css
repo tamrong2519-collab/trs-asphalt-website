@@ -24,10 +24,7 @@ body[data-page=index] .hero-home .slider-controls{inset:0;width:100%;height:100%
 body[data-page=index] .hero-home .slider-controls button{pointer-events:auto}
 body[data-page=index] .hero-home .slide-prev,body[data-page=index] .hero-home .slide-next{position:absolute;top:50%;transform:translateY(-50%);font-size:42px;min-width:44px;width:44px;height:60px;background:transparent;opacity:.85;border-radius:4px}
 body[data-page=index] .hero-home .slide-prev{left:0}body[data-page=index] .hero-home .slide-next{right:0}
-body[data-page=index] .hero-home .slide-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);gap:0}
-body[data-page=index] .hero-home .slide-dots button{width:24px;min-width:24px;height:44px}
-body[data-page=index] .hero-home .slide-dots button>span{width:8px;height:8px;background:white;transform:none}
-body[data-page=index] .hero-home .slide-dots button[aria-pressed=true]>span{width:9px;height:9px;background:#14b7f4;transform:none}
+
 body[data-page=index] .hero-home .slide-play{position:absolute;bottom:9px;right:16px;opacity:.75;width:44px;height:44px;background:#00336555}
 body[data-page=index] .trust-grid{padding:22px 0}
 body[data-page=index] .trust-grid>div{gap:16px;padding:0 24px}
@@ -115,8 +112,7 @@ body[data-page=index] .footer-stripes{height:32px}
  body[data-page=index] .hero-home .hero-overlay{background:linear-gradient(90deg,#002650f2,#00356bc7 58%,#002f5680)}
  body[data-page=index] .hero-home .hero-image,body[data-page=index] .hero-transition-photo{object-position:65% center}
  body[data-page=index] .hero-home .slide-prev,body[data-page=index] .hero-home .slide-next{min-width:32px;width:32px;height:52px;font-size:34px}
- body[data-page=index] .hero-home .slide-dots{bottom:12px}
- body[data-page=index] .hero-home .slide-dots button{min-width:30px;width:30px}
+
  body[data-page=index] .hero-home .slide-play{bottom:12px;right:8px}
  body[data-page=index] .trust-grid{grid-template-columns:1fr;padding:12px 0;gap:0}
  body[data-page=index] .trust-grid>div,body[data-page=index] .trust-grid>div:first-child{border:0;border-bottom:1px solid #c4e6f7;padding:17px 6px;gap:18px}

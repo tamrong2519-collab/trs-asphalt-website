@@ -5,7 +5,6 @@ export function initializeSlider({ scene, services, image }) {
  const subtitle = hero.querySelector('p');
  const photo = hero.querySelector('.hero-image');
  const sceneLayer = hero.querySelector('.hero-scene');
- const dots = [...hero.querySelectorAll('[data-slide]')];
  const play = hero.querySelector('.slide-play');
  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
  let transitionVersion = 0;
@@ -69,7 +68,6 @@ export function initializeSlider({ scene, services, image }) {
   photo.hidden = index !== 0;
   sceneLayer.hidden = index === 0;
   sceneLayer.innerHTML = index ? (image ? image(services[index]) : scene(services[index].scene, `ภาพประกอบ${services[index].title}`)) : '';
-  dots.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === index)));
   hero.dataset.activeSlide = String(index);
   if (!reducedMotion.matches) {
    const incoming = index ? sceneLayer.querySelector('img') : photo;
@@ -86,7 +84,6 @@ export function initializeSlider({ scene, services, image }) {
  const select = next => { show(next); start(); };
  hero.querySelector('.slide-prev').addEventListener('click', () => select(index - 1));
  hero.querySelector('.slide-next').addEventListener('click', () => select(index + 1));
- dots.forEach((dot, i) => dot.addEventListener('click', () => select(i)));
  play.addEventListener('click', () => { paused = !paused; updatePlay(); start(); });
  hero.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hovering = true; stop(); } });
  hero.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { hovering = false; start(); } });

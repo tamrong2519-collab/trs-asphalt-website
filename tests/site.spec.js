@@ -126,10 +126,10 @@ test('contact reference layout keeps estimate form compact and accessible',async
 
 test('home hero advances automatically through all five slides and loops',async({page})=>{
  await page.clock.install();await page.goto(path('index.html'));
- const hero=page.locator('.hero-home');await expect(page.locator('[data-slide]')).toHaveCount(5);
+ const hero=page.locator('.hero-home');await expect(hero.locator('.slide-dots,[data-slide]')).toHaveCount(0);
  for(const index of [1,2,3,4,0]){
   await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide',String(index));
-  await expect(page.locator(`[data-slide="${index}"]`)).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('.slide-count')).toHaveText(`${String(index+1).padStart(2,'0')} / 05`);
  }
  await page.getByRole('button',{name:'หยุดสไลด์อัตโนมัติ'}).click();await page.clock.runFor(12000);await expect(hero).toHaveAttribute('data-active-slide','0');
  await page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'}).click();await page.locator('header .brand').focus();await page.mouse.move(0,0);await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','1');
@@ -145,7 +145,7 @@ for(const width of [320,375,390,430]){
    const floating=await page.locator('.floating-contact').boundingBox();expect(size.y+size.height).toBeLessThan(floating.y);
   }
   for(let index=0;index<5;index++){
-   await page.locator(`[data-slide="${index}"]`).click();await expect(hero).toHaveAttribute('data-active-slide',String(index));
+   if(index>0)await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide',String(index));
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    const within=await page.locator('.slider-controls').evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth});expect(within).toBe(true);
    for(const image of await hero.locator('img:visible').all()) await image.evaluate(i=>i.decode());
@@ -171,7 +171,8 @@ test('homepage work photos match the four service cards and automatic slides',as
   const [id,image]=jobs[index];
   const card=page.locator(`.home-services a[href$="#${id}"] img`);
   await expect(card).toHaveAttribute('src',path(`images/${image}.webp`));
-  await page.locator(`[data-slide="${index+1}"]`).click();
+  await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
+  await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide',String(index+1));
   await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${id==='gravel'?'gravel-slide':image}.webp`));
   await page.locator('.hero-scene img').evaluate(i=>i.decode());
   expect(await page.locator('.hero-scene img').evaluate(i=>getComputedStyle(i).objectFit)).toBe('cover');
@@ -184,10 +185,10 @@ test('premium hero fades between slides and cleans up rapid transitions',async({
  await expect(page.locator('.slide-count')).toHaveText('02 / 05');
  await expect(page.locator('.hero-transition')).toHaveCount(1);
  await expect(page.locator('.hero-transition')).toHaveCount(0);
- await page.locator('[data-slide="2"]').click();await page.locator('[data-slide="3"]').click();
+ await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
  await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide','3');
  await expect(page.locator('.hero-transition')).toHaveCount(0);
- await page.emulateMedia({reducedMotion:'reduce'});await page.locator('[data-slide="4"]').click();
+ await page.emulateMedia({reducedMotion:'reduce'});await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
  await expect(page.locator('.hero-transition')).toHaveCount(0);
  await expect(page.locator('.slide-count')).toHaveText('05 / 05');
 });
@@ -283,7 +284,7 @@ test('mobile estimate hero keeps its height when the automatic slide changes',as
  for(const width of [320,390]){
   await page.setViewportSize({width,height:1000});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
   const hero=page.locator('.hero-estimate');const before=await hero.evaluate(e=>e.getBoundingClientRect().height);
-  await page.locator('[data-slide="4"]').click();await expect(hero).toHaveAttribute('data-active-slide','4');
+  for(let index=0;index<4;index++)await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','4');
   expect(await hero.evaluate(e=>e.getBoundingClientRect().height)).toBeCloseTo(before,0);
  }
 });
