@@ -157,6 +157,14 @@ if(page==='projects') {
  };
  render('all');
  document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>{x.classList.toggle('active',x===btn);x.setAttribute('aria-pressed',String(x===btn));});render(btn.dataset.filter);}));
+ const resolveProjectAnchor=()=>{
+  const anchor=location.hash.slice(1), group=groups.find(p=>p.id===anchor||p.anchorAliases?.includes(anchor));
+  if(!group)return;
+  if(!document.getElementById(group.id))document.querySelector(`[data-filter="${group.category}"]`)?.click();
+  history.replaceState(history.state,'',`#${group.id}`);
+  document.getElementById(group.id)?.scrollIntoView({block:'start'});
+ };
+ resolveProjectAnchor();window.addEventListener('hashchange',resolveProjectAnchor);
  const dialog=document.getElementById('lightbox');
  const imageContainer=document.getElementById('lightbox-image');
  const galleryImage=document.createElement('img');galleryImage.draggable=false;imageContainer.append(galleryImage);

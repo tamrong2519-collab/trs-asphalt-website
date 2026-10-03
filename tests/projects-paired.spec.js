@@ -33,14 +33,10 @@ const stonePhotos = [
  ['stone-job-04.webp', 'ผิวลานหินเกล็ดและพื้นที่ใช้งาน'],
  ['stone-job-05.webp', 'งานหินเกล็ดรอบอาคารและแนวต้นไม้'],
  ['stone-job-06.webp', 'รถบดบดอัดพื้นลานหินเกล็ด'],
-];
-const stoneBuildingPhotos = [
  ['stone-building-01.webp', 'ภาพหน้างานลานหินเกล็ดข้างอาคาร'],
  ['stone-building-02.webp', 'ลานหินเกล็ดรอบต้นไม้และแนวกำแพง'],
  ['stone-building-03.webp', 'พื้นหินเกล็ดบริเวณทางเดินข้างอาคาร'],
  ['stone-building-04.webp', 'ภาพรวมลานหินเกล็ดรอบอาคารและแนวต้นไม้'],
-];
-const stoneHomePhotos = [
  ['stone-home-01.webp', 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน'],
  ['stone-home-02.webp', 'พื้นหินเกล็ดรอบต้นไม้และทางเดินข้างบ้าน'],
  ['stone-home-03.webp', 'งานหินเกล็ดข้างบ้านและแนวกำแพง'],
@@ -81,44 +77,57 @@ async function expectPhoto(page, photos, index) {
  }
 }
 
-test('portfolio keeps seven work albums separate with the supplied asphalt photos first', async ({ page }) => {
+test('portfolio combines all stone work into one album with the supplied asphalt photos first', async ({ page }) => {
  await page.goto(path('projects.html'));
  const rows = page.locator('.project-row');
- await expect(rows).toHaveCount(7);
- expect(await rows.evaluateAll(items => items.map(element => element.dataset.category))).toEqual(['asphalt', 'gravel', 'stone', 'stone', 'stone', 'speed-bump', 'marking']);
- expect(await rows.evaluateAll(items => items.map(element => element.id))).toEqual(['asphalt-road', 'gravel-yard', 'stone-yard', 'stone-building-yard', 'stone-home-yard', 'speed-bump-work', 'parking-marking']);
+ await expect(rows).toHaveCount(5);
+ expect(await rows.evaluateAll(items => items.map(element => element.dataset.category))).toEqual(['asphalt', 'gravel', 'stone', 'speed-bump', 'marking']);
+ expect(await rows.evaluateAll(items => items.map(element => element.id))).toEqual(['asphalt-road', 'gravel-yard', 'stone-yard', 'speed-bump-work', 'parking-marking']);
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('src', path('images/asphalt-job-01.webp'));
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('alt', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-photo-count')).toHaveText('9 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
  await expect(page.locator('.project-row[data-category="gravel"] .project-photo-count')).toHaveText('11 ภาพ');
- await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('6 ภาพ');
+ await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('15 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-job.webp'));
- await expect(page.locator('#stone-building-yard .project-photo-count')).toHaveText('4 ภาพ');
- await expect(page.locator('#stone-building-yard .project-cover img')).toHaveAttribute('src', path('images/stone-building-01.webp'));
- await expect(page.locator('#stone-building-yard .project-copy')).toContainText('ปรับพื้นหินเกล็ดข้างอาคารและแนวต้นไม้');
- await expect(page.locator('#stone-home-yard .project-photo-count')).toHaveText('5 ภาพ');
- await expect(page.locator('#stone-home-yard .project-cover img')).toHaveAttribute('src', path('images/stone-home-01.webp'));
- await expect(page.locator('#stone-home-yard .project-copy')).toContainText('ปรับพื้นหินเกล็ดรอบบ้านและพื้นที่ทางเดิน');
- for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['stone-building-yard', 'stone'], ['stone-home-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking']]) {
+ await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
+ for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
   await expect(row.locator('.project-gallery-open')).toBeVisible();
   await expect(row.locator(`a[href="${path(`contact.html?service=${category}#estimate`)}"]`)).toBeVisible();
  }
  await expect(page.locator('#empty-projects')).not.toBeVisible();
- for (const width of [320, 375, 390, 430, 1440]) {
-  await page.setViewportSize({ width, height: 900 });
-  await page.goto(path('projects.html#stone-home-yard'));
-  await page.evaluate(() => document.fonts.ready);
-  await expect(page).toHaveURL(/projects\.html#stone-home-yard$/);
-  await expect(page.locator('.project-row#stone-home-yard')).toBeInViewport();
+ const expectStoneAnchorClear = async (width, anchor) => {
+  await expect(page).toHaveURL(/projects\.html#stone-yard$/);
+  await expect(page.locator('.project-row#stone-yard')).toBeInViewport();
   await expect.poll(() => page.evaluate(() => {
-   const row = document.querySelector('.project-row#stone-home-yard');
+   const row = document.querySelector('.project-row#stone-yard');
    const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom;
    return Math.min(row.getBoundingClientRect().top, row.querySelector('.project-cover').getBoundingClientRect().top) - headerBottom;
-  }), { message: `Album anchor stays clear of the sticky header at ${width}px` }).toBeGreaterThanOrEqual(-1);
+  }), { message: `Album anchor ${anchor} stays clear of the sticky header at ${width}px` }).toBeGreaterThanOrEqual(-1);
+ };
+ for (const width of [320, 375, 390, 430, 1440]) {
+  await page.setViewportSize({ width, height: 900 });
+  for (const anchor of ['stone-yard', 'stone-building-yard', 'stone-home-yard']) {
+   await page.goto(path(`projects.html#${anchor}`));
+   await page.evaluate(() => document.fonts.ready);
+   await expectStoneAnchorClear(width, anchor);
+  }
+ }
+ await page.setViewportSize({ width: 390, height: 900 });
+ await page.goto(path('projects.html')); await page.evaluate(() => document.fonts.ready);
+ for (const anchor of ['stone-yard', 'stone-building-yard', 'stone-home-yard']) {
+  await page.locator('[data-filter="gravel"]').click();
+  await expect(page.locator('.project-row#stone-yard')).toHaveCount(0);
+  await page.evaluate(anchor => {
+   history.replaceState(history.state, '', location.pathname + location.search);
+   location.hash = anchor;
+  }, anchor);
+  await expect(page.locator('[data-filter="stone"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.project-row:visible')).toHaveCount(1);
+  await expectStoneAnchorClear(390, anchor);
  }
 });
 
@@ -128,8 +137,6 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
   ['asphalt-road', 'ลาดยางมะตอย', asphaltPhotos],
   ['gravel-yard', 'หินคลุก', gravelPhotos],
   ['stone-yard', 'งานหินเกล็ด', stonePhotos],
-  ['stone-building-yard', 'งานลานหินเกล็ดรอบอาคาร', stoneBuildingPhotos],
-  ['stone-home-yard', 'งานหินเกล็ดรอบบ้าน', stoneHomePhotos],
  ]) {
   const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
   await trigger.click();
@@ -160,7 +167,7 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
 });
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {
- // Traverse all five full albums with browser-generated gestures in both directions.
+ // Traverse all three full albums with browser-generated gestures in both directions.
  test.setTimeout(60000);
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1, reducedMotion: 'reduce' });
  try {
@@ -174,7 +181,7 @@ test('mobile project gallery supports touch swipes without overflowing the scree
    // Let Chromium generate the complete trusted touch gesture sequence.
    await session.send('Input.synthesizeScrollGesture', { x: start, y, xDistance: end - start, yDistance: 0, gestureSourceType: 'touch', speed: 600 });
   };
-  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos], ['stone-building-yard', stoneBuildingPhotos], ['stone-home-yard', stoneHomePhotos]]) {
+  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos]]) {
    const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
    await trigger.tap(); await expect(page.locator('#lightbox')).toBeVisible();
    await expectPhoto(page, photos, 0);

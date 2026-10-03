@@ -96,7 +96,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
      }
     }
     if (route === 'projects') {
-     const rows = page.locator('.project-row'); await expect(rows).toHaveCount(7);
+     const rows = page.locator('.project-row'); await expect(rows).toHaveCount(5);
      await expect(rows.first()).toHaveAttribute('data-category', 'asphalt');
      const projectLayout = await rows.evaluateAll(items => items.map(element => {
       const photo = element.querySelector('.project-cover').getBoundingClientRect();

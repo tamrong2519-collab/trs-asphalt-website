@@ -51,7 +51,8 @@ export const projects = [
   },
   {
     id: 'stone-yard', category: 'stone', title: 'งานหินเกล็ด',
-    location: '', description: 'ปรับพื้นลานและพื้นที่ทางเข้าออก',
+    anchorAliases: ['stone-building-yard', 'stone-home-yard'],
+    location: '', description: 'งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน',
     images: [
       { src: '/images/stone-job.webp', alt: 'ภาพหน้างานหินเกล็ด' },
       { src: '/images/stone-job-02.webp', alt: 'ภาพรวมลานหินเกล็ดบริเวณอาคาร' },
@@ -59,22 +60,10 @@ export const projects = [
       { src: '/images/stone-job-04.webp', alt: 'ผิวลานหินเกล็ดและพื้นที่ใช้งาน' },
       { src: '/images/stone-job-05.webp', alt: 'งานหินเกล็ดรอบอาคารและแนวต้นไม้' },
       { src: '/images/stone-job-06.webp', alt: 'รถบดบดอัดพื้นลานหินเกล็ด' },
-    ],
-  },
-  {
-    id: 'stone-building-yard', category: 'stone', title: 'งานลานหินเกล็ดรอบอาคาร',
-    location: '', description: 'ปรับพื้นหินเกล็ดข้างอาคารและแนวต้นไม้',
-    images: [
       { src: '/images/stone-building-01.webp', alt: 'ภาพหน้างานลานหินเกล็ดข้างอาคาร' },
       { src: '/images/stone-building-02.webp', alt: 'ลานหินเกล็ดรอบต้นไม้และแนวกำแพง' },
       { src: '/images/stone-building-03.webp', alt: 'พื้นหินเกล็ดบริเวณทางเดินข้างอาคาร' },
       { src: '/images/stone-building-04.webp', alt: 'ภาพรวมลานหินเกล็ดรอบอาคารและแนวต้นไม้' },
-    ],
-  },
-  {
-    id: 'stone-home-yard', category: 'stone', title: 'งานหินเกล็ดรอบบ้าน',
-    location: '', description: 'ปรับพื้นหินเกล็ดรอบบ้านและพื้นที่ทางเดิน',
-    images: [
       { src: '/images/stone-home-01.webp', alt: 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน' },
       { src: '/images/stone-home-02.webp', alt: 'พื้นหินเกล็ดรอบต้นไม้และทางเดินข้างบ้าน' },
       { src: '/images/stone-home-03.webp', alt: 'งานหินเกล็ดข้างบ้านและแนวกำแพง' },
