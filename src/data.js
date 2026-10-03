@@ -38,6 +38,11 @@ export const projects = [
     images: [
       { src: '/images/gravel-job.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุก' },
       { src: '/images/gravel-slide.webp', alt: 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก' },
+      { src: '/images/gravel-job-03.webp', alt: 'รถบดบดอัดพื้นลานจอดรถหินคลุก' },
+      { src: '/images/gravel-job-04.webp', alt: 'ภาพรวมพื้นลานจอดรถหินคลุกหลังบดอัด' },
+      { src: '/images/gravel-job-05.webp', alt: 'ผิวหินคลุกและพื้นที่ลานจอดรถ' },
+      { src: '/images/gravel-job-06.webp', alt: 'กองหินคลุกเตรียมเกลี่ยและบดอัดพื้นลาน' },
+      { src: '/images/gravel-job-07.webp', alt: 'เตรียมวัสดุหินคลุกสำหรับลานจอดรถ' },
     ],
   },
   {

@@ -13,6 +13,15 @@ const asphaltPhotos = [
  ['asphalt-job-08.webp', 'ภาพรวมถนนลาดยางมะตอยบริเวณอาคาร'],
  ['asphalt-job-09.webp', 'ทีมงานและเครื่องจักรขณะปูยางมะตอย'],
 ];
+const gravelPhotos = [
+ ['gravel-job.webp', 'ภาพหน้างานลานจอดรถหินคลุก'],
+ ['gravel-slide.webp', 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก'],
+ ['gravel-job-03.webp', 'รถบดบดอัดพื้นลานจอดรถหินคลุก'],
+ ['gravel-job-04.webp', 'ภาพรวมพื้นลานจอดรถหินคลุกหลังบดอัด'],
+ ['gravel-job-05.webp', 'ผิวหินคลุกและพื้นที่ลานจอดรถ'],
+ ['gravel-job-06.webp', 'กองหินคลุกเตรียมเกลี่ยและบดอัดพื้นลาน'],
+ ['gravel-job-07.webp', 'เตรียมวัสดุหินคลุกสำหรับลานจอดรถ'],
+];
 
 async function expectPhoto(page, photos, index) {
  const [file, alt] = photos[index], image = page.locator('#lightbox-image img');
@@ -22,13 +31,18 @@ async function expectPhoto(page, photos, index) {
  await expect(page.locator('#image-caption')).toHaveText(alt);
  await image.evaluate(element => element.decode());
  expect(await image.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0)).toBe(true);
- if (file === 'asphalt-job-09.webp') {
-  const widePhoto = await image.evaluate(element => {
+ const expectedDimensions = {
+  'asphalt-job-09.webp': [1280, 720],
+  'gravel-job-05.webp': [960, 1280],
+  'gravel-job-06.webp': [960, 1280],
+ }[file];
+ if (expectedDimensions) {
+  const photoLayout = await image.evaluate(element => {
    const rect = element.getBoundingClientRect(), frame = element.parentElement.getBoundingClientRect();
    return { width: element.naturalWidth, height: element.naturalHeight, fit: getComputedStyle(element).objectFit, insideFrame: rect.left >= frame.left - 1 && rect.right <= frame.right + 1 && rect.top >= frame.top - 1 && rect.bottom <= frame.bottom + 1 };
   });
-  expect(widePhoto.width).toBe(1280); expect(widePhoto.height).toBe(720);
-  expect(widePhoto.fit).toBe('contain'); expect(widePhoto.insideFrame).toBe(true);
+  expect(photoLayout.width).toBe(expectedDimensions[0]); expect(photoLayout.height).toBe(expectedDimensions[1]);
+  expect(photoLayout.fit).toBe('contain'); expect(photoLayout.insideFrame).toBe(true);
  }
 }
 
@@ -42,6 +56,7 @@ test('portfolio groups all five services with the supplied asphalt work photos f
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-photo-count')).toHaveText('9 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
+ await expect(page.locator('.project-row[data-category="gravel"] .project-photo-count')).toHaveText('7 ภาพ');
  for (const category of ['asphalt', 'gravel', 'stone', 'speed-bump', 'marking']) {
   const row = page.locator(`.project-row[data-category="${category}"]`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
@@ -55,7 +70,7 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
  await page.goto(path('projects.html'));
  for (const [category, title, photos] of [
   ['asphalt', 'ลาดยางมะตอย', asphaltPhotos],
-  ['gravel', 'หินคลุก', [['gravel-job.webp', 'ภาพหน้างานลานจอดรถหินคลุก'], ['gravel-slide.webp', 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก']]],
+  ['gravel', 'หินคลุก', gravelPhotos],
  ]) {
   const trigger = page.locator(`.project-row[data-category="${category}"] .project-gallery-open`);
   await trigger.click();
@@ -86,18 +101,11 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
 });
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {
+ // Traverse both full albums with browser-generated gestures in both directions.
+ test.setTimeout(60000);
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1, reducedMotion: 'reduce' });
  try {
   const page = await context.newPage(); await page.goto(path('projects.html'));
-  const trigger = page.locator('.project-row[data-category="asphalt"] .project-gallery-open');
-  await trigger.tap(); await expect(page.locator('#lightbox')).toBeVisible();
-  await expectPhoto(page, asphaltPhotos, 0);
-  const dialog = await page.locator('#lightbox').boundingBox();
-  expect(dialog.x).toBeGreaterThanOrEqual(0); expect(dialog.x + dialog.width).toBeLessThanOrEqual(390);
-  for (const name of ['ภาพก่อนหน้า', 'ภาพถัดไป', 'ปิดภาพ']) {
-   const button = page.getByRole('button', { name, exact: true }), box = await button.boundingBox();
-   expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
-  }
   const session = await context.newCDPSession(page);
   const swipe = async direction => {
    const photo = await page.locator('#lightbox-image').boundingBox();
@@ -107,15 +115,26 @@ test('mobile project gallery supports touch swipes without overflowing the scree
    // Let Chromium generate the complete trusted touch gesture sequence.
    await session.send('Input.synthesizeScrollGesture', { x: start, y, xDistance: end - start, yDistance: 0, gestureSourceType: 'touch', speed: 600 });
   };
-  for (let index = 1; index < asphaltPhotos.length; index++) {
-   await swipe('left'); await expectPhoto(page, asphaltPhotos, index);
-  }
-  await swipe('left'); await expectPhoto(page, asphaltPhotos, 0);
-  for (let index = asphaltPhotos.length - 1; index >= 0; index--) {
-   await swipe('right'); await expectPhoto(page, asphaltPhotos, index);
+  for (const [category, photos] of [['asphalt', asphaltPhotos], ['gravel', gravelPhotos]]) {
+   const trigger = page.locator(`.project-row[data-category="${category}"] .project-gallery-open`);
+   await trigger.tap(); await expect(page.locator('#lightbox')).toBeVisible();
+   await expectPhoto(page, photos, 0);
+   const dialog = await page.locator('#lightbox').boundingBox();
+   expect(dialog.x).toBeGreaterThanOrEqual(0); expect(dialog.x + dialog.width).toBeLessThanOrEqual(390);
+   for (const name of ['ภาพก่อนหน้า', 'ภาพถัดไป', 'ปิดภาพ']) {
+    const button = page.getByRole('button', { name, exact: true }), box = await button.boundingBox();
+    expect(box.width).toBeGreaterThanOrEqual(44); expect(box.height).toBeGreaterThanOrEqual(44);
+   }
+   for (let index = 1; index < photos.length; index++) {
+    await swipe('left'); await expectPhoto(page, photos, index);
+   }
+   await swipe('left'); await expectPhoto(page, photos, 0);
+   for (let index = photos.length - 1; index >= 0; index--) {
+    await swipe('right'); await expectPhoto(page, photos, index);
+   }
+   await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).tap();
+   await expect(page.locator('#lightbox')).not.toBeVisible(); await expect(trigger).toBeFocused();
   }
   await session.detach();
-  await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).tap();
-  await expect(page.locator('#lightbox')).not.toBeVisible(); await expect(trigger).toBeFocused();
  } finally { await context.close(); }
 });
