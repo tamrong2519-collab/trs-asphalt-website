@@ -2,6 +2,23 @@ import { test, expect } from '@playwright/test';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
 const imageURL = (page, file) => new URL(path(`images/${file}`), page.url()).href;
+const asphaltPhotos = [
+ ['asphalt-job-01.webp', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร'],
+ ['asphalt-job-02.webp', 'ภาพหน้างานลาดยางมะตอยและรถบดบริเวณอาคาร'],
+ ['asphalt-job-03.webp', 'รถบดเก็บผิวลาดยางมะตอยข้างอาคาร'],
+ ['asphalt-job-04.webp', 'งานบดอัดยางมะตอยบริเวณทางเข้าอาคาร'],
+ ['asphalt-job-05.webp', 'งานลาดยางมะตอยบริเวณทางโค้งและลานอาคาร'],
+];
+
+async function expectPhoto(page, photos, index) {
+ const [file, alt] = photos[index], image = page.locator('#lightbox-image img');
+ await expect(page.locator('#image-count')).toHaveText(`${index + 1} / ${photos.length}`);
+ await expect(image).toHaveAttribute('src', imageURL(page, file));
+ await expect(image).toHaveAttribute('alt', alt);
+ await expect(page.locator('#image-caption')).toHaveText(alt);
+ await image.evaluate(element => element.decode());
+ expect(await image.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0)).toBe(true);
+}
 
 test('portfolio groups all five services with the supplied asphalt work photos first', async ({ page }) => {
  await page.goto(path('projects.html'));
@@ -11,7 +28,7 @@ test('portfolio groups all five services with the supplied asphalt work photos f
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('src', path('images/asphalt-job-01.webp'));
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('alt', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
- await expect(rows.first().locator('.project-photo-count')).toHaveText('2 ภาพ');
+ await expect(rows.first().locator('.project-photo-count')).toHaveText('5 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
  for (const category of ['asphalt', 'gravel', 'stone', 'speed-bump', 'marking']) {
   const row = page.locator(`.project-row[data-category="${category}"]`);
@@ -24,34 +41,34 @@ test('portfolio groups all five services with the supplied asphalt work photos f
 
 test('grouped project gallery changes photos with buttons and keyboard and restores focus', async ({ page }) => {
  await page.goto(path('projects.html'));
- for (const [category, title, firstFile, secondFile, firstAlt, secondAlt] of [
-  ['asphalt', 'ลาดยางมะตอย', 'asphalt-job-01.webp', 'asphalt-job-02.webp', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร', 'ภาพหน้างานลาดยางมะตอยและรถบดบริเวณอาคาร'],
-  ['gravel', 'หินคลุก', 'gravel-job.webp', 'gravel-slide.webp', 'ภาพหน้างานลานจอดรถหินคลุก', 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก'],
+ for (const [category, title, photos] of [
+  ['asphalt', 'ลาดยางมะตอย', asphaltPhotos],
+  ['gravel', 'หินคลุก', [['gravel-job.webp', 'ภาพหน้างานลานจอดรถหินคลุก'], ['gravel-slide.webp', 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก']]],
  ]) {
   const trigger = page.locator(`.project-row[data-category="${category}"] .project-gallery-open`);
   await trigger.click();
   await expect(page.locator('#lightbox')).toBeVisible();
   await expect(page.locator('#lightbox-title')).toContainText(title);
   await expect(page.locator('#image-count')).toHaveAttribute('role', 'status');
-  await expect(page.locator('#image-count')).toHaveText('1 / 2');
-  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', imageURL(page, firstFile));
-  await expect(page.locator('#image-caption')).toHaveText(firstAlt);
+  for (let index = 0; index < photos.length; index++) {
+   if (index > 0) await page.getByRole('button', { name: 'ภาพถัดไป', exact: true }).click();
+   await expectPhoto(page, photos, index);
+  }
   await page.getByRole('button', { name: 'ภาพถัดไป', exact: true }).click();
-  await expect(page.locator('#image-count')).toHaveText('2 / 2');
-  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', imageURL(page, secondFile));
-  await expect(page.locator('#image-caption')).toHaveText(secondAlt);
-  await page.keyboard.press('ArrowLeft');
-  await expect(page.locator('#image-count')).toHaveText('1 / 2');
-  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', imageURL(page, firstFile));
+  await expectPhoto(page, photos, 0);
+  await page.getByRole('button', { name: 'ภาพก่อนหน้า', exact: true }).click();
+  await expectPhoto(page, photos, photos.length - 1);
   await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#image-count')).toHaveText('2 / 2');
+  await expectPhoto(page, photos, 0);
+  await page.keyboard.press('ArrowLeft');
+  await expectPhoto(page, photos, photos.length - 1);
   await page.keyboard.press('Tab');
   expect(await page.locator('#lightbox').evaluate(dialog => dialog.contains(document.activeElement))).toBe(true);
   await page.keyboard.press('Escape');
   await expect(page.locator('#lightbox')).not.toBeVisible();
   await expect(trigger).toBeFocused();
   const cover = page.locator(`.project-row[data-category="${category}"] .project-cover`);
-  await cover.click(); await expect(page.locator('#image-count')).toHaveText('1 / 2');
+  await cover.click(); await expectPhoto(page, photos, 0);
   await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).click(); await expect(cover).toBeFocused();
  }
 });
@@ -62,6 +79,7 @@ test('mobile project gallery supports touch swipes without overflowing the scree
   const page = await context.newPage(); await page.goto(path('projects.html'));
   const trigger = page.locator('.project-row[data-category="asphalt"] .project-gallery-open');
   await trigger.tap(); await expect(page.locator('#lightbox')).toBeVisible();
+  await expectPhoto(page, asphaltPhotos, 0);
   const dialog = await page.locator('#lightbox').boundingBox();
   expect(dialog.x).toBeGreaterThanOrEqual(0); expect(dialog.x + dialog.width).toBeLessThanOrEqual(390);
   for (const name of ['ภาพก่อนหน้า', 'ภาพถัดไป', 'ปิดภาพ']) {
@@ -77,10 +95,13 @@ test('mobile project gallery supports touch swipes without overflowing the scree
    // Let Chromium generate the complete trusted touch gesture sequence.
    await session.send('Input.synthesizeScrollGesture', { x: start, y, xDistance: end - start, yDistance: 0, gestureSourceType: 'touch', speed: 600 });
   };
-  await swipe('left'); await expect(page.locator('#image-count')).toHaveText('2 / 2');
-  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', imageURL(page, 'asphalt-job-02.webp'));
-  await swipe('right'); await expect(page.locator('#image-count')).toHaveText('1 / 2');
-  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', imageURL(page, 'asphalt-job-01.webp'));
+  for (let index = 1; index < asphaltPhotos.length; index++) {
+   await swipe('left'); await expectPhoto(page, asphaltPhotos, index);
+  }
+  await swipe('left'); await expectPhoto(page, asphaltPhotos, 0);
+  for (let index = asphaltPhotos.length - 1; index >= 0; index--) {
+   await swipe('right'); await expectPhoto(page, asphaltPhotos, index);
+  }
   await session.detach();
   await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).tap();
   await expect(page.locator('#lightbox')).not.toBeVisible(); await expect(trigger).toBeFocused();
