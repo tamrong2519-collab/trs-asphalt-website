@@ -49,6 +49,9 @@ const speedBumpPhotos = [
  ['speed-bump-job-03.webp', 'ทีมงานเกลี่ยยางมะตอยสำหรับลูกระนาด'],
  ['speed-bump-job-04.webp', 'ผิวลูกระนาดยางมะตอยระหว่างเก็บงาน'],
  ['speed-bump-job-05.webp', 'งานปูและปรับผิวลูกระนาดยางมะตอย'],
+ ['speed-bump-job-06.webp', 'ทีมงานทำเครื่องหมายบนลูกระนาดยางมะตอย'],
+ ['speed-bump-job-07.webp', 'ภาพรวมงานทำลูกระนาดยางมะตอยและเครื่องหมายชะลอความเร็ว'],
+ ['speed-bump-job-08.webp', 'งานลูกระนาดยางมะตอยบริเวณทางเข้าอาคาร'],
 ];
 
 async function expectPhoto(page, photos, index) {
@@ -78,6 +81,9 @@ async function expectPhoto(page, photos, index) {
   'speed-bump-job-03.webp': [960, 1280],
   'speed-bump-job-04.webp': [960, 1280],
   'speed-bump-job-05.webp': [960, 1280],
+  'speed-bump-job-06.webp': [1280, 960],
+  'speed-bump-job-07.webp': [1280, 960],
+  'speed-bump-job-08.webp': [1280, 960],
  }[file];
  if (expectedDimensions) {
   const photoLayout = await image.evaluate(element => {
@@ -104,7 +110,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('15 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-job.webp'));
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
- await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('5 ภาพ');
+ await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('8 ภาพ');
  await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/speed-bump-job.webp'));
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking']]) {
   const row = page.locator(`.project-row#${id}`);

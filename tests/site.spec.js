@@ -80,7 +80,7 @@ test('project filters show the selected category and retain honest photo labels'
   }
   if(category==='speed-bump'){
    await expect(row).toHaveAttribute('id','speed-bump-work');
-   await expect(row.locator('.project-photo-count')).toHaveText('5 ภาพ');
+   await expect(row.locator('.project-photo-count')).toHaveText('8 ภาพ');
    await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/speed-bump-job.webp'));
   }
  }

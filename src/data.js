@@ -80,6 +80,9 @@ export const projects = [
       { src: '/images/speed-bump-job-03.webp', alt: 'ทีมงานเกลี่ยยางมะตอยสำหรับลูกระนาด' },
       { src: '/images/speed-bump-job-04.webp', alt: 'ผิวลูกระนาดยางมะตอยระหว่างเก็บงาน' },
       { src: '/images/speed-bump-job-05.webp', alt: 'งานปูและปรับผิวลูกระนาดยางมะตอย' },
+      { src: '/images/speed-bump-job-06.webp', alt: 'ทีมงานทำเครื่องหมายบนลูกระนาดยางมะตอย' },
+      { src: '/images/speed-bump-job-07.webp', alt: 'ภาพรวมงานทำลูกระนาดยางมะตอยและเครื่องหมายชะลอความเร็ว' },
+      { src: '/images/speed-bump-job-08.webp', alt: 'งานลูกระนาดยางมะตอยบริเวณทางเข้าอาคาร' },
     ],
   },
   {
