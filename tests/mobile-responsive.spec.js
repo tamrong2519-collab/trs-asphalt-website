@@ -34,14 +34,14 @@ for (const width of [320, 375, 390, 430]) {
     expect(layout.contacts).toHaveLength(2);
     expect(layout.contacts[0].width).toBeCloseTo(layout.contacts[1].width, 1);
     expect(layout.contacts[0].left).toBeCloseTo(width - layout.contacts[1].right, 0);
-    for (const contact of layout.contacts) { expect(contact.height).toBeCloseTo(40, 1); expect(contact.overflow).toBe(false); }
+    for (const contact of layout.contacts) { expect(contact.height).toBeGreaterThanOrEqual(44); expect(contact.overflow).toBe(false); }
     expect(layout.photoCards.length).toBeGreaterThan(0);
     for (const photo of layout.photoCards) { expect(photo.left).toBeGreaterThanOrEqual(-1); expect(photo.right).toBeLessThanOrEqual(width + 1); }
     await expect(page.locator('#main-nav a')).toHaveText(['หน้าแรก', 'บริการของเรา', 'ผลงานของเรา', 'ติดต่อเรา']);
     await expect(page.locator('.header-call')).toHaveAttribute('href', 'tel:0622484089');
     await expect(page.locator('.header-call')).toHaveAccessibleName('โทร 062-248-4089');
     await expect(page.locator('.header-line')).toHaveAttribute('href', 'https://line.me/ti/p/%40138wlldt');
-    await expect(page.locator('.header-line')).toHaveAccessibleName('@138wlldt');
+    await expect(page.locator('.header-line')).toHaveAccessibleName('LINE @138wlldt');
     const viewportMeta = await page.locator('meta[name="viewport"]').getAttribute('content');
     expect(viewportMeta).toMatch(/width\s*=\s*device-width/); expect(viewportMeta).toMatch(/initial-scale\s*=\s*1/);
     expect(viewportMeta).not.toMatch(/user-scalable\s*=\s*(?:no|0)|maximum-scale\s*=/i);

@@ -133,7 +133,7 @@ body[data-page="contact"] .company-location-copy:focus-visible {
 body[data-page="contact"] #main .company-location-status {
   margin:12px 0 0;
   color:#e4c477;
-  font-size:13px;
+  font-size:16px;
   line-height:1.7;
 }
 body[data-page="contact"] .company-location-status:empty {
