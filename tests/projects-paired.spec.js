@@ -34,6 +34,7 @@ const asphaltPhotos = [
  ['asphalt-job-29.webp', 'ภาพรวมทางแยกของทางเดินลาดยางมะตอยในสวน'],
 ];
 const gravelPhotos = [
+ ['projects-gravel-cover.webp', 'ภาพหน้างานลานจอดรถหินคลุกข้างอาคารและแนวต้นไม้'],
  ['gravel-job.webp', 'ภาพหน้างานลานจอดรถหินคลุก'],
  ['gravel-slide.webp', 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก'],
  ['gravel-job-03.webp', 'รถบดบดอัดพื้นลานจอดรถหินคลุก'],
@@ -72,6 +73,7 @@ const gravelRoadPhotos = [
  ['gravel-road-job-15.webp', 'ภาพรวมถนนหินคลุกหลังบดอัดและรถบด'],
 ];
 const stonePhotos = [
+ ['stone-home-01.webp', 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน'],
  ['stone-job.webp', 'ภาพหน้างานหินเกล็ด'],
  ['stone-job-02.webp', 'ภาพรวมลานหินเกล็ดบริเวณอาคาร'],
  ['stone-job-03.webp', 'ลานหินเกล็ดและพื้นที่ทางเข้าอาคาร'],
@@ -82,13 +84,13 @@ const stonePhotos = [
  ['stone-building-02.webp', 'ลานหินเกล็ดรอบต้นไม้และแนวกำแพง'],
  ['stone-building-03.webp', 'พื้นหินเกล็ดบริเวณทางเดินข้างอาคาร'],
  ['stone-building-04.webp', 'ภาพรวมลานหินเกล็ดรอบอาคารและแนวต้นไม้'],
- ['stone-home-01.webp', 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน'],
  ['stone-home-02.webp', 'พื้นหินเกล็ดรอบต้นไม้และทางเดินข้างบ้าน'],
  ['stone-home-03.webp', 'งานหินเกล็ดข้างบ้านและแนวกำแพง'],
  ['stone-home-04.webp', 'ลานหินเกล็ดบริเวณทางเข้าบ้าน'],
  ['stone-home-05.webp', 'พื้นหินเกล็ดตลอดแนวด้านข้างบ้าน'],
 ];
 const speedBumpPhotos = [
+ ['projects-speed-bump-cover.webp', 'ภาพหน้างานทีมงานใช้รถบดเดินตามบดอัดลูกระนาดยางมะตอย'],
  ['speed-bump-job.webp', 'ภาพหน้างานลูกระนาดยางมะตอย'],
  ['speed-bump-job-02.webp', 'รถบดบดอัดงานลูกระนาดยางมะตอย'],
  ['speed-bump-job-03.webp', 'ทีมงานเกลี่ยยางมะตอยสำหรับลูกระนาด'],
@@ -99,6 +101,7 @@ const speedBumpPhotos = [
  ['speed-bump-job-08.webp', 'งานลูกระนาดยางมะตอยบริเวณทางเข้าอาคาร'],
 ];
 const markingPhotos = [
+ ['projects-marking-cover.webp', 'ภาพหน้างานตีเส้นจราจรและลูกศรบอกทิศทางหน้าอาคาร'],
  ['marking-job.webp', 'ภาพหน้างานตีเส้นจราจร'],
  ['marking-job-02.webp', 'ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่'],
  ['marking-job-03.webp', 'งานตีเส้นช่องจอดรถตามแนวอาคาร'],
@@ -121,6 +124,9 @@ async function expectPhoto(page, photos, index) {
  await image.evaluate(element => element.decode());
  expect(await image.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0)).toBe(true);
  const expectedDimensions = {
+  'projects-gravel-cover.webp': [1280, 720],
+  'projects-speed-bump-cover.webp': [1280, 1280],
+  'projects-marking-cover.webp': [1280, 960],
   'asphalt-job-09.webp': [1280, 720],
   'asphalt-job-10.webp': [960, 1280],
   'asphalt-job-11.webp': [960, 1280],
@@ -218,14 +224,15 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-photo-count')).toHaveText('29 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
- await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('19 ภาพ');
+ await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('20 ภาพ');
+ await expect(page.locator('#gravel-yard .project-cover img')).toHaveAttribute('src', path('images/projects-gravel-cover.webp'));
  await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('15 ภาพ');
- await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-job.webp'));
+ await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-home-01.webp'));
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
- await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('8 ภาพ');
- await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/speed-bump-job.webp'));
- await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('11 ภาพ');
- await expect(page.locator('#parking-marking .project-cover img')).toHaveAttribute('src', path('images/marking-job.webp'));
+ await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('9 ภาพ');
+ await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/projects-speed-bump-cover.webp'));
+ await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('12 ภาพ');
+ await expect(page.locator('#parking-marking .project-cover img')).toHaveAttribute('src', path('images/projects-marking-cover.webp'));
  await expect(page.locator('#parking-marking .project-copy')).toContainText('ตีเส้นช่องจอดรถ เส้นแบ่งช่องทาง และลูกศรบอกทิศทาง');
  await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
  await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');

@@ -76,7 +76,7 @@ test('project filters show the selected category and retain honest photo labels'
   }
   if(category==='gravel'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['gravel-yard','gravel-road']);
-   await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('19 ภาพ');
+   await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('20 ภาพ');
    await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('15 ภาพ');
    await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
    await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
@@ -87,13 +87,13 @@ test('project filters show the selected category and retain honest photo labels'
   }
   if(category==='speed-bump'){
    await expect(row).toHaveAttribute('id','speed-bump-work');
-   await expect(row.locator('.project-photo-count')).toHaveText('8 ภาพ');
-   await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/speed-bump-job.webp'));
+   await expect(row.locator('.project-photo-count')).toHaveText('9 ภาพ');
+   await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/projects-speed-bump-cover.webp'));
   }
   if(category==='marking'){
    await expect(row).toHaveAttribute('id','parking-marking');
-   await expect(row.locator('.project-photo-count')).toHaveText('11 ภาพ');
-   await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/marking-job.webp'));
+   await expect(row.locator('.project-photo-count')).toHaveText('12 ภาพ');
+   await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/projects-marking-cover.webp'));
   }
  }
  await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(6);
@@ -109,12 +109,16 @@ test('gallery keeps the marking cover and opens the accessible parking photo',as
  await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(6);
  const trigger=page.locator('.project-row[data-category="marking"] .photo-button');
  await trigger.click();await expect(page.locator('#lightbox')).toBeVisible();
- await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจร');
- await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/marking-job.webp'),page.url()).href);
- await expect(page.locator('#image-count')).toHaveText('1 / 11');
+ await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจรและลูกศรบอกทิศทางหน้าอาคาร');
+ await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/projects-marking-cover.webp'),page.url()).href);
+ await expect(page.locator('#image-count')).toHaveText('1 / 12');
  await expect(page.getByRole('button',{name:'ภาพก่อนหน้า',exact:true})).toBeEnabled();await expect(page.getByRole('button',{name:'ภาพถัดไป',exact:true})).toBeEnabled();
  await page.getByRole('button',{name:'ภาพถัดไป',exact:true}).click();
- await expect(page.locator('#image-count')).toHaveText('2 / 11');
+ await expect(page.locator('#image-count')).toHaveText('2 / 12');
+ await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/marking-job.webp'),page.url()).href);
+ await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจร');
+ await page.getByRole('button',{name:'ภาพถัดไป',exact:true}).click();
+ await expect(page.locator('#image-count')).toHaveText('3 / 12');
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src',new URL(path('images/marking-job-02.webp'),page.url()).href);
  await expect(page.locator('#image-caption')).toHaveText('ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่');
  await page.getByRole('button',{name:'ปิดภาพ',exact:true}).click();await expect(page.locator('#lightbox')).not.toBeVisible();await expect(trigger).toBeFocused();

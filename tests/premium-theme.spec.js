@@ -186,6 +186,12 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   ['speed-bump', 'services-speed-bump.webp', [1280, 960]],
   ['marking', 'services-marking.webp', [1280, 960]],
  ];
+ const projectPhotos = [
+  ['gravel-yard', 'projects-gravel-cover.webp', [1280, 720]],
+  ['stone-yard', 'stone-home-01.webp', [960, 1280]],
+  ['speed-bump-work', 'projects-speed-bump-cover.webp', [1280, 1280]],
+  ['parking-marking', 'projects-marking-cover.webp', [1280, 960]],
+ ];
  const photoPath = file => `${process.env.SITE_BASE || '/'}images/${file}`;
  const loadedPhoto = async (image, file, expectedDimensions) => {
   await expect(image).toHaveAttribute('src', photoPath(file));
@@ -219,13 +225,13 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  await expect(page.locator('.contact-panel')).toBeVisible();
  await expect(page.locator('#estimate-form')).not.toBeVisible();
  await page.goto(path('projects'));
- for (const [, file] of jobs) await loadedPhoto(page.locator(`.project-row .project-cover img[src="${photoPath(file)}"]`), file);
+ for (const [id, file, dimensions] of projectPhotos) await loadedPhoto(page.locator(`#${id} .project-cover img`), file, dimensions);
  await page.getByRole('button', { name: 'ลานจอดรถหินคลุก', exact: true }).click();
  await expect(page.locator('.project-row:visible')).toHaveCount(2);
  await page.locator('#gravel-yard .project-cover').click();
  await expect(page.locator('#lightbox')).toBeVisible();
- await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', new URL(photoPath('gravel-job.webp'), page.url()).href);
- await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานลานจอดรถหินคลุก');
+ await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', new URL(photoPath('projects-gravel-cover.webp'), page.url()).href);
+ await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานลานจอดรถหินคลุกข้างอาคารและแนวต้นไม้');
  await page.getByRole('button', { name: 'ปิดภาพ' }).click(); await expect(page.locator('#lightbox')).not.toBeVisible();
  await page.goto(path('contact'));
  await loadedPhoto(page.locator('.contact-photo img'), 'gravel-slide.webp');
