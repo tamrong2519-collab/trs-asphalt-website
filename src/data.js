@@ -33,6 +33,11 @@ export const projects = [
       { src: '/images/asphalt-job-07.webp', alt: 'รายละเอียดผิวลาดยางมะตอยและขอบทาง' },
       { src: '/images/asphalt-job-08.webp', alt: 'ภาพรวมถนนลาดยางมะตอยบริเวณอาคาร' },
       { src: '/images/asphalt-job-09.webp', alt: 'ทีมงานและเครื่องจักรขณะปูยางมะตอย' },
+      { src: '/images/asphalt-job-10.webp', alt: 'เครื่องปูยางมะตอยและรถบดขณะลาดยางถนนข้างอาคาร' },
+      { src: '/images/asphalt-job-11.webp', alt: 'ทีมงานเกลี่ยและเก็บขอบผิวลาดยางมะตอยหน้าเครื่องปู' },
+      { src: '/images/asphalt-job-12.webp', alt: 'รถบดบดอัดผิวลาดยางมะตอยข้างอาคารอิฐสีเหลือง' },
+      { src: '/images/asphalt-job-13.webp', alt: 'งานลาดยางมะตอยและบดอัดบริเวณทางเข้าออกอาคาร' },
+      { src: '/images/asphalt-job-14.webp', alt: 'ภาพรวมผิวถนนลาดยางมะตอยบริเวณหน้าอาคารหลังบดอัด' },
     ],
   },
   {
