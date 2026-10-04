@@ -74,6 +74,10 @@ export const projects = [
       { src: '/images/gravel-job-13.webp', alt: 'ภาพรวมลานจอดรถหินคลุกหลังเกลี่ยและบดอัด' },
       { src: '/images/gravel-job-14.webp', alt: 'พื้นลานจอดรถหินคลุกและพื้นที่จอดรถข้างอาคาร' },
       { src: '/images/gravel-job-15.webp', alt: 'ผิวหินคลุกบดอัดและรถบดบริเวณลานจอดรถ' },
+      { src: '/images/gravel-job-16.webp', alt: 'พื้นลานจอดรถหินคลุกหลังบดอัดบริเวณทางเข้าออก' },
+      { src: '/images/gravel-job-17.webp', alt: 'รถขุดเตรียมพื้นดินและวัสดุหินคลุกสำหรับลานจอดรถ' },
+      { src: '/images/gravel-job-18.webp', alt: 'รถบดบดอัดพื้นดินก่อนลงหินคลุกในลานจอดรถ' },
+      { src: '/images/gravel-job-19.webp', alt: 'ภาพรวมการเตรียมพื้นลานจอดรถและกองหินคลุกระหว่างอาคาร' },
     ],
   },
   {

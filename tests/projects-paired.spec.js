@@ -49,6 +49,10 @@ const gravelPhotos = [
  ['gravel-job-13.webp', 'ภาพรวมลานจอดรถหินคลุกหลังเกลี่ยและบดอัด'],
  ['gravel-job-14.webp', 'พื้นลานจอดรถหินคลุกและพื้นที่จอดรถข้างอาคาร'],
  ['gravel-job-15.webp', 'ผิวหินคลุกบดอัดและรถบดบริเวณลานจอดรถ'],
+ ['gravel-job-16.webp', 'พื้นลานจอดรถหินคลุกหลังบดอัดบริเวณทางเข้าออก'],
+ ['gravel-job-17.webp', 'รถขุดเตรียมพื้นดินและวัสดุหินคลุกสำหรับลานจอดรถ'],
+ ['gravel-job-18.webp', 'รถบดบดอัดพื้นดินก่อนลงหินคลุกในลานจอดรถ'],
+ ['gravel-job-19.webp', 'ภาพรวมการเตรียมพื้นลานจอดรถและกองหินคลุกระหว่างอาคาร'],
 ];
 const gravelRoadPhotos = [
  ['gravel-road-job.webp', 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด'],
@@ -145,6 +149,10 @@ async function expectPhoto(page, photos, index) {
   'gravel-job-13.webp': [1280, 960],
   'gravel-job-14.webp': [1280, 960],
   'gravel-job-15.webp': [1280, 960],
+  'gravel-job-16.webp': [1280, 960],
+  'gravel-job-17.webp': [1280, 960],
+  'gravel-job-18.webp': [1280, 960],
+  'gravel-job-19.webp': [1280, 960],
   'gravel-road-job.webp': [1280, 960],
   'gravel-road-job-02.webp': [1280, 720],
   'gravel-road-job-03.webp': [1280, 720],
@@ -210,7 +218,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-photo-count')).toHaveText('29 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
- await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('15 ภาพ');
+ await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('19 ภาพ');
  await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('15 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-job.webp'));
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
