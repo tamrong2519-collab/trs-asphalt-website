@@ -38,6 +38,8 @@ export const projects = [
       { src: '/images/asphalt-job-12.webp', alt: 'รถบดบดอัดผิวลาดยางมะตอยข้างอาคารอิฐสีเหลือง' },
       { src: '/images/asphalt-job-13.webp', alt: 'งานลาดยางมะตอยและบดอัดบริเวณทางเข้าออกอาคาร' },
       { src: '/images/asphalt-job-14.webp', alt: 'ภาพรวมผิวถนนลาดยางมะตอยบริเวณหน้าอาคารหลังบดอัด' },
+      { src: '/images/asphalt-job-15.webp', alt: 'ผิวถนนลาดยางมะตอยตามแนวรางระบายน้ำข้างอาคาร' },
+      { src: '/images/asphalt-job-16.webp', alt: 'ภาพรวมถนนลาดยางมะตอยและทางเข้าออกอาคารหลังเก็บผิวทาง' },
     ],
   },
   {
