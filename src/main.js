@@ -76,13 +76,14 @@ const serviceImage = (s,cls='') => {
  };
  return workPhoto(photo,cls);
 };
+const homepageCardImage = (s,type='service') => page==='index' && s.homepageCards?.[type] ? workPhoto(s.homepageCards[type]) : serviceImage(s);
 const homeTitle = s => ({gravel:'ลานหินคลุก',stone:'หินเกล็ด','speed-bump':'ลูกระนาด'})[s.id] || s.title;
 const homeDescription = s => ({asphalt:'ถนน ลานจอดรถ และพื้นที่ใช้งาน',gravel:'เกลี่ยและบดอัดลานจอดรถ ทางเข้าออก',stone:'ปรับพื้นลานและพื้นที่ใช้งาน','speed-bump':'ชะลอความเร็วภายในพื้นที่',marking:'ตีเส้นถนนและช่องจอดรถ'})[s.id];
 const projectLink = s => {
  const project = projects.find(p => p.category === s.id && p.images?.length);
  return project ? `/projects.html#${encodeURIComponent(project.id)}` : '/projects.html';
 };
-const card = s => `<a class="service-card" href="${projectLink(s)}">${serviceImage(s)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${page==='index'?homeTitle(s):s.title}</h3><p>${page==='index'?homeDescription(s):s.description}</p></div><span class="card-arrow">${chevron}</span></div></a>`;
+const card = s => `<a class="service-card" href="${projectLink(s)}">${homepageCardImage(s)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${page==='index'?homeTitle(s):s.title}</h3><p>${page==='index'?homeDescription(s):s.description}</p></div><span class="card-arrow">${chevron}</span></div></a>`;
 const sectionHead = (title,copy='',action='') => `<div class="section-heading"><h2>${title}</h2>${copy?`<p>${copy}</p>`:''}${action}</div>`;
 const pageHero = ({name,title,accent,copy,image,imageAlt,width,height}) => `<section class="${name}-hero page-hero">
  <img class="${name}-hero-image page-hero-image" src="${escape(image)}" alt="${escape(imageAlt)}" width="${width}" height="${height}" fetchpriority="high">
@@ -94,7 +95,7 @@ const cta = `<section class="cta"><div class="container cta-inner"><div><h2>ต�
 const samples = (large=false) => `<div class="sample-grid ${large?'large':''}">${projects.filter(p=>p.images?.length && services.some(s=>s.id===p.category)).map(p=>{
  const s=services.find(s=>s.id===p.category), href=`/projects.html#${encodeURIComponent(p.id)}`;
  const sample=projectLink(s)===href?s:{title:p.title,homeImage:p.images[0].src,imageAlt:p.images[0].alt};
- return `<a class="sample-card" href="${href}">${serviceImage(sample)}<div>${icon('pin')}<h3>${escape(sample.title)}</h3>${chevron}</div></a>`;
+ return `<a class="sample-card" href="${href}">${homepageCardImage(sample,'project')}<div>${icon('pin')}<h3>${escape(sample.title)}</h3>${chevron}</div></a>`;
 }).join('')}</div>`;
 const home = `${banner('<span class="hero-title-primary"><span class="hero-title-word">รับเหมา</span><wbr><span class="hero-title-word">ลาดยางมะตอย</span></span><span class="hero-title-secondary">และงานหินคลุกครบวงจร</span>','<span class="hero-copy-line">ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน</span> <span class="hero-copy-line">โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน</span> <span class="hero-copy-line">งานเสร็จตรงเวลา</span>',true)}<section class="trust-strip"><div class="container trust-grid">${[['helmet','สำรวจหน้างานฟรี','ประเมินพื้นที่ก่อนเริ่มงาน'],['work','เครื่องจักรพร้อม','วางแผนเครื่องจักรให้เหมาะกับงาน'],['handshake','ดูแลตั้งแต่ต้นจนจบ','ให้คำปรึกษาและวางแผนงาน']].map(([i,t,d])=>`<div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>`).join('')}</div></section><section class="container section">${sectionHead('บริการของเรา','งานถนนและพื้นที่ใช้งาน สำหรับบ้าน ธุรกิจ และโครงการ')}<div class="service-grid home-services">${services.map(card).join('')}</div></section><section class="blue-section"><div class="container section">${sectionHead('ผลงานที่ผ่านมา','ภาพหน้างานหินคลุก หินเกล็ด ลูกระนาด และตีเส้น',`<a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a>`)}${samples()}</div></section>`;
 const serviceCheckMark = '<span class="paired-check-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" focusable="false"><path d="m2.5 8.2 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';

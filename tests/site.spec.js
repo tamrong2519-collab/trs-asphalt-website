@@ -237,8 +237,9 @@ test('reduced motion keeps the automatic slider paused initially',async({page})=
  }
 });
 
-test('homepage work photos match the four service cards and automatic slides',async({page})=>{
+test('homepage cards use supplied photos while all five slider images stay unchanged',async({page})=>{
  await page.goto(path('index.html'));
+ await page.getByRole('button',{name:'หยุดสไลด์อัตโนมัติ'}).click();
  const albums=['asphalt-road','gravel-yard','stone-yard','speed-bump-work','parking-marking'];
  const serviceCards=page.locator('.home-services a'),sampleCards=page.locator('.sample-card');
  await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(6);
@@ -252,15 +253,31 @@ test('homepage work photos match the four service cards and automatic slides',as
  await expect(gravelRoad.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
  await expect(gravelRoad.locator('img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
  await expect(gravelRoad.locator('img')).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด');
- const jobs=[['gravel','gravel-job','gravel-yard'],['stone','stone-job','stone-yard'],['speed-bump','speed-bump-job','speed-bump-work'],['marking','marking-home','parking-marking']];
- for(let index=0;index<jobs.length;index++){
-  const [id,image,album]=jobs[index];
-  const card=page.locator(`.home-services a[href="${path(`projects.html#${album}`)}"] img`);
-  await expect(card).toHaveAttribute('src',path(`images/${image}.webp`));
-  await expect(sampleCards.nth(index+1).locator('img')).toHaveAttribute('src',path(`images/${image}.webp`));
+ const photos=[
+  ['asphalt-job-18','asphalt-job-17',[1280,960],[960,1280]],
+  ['home-gravel-service','gravel-job-14',[1280,960],[1280,960]],
+  ['stone-job','stone-job',[1280,960],[1280,960]],
+  ['speed-bump-job','speed-bump-job',[1280,960],[1280,960]],
+  ['marking-home','marking-home',[1280,960],[1280,960]],
+ ];
+ for(let index=0;index<photos.length;index++){
+  const [serviceFile,projectFile,serviceSize,projectSize]=photos[index];
+  for(const [image,file,size] of [[serviceCards.nth(index).locator('img'),serviceFile,serviceSize],[sampleCards.nth(index).locator('img'),projectFile,projectSize]]){
+   await expect(image).toHaveAttribute('src',path(`images/${file}.webp`));
+   await expect(image).toHaveAttribute('alt',/ภาพหน้างาน/);
+   await expect(image).toHaveAttribute('width',String(size[0]));
+   await expect(image).toHaveAttribute('height',String(size[1]));
+   await image.scrollIntoViewIfNeeded();await image.evaluate(i=>i.decode());
+   expect(await image.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual(size);
+  }
+ }
+ await expect(page.locator('.hero-image')).toHaveAttribute('src',path('images/hero-sharp.webp'));
+ await expect(page.locator('.hero-image')).toHaveAttribute('srcset',`${path('images/hero-sharp-mobile.webp')} 960w, ${path('images/hero-sharp.webp')} 1536w`);
+ const slidePhotos=['gravel-slide','stone-job','speed-bump-job','marking-home'];
+ for(let index=0;index<slidePhotos.length;index++){
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
   await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide',String(index+1));
-  await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${id==='gravel'?'gravel-slide':image}.webp`));
+  await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${slidePhotos[index]}.webp`));
   await page.locator('.hero-scene img').evaluate(i=>i.decode());
   expect(await page.locator('.hero-scene img').evaluate(i=>getComputedStyle(i).objectFit)).toBe('cover');
  }
