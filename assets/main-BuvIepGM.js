@@ -20,7 +20,7 @@
    ${S(e,"paired-photo")}
    <div class="paired-copy"><span class="paired-number">${a(e.number)} / ${a(e.subtitle)}</span><h2>${a(e.title)}</h2><p>${a(e.description)}</p>
     <ul class="paired-checks">${e.details.map(t=>`<li>${ye}<span>${a(t)}</span></li>`).join("")}</ul>
-    <div class="paired-actions"><a class="button paired-quote" href="/contact.html?service=${encodeURIComponent(e.id)}#estimate" aria-label="ขอประเมินงานนี้: ${a(e.title)}">ขอประเมินงานนี้ ${C}</a></div>
+    <div class="paired-actions"><a class="button paired-quote" href="/contact.html" aria-label="ขอประเมินงานนี้: ${a(e.title)}">ขอประเมินงานนี้ ${C}</a></div>
    </div>
   </article>`).join("")}
  </div>
