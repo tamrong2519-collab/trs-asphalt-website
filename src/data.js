@@ -49,6 +49,10 @@ export const projects = [
       { src: '/images/asphalt-job-23.webp', alt: 'ผิวถนนลาดยางมะตอยข้างอาคารเรียนหลังบดอัด' },
       { src: '/images/asphalt-job-24.webp', alt: 'ภาพแนวตั้งของถนนลาดยางมะตอยและรถบดภายในโรงเรียน' },
       { src: '/images/asphalt-job-25.webp', alt: 'ถนนลาดยางมะตอยบริเวณทางโค้งข้างอาคารเรียน' },
+      { src: '/images/asphalt-job-26.webp', alt: 'งานลาดยางมะตอยทางเดินในสวนและทีมงานขณะบดอัด' },
+      { src: '/images/asphalt-job-27.webp', alt: 'ทางเดินลาดยางมะตอยโค้งรอบสนามหญ้าและต้นไม้' },
+      { src: '/images/asphalt-job-28.webp', alt: 'ทางเดินลาดยางมะตอยตามแนวแปลงต้นไม้ในสวน' },
+      { src: '/images/asphalt-job-29.webp', alt: 'ภาพรวมทางแยกของทางเดินลาดยางมะตอยในสวน' },
     ],
   },
   {
