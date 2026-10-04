@@ -3,7 +3,10 @@ export const business = {
   name: 'TRS TAMRONGSAK', thaiName: 'ทีอาร์เอส ธำรงศักดิ์ คอนสตรัคชั่น',
   phone: '062-248-4089', // เช่น 0812345678
   lineId: '@138wlldt', lineUrl: 'https://line.me/ti/p/%40138wlldt', // เช่น https://line.me/ti/p/~your-id
-  email: 'tamrong2519@gmail.com', address: '', serviceArea: 'กรุงเทพฯ และปริมณฑล • ชลบุรี • ระยอง • ฉะเชิงเทรา',
+  email: 'tamrong2519@gmail.com',
+  address: 'หมู่บ้าน อาร์เคปาร์ค แขวงบางชัน เขตคลองสามวา กรุงเทพมหานคร 10510',
+  mapUrl: 'https://maps.app.goo.gl/Pf8i2ETgH7VAqqnFA?g_st=ic',
+  serviceArea: 'กรุงเทพฯ และปริมณฑล • ชลบุรี • ระยอง • ฉะเชิงเทรา',
   siteUrl: '', // URL เว็บไซต์จริง เช่น https://www.example.com
   hours: 'กรุณาติดต่อเพื่อสอบถามเวลาทำการ',
 };

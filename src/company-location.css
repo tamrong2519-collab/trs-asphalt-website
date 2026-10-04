@@ -1,0 +1,182 @@
+/* Contact location: the selected layered navy panel and light map. */
+body[data-page="contact"] .company-location {
+  padding-top:0;
+  padding-bottom:44px;
+}
+body[data-page="contact"] .company-location-shell {
+  padding:32px 34px 34px;
+  border-radius:16px;
+  background:#fffdf7;
+  box-shadow:0 9px 30px #091f5906;
+}
+body[data-page="contact"] .company-location-heading {
+  margin-bottom:24px;
+}
+body[data-page="contact"] .company-location-eyebrow {
+  display:block;
+  margin-bottom:6px;
+  color:#7b8799;
+  font-size:11px;
+  font-weight:500;
+  line-height:1.7;
+  letter-spacing:1.5px;
+}
+body[data-page="contact"] #main .company-location-heading h2 {
+  margin:0;
+  color:#091f59;
+  font-size:34px;
+  font-weight:600;
+  line-height:1.5;
+  letter-spacing:-.5px;
+}
+body[data-page="contact"] .company-location-heading h2 span {
+  color:#ae8d41;
+}
+body[data-page="contact"] .company-location-layout {
+  position:relative;
+  padding-left:112px;
+}
+body[data-page="contact"] .company-location-map {
+  height:360px;
+  overflow:hidden;
+  border-radius:12px;
+  background:#eef2f5;
+}
+body[data-page="contact"] .company-location-map iframe {
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+}
+body[data-page="contact"] .company-location-address {
+  position:absolute;
+  z-index:1;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:390px;
+  padding:30px 28px;
+  border-radius:12px;
+  background:#0b2248;
+  box-shadow:0 9px 22px #091f591f;
+  color:#fff;
+}
+body[data-page="contact"] #main .company-location-address h3 {
+  margin:0 0 12px;
+  color:#fff;
+  font-size:24px;
+  font-weight:500;
+  line-height:1.6;
+  letter-spacing:0;
+}
+body[data-page="contact"] #main .company-location-address address {
+  margin:0;
+  color:#bac7d8;
+  font-size:16px;
+  font-style:normal;
+  font-weight:400;
+  line-height:1.9;
+}
+body[data-page="contact"] .company-location-actions {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  margin-top:24px;
+}
+body[data-page="contact"] .company-location-open,
+body[data-page="contact"] .company-location-copy {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:44px;
+  padding:10px 14px;
+  border:0;
+  border-radius:7px;
+  font-size:14px;
+  font-weight:500;
+  line-height:1.5;
+  white-space:nowrap;
+}
+body[data-page="contact"] .company-location-open {
+  background:#e4c477;
+  color:#0b2248;
+}
+body[data-page="contact"] .company-location-open:hover {
+  background:#f1d890;
+}
+body[data-page="contact"] .company-location-open svg {
+  width:18px;
+  height:18px;
+}
+body[data-page="contact"] .company-location-copy {
+  padding-inline:0;
+  gap:6px;
+  background:transparent;
+  color:#bac7d8;
+  font-size:12px;
+  font-weight:400;
+}
+body[data-page="contact"] .company-location-copy:hover {
+  color:#fff;
+}
+body[data-page="contact"] .company-location-copy svg {
+  width:16px;
+  height:16px;
+}
+body[data-page="contact"] .company-location-open:focus-visible,
+body[data-page="contact"] .company-location-copy:focus-visible {
+  outline:3px solid #f0d68c;
+  outline-offset:4px;
+}
+body[data-page="contact"] #main .company-location-status {
+  margin:12px 0 0;
+  color:#e4c477;
+  font-size:13px;
+  line-height:1.7;
+}
+body[data-page="contact"] .company-location-status:empty {
+  display:none;
+}
+@media(max-width:1000px) and (min-width:761px) {
+  body[data-page="contact"] .company-location-shell {padding:28px;}
+  body[data-page="contact"] .company-location-layout {padding-left:72px;}
+  body[data-page="contact"] .company-location-address {width:340px;padding:26px 24px;}
+  body[data-page="contact"] #main .company-location-address h3 {font-size:22px;}
+  body[data-page="contact"] #main .company-location-address address {font-size:15px;}
+  body[data-page="contact"] .company-location-actions {gap:10px;}
+}
+@media(max-width:760px) {
+  body[data-page="contact"] .company-location {padding-bottom:36px;}
+  body[data-page="contact"] .company-location-shell {padding:24px 20px 22px;border-radius:14px;}
+  body[data-page="contact"] .company-location-heading {margin-bottom:20px;}
+  body[data-page="contact"] .company-location-eyebrow {font-size:10px;letter-spacing:1.4px;}
+  body[data-page="contact"] #main .company-location-heading h2 {font-size:30px;}
+  body[data-page="contact"] .company-location-layout {padding-left:0;}
+  /* Overlap the map frame while keeping Google's map attribution visible. */
+  body[data-page="contact"] .company-location-map {height:292px;padding-bottom:32px;border-radius:10px;}
+  body[data-page="contact"] .company-location-address {
+    position:relative;
+    left:auto;
+    top:auto;
+    transform:none;
+    width:calc(100% - 16px);
+    margin:-32px 8px 0;
+    padding:24px 22px;
+    border-radius:10px;
+  }
+  body[data-page="contact"] #main .company-location-address h3 {margin-bottom:10px;font-size:21px;line-height:1.7;}
+  body[data-page="contact"] #main .company-location-address address {font-size:14px;line-height:1.9;}
+  body[data-page="contact"] .company-location-actions {gap:12px;margin-top:21px;}
+  body[data-page="contact"] .company-location-open {font-size:13px;padding-inline:13px;gap:14px;}
+  body[data-page="contact"] .company-location-copy {font-size:11px;}
+}
+@media(max-width:360px) {
+  body[data-page="contact"] .company-location-shell {padding:23px 16px 20px;}
+  body[data-page="contact"] .company-location-address {padding:23px 18px;}
+  body[data-page="contact"] #main .company-location-address h3 {font-size:20px;}
+  body[data-page="contact"] .company-location-actions {gap:8px;}
+  body[data-page="contact"] .company-location-open {gap:10px;padding-inline:11px;}
+  body[data-page="contact"] .company-location-copy {gap:4px;}
+}

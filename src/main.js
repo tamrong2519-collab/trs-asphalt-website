@@ -14,6 +14,7 @@ import './premium-theme.css';
 import './services-paired.css';
 import './projects-paired.css';
 import './page-hero.css';
+import './company-location.css';
 import { initializeSlider } from './slider.js';
 import { business as b, services, projects } from './data.js';
 const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -124,7 +125,24 @@ ${cta}
  <p id="image-caption"></p>
 </dialog>`;
 const estimateForm = `<section class="container section"><div id="estimate" class="estimate"><div><p class="eyebrow">REQUEST AN ESTIMATE</p><h2>ขอประเมินราคา</h2><p>กรอกข้อมูล แล้วส่งข้อความผ่าน LINE หรืออีเมล</p><p class="form-note">หลังสร้างข้อความ เลือกส่งผ่าน LINE หรืออีเมล</p></div><div><form id="estimate-form"><div class="form-row"><div><label for="customer">ชื่อผู้ติดต่อ <span>*</span></label><input id="customer" name="customer" autocomplete="name" maxlength="100" required></div><div><label for="phone">เบอร์โทรติดต่อกลับ <span>*</span></label><input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9+ ()-]{8,20}" maxlength="20" required></div></div><label for="service">บริการที่สนใจ <span>*</span></label><select id="service" name="service" required><option value="">เลือกบริการ</option>${services.map(s=>`<option value="${s.id}">${s.title}</option>`).join('')}</select><div class="form-row"><div><label for="location">จังหวัด / พื้นที่หน้างาน <span>*</span></label><input id="location" name="location" maxlength="150" required></div><div><label for="area">ขนาดพื้นที่โดยประมาณ</label><input id="area" name="area" placeholder="เช่น 200 ตร.ม." maxlength="100"></div></div><label for="details">รายละเอียดเพิ่มเติม</label><textarea id="details" name="details" rows="3" maxlength="2000" placeholder="สภาพพื้นเดิมและช่วงเวลาที่ต้องการ"></textarea><button class="button primary" type="submit">สร้างข้อความขอประเมินราคา ${arrow}</button></form><div id="estimate-result" hidden><h3>ข้อความพร้อมส่ง</h3><textarea id="message" rows="9" readonly aria-label="ข้อความขอประเมินราคา"></textarea><div class="actions"><button class="button primary" id="copy-message">คัดลอกข้อความ</button>${lineButton('เปิด LINE')}${b.email?'<a class="button outline" id="email-message">ส่งทางอีเมล</a>':''}</div><p id="copy-status" role="status"></p></div></div></div></section>`;
-const contactPage = `${pageHero({name:'contact',title:'ติดต่อ',accent:'เรา',copy:['ปรึกษาฟรี','พร้อมประเมินหน้างาน'],image:'/images/hero-sharp.webp',imageAlt:'ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย',width:1536,height:1024})}<section class="container section contact-grid">${serviceImage({...services[1],homeImage:services[1].slideImage},'contact-photo')}<div class="contact-panel">${sectionHead('ช่องทางการติดต่อ')}<p>ปรึกษาฟรี ส่งรูปหน้างานเพื่อขอประเมินราคา</p><div class="contact-box"><span class="contact-icon">${icon('phone')}</span><div><h3>โทรศัพท์</h3><a href="tel:${phone}">${escape(b.phone)}</a></div></div><div class="contact-box"><span class="contact-icon green"><span class="line-symbol">LINE</span></span><div><h3>LINE</h3><a href="${escape(line)}" target="_blank" rel="noopener noreferrer">${escape(b.lineId || 'เพิ่มเพื่อน')}</a></div></div><div class="contact-box contact-email"><span class="contact-icon">${icon('mail')}</span><div><h3>อีเมล</h3><a href="mailto:${escape(b.email)}">${escape(b.email)}</a></div></div><div class="actions">${call('button primary',`โทร ${escape(b.phone)}`)}${lineButton(`LINE ${escape(b.lineId)}`)}</div></div></section><section class="blue-section"><div class="container section">${sectionHead('ข้อมูลสำหรับประเมินราคา','แจ้งประเภทงาน ขนาดพื้นที่ และรูปหน้างาน')}<div class="info-grid">${[['road','ประเภทงาน','เลือกบริการที่ต้องการ',0],['gravel','ขนาดพื้นที่','แจ้งกว้าง × ยาว หรือพื้นที่รวม',1],['camera','สถานที่และรูปหน้างาน','ส่งตำแหน่งและภาพพื้นเดิม',4]].map(([i,t,d,n])=>`<article class="info-card"><div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>${serviceImage(services[n])}</article>`).join('')}</div></div></section><section class="service-area"><div class="container">${icon('pin')}<h2>พื้นที่ให้บริการ</h2><p>${escape(b.serviceArea)}</p></div></section><details id="estimate" class="estimate-disclosure container"><summary>ส่งรายละเอียดขอประเมินราคา ${arrow}</summary>${estimateForm.replace('id="estimate"','id="estimate-panel"')}</details>`;
+const companyMapURL = safeURL(b.mapUrl);
+const companyMapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(b.address)}&output=embed&hl=th&z=17`;
+const [companyPlace, companyDistrict] = b.address.split(' แขวง');
+const companyAddressLines = escape(companyDistrict || '').replace(' กรุงเทพมหานคร', '<br>กรุงเทพมหานคร');
+const companyLocation = `<section class="container section company-location" aria-labelledby="company-location-title">
+ <div class="company-location-shell">
+  <header class="company-location-heading"><span class="company-location-eyebrow">TRS · LOCATION</span><h2 id="company-location-title">ที่ตั้ง<span>บริษัท</span></h2></header>
+  <div class="company-location-layout">
+   <div class="company-location-map"><iframe src="${escape(companyMapEmbed)}" title="แผนที่หมู่บ้าน อาร์เคปาร์ค แขวงบางชัน เขตคลองสามวา" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+   <div class="company-location-address">
+    <div class="company-address-text"><h3>${escape(companyPlace)}</h3><address id="company-address">แขวง${companyAddressLines}</address></div>
+    <div class="company-location-actions"><a class="company-location-open" href="${escape(companyMapURL)}" target="_blank" rel="noopener noreferrer" aria-label="เปิดที่ตั้งบริษัทใน Google Maps">เปิดแผนที่ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12"/></svg></a><button class="company-location-copy" type="button" aria-label="คัดลอกที่อยู่บริษัท"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h3"/></svg>คัดลอกที่อยู่</button></div>
+    <p class="company-location-status" role="status" aria-live="polite"></p>
+   </div>
+  </div>
+ </div>
+</section>`;
+const contactPage = `${pageHero({name:'contact',title:'ติดต่อ',accent:'เรา',copy:['ปรึกษาฟรี','พร้อมประเมินหน้างาน'],image:'/images/hero-sharp.webp',imageAlt:'ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย',width:1536,height:1024})}<section class="container section contact-grid">${serviceImage({...services[1],homeImage:services[1].slideImage},'contact-photo')}<div class="contact-panel">${sectionHead('ช่องทางการติดต่อ')}<p>ปรึกษาฟรี ส่งรูปหน้างานเพื่อขอประเมินราคา</p><div class="contact-box"><span class="contact-icon">${icon('phone')}</span><div><h3>โทรศัพท์</h3><a href="tel:${phone}">${escape(b.phone)}</a></div></div><div class="contact-box"><span class="contact-icon green"><span class="line-symbol">LINE</span></span><div><h3>LINE</h3><a href="${escape(line)}" target="_blank" rel="noopener noreferrer">${escape(b.lineId || 'เพิ่มเพื่อน')}</a></div></div><div class="contact-box contact-email"><span class="contact-icon">${icon('mail')}</span><div><h3>อีเมล</h3><a href="mailto:${escape(b.email)}">${escape(b.email)}</a></div></div><div class="actions">${call('button primary',`โทร ${escape(b.phone)}`)}${lineButton(`LINE ${escape(b.lineId)}`)}</div></div></section>${companyLocation}<section class="blue-section"><div class="container section">${sectionHead('ข้อมูลสำหรับประเมินราคา','แจ้งประเภทงาน ขนาดพื้นที่ และรูปหน้างาน')}<div class="info-grid">${[['road','ประเภทงาน','เลือกบริการที่ต้องการ',0],['gravel','ขนาดพื้นที่','แจ้งกว้าง × ยาว หรือพื้นที่รวม',1],['camera','สถานที่และรูปหน้างาน','ส่งตำแหน่งและภาพพื้นเดิม',4]].map(([i,t,d,n])=>`<article class="info-card"><div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>${serviceImage(services[n])}</article>`).join('')}</div></div></section><section class="service-area"><div class="container">${icon('pin')}<h2>พื้นที่ให้บริการ</h2><p>${escape(b.serviceArea)}</p></div></section><details id="estimate" class="estimate-disclosure container"><summary>ส่งรายละเอียดขอประเมินราคา ${arrow}</summary>${estimateForm.replace('id="estimate"','id="estimate-panel"')}</details>`;
 document.getElementById('app').innerHTML = localPaths(`<a class="skip-link" href="#main">ข้ามไปเนื้อหา</a><header class="site-header"><div class="container header-inner">${headerBrand}<nav id="main-nav" aria-label="เมนูหลัก">${nav.map(([id,t])=>`<a class="nav-link" href="/${id}.html" ${id===page?'aria-current="page"':''}><span>${t}</span></a>`).join('')}</nav><div class="header-contact">${call('button header-call',`โทร ${escape(b.phone)}`)}${lineButton(escape(b.lineId),'button header-line')}</div></div></header><main id="main">${({index:home,services:servicePage,projects:projectPage,contact:contactPage})[page] || home}</main><div class="footer-shell"><footer class="site-footer"><div class="footer-content"><div class="footer-top">${brand}<div class="footer-tagline"><strong>งานถนนคุณภาพ</strong><p>ครบจบในทีมเดียว</p></div><div class="footer-contact">${call('button primary footer-phone')}${lineButton(escape(b.lineId),'button line footer-line')}</div></div><div class="footer-secondary"><nav class="footer-nav" aria-label="เมนูส่วนท้าย">${nav.map(([id,t])=>`<a href="/${id}.html" ${id===page?'aria-current="page"':''}>${t}</a>`).join('')}</nav><p class="footer-area">${escape(b.serviceArea).replace('กรุงเทพฯ และปริมณฑล','กรุงเทพฯ–ปริมณฑล').replaceAll(' • ',' · ')}</p></div><div class="footer-legal"><span>© ${new Date().getFullYear()} ${escape(b.name)} CONSTRUCTION</span><span>งานถนนคุณภาพ ครบจบในทีมเดียว</span></div></div><div class="footer-stripes" aria-hidden="true"></div></footer></div>${floatingContact}`);
 // Use the footer's own contact links when it is visible, keeping desktop floats clear of its content.
 if ('IntersectionObserver' in window) {
@@ -134,6 +152,28 @@ if ('IntersectionObserver' in window) {
 }
 if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage})), services});}
 if(page==='contact') {
+ const copyAddressButton=document.querySelector('.company-location-copy');
+ copyAddressButton.addEventListener('click',async()=>{
+  const status=document.querySelector('.company-location-status');
+  try {
+   await navigator.clipboard.writeText(b.address);
+   status.textContent='คัดลอกที่อยู่แล้ว';
+  } catch {
+   const field=document.createElement('textarea');
+   field.value=b.address;field.setAttribute('readonly','');field.style.cssText='position:fixed;left:-9999px;top:0';
+   document.body.append(field);field.select();
+   let copied=false;
+   try {copied=document.execCommand('copy');} catch {}
+   field.remove();copyAddressButton.focus();
+   if(copied) status.textContent='คัดลอกที่อยู่แล้ว';
+   else {
+    const selection=window.getSelection(),range=document.createRange();
+    range.selectNodeContents(document.querySelector('.company-address-text'));
+    selection.removeAllRanges();selection.addRange(range);
+    status.textContent='เลือกที่อยู่แล้ว กรุณาคัดลอกที่อยู่ด้วยตนเอง';
+   }
+  }
+ });
  const disclosure=document.getElementById('estimate');
  const openEstimate=()=>{if(location.hash==='#estimate'){disclosure.open=true;}};
  openEstimate();window.addEventListener('hashchange',openEstimate);
