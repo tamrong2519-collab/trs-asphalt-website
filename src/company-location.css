@@ -1,182 +1,226 @@
-/* Contact location: the selected layered navy panel and light map. */
-body[data-page="contact"] .company-location {
+/* The company location closes the contact page with a light card and clear map. */
+body[data-page="contact"] #main .company-location {
+  width:min(1120px,calc(100% - 64px));
   padding-top:0;
   padding-bottom:44px;
 }
 body[data-page="contact"] .company-location-shell {
-  padding:32px 34px 34px;
-  border-radius:16px;
-  background:#fffdf7;
-  box-shadow:0 9px 30px #091f5906;
-}
-body[data-page="contact"] .company-location-heading {
-  margin-bottom:24px;
-}
-body[data-page="contact"] .company-location-eyebrow {
-  display:block;
-  margin-bottom:6px;
-  color:#7b8799;
-  font-size:11px;
-  font-weight:500;
-  line-height:1.7;
-  letter-spacing:1.5px;
-}
-body[data-page="contact"] #main .company-location-heading h2 {
-  margin:0;
-  color:#091f59;
-  font-size:34px;
-  font-weight:600;
-  line-height:1.5;
-  letter-spacing:-.5px;
-}
-body[data-page="contact"] .company-location-heading h2 span {
-  color:#ae8d41;
+  padding:24px;
+  border:1px solid #cfe5f1;
+  border-radius:28px;
+  background:#edf7fc;
+  box-shadow:0 12px 32px #123f6b06;
 }
 body[data-page="contact"] .company-location-layout {
-  position:relative;
-  padding-left:112px;
+  display:grid;
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  align-items:stretch;
+  gap:22px;
 }
-body[data-page="contact"] .company-location-map {
-  height:360px;
-  overflow:hidden;
-  border-radius:12px;
-  background:#eef2f5;
+body[data-page="contact"] .company-location-card {
+  min-width:0;
+  padding:32px;
+  border-radius:22px;
+  background:#fff;
 }
-body[data-page="contact"] .company-location-map iframe {
-  display:block;
-  width:100%;
-  height:100%;
-  border:0;
+body[data-page="contact"] .company-location-heading {
+  padding-bottom:25px;
 }
-body[data-page="contact"] .company-location-address {
-  position:absolute;
-  z-index:1;
-  left:0;
-  top:50%;
-  transform:translateY(-50%);
-  width:390px;
-  padding:30px 28px;
-  border-radius:12px;
-  background:#0b2248;
-  box-shadow:0 9px 22px #091f591f;
-  color:#fff;
-}
-body[data-page="contact"] #main .company-location-address h3 {
+body[data-page="contact"] #main .company-location-heading h2 {
   margin:0 0 12px;
-  color:#fff;
-  font-size:24px;
-  font-weight:500;
+  color:#103d5d;
+  font-size:32px;
+  font-weight:700;
+  line-height:1.5;
+  letter-spacing:0;
+  text-wrap:wrap;
+}
+body[data-page="contact"] #main .company-location-heading p {
+  margin:0;
+  color:#577384;
+  font-size:17px;
+  line-height:1.8;
+}
+body[data-page="contact"] .company-location-row {
+  display:grid;
+  grid-template-columns:52px minmax(0,1fr);
+  align-items:start;
+  gap:18px;
+  padding-block:25px;
+  border-top:1px solid #dce9f0;
+}
+body[data-page="contact"] .company-location-row:last-of-type {
+  padding-bottom:0;
+}
+body[data-page="contact"] .company-location-icon {
+  display:grid;
+  place-items:center;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:#eaf5fb;
+  color:#c52e37;
+}
+body[data-page="contact"] .company-location-icon .icon {
+  width:25px;
+  height:25px;
+}
+body[data-page="contact"] .company-location-address,
+body[data-page="contact"] .company-location-phone-row>div {
+  min-width:0;
+}
+body[data-page="contact"] #main .company-location-row h3 {
+  margin:0 0 9px;
+  color:#103d5d;
+  font-size:20px;
+  font-weight:700;
   line-height:1.6;
   letter-spacing:0;
+  text-wrap:wrap;
 }
-body[data-page="contact"] #main .company-location-address address {
+body[data-page="contact"] #main .company-address-text address {
   margin:0;
-  color:#bac7d8;
-  font-size:16px;
+  color:#577384;
+  font-size:17px;
   font-style:normal;
-  font-weight:400;
-  line-height:1.9;
+  line-height:1.85;
+  overflow-wrap:break-word;
 }
-body[data-page="contact"] .company-location-actions {
-  display:flex;
-  flex-wrap:wrap;
+body[data-page="contact"] .company-location-phone {
+  display:inline-flex;
   align-items:center;
-  gap:12px;
-  margin-top:24px;
+  min-height:44px;
+  color:#15539e;
+  font-size:17px;
+  font-weight:500;
+  line-height:1.8;
 }
-body[data-page="contact"] .company-location-open,
 body[data-page="contact"] .company-location-copy {
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  gap:12px;
+  justify-content:flex-start;
+  gap:7px;
   min-height:44px;
-  padding:10px 14px;
+  margin-top:6px;
+  padding:0;
   border:0;
-  border-radius:7px;
-  font-size:14px;
-  font-weight:500;
-  line-height:1.5;
-  white-space:nowrap;
-}
-body[data-page="contact"] .company-location-open {
-  background:#e4c477;
-  color:#0b2248;
-}
-body[data-page="contact"] .company-location-open:hover {
-  background:#f1d890;
-}
-body[data-page="contact"] .company-location-open svg {
-  width:18px;
-  height:18px;
-}
-body[data-page="contact"] .company-location-copy {
-  padding-inline:0;
-  gap:6px;
+  border-radius:5px;
   background:transparent;
-  color:#bac7d8;
-  font-size:12px;
-  font-weight:400;
-}
-body[data-page="contact"] .company-location-copy:hover {
-  color:#fff;
+  color:#15539e;
+  font-size:16px;
+  font-weight:500;
+  line-height:1.75;
 }
 body[data-page="contact"] .company-location-copy svg {
-  width:16px;
-  height:16px;
+  width:17px;
+  height:17px;
+  flex-shrink:0;
 }
-body[data-page="contact"] .company-location-open:focus-visible,
-body[data-page="contact"] .company-location-copy:focus-visible {
-  outline:3px solid #f0d68c;
-  outline-offset:4px;
+body[data-page="contact"] .company-location-copy:hover,
+body[data-page="contact"] .company-location-phone:hover {
+  color:#0b3970;
+  text-decoration:underline;
+  text-underline-offset:4px;
 }
 body[data-page="contact"] #main .company-location-status {
-  margin:12px 0 0;
-  color:#e4c477;
+  margin:16px 0 0;
+  color:#15539e;
   font-size:16px;
-  line-height:1.7;
+  line-height:1.75;
 }
 body[data-page="contact"] .company-location-status:empty {
   display:none;
 }
-@media(max-width:1000px) and (min-width:761px) {
-  body[data-page="contact"] .company-location-shell {padding:28px;}
-  body[data-page="contact"] .company-location-layout {padding-left:72px;}
-  body[data-page="contact"] .company-location-address {width:340px;padding:26px 24px;}
-  body[data-page="contact"] #main .company-location-address h3 {font-size:22px;}
-  body[data-page="contact"] #main .company-location-address address {font-size:15px;}
-  body[data-page="contact"] .company-location-actions {gap:10px;}
+body[data-page="contact"] .company-location-map {
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #d9e9f2;
+  border-radius:22px;
+  background:#fff;
+}
+body[data-page="contact"] .company-location-map iframe {
+  display:block;
+  flex:1 1 auto;
+  width:100%;
+  height:400px;
+  min-height:400px;
+  border:0;
+  background:#e5edf2;
+}
+body[data-page="contact"] .company-map-actions {
+  padding:16px;
+  background:#fff;
+}
+body[data-page="contact"] .company-location-open {
+  display:grid;
+  grid-template-columns:22px minmax(0,1fr) 22px;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  min-height:56px;
+  padding:14px 16px;
+  border:1px solid #1454a4;
+  border-radius:14px;
+  background:#1454a4;
+  color:#fff;
+  font-size:17px;
+  font-weight:600;
+  line-height:1.65;
+  text-align:center;
+}
+body[data-page="contact"] .company-location-open>span {
+  min-width:0;
+}
+body[data-page="contact"] .company-location-open .icon {
+  width:22px;
+  height:22px;
+}
+body[data-page="contact"] .company-location-open:hover {
+  background:#10468c;
+  border-color:#10468c;
+}
+body[data-page="contact"] .company-location-open:focus-visible,
+body[data-page="contact"] .company-location-copy:focus-visible,
+body[data-page="contact"] .company-location-phone:focus-visible {
+  outline:3px solid #1454a4;
+  outline-offset:4px;
+}
+@media(max-width:1000px) and (min-width:901px) {
+  body[data-page="contact"] .company-location-shell {padding:20px;}
+  body[data-page="contact"] .company-location-layout {gap:18px;}
+  body[data-page="contact"] .company-location-card {padding:26px 24px;}
+  body[data-page="contact"] #main .company-location-heading h2 {font-size:30px;}
+  body[data-page="contact"] .company-location-row {gap:14px;grid-template-columns:48px minmax(0,1fr);}
+  body[data-page="contact"] .company-location-icon {width:48px;height:48px;}
+}
+@media(max-width:900px) {
+  body[data-page="contact"] .company-location-layout {grid-template-columns:minmax(0,1fr);}
 }
 @media(max-width:760px) {
-  body[data-page="contact"] .company-location {padding-bottom:36px;}
-  body[data-page="contact"] .company-location-shell {padding:24px 20px 22px;border-radius:14px;}
-  body[data-page="contact"] .company-location-heading {margin-bottom:20px;}
-  body[data-page="contact"] .company-location-eyebrow {font-size:10px;letter-spacing:1.4px;}
-  body[data-page="contact"] #main .company-location-heading h2 {font-size:30px;}
-  body[data-page="contact"] .company-location-layout {padding-left:0;}
-  /* Overlap the map frame while keeping Google's map attribution visible. */
-  body[data-page="contact"] .company-location-map {height:292px;padding-bottom:32px;border-radius:10px;}
-  body[data-page="contact"] .company-location-address {
-    position:relative;
-    left:auto;
-    top:auto;
-    transform:none;
-    width:calc(100% - 16px);
-    margin:-32px 8px 0;
-    padding:24px 22px;
-    border-radius:10px;
-  }
-  body[data-page="contact"] #main .company-location-address h3 {margin-bottom:10px;font-size:21px;line-height:1.7;}
-  body[data-page="contact"] #main .company-location-address address {font-size:14px;line-height:1.9;}
-  body[data-page="contact"] .company-location-actions {gap:12px;margin-top:21px;}
-  body[data-page="contact"] .company-location-open {font-size:13px;padding-inline:13px;gap:14px;}
-  body[data-page="contact"] .company-location-copy {font-size:11px;}
+  body[data-page="contact"] #main .company-location {width:calc(100% - 32px);padding-bottom:36px;}
+  body[data-page="contact"] .company-location-shell {padding:12px;border-radius:24px;}
+  body[data-page="contact"] .company-location-layout {gap:16px;}
+  body[data-page="contact"] .company-location-card {padding:26px 24px;border-radius:20px;}
+  body[data-page="contact"] .company-location-heading {padding-bottom:23px;}
+  body[data-page="contact"] #main .company-location-heading h2 {font-size:29px;line-height:1.5;margin-bottom:12px;}
+  body[data-page="contact"] #main .company-location-heading p {font-size:16px;}
+  body[data-page="contact"] .company-location-row {grid-template-columns:48px minmax(0,1fr);gap:14px;padding-block:23px;}
+  body[data-page="contact"] .company-location-icon {width:48px;height:48px;}
+  body[data-page="contact"] .company-location-icon .icon {width:24px;height:24px;}
+  body[data-page="contact"] #main .company-location-row h3 {font-size:18px;line-height:1.65;margin-bottom:8px;}
+  body[data-page="contact"] #main .company-address-text address,
+  body[data-page="contact"] .company-location-phone {font-size:16px;}
+  body[data-page="contact"] .company-location-map {border-radius:20px;}
+  body[data-page="contact"] .company-location-map iframe {flex:none;height:360px;min-height:360px;}
+  body[data-page="contact"] .company-map-actions {padding:12px;}
+  body[data-page="contact"] .company-location-open {font-size:16px;gap:10px;padding-inline:12px;}
 }
 @media(max-width:360px) {
-  body[data-page="contact"] .company-location-shell {padding:23px 16px 20px;}
-  body[data-page="contact"] .company-location-address {padding:23px 18px;}
-  body[data-page="contact"] #main .company-location-address h3 {font-size:20px;}
-  body[data-page="contact"] .company-location-actions {gap:8px;}
-  body[data-page="contact"] .company-location-open {gap:10px;padding-inline:11px;}
-  body[data-page="contact"] .company-location-copy {gap:4px;}
+  body[data-page="contact"] .company-location-card {padding:24px 20px;}
+  body[data-page="contact"] #main .company-location-heading h2 {font-size:28px;}
+  body[data-page="contact"] .company-location-row {grid-template-columns:44px minmax(0,1fr);gap:12px;}
+  body[data-page="contact"] .company-location-icon {width:44px;height:44px;}
+  body[data-page="contact"] .company-location-open {gap:8px;padding-inline:10px;}
 }
