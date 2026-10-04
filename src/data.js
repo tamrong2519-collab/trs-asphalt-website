@@ -4,8 +4,8 @@ export const business = {
   phone: '062-248-4089', // เช่น 0812345678
   lineId: '@138wlldt', lineUrl: 'https://line.me/ti/p/%40138wlldt', // เช่น https://line.me/ti/p/~your-id
   email: 'tamrong2519@gmail.com',
-  address: 'หมู่บ้าน อาร์เคปาร์ค แขวงบางชัน เขตคลองสามวา กรุงเทพมหานคร 10510',
-  mapUrl: 'https://maps.app.goo.gl/Pf8i2ETgH7VAqqnFA?g_st=ic',
+  address: 'หมู่บ้าน อาร์เคปาร์ค หทัยราษฎร์ แขวงบางชัน เขตคลองสามวา กรุงเทพมหานคร 10510',
+  mapLocation: 'หมู่บ้าน อาร์เคปาร์ค หทัยราษฎร์',
   serviceArea: 'กรุงเทพฯ และปริมณฑล • ชลบุรี • ระยอง • ฉะเชิงเทรา',
   siteUrl: '', // URL เว็บไซต์จริง เช่น https://www.example.com
   hours: 'กรุณาติดต่อเพื่อสอบถามเวลาทำการ',
