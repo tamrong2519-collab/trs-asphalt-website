@@ -141,12 +141,10 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
      expect(geometry.height).toBeGreaterThanOrEqual(44); expect(geometry.nowrap).toBe(true); expect(geometry.clipped).toBe(false);
     }
     if (mobile) {
-     if (route === 'contact') await expect(page.locator('.floating-contact')).not.toBeVisible();
-     else {
-      await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
-      const clearFooter = await page.evaluate(() => document.querySelector('.footer-phone').getBoundingClientRect().bottom <= document.querySelector('.floating-contact').getBoundingClientRect().top);
-      expect(clearFooter).toBe(true);
-     }
+     await expect(page.locator('.floating-contact')).toBeVisible();
+     await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+     const clearFooter = await page.evaluate(() => document.querySelector('.footer-phone').getBoundingClientRect().bottom <= document.querySelector('.floating-contact').getBoundingClientRect().top);
+     expect(clearFooter).toBe(true);
     }
    }
    expect(errors).toEqual([]);

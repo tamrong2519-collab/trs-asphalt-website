@@ -36,7 +36,6 @@ body[data-page] .site-footer .footer-stripes{height:8px;background:repeating-lin
 }
 @media(max-width:760px){
  body[data-page] .footer-shell{padding-bottom:calc(24px + 92px + env(safe-area-inset-bottom))}
- body[data-page=contact] .footer-shell{padding-bottom:24px}
 }
 @media(max-width:600px){
  body[data-page] .footer-shell{padding-top:24px;padding-left:16px;padding-right:16px}
