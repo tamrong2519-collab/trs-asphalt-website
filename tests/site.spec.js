@@ -204,33 +204,33 @@ test('home hero advances automatically through all five slides and loops',async(
  await page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'}).click();await page.locator('header .brand').focus();await page.mouse.move(0,0);await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','1');
 });
 for(const width of [320,375,390,430]){
- test(`all five hero photos stay clear above readable copy and controls fit at ${width}px`,async({page})=>{
-  await page.setViewportSize({width,height:950});await page.goto(path('index.html'));
+ test(`all five hero photos autoplay above readable copy without slider buttons at ${width}px`,async({page})=>{
+  await page.setViewportSize({width,height:950});await page.clock.install();await page.goto(path('index.html'));
   const hero=page.locator('.hero-home');
-  for(const selector of ['.slide-prev','.slide-next']){
-   const control=hero.locator(selector);await expect(control.locator('svg')).toHaveCount(1);
-   const size=await control.boundingBox();expect(size.width).toBeGreaterThanOrEqual(44);expect(size.height).toBeGreaterThanOrEqual(44);
-   const photo=await hero.locator('.hero-image').boundingBox();expect(size.y+size.height).toBeLessThanOrEqual(photo.y+photo.height);
-   const floating=await page.locator('.floating-contact').boundingBox();expect(size.y+size.height).toBeLessThan(floating.y);
-  }
+  await expect(hero.locator('.slider-controls')).toBeHidden();
+  await expect(hero.getByRole('button')).toHaveCount(0);
   for(let index=0;index<5;index++){
-   if(index>0)await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide',String(index));
+   if(index>0)await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide',String(index));
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-   const within=await page.locator('.slider-controls').evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth});expect(within).toBe(true);
    for(const image of await hero.locator('img:visible').all()) await image.evaluate(i=>i.decode());
    const composition=await hero.evaluate(e=>{const photo=e.querySelector(e.dataset.activeSlide==='0'?'.hero-image':'.hero-scene').getBoundingClientRect();return {photoHeight:photo.height,photoBottom:photo.bottom,titleTop:e.querySelector('h1').getBoundingClientRect().top};});
    expect(composition.photoHeight).toBeGreaterThanOrEqual(230);expect(composition.titleTop-composition.photoBottom).toBeGreaterThanOrEqual(24);
   }
-  await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','0');
-  await page.getByRole('button',{name:'สไลด์ก่อนหน้า',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','4');
+  await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','0');
   await hero.evaluate(e=>{
    e.dispatchEvent(new TouchEvent('touchstart',{changedTouches:[new Touch({identifier:1,target:e,clientX:250,clientY:200})]}));
    e.dispatchEvent(new TouchEvent('touchend',{changedTouches:[new Touch({identifier:1,target:e,clientX:100,clientY:205})]}));
-  });await expect(hero).toHaveAttribute('data-active-slide','0');
+  });await expect(hero).toHaveAttribute('data-active-slide','1');
+  await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','2');
  });
 }
 test('reduced motion keeps the automatic slider paused initially',async({page})=>{
- await page.emulateMedia({reducedMotion:'reduce'});await page.clock.install();await page.goto(path('index.html'));await page.clock.runFor(18000);await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide','0');await expect(page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'})).toBeVisible();
+ await page.emulateMedia({reducedMotion:'reduce'});await page.clock.install();
+ for(const width of [390,1280]){
+  await page.setViewportSize({width,height:950});await page.goto(path('index.html'));await page.clock.runFor(18000);await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide','0');
+  if(width<=760)await expect(page.locator('.slider-controls')).toBeHidden();
+  else await expect(page.getByRole('button',{name:'เล่นสไลด์อัตโนมัติ'})).toBeVisible();
+ }
 });
 
 test('homepage work photos match the four service cards and automatic slides',async({page})=>{
@@ -387,10 +387,11 @@ test('homepage hero matches requested wording, four benefits and blue phone butt
 });
 
 test('mobile estimate hero keeps its height when the automatic slide changes',async({page})=>{
+ await page.clock.install();
  for(const width of [320,390]){
   await page.setViewportSize({width,height:1000});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
   const hero=page.locator('.hero-estimate');const before=await hero.evaluate(e=>e.getBoundingClientRect().height);
-  for(let index=0;index<4;index++)await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();await expect(hero).toHaveAttribute('data-active-slide','4');
+  for(let index=0;index<4;index++)await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','4');
   expect(await hero.evaluate(e=>e.getBoundingClientRect().height)).toBeCloseTo(before,0);
  }
 });

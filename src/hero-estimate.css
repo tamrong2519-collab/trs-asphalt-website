@@ -61,7 +61,6 @@ body[data-page=index] .hero-estimate .slide-play{bottom:14px;right:16px;backgrou
  body[data-page=index] .hero-estimate .hero-quote>.button{font-size:20px;min-height:58px;padding:14px 16px;border-radius:8px}
  body[data-page=index] .hero-estimate .hero-quote-note{font-size:16px;line-height:1.75;margin-top:12px}
 
- body[data-page=index] .hero-estimate .slide-play{right:8px;top:calc(var(--hero-photo-height) - 52px);bottom:auto;background:#ffffffe6;color:#164a7c}
- body[data-page=index] .hero-estimate .slide-prev,body[data-page=index] .hero-estimate .slide-next{top:calc(var(--hero-photo-height) - 52px);bottom:auto;background:#ffffffe6;opacity:1}
+ body[data-page=index] .hero-estimate .slider-controls{display:none}
 }
 @media(max-width:360px){body[data-page=index] .hero-estimate h1{font-size:34px}}

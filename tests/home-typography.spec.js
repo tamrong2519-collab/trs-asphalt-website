@@ -70,7 +70,13 @@ for (const width of widths) {
   const originalHeight = await hero.evaluate(element => element.getBoundingClientRect().height);
   await expect(hero.locator('.slide-dots,[data-slide]')).toHaveCount(0);
   for (let index = 0; index < 5; index++) {
-   if (index > 0) await page.getByRole('button', { name: 'สไลด์ถัดไป', exact: true }).click();
+   if (index > 0) {
+    if (width <= 760) await hero.evaluate(element => {
+     element.dispatchEvent(new TouchEvent('touchstart', { changedTouches: [new Touch({ identifier: 1, target: element, clientX: 250, clientY: 200 })] }));
+     element.dispatchEvent(new TouchEvent('touchend', { changedTouches: [new Touch({ identifier: 1, target: element, clientX: 100, clientY: 205 })] }));
+    });
+    else await page.getByRole('button', { name: 'สไลด์ถัดไป', exact: true }).click();
+   }
    await expect(hero).toHaveAttribute('data-active-slide', String(index));
    await expect(hero.locator('h1')).toBeVisible();
    await expect(hero.locator('.hero-copy')).toBeVisible();

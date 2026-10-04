@@ -66,21 +66,28 @@ for (const width of [320, 375, 390, 430]) {
  });
 }
 
-test('real mobile browser keeps automatic slides, touch controls and browser zoom working', async ({ browser, baseURL }) => {
+test('real mobile browser keeps automatic slides, swipe and browser zoom working without slider buttons', async ({ browser, baseURL }) => {
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
  try {
   const page = await context.newPage(); await page.clock.install(); await page.goto(path('index'));
   await page.evaluate(() => document.fonts.ready);
   const hero = page.locator('.hero-home');
+  await expect(hero.locator('.slider-controls')).toBeHidden();
+  await expect(hero.getByRole('button')).toHaveCount(0);
   for (const index of [1, 2, 3, 4, 0]) {
    await page.clock.runFor(6001); await expect(hero).toHaveAttribute('data-active-slide', String(index));
    await expect(page.locator('.slide-count')).toHaveText(`${String(index + 1).padStart(2, '0')} / 05`);
   }
-  await page.getByRole('button', { name: 'หยุดสไลด์อัตโนมัติ' }).tap();
-  await page.clock.runFor(12000); await expect(hero).toHaveAttribute('data-active-slide', '0');
-  await page.getByRole('button', { name: 'สไลด์ถัดไป', exact: true }).tap(); await expect(hero).toHaveAttribute('data-active-slide', '1');
-  await page.getByRole('button', { name: 'สไลด์ก่อนหน้า', exact: true }).tap(); await expect(hero).toHaveAttribute('data-active-slide', '0');
   const session = await context.newCDPSession(page);
+  const photo = await hero.locator('.hero-image').boundingBox();
+  const swipe = async (startX, endX) => {
+   const y = photo.y + photo.height / 2;
+   await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: startX, y }] });
+   await session.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: endX, y }] });
+   await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  };
+  await swipe(280, 100); await expect(hero).toHaveAttribute('data-active-slide', '1');
+  await page.clock.runFor(6001); await expect(hero).toHaveAttribute('data-active-slide', '2');
   await session.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 }); await page.clock.runFor(50);
   await expect.poll(() => page.evaluate(() => visualViewport.scale)).toBeCloseTo(2, 3);
   expect(await page.evaluate(() => innerWidth)).toBe(390);
