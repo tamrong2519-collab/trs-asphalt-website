@@ -157,7 +157,7 @@ test('premium homepage keeps all five automatic slides, matching photos and acce
  await page.evaluate(() => document.fonts.ready);
  const hero = page.locator('.hero-home');
  await expect(hero.locator('.slide-dots,[data-slide]')).toHaveCount(0);
- const expectedPhotos = ['gravel-slide.webp', 'stone-job.webp', 'speed-bump-job.webp', 'marking-job.webp'];
+ const expectedPhotos = ['gravel-slide.webp', 'stone-job.webp', 'speed-bump-job.webp', 'marking-home.webp'];
  for (let index = 1; index <= 4; index++) {
   await page.clock.runFor(6001); await expect(hero).toHaveAttribute('data-active-slide', String(index));
   const image = hero.locator('.hero-scene img');

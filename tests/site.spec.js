@@ -248,11 +248,12 @@ test('homepage work photos match the four service cards and automatic slides',as
  await expect(gravelRoad.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
  await expect(gravelRoad.locator('img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
  await expect(gravelRoad.locator('img')).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด');
- const jobs=[['gravel','gravel-job','gravel-yard'],['stone','stone-job','stone-yard'],['speed-bump','speed-bump-job','speed-bump-work'],['marking','marking-job','parking-marking']];
+ const jobs=[['gravel','gravel-job','gravel-yard'],['stone','stone-job','stone-yard'],['speed-bump','speed-bump-job','speed-bump-work'],['marking','marking-home','parking-marking']];
  for(let index=0;index<jobs.length;index++){
   const [id,image,album]=jobs[index];
   const card=page.locator(`.home-services a[href="${path(`projects.html#${album}`)}"] img`);
   await expect(card).toHaveAttribute('src',path(`images/${image}.webp`));
+  await expect(sampleCards.nth(index+1).locator('img')).toHaveAttribute('src',path(`images/${image}.webp`));
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
   await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide',String(index+1));
   await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${id==='gravel'?'gravel-slide':image}.webp`));

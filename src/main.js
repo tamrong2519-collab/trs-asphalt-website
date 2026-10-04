@@ -67,7 +67,7 @@ const siteHeader = `<header class="site-header">
  <div class="header-contact-band"><div class="container header-contact-inner">${headerContacts}</div></div>
 </header>`;
 const scene = (n,alt,cls='') => `<div class="scene scene-${n} ${cls}"><img src="/images/work-scenes.webp" alt="${escape(alt)}" width="1536" height="1024" loading="lazy"></div>`;
-const serviceImage = (s,cls='') => `<div class="scene work-photo ${cls}"><img src="${escape(s.homeImage || s.image)}" alt="${escape(s.imageAlt || `${s.homeImage?'ภาพหน้างาน':'ภาพประกอบ'}${s.title}`)}" width="${s.homeImage?1280:1536}" height="${s.homeImage?960:1024}" loading="lazy"></div>`;
+const serviceImage = (s,cls='') => `<div class="scene work-photo ${cls}"><img src="${escape((page==='index' && s.homepageImage) || s.homeImage || s.image)}" alt="${escape(s.imageAlt || `${s.homeImage?'ภาพหน้างาน':'ภาพประกอบ'}${s.title}`)}" width="${s.homeImage?1280:1536}" height="${s.homeImage?960:1024}" loading="lazy"></div>`;
 const homeTitle = s => ({gravel:'ลานหินคลุก',stone:'หินเกล็ด','speed-bump':'ลูกระนาด'})[s.id] || s.title;
 const homeDescription = s => ({asphalt:'ถนน ลานจอดรถ และพื้นที่ใช้งาน',gravel:'เกลี่ยและบดอัดลานจอดรถ ทางเข้าออก',stone:'ปรับพื้นลานและพื้นที่ใช้งาน','speed-bump':'ชะลอความเร็วภายในพื้นที่',marking:'ตีเส้นถนนและช่องจอดรถ'})[s.id];
 const projectLink = s => {
