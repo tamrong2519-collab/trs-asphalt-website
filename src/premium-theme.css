@@ -3,6 +3,8 @@
 body[data-page]{background:var(--premium-ivory)}
 body[data-page] #main{background:var(--premium-ivory)}
 body[data-page] .float-button{white-space:nowrap}
+body[data-page] .float-face{display:flex;align-items:center;justify-content:center;gap:inherit;white-space:nowrap}
+body[data-page] .float-symbol-mobile{display:none}
 /* Floating contacts share the navy-and-gold palette and compact touch targets. */
 body[data-page] .float-button{
  height:48px;min-height:48px;padding:10px 16px;gap:10px;
@@ -12,7 +14,7 @@ body[data-page] .float-button{
  transition:background-color .18s ease,box-shadow .18s ease;
 }
 body[data-page] .float-call{background:var(--premium-navy);color:#fff;border-color:#f0d68c45}
-body[data-page] .float-call>.icon{width:20px;height:20px;color:var(--premium-gold)}
+body[data-page] .float-call .icon{width:20px;height:20px;color:var(--premium-gold)}
 body[data-page] .float-line{background:#007a2d;color:#fff}
 body[data-page] .float-button:focus-visible{outline:3px solid var(--premium-gold-ink);outline-offset:3px}
 @media(min-width:761px){
@@ -25,10 +27,31 @@ body[data-page] .float-button:focus-visible{outline:3px solid var(--premium-gold
 }
 @media(max-width:760px){
  body[data-page] .floating-contact{
-  background:#fffdf6;border-color:var(--premium-border);border-radius:22px;
-  box-shadow:0 8px 24px #091f5914;
+  width:160px;left:auto;right:12px;
+  bottom:calc(12px + env(safe-area-inset-bottom));transform:none;
+  flex-direction:column;gap:4px;padding:0;
+  background:transparent;border:0;border-radius:0;
+  backdrop-filter:none;box-shadow:none;
  }
- body[data-page] .float-button{padding:8px 12px;gap:8px;font-size:18px;box-shadow:none}
+ body[data-page] .float-button{
+  flex:none;width:100%;height:44px;min-height:44px;padding:0;gap:0;
+  border:0;border-radius:9px;background:transparent;box-shadow:none;
+  font-size:14px;font-weight:600;line-height:1.45;
+ }
+ body[data-page] .float-call{font-size:13px}
+ body[data-page] .float-face{
+  width:100%;height:30px;padding:0 10px;gap:6px;
+  border:1px solid transparent;border-radius:9px;
+  box-shadow:0 3px 9px #091f591b;
+  font-variant-numeric:tabular-nums;
+ }
+ body[data-page] .float-call .float-face{background:var(--premium-navy)}
+ body[data-page] .float-line .float-face{background:#007a2d}
+ body[data-page] .float-call .icon{width:18px;height:18px}
+ body[data-page] .float-symbol-desktop{display:none}
+ body[data-page] .float-symbol-mobile{display:block;width:18px;height:18px;flex:none}
+ body[data-page] .float-call:hover,body[data-page] .float-line:hover{background:transparent}
+ body[data-page] #main .button,body[data-page] .footer-phone{scroll-margin-bottom:calc(112px + env(safe-area-inset-bottom))}
 }
 body[data-page] #main p{color:var(--premium-copy)}
 body[data-page] #main h2,body[data-page] #main h3{color:var(--premium-navy)}

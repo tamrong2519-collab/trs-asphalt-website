@@ -153,21 +153,32 @@ for(const width of [320,375,390,430]){
    const buttons=page.locator(selector);await expect(buttons).toHaveCount(2);
    const geometry=await buttons.evaluateAll(items=>items.map(b=>{
     const r=b.getBoundingClientRect(),s=getComputedStyle(b);
-    return {width:r.width,height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,align:s.alignItems,justify:s.justifyContent};
+    const face=b.querySelector('.float-face'),f=face?.getBoundingClientRect(),fs=face&&getComputedStyle(face),icon=face?.querySelector('.icon,.float-symbol-mobile')?.getBoundingClientRect();
+    return {width:r.width,height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,align:s.alignItems,justify:s.justifyContent,face:f?{width:f.width,height:f.height,left:f.left,right:f.right,top:f.top,bottom:f.bottom,font:parseFloat(fs.fontSize),radius:parseFloat(fs.borderRadius),wrap:fs.whiteSpace,overflow:face.scrollWidth>face.clientWidth,align:fs.alignItems,justify:fs.justifyContent,iconWidth:icon?.width,iconHeight:icon?.height}:null};
    }));
-   for(const b of geometry){expect(b.height).toBe(route==='contact'?52:48);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.font).toBe(18);expect(b.radius).toBe(14);expect(b.wrap).toBe('nowrap');expect(b.overflow).toBe(false);expect(b.align).toBe('center');expect(b.justify).toBe('center');expect(b.left).toBeGreaterThanOrEqual(16);expect(b.right).toBeLessThanOrEqual(width-16);}
+   for(const b of geometry){expect(b.height).toBe(route==='contact'?52:44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.wrap).toBe('nowrap');expect(b.overflow).toBe(false);expect(b.align).toBe('center');expect(b.justify).toBe('center');expect(b.left).toBeGreaterThanOrEqual(route==='contact'?16:12);expect(b.right).toBeLessThanOrEqual(width-(route==='contact'?16:12));}
    if(route==='contact'){
+    for(const b of geometry){expect(b.font).toBe(18);expect(b.radius).toBe(14);}
     expect(geometry[1].top-geometry[0].bottom).toBe(16);await expect(page.locator('.floating-contact')).not.toBeVisible();
    }else{
-    expect(geometry[1].left-geometry[0].right).toBeCloseTo(12,1);
+    await expect(buttons.nth(0)).toHaveAttribute('href','tel:0622484089');await expect(buttons.nth(1)).toHaveAttribute('href','https://line.me/ti/p/%40138wlldt');
+    await expect(buttons.nth(0).locator('.float-label-mobile')).toHaveText('062-248-4089');await expect(buttons.nth(1).locator('.float-label-mobile')).toHaveText('LINE');
+    expect(geometry[1].top-geometry[0].bottom).toBeCloseTo(4,1);
+    expect(geometry[0].left).toBeCloseTo(geometry[1].left,1);
     expect(geometry[0].width).toBeCloseTo(geometry[1].width,1);
-    expect(geometry[0].top).toBeCloseTo(geometry[1].top,1);
-    const dock=await page.locator('.floating-contact').evaluate(e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,bottom:r.bottom};});
-    expect(dock.width).toBeCloseTo(Math.min(360,width-32),1);
-    expect(dock.left).toBeGreaterThanOrEqual(16);expect(dock.right).toBeLessThanOrEqual(width-16);
-    expect(dock.left).toBeCloseTo(width-dock.right,0);
+    for(const [index,b] of geometry.entries()){
+     expect(b.width).toBe(160);expect(b.face).not.toBeNull();
+     const face=b.face;expect(face.width).toBe(160);expect(face.height).toBe(30);expect(face.font).toBe(index===0?13:14);expect(face.radius).toBe(9);
+     expect(face.wrap).toBe('nowrap');expect(face.overflow).toBe(false);expect(face.align).toBe('center');expect(face.justify).toBe('center');
+     expect(face.left).toBeCloseTo(b.left,1);expect(face.right).toBeCloseTo(b.right,1);expect(face.top-b.top).toBeCloseTo(b.bottom-face.bottom,1);
+     expect(face.iconWidth).toBe(18);expect(face.iconHeight).toBe(18);
+    }
+    const dock=await page.locator('.floating-contact').evaluate(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {left:r.left,right:r.right,width:r.width,bottom:r.bottom,padding:[s.paddingTop,s.paddingRight,s.paddingBottom,s.paddingLeft],background:s.backgroundColor,border:s.borderTopWidth};});
+    expect(dock.width).toBe(160);
+    expect(dock.left).toBeGreaterThanOrEqual(12);expect(dock.right).toBeCloseTo(width-12,1);
+    expect(dock.padding).toEqual(['0px','0px','0px','0px']);expect(dock.background).toBe('rgba(0, 0, 0, 0)');expect(dock.border).toBe('0px');
     expect(850-dock.bottom).toBeGreaterThanOrEqual(12);
-    expect(geometry[0].left-dock.left).toBeGreaterThanOrEqual(8);expect(dock.right-geometry[1].right).toBeGreaterThanOrEqual(8);
+    expect(geometry[0].left).toBeCloseTo(dock.left,1);expect(geometry[1].right).toBeCloseTo(dock.right,1);
     await page.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
     const unobstructed=await page.evaluate(()=>document.querySelector('.site-footer').getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
     expect(unobstructed).toBe(true);

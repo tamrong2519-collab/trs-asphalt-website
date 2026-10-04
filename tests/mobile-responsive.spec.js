@@ -48,7 +48,17 @@ for (const width of [320, 375, 390, 430]) {
     if (route === 'contact') await expect(page.locator('.floating-contact')).not.toBeVisible();
     else {
      await expect(page.locator('.floating-contact')).toBeVisible();
-     for (const button of await page.locator('.floating-contact a').all()) expect((await button.boundingBox()).height).toBe(48);
+     const floating = await page.locator('.floating-contact').evaluate(element => {
+      const rect = element.getBoundingClientRect();
+      return { right: rect.right, bottom: rect.bottom, width: rect.width, buttons: [...element.querySelectorAll('a')].map(button => {
+       const box = button.getBoundingClientRect(), face = button.querySelector('.float-face').getBoundingClientRect();
+       return { left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height, faceHeight: face.height, overflow: button.scrollWidth > button.clientWidth };
+      }) };
+     });
+     expect(floating.width).toBe(160); expect(floating.right).toBeCloseTo(width - 12, 1); expect(900 - floating.bottom).toBeGreaterThanOrEqual(12);
+     expect(floating.buttons).toHaveLength(2);
+     for (const button of floating.buttons) { expect(button.height).toBe(44); expect(button.width).toBe(160); expect(button.faceHeight).toBe(30); expect(button.left).toBeGreaterThanOrEqual(12); expect(button.right).toBeLessThanOrEqual(width - 12); expect(button.overflow).toBe(false); }
+     expect(floating.buttons[0].left).toBeCloseTo(floating.buttons[1].left, 1); expect(floating.buttons[1].top - floating.buttons[0].bottom).toBeCloseTo(4, 1);
      await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
      const clearFooter = await page.evaluate(() => document.querySelector('.site-footer').getBoundingClientRect().bottom <= document.querySelector('.floating-contact').getBoundingClientRect().top);
      expect(clearFooter).toBe(true);
