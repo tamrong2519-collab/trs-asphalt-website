@@ -45,6 +45,10 @@ export const projects = [
       { src: '/images/asphalt-job-19.webp', alt: 'รถบรรทุกส่งยางมะตอยให้เครื่องปูและรถบดในลานโรงเรียน' },
       { src: '/images/asphalt-job-20.webp', alt: 'ผิวถนนลาดยางมะตอยและทีมงานเก็บผิวบริเวณหน้าอาคารเรียน' },
       { src: '/images/asphalt-job-21.webp', alt: 'รถบดบดอัดผิวลาดยางมะตอยบริเวณหน้าอาคารเรียน' },
+      { src: '/images/asphalt-job-22.webp', alt: 'ภาพรวมผิวถนนลาดยางมะตอยและรถบดภายในโรงเรียน' },
+      { src: '/images/asphalt-job-23.webp', alt: 'ผิวถนนลาดยางมะตอยข้างอาคารเรียนหลังบดอัด' },
+      { src: '/images/asphalt-job-24.webp', alt: 'ภาพแนวตั้งของถนนลาดยางมะตอยและรถบดภายในโรงเรียน' },
+      { src: '/images/asphalt-job-25.webp', alt: 'ถนนลาดยางมะตอยบริเวณทางโค้งข้างอาคารเรียน' },
     ],
   },
   {

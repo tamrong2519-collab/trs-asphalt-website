@@ -71,7 +71,7 @@ test('project filters show the selected category and retain honest photo labels'
   if(category==='asphalt'){
    await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/asphalt-job-01.webp'));
    await expect(row.locator('.project-cover img')).toHaveAttribute('alt','ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
-   await expect(row.locator('.project-photo-count')).toHaveText('21 ภาพ');
+   await expect(row.locator('.project-photo-count')).toHaveText('25 ภาพ');
    await expect(row.locator('.project-image-note')).toHaveCount(0);
   }
   if(category==='gravel'){
