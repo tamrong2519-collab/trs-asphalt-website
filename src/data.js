@@ -107,6 +107,11 @@ export const projects = [
     location: '', description: 'เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก',
     images: [
       { src: '/images/gravel-road-job.webp', alt: 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด' },
+      { src: '/images/gravel-road-job-02.webp', alt: 'รถดันเกลี่ยหินคลุกและเตรียมพื้นถนน' },
+      { src: '/images/gravel-road-job-03.webp', alt: 'งานเกลี่ยปรับระดับถนนหินคลุกข้างอาคาร' },
+      { src: '/images/gravel-road-job-04.webp', alt: 'ภาพรวมถนนหินคลุกหลังเกลี่ยและบดอัด' },
+      { src: '/images/gravel-road-job-05.webp', alt: 'เครื่องจักรเกลี่ยหินคลุกบริเวณทางเข้าออก' },
+      { src: '/images/gravel-road-job-06.webp', alt: 'ภาพแนวตั้งของถนนหินคลุกและเครื่องจักรขณะปรับระดับ' },
     ],
   },
 ];

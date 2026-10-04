@@ -26,7 +26,14 @@ const gravelPhotos = [
  ['gravel-job-10.webp', 'รถขุดเตรียมเกลี่ยหินคลุกในลานจอดรถ'],
  ['gravel-job-11.webp', 'เครื่องจักรเตรียมพื้นลานก่อนลงหินคลุก'],
 ];
-const gravelRoadPhotos = [['gravel-road-job.webp', 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด']];
+const gravelRoadPhotos = [
+ ['gravel-road-job.webp', 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด'],
+ ['gravel-road-job-02.webp', 'รถดันเกลี่ยหินคลุกและเตรียมพื้นถนน'],
+ ['gravel-road-job-03.webp', 'งานเกลี่ยปรับระดับถนนหินคลุกข้างอาคาร'],
+ ['gravel-road-job-04.webp', 'ภาพรวมถนนหินคลุกหลังเกลี่ยและบดอัด'],
+ ['gravel-road-job-05.webp', 'เครื่องจักรเกลี่ยหินคลุกบริเวณทางเข้าออก'],
+ ['gravel-road-job-06.webp', 'ภาพแนวตั้งของถนนหินคลุกและเครื่องจักรขณะปรับระดับ'],
+];
 const stonePhotos = [
  ['stone-job.webp', 'ภาพหน้างานหินเกล็ด'],
  ['stone-job-02.webp', 'ภาพรวมลานหินเกล็ดบริเวณอาคาร'],
@@ -81,6 +88,12 @@ async function expectPhoto(page, photos, index) {
   'gravel-job-05.webp': [960, 1280],
   'gravel-job-06.webp': [960, 1280],
   'gravel-job-09.webp': [960, 1280],
+  'gravel-road-job.webp': [1280, 960],
+  'gravel-road-job-02.webp': [1280, 720],
+  'gravel-road-job-03.webp': [1280, 720],
+  'gravel-road-job-04.webp': [1280, 720],
+  'gravel-road-job-05.webp': [1280, 720],
+  'gravel-road-job-06.webp': [960, 1280],
   'stone-building-01.webp': [963, 1280],
   'stone-building-02.webp': [963, 1280],
   'stone-building-03.webp': [963, 1280],
@@ -144,7 +157,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/gravel-road-job.webp'));
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('alt', gravelRoadPhotos[0][1]);
- await expect(page.locator('#gravel-road .project-photo-count')).toHaveCount(0);
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('6 ภาพ');
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking'], ['gravel-road', 'gravel']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
@@ -192,6 +205,7 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
   ['stone-yard', 'งานหินเกล็ด', stonePhotos],
   ['speed-bump-work', 'งานลูกระนาดยางมะตอย', speedBumpPhotos],
   ['parking-marking', 'งานตีเส้นจราจร', markingPhotos],
+  ['gravel-road', 'ถนนหินคลุก บดอัด', gravelRoadPhotos],
  ]) {
   const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
   await trigger.click();
@@ -219,18 +233,10 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
   await cover.click(); await expectPhoto(page, photos, 0);
   await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).click(); await expect(cover).toBeFocused();
  }
- const gravelRoadTrigger = page.locator('#gravel-road .project-gallery-open');
- await gravelRoadTrigger.click(); await expectPhoto(page, gravelRoadPhotos, 0);
- await expect(page.locator('#lightbox-title')).toHaveText('ถนนหินคลุก บดอัด');
- await expect(page.getByRole('button', { name: 'ภาพก่อนหน้า', exact: true })).toBeDisabled();
- await expect(page.getByRole('button', { name: 'ภาพถัดไป', exact: true })).toBeDisabled();
- await page.keyboard.press('ArrowRight'); await expectPhoto(page, gravelRoadPhotos, 0);
- await page.keyboard.press('ArrowLeft'); await expectPhoto(page, gravelRoadPhotos, 0);
- await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).click(); await expect(gravelRoadTrigger).toBeFocused();
 });
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {
- // Traverse all five full albums with browser-generated gestures in both directions.
+ // Traverse all six full albums with browser-generated gestures in both directions.
  test.setTimeout(90000);
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1, reducedMotion: 'reduce' });
  try {
@@ -244,7 +250,7 @@ test('mobile project gallery supports touch swipes without overflowing the scree
    // Let Chromium generate the complete trusted touch gesture sequence.
    await session.send('Input.synthesizeScrollGesture', { x: start, y, xDistance: end - start, yDistance: 0, gestureSourceType: 'touch', speed: 600 });
   };
-  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos], ['speed-bump-work', speedBumpPhotos], ['parking-marking', markingPhotos]]) {
+  for (const [id, photos] of [['asphalt-road', asphaltPhotos], ['gravel-yard', gravelPhotos], ['stone-yard', stonePhotos], ['speed-bump-work', speedBumpPhotos], ['parking-marking', markingPhotos], ['gravel-road', gravelRoadPhotos]]) {
    const trigger = page.locator(`.project-row#${id} .project-gallery-open`);
    await trigger.tap(); await expect(page.locator('#lightbox')).toBeVisible();
    await expectPhoto(page, photos, 0);
