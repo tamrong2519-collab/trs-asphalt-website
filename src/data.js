@@ -152,6 +152,7 @@ export const projects = [
   },
   {
     id: 'gravel-road', category: 'gravel', title: 'ถนนหินคลุก บดอัด',
+    homepagePhoto: { src: '/images/home-gravel-road.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภค', width: 1280, height: 960 },
     location: '', description: 'เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก',
     images: [
       { src: '/images/gravel-road-job.webp', alt: 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด' },

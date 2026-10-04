@@ -251,8 +251,12 @@ test('homepage cards use supplied photos while all five slider images stay uncha
  const gravelRoad=sampleCards.last();
  await expect(gravelRoad).toHaveAttribute('href',path('projects.html#gravel-road'));
  await expect(gravelRoad.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
- await expect(gravelRoad.locator('img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
- await expect(gravelRoad.locator('img')).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด');
+ await expect(gravelRoad.locator('img')).toHaveAttribute('src',path('images/home-gravel-road.webp'));
+ await expect(gravelRoad.locator('img')).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภค');
+ await expect(gravelRoad.locator('img')).toHaveAttribute('width','1280');
+ await expect(gravelRoad.locator('img')).toHaveAttribute('height','960');
+ await gravelRoad.scrollIntoViewIfNeeded();await gravelRoad.locator('img').evaluate(i=>i.decode());
+ expect(await gravelRoad.locator('img').evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1280,960]);
  const photos=[
   ['asphalt-job-18','asphalt-job-17',[1280,960],[960,1280]],
   ['home-gravel-service','gravel-job-14',[1280,960],[1280,960]],
