@@ -67,7 +67,14 @@ const siteHeader = `<header class="site-header">
  <div class="header-contact-band"><div class="container header-contact-inner">${headerContacts}</div></div>
 </header>`;
 const scene = (n,alt,cls='') => `<div class="scene scene-${n} ${cls}"><img src="/images/work-scenes.webp" alt="${escape(alt)}" width="1536" height="1024" loading="lazy"></div>`;
-const serviceImage = (s,cls='') => `<div class="scene work-photo ${cls}"><img src="${escape((page==='index' && s.homepageImage) || s.homeImage || s.image)}" alt="${escape(s.imageAlt || `${s.homeImage?'ภาพหน้างาน':'ภาพประกอบ'}${s.title}`)}" width="${s.homeImage?1280:1536}" height="${s.homeImage?960:1024}" loading="lazy"></div>`;
+const serviceImage = (s,cls='') => {
+ const photo = (page==='services' && s.servicesPageImage) || {
+  src: (page==='index' && s.homepageImage) || s.homeImage || s.image,
+  alt: s.imageAlt || `${s.homeImage?'ภาพหน้างาน':'ภาพประกอบ'}${s.title}`,
+  width: s.homeImage?1280:1536, height: s.homeImage?960:1024,
+ };
+ return `<div class="scene work-photo ${cls}"><img src="${escape(photo.src)}" alt="${escape(photo.alt)}" width="${photo.width}" height="${photo.height}" loading="lazy"></div>`;
+};
 const homeTitle = s => ({gravel:'ลานหินคลุก',stone:'หินเกล็ด','speed-bump':'ลูกระนาด'})[s.id] || s.title;
 const homeDescription = s => ({asphalt:'ถนน ลานจอดรถ และพื้นที่ใช้งาน',gravel:'เกลี่ยและบดอัดลานจอดรถ ทางเข้าออก',stone:'ปรับพื้นลานและพื้นที่ใช้งาน','speed-bump':'ชะลอความเร็วภายในพื้นที่',marking:'ตีเส้นถนนและช่องจอดรถ'})[s.id];
 const projectLink = s => {
@@ -106,7 +113,6 @@ const servicePage = `
    </div>
   </article>`).join('')}
  </div>
- <p class="paired-note image-note">ภาพประกอบบริการลาดยางมะตอย ส่วนบริการอื่นใช้ภาพหน้างาน</p>
 </div></section>
 <section class="paired-process"><div class="container"><span class="paired-eyebrow">ขั้นตอนการให้บริการ</span><h2>ดูแลตั้งแต่สำรวจจนจบงาน</h2>
  <div class="paired-process-grid">${[['01','สำรวจหน้างาน','ตรวจพื้นที่และวางแผนงาน'],['02','เสนอราคา','ระบุขอบเขตงาน วัสดุ และราคา'],['03','ดำเนินงาน','ทำงานตามแผนที่ตกลง']].map(([n,t,d])=>`<article><span>${n}</span><h3>${t}</h3><p>${d}</p></article>`).join('')}</div>

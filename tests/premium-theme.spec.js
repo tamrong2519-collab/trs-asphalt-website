@@ -179,20 +179,31 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   ['speed-bump', 'speed-bump-job.webp', 'ลูกระนาดยางมะตอย'],
   ['marking', 'marking-job.webp', 'ตีเส้นจราจร'],
  ];
+ const servicePhotos = [
+  ['asphalt', 'services-asphalt.webp', [1280, 720]],
+  ['gravel', 'services-gravel.webp', [1280, 960]],
+  ['stone', 'stone-job.webp', [1280, 960]],
+  ['speed-bump', 'services-speed-bump.webp', [1280, 960]],
+  ['marking', 'services-marking.webp', [1280, 960]],
+ ];
  const photoPath = file => `${process.env.SITE_BASE || '/'}images/${file}`;
- const loadedPhoto = async (image, file) => {
+ const loadedPhoto = async (image, file, expectedDimensions) => {
   await expect(image).toHaveAttribute('src', photoPath(file));
   await expect(image).toHaveAttribute('alt', /ภาพหน้างาน/);
   await image.scrollIntoViewIfNeeded(); await image.evaluate(element => element.decode());
   const dimensions = await image.evaluate(element => ({ width: element.naturalWidth, height: element.naturalHeight }));
-  expect(dimensions.width).toBeGreaterThanOrEqual(1200); expect(dimensions.height).toBeGreaterThanOrEqual(900);
+  if (expectedDimensions) {
+   expect([dimensions.width, dimensions.height]).toEqual(expectedDimensions);
+   await expect(image).toHaveAttribute('width', String(expectedDimensions[0]));
+   await expect(image).toHaveAttribute('height', String(expectedDimensions[1]));
+  } else {
+   expect(dimensions.width).toBeGreaterThanOrEqual(1200); expect(dimensions.height).toBeGreaterThanOrEqual(900);
+  }
  };
  await page.goto(path('services'));
  await expect(page.locator('.paired-service')).toHaveCount(5);
- await expect(page.locator('.paired-service#asphalt img')).toHaveAttribute('src', photoPath('hero-daylight.webp'));
- await expect(page.locator('.paired-service#asphalt img')).toHaveAttribute('alt', /ภาพประกอบ/);
- for (const [id, file] of jobs) {
-  await loadedPhoto(page.locator(`.paired-service#${id} img`), file);
+ for (const [id, file, dimensions] of servicePhotos) {
+  await loadedPhoto(page.locator(`.paired-service#${id} img`), file, dimensions);
  }
  for (const id of ['asphalt', ...jobs.map(([id]) => id)]) {
   const row = page.locator(`.paired-service#${id}`);
