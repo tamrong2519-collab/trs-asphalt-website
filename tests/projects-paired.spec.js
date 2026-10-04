@@ -33,6 +33,10 @@ const gravelRoadPhotos = [
  ['gravel-road-job-04.webp', 'ภาพรวมถนนหินคลุกหลังเกลี่ยและบดอัด'],
  ['gravel-road-job-05.webp', 'เครื่องจักรเกลี่ยหินคลุกบริเวณทางเข้าออก'],
  ['gravel-road-job-06.webp', 'ภาพแนวตั้งของถนนหินคลุกและเครื่องจักรขณะปรับระดับ'],
+ ['gravel-road-job-07.webp', 'เครื่องจักรเกลี่ยและบดอัดถนนหินคลุกในภาพแนวตั้ง'],
+ ['gravel-road-job-08.webp', 'รถบดบดอัดถนนหินคลุกข้างอาคาร'],
+ ['gravel-road-job-09.webp', 'งานถนนหินคลุกบริเวณทางเข้าออกสู่ถนน'],
+ ['gravel-road-job-10.webp', 'ภาพแนวตั้งของรถบดขณะบดอัดถนนหินคลุก'],
 ];
 const stonePhotos = [
  ['stone-job.webp', 'ภาพหน้างานหินเกล็ด'],
@@ -94,6 +98,10 @@ async function expectPhoto(page, photos, index) {
   'gravel-road-job-04.webp': [1280, 720],
   'gravel-road-job-05.webp': [1280, 720],
   'gravel-road-job-06.webp': [960, 1280],
+  'gravel-road-job-07.webp': [960, 1280],
+  'gravel-road-job-08.webp': [1280, 960],
+  'gravel-road-job-09.webp': [1280, 720],
+  'gravel-road-job-10.webp': [960, 1280],
   'stone-building-01.webp': [963, 1280],
   'stone-building-02.webp': [963, 1280],
   'stone-building-03.webp': [963, 1280],
@@ -157,7 +165,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/gravel-road-job.webp'));
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('alt', gravelRoadPhotos[0][1]);
- await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('6 ภาพ');
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('10 ภาพ');
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking'], ['gravel-road', 'gravel']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);

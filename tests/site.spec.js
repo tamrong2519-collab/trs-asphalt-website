@@ -77,7 +77,7 @@ test('project filters show the selected category and retain honest photo labels'
   if(category==='gravel'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['gravel-yard','gravel-road']);
    await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('11 ภาพ');
-   await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('6 ภาพ');
+   await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('10 ภาพ');
    await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
    await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
   }

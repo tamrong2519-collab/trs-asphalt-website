@@ -112,6 +112,10 @@ export const projects = [
       { src: '/images/gravel-road-job-04.webp', alt: 'ภาพรวมถนนหินคลุกหลังเกลี่ยและบดอัด' },
       { src: '/images/gravel-road-job-05.webp', alt: 'เครื่องจักรเกลี่ยหินคลุกบริเวณทางเข้าออก' },
       { src: '/images/gravel-road-job-06.webp', alt: 'ภาพแนวตั้งของถนนหินคลุกและเครื่องจักรขณะปรับระดับ' },
+      { src: '/images/gravel-road-job-07.webp', alt: 'เครื่องจักรเกลี่ยและบดอัดถนนหินคลุกในภาพแนวตั้ง' },
+      { src: '/images/gravel-road-job-08.webp', alt: 'รถบดบดอัดถนนหินคลุกข้างอาคาร' },
+      { src: '/images/gravel-road-job-09.webp', alt: 'งานถนนหินคลุกบริเวณทางเข้าออกสู่ถนน' },
+      { src: '/images/gravel-road-job-10.webp', alt: 'ภาพแนวตั้งของรถบดขณะบดอัดถนนหินคลุก' },
     ],
   },
 ];
