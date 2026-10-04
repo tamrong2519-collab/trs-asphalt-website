@@ -234,7 +234,8 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานลานจอดรถหินคลุกข้างอาคารและแนวต้นไม้');
  await page.getByRole('button', { name: 'ปิดภาพ' }).click(); await expect(page.locator('#lightbox')).not.toBeVisible();
  await page.goto(path('contact'));
- await loadedPhoto(page.locator('.contact-photo img'), 'gravel-slide.webp');
- await loadedPhoto(page.locator('.info-card').nth(1).locator('img'), 'gravel-job.webp');
- await loadedPhoto(page.locator('.info-card').nth(2).locator('img'), 'marking-job.webp');
+ await loadedPhoto(page.locator('.contact-photo img'), 'contact-main.webp', [960, 1280]);
+ await loadedPhoto(page.locator('.info-card').nth(0).locator('img'), 'contact-asphalt.webp', [1280, 960]);
+ await loadedPhoto(page.locator('.info-card').nth(1).locator('img'), 'contact-gravel.webp', [1280, 960]);
+ await loadedPhoto(page.locator('.info-card').nth(2).locator('img'), 'contact-marking.webp', [1280, 960]);
 });

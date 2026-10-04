@@ -74,6 +74,8 @@ npm run preview -- --port 4173
 
 รูปงานในหน้าบริการกำหนดแยกผ่าน `servicesPageImage` พร้อม `src`, `alt`, `width` และ `height`: `services-asphalt.webp` เป็นภาพรถบดลาดยางขนาด 1280×720px ส่วน `services-gravel.webp`, `services-speed-bump.webp` และ `services-marking.webp` ขนาด 1280×960px รูปแปลงจากภาพที่ผู้ใช้ส่งมาโดยคงสัดส่วนเดิม งานหินเกล็ดใช้รูปเดิม และการตั้งค่านี้ใช้เฉพาะหน้าบริการ
 
+รูปหน้างานทั้ง 4 จุดในหน้าติดต่อเรากำหนดผ่าน `business.contactPhotos` ใน `src/data.js`: ภาพหลัก `contact-main.webp` เป็นรถบดบนถนนขนาด 960×1280px ส่วนการ์ดข้อมูลประเมินราคาใช้ `contact-asphalt.webp`, `contact-gravel.webp` และ `contact-marking.webp` ขนาด 1280×960px ทั้งหมดแปลงจากภาพที่ผู้ใช้ส่งมาเป็น WebP โดยคงความละเอียดและสัดส่วนเดิม
+
 แต่ละชุดภาพมี `id` ไม่ซ้ำกัน ใช้เปิดลิงก์ตรงถึงผลงานได้ เช่น `projects.html#stone-yard` ตัวกรองประเภทงานจะแสดงทุกชุดในหมวดที่เลือก ลิงก์เดิม `#stone-building-yard` และ `#stone-home-yard` จะเปิดชุดงานหินเกล็ดที่รวมแล้ว โดยกำหนดชื่อเดิมไว้ใน `anchorAliases`
 
 ## การขอประเมินราคา

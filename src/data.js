@@ -9,6 +9,14 @@ export const business = {
   serviceArea: 'กรุงเทพฯ และปริมณฑล • ชลบุรี • ระยอง • ฉะเชิงเทรา',
   siteUrl: '', // URL เว็บไซต์จริง เช่น https://www.example.com
   hours: 'กรุณาติดต่อเพื่อสอบถามเวลาทำการ',
+  contactPhotos: {
+    main: { src: '/images/contact-main.webp', alt: 'ภาพหน้างานรถบดบดอัดถนนลาดยางมะตอยข้างแนวต้นไม้', width: 960, height: 1280 },
+    info: [
+      { src: '/images/contact-asphalt.webp', alt: 'ภาพหน้างานลานลาดยางมะตอยและรถบดบริเวณอาคาร', width: 1280, height: 960 },
+      { src: '/images/contact-gravel.webp', alt: 'ภาพหน้างานลานหินคลุกรอบอาคารและแนวต้นไม้', width: 1280, height: 960 },
+      { src: '/images/contact-marking.webp', alt: 'ภาพหน้างานตีเส้นช่องจอดรถระหว่างอาคาร', width: 1280, height: 960 },
+    ],
+  },
 };
 export const services = [
   { id: 'asphalt', servicesPageImage: { src: '/images/services-asphalt.webp', alt: 'ภาพหน้างานรถบดบดอัดผิวลาดยางมะตอยระหว่างแนวต้นไม้', width: 1280, height: 720 }, number: '01', title: 'ลาดยางมะตอย', subtitle: 'ปูยางแอสฟัลท์', scene: 0, image: '/images/hero-daylight.webp', description: 'ปูยางแอสฟัลท์สำหรับถนนและลานจอดรถ', details: ['สำรวจสภาพพื้นที่และระดับผิวทาง', 'วางแผนเตรียมพื้นและการระบายน้ำ', 'ปูยางแอสฟัลท์และบดอัดผิวทาง'] },
