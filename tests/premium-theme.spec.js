@@ -200,12 +200,13 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   const estimateLink = row.locator('.paired-quote');
   await expect(estimateLink).toHaveText('ขอประเมินงานนี้');
   await expect(estimateLink).toHaveAccessibleName(/^ขอประเมินงาน.+/);
-  await expect(estimateLink).toHaveAttribute('href', `${process.env.SITE_BASE || '/'}contact.html?service=${id}#estimate`);
+  await expect(estimateLink).toHaveAttribute('href', path('contact'));
  }
  await page.locator('.paired-service#gravel .paired-quote').click();
- await expect(page).toHaveURL(/contact\.html\?service=gravel#estimate$/);
- await expect(page.locator('#estimate-form')).toBeVisible();
- await expect(page.locator('#service')).toHaveValue('gravel');
+ await expect(page).toHaveURL(/\/contact\.html$/);
+ await expect(page.locator('h1')).toHaveText('ติดต่อเรา');
+ await expect(page.locator('.contact-panel')).toBeVisible();
+ await expect(page.locator('#estimate-form')).not.toBeVisible();
  await page.goto(path('projects'));
  for (const [, file] of jobs) await loadedPhoto(page.locator(`.project-row .project-cover img[src="${photoPath(file)}"]`), file);
  await page.getByRole('button', { name: 'ลานจอดรถหินคลุก', exact: true }).click();

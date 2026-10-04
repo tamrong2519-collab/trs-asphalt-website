@@ -102,7 +102,7 @@ const servicePage = `
    ${serviceImage(s,'paired-photo')}
    <div class="paired-copy"><span class="paired-number">${escape(s.number)} / ${escape(s.subtitle)}</span><h2>${escape(s.title)}</h2><p>${escape(s.description)}</p>
     <ul class="paired-checks">${s.details.map(d=>`<li>${serviceCheckMark}<span>${escape(d)}</span></li>`).join('')}</ul>
-    <div class="paired-actions"><a class="button paired-quote" href="/contact.html?service=${encodeURIComponent(s.id)}#estimate" aria-label="ขอประเมินงานนี้: ${escape(s.title)}">ขอประเมินงานนี้ ${arrow}</a></div>
+    <div class="paired-actions"><a class="button paired-quote" href="/contact.html" aria-label="ขอประเมินงานนี้: ${escape(s.title)}">ขอประเมินงานนี้ ${arrow}</a></div>
    </div>
   </article>`).join('')}
  </div>
