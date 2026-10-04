@@ -119,6 +119,7 @@ export const projects = [
   },
   {
     id: 'speed-bump-work', category: 'speed-bump', title: 'งานลูกระนาดยางมะตอย',
+    homepagePhoto: { src: '/images/speed-bump-job-02.webp', alt: 'ภาพหน้างานรถบดเดินตามข้างลูกระนาดยางมะตอยบริเวณอาคารและแนวต้นไม้', width: 960, height: 1280 },
     location: '', description: 'จัดทำลูกระนาดและเครื่องหมายชะลอความเร็ว',
     images: [
       { src: '/images/projects-speed-bump-cover.webp', alt: 'ภาพหน้างานทีมงานใช้รถบดเดินตามบดอัดลูกระนาดยางมะตอย', width: 1280, height: 1280, coverPosition: 'center top' },

@@ -261,7 +261,7 @@ test('homepage cards use supplied photos while all five slider images stay uncha
   ['asphalt-job-18','asphalt-job-17',[1280,960],[960,1280]],
   ['home-gravel-service','gravel-job-14',[1280,960],[1280,960]],
   ['stone-job','stone-job',[1280,960],[1280,960]],
-  ['speed-bump-job','speed-bump-job',[1280,960],[1280,960]],
+  ['speed-bump-job','speed-bump-job-02',[1280,960],[960,1280]],
   ['marking-home','marking-home',[1280,960],[1280,960]],
  ];
  for(let index=0;index<photos.length;index++){
