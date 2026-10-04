@@ -26,6 +26,7 @@ const gravelPhotos = [
  ['gravel-job-10.webp', 'รถขุดเตรียมเกลี่ยหินคลุกในลานจอดรถ'],
  ['gravel-job-11.webp', 'เครื่องจักรเตรียมพื้นลานก่อนลงหินคลุก'],
 ];
+const gravelRoadPhotos = [['gravel-road-job.webp', 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด']];
 const stonePhotos = [
  ['stone-job.webp', 'ภาพหน้างานหินเกล็ด'],
  ['stone-job-02.webp', 'ภาพรวมลานหินเกล็ดบริเวณอาคาร'],
@@ -122,15 +123,15 @@ async function expectPhoto(page, photos, index) {
 test('portfolio combines all stone work into one album with the supplied asphalt photos first', async ({ page }) => {
  await page.goto(path('projects.html'));
  const rows = page.locator('.project-row');
- await expect(rows).toHaveCount(5);
- expect(await rows.evaluateAll(items => items.map(element => element.dataset.category))).toEqual(['asphalt', 'gravel', 'stone', 'speed-bump', 'marking']);
- expect(await rows.evaluateAll(items => items.map(element => element.id))).toEqual(['asphalt-road', 'gravel-yard', 'stone-yard', 'speed-bump-work', 'parking-marking']);
+ await expect(rows).toHaveCount(6);
+ expect(await rows.evaluateAll(items => items.map(element => element.dataset.category))).toEqual(['asphalt', 'gravel', 'stone', 'speed-bump', 'marking', 'gravel']);
+ expect(await rows.evaluateAll(items => items.map(element => element.id))).toEqual(['asphalt-road', 'gravel-yard', 'stone-yard', 'speed-bump-work', 'parking-marking', 'gravel-road']);
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('src', path('images/asphalt-job-01.webp'));
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('alt', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-photo-count')).toHaveText('9 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
- await expect(page.locator('.project-row[data-category="gravel"] .project-photo-count')).toHaveText('11 ภาพ');
+ await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('11 ภาพ');
  await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('15 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-job.webp'));
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
@@ -139,7 +140,12 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('11 ภาพ');
  await expect(page.locator('#parking-marking .project-cover img')).toHaveAttribute('src', path('images/marking-job.webp'));
  await expect(page.locator('#parking-marking .project-copy')).toContainText('ตีเส้นช่องจอดรถ เส้นแบ่งช่องทาง และลูกศรบอกทิศทาง');
- for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking']]) {
+ await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
+ await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');
+ await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/gravel-road-job.webp'));
+ await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('alt', gravelRoadPhotos[0][1]);
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveCount(0);
+ for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking'], ['gravel-road', 'gravel']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
   await expect(row.locator('.project-gallery-open')).toBeVisible();
@@ -213,6 +219,14 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
   await cover.click(); await expectPhoto(page, photos, 0);
   await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).click(); await expect(cover).toBeFocused();
  }
+ const gravelRoadTrigger = page.locator('#gravel-road .project-gallery-open');
+ await gravelRoadTrigger.click(); await expectPhoto(page, gravelRoadPhotos, 0);
+ await expect(page.locator('#lightbox-title')).toHaveText('ถนนหินคลุก บดอัด');
+ await expect(page.getByRole('button', { name: 'ภาพก่อนหน้า', exact: true })).toBeDisabled();
+ await expect(page.getByRole('button', { name: 'ภาพถัดไป', exact: true })).toBeDisabled();
+ await page.keyboard.press('ArrowRight'); await expectPhoto(page, gravelRoadPhotos, 0);
+ await page.keyboard.press('ArrowLeft'); await expectPhoto(page, gravelRoadPhotos, 0);
+ await page.getByRole('button', { name: 'ปิดภาพ', exact: true }).click(); await expect(gravelRoadTrigger).toBeFocused();
 });
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {

@@ -65,7 +65,7 @@ test('project filters show the selected category and retain honest photo labels'
   const filter=page.locator(`[data-filter="${category}"]`);await filter.click();
   await expect(filter).toHaveAttribute('aria-pressed','true');
   await expect(page.locator('[data-filter][aria-pressed="true"]')).toHaveCount(1);
-  const row=page.locator('.project-row:visible');await expect(row).toHaveCount(1);
+  const row=page.locator('.project-row:visible');await expect(row).toHaveCount(category==='gravel'?2:1);
   for(const item of await row.all())await expect(item).toHaveAttribute('data-category',category);
   await expect(page.locator('#empty-projects')).not.toBeVisible();
   if(category==='asphalt'){
@@ -73,6 +73,13 @@ test('project filters show the selected category and retain honest photo labels'
    await expect(row.locator('.project-cover img')).toHaveAttribute('alt','ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
    await expect(row.locator('.project-photo-count')).toHaveText('9 ภาพ');
    await expect(row.locator('.project-image-note')).toHaveCount(0);
+  }
+  if(category==='gravel'){
+   expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['gravel-yard','gravel-road']);
+   await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('11 ภาพ');
+   await expect(page.locator('#gravel-road .project-photo-count')).toHaveCount(0);
+   await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
+   await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
   }
   if(category==='stone'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['stone-yard']);
@@ -89,7 +96,7 @@ test('project filters show the selected category and retain honest photo labels'
    await expect(row.locator('.project-cover img')).toHaveAttribute('src',path('images/marking-job.webp'));
   }
  }
- await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(5);
+ await page.locator('[data-filter="all"]').click();await expect(page.locator('.project-row:visible')).toHaveCount(6);
  await expect(page.locator('.project-row:visible').first()).toHaveAttribute('data-category','asphalt');
 });
 test('production HTML contains indexable Thai content without JS',async()=>{
@@ -99,7 +106,7 @@ test('production HTML contains indexable Thai content without JS',async()=>{
 });
 
 test('gallery keeps the marking cover and opens the accessible parking photo',async({page})=>{
- await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(5);
+ await page.goto(path('projects.html'));await expect(page.locator('.project-row')).toHaveCount(6);
  const trigger=page.locator('.project-row[data-category="marking"] .photo-button');
  await trigger.click();await expect(page.locator('#lightbox')).toBeVisible();
  await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานตีเส้นจราจร');
@@ -224,12 +231,17 @@ test('homepage work photos match the four service cards and automatic slides',as
  await page.goto(path('index.html'));
  const albums=['asphalt-road','gravel-yard','stone-yard','speed-bump-work','parking-marking'];
  const serviceCards=page.locator('.home-services a'),sampleCards=page.locator('.sample-card');
- await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(5);
+ await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(6);
  for(let index=0;index<albums.length;index++){
   const destination=path(`projects.html#${albums[index]}`);
   await expect(serviceCards.nth(index)).toHaveAttribute('href',destination);
   await expect(sampleCards.nth(index)).toHaveAttribute('href',destination);
  }
+ const gravelRoad=sampleCards.last();
+ await expect(gravelRoad).toHaveAttribute('href',path('projects.html#gravel-road'));
+ await expect(gravelRoad.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
+ await expect(gravelRoad.locator('img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
+ await expect(gravelRoad.locator('img')).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด');
  const jobs=[['gravel','gravel-job','gravel-yard'],['stone','stone-job','stone-yard'],['speed-bump','speed-bump-job','speed-bump-work'],['marking','marking-job','parking-marking']];
  for(let index=0;index<jobs.length;index++){
   const [id,image,album]=jobs[index];
@@ -321,10 +333,10 @@ test('reference header keeps compact equal-sized contacts readable on every page
  }
 });
 
-test('homepage gallery keeps five equal photo cards centered on desktop and tablet and stacked on mobile',async({page})=>{
+test('homepage gallery keeps six equal photo cards aligned on desktop and tablet and stacked on mobile',async({page})=>{
  for(const width of [320,375,390,430,768,853,1024,1280,1440]){
   await page.setViewportSize({width,height:1280});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
-  await expect(page.locator('.home-services .service-card')).toHaveCount(5);await expect(page.locator('.sample-card')).toHaveCount(5);
+  await expect(page.locator('.home-services .service-card')).toHaveCount(5);await expect(page.locator('.sample-card')).toHaveCount(6);
   await expect(page.locator('.header-contact a')).toHaveCount(2);await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
   await expect(page.locator('main .cta')).toHaveCount(0);await expect(page.locator('.blue-section .image-note')).toHaveCount(0);
   const geometry=await page.evaluate(()=>{
@@ -335,11 +347,11 @@ test('homepage gallery keeps five equal photo cards centered on desktop and tabl
   expect(geometry.overflow).toBe(false);
   if(width===853){expect(geometry.heroRatio).toBeGreaterThan(1);expect(geometry.heroRatio).toBeLessThan(2);}
   for(const card of geometry.cards){expect(card.width).toBeCloseTo(geometry.cards[0].width,0);expect(card.height).toBeCloseTo(geometry.cards[0].height,0);expect(card.photoWidth).toBeCloseTo(geometry.cards[0].photoWidth,0);expect(card.photoHeight).toBeCloseTo(geometry.cards[0].photoHeight,0);expect(card.photoWidth/card.photoHeight).toBeCloseTo(1.6,2);expect(card.left).toBeGreaterThanOrEqual(16);expect(card.right).toBeLessThanOrEqual(width-16);}
-  const [a,b,c,d,e]=geometry.cards;
+  const [a,b,c,d,e,f]=geometry.cards;
   if(width>1100){
-   expect(a.top).toBeCloseTo(b.top,0);expect(b.top).toBeCloseTo(c.top,0);expect(b.left).toBeGreaterThanOrEqual(a.right);expect(c.left).toBeGreaterThanOrEqual(b.right);expect(d.top).toBeCloseTo(e.top,0);expect(e.left).toBeGreaterThanOrEqual(d.right);expect(d.top).toBeGreaterThanOrEqual(a.bottom);expect((d.left+e.right)/2).toBeCloseTo(geometry.gridCenter,0);
+   expect(a.top).toBeCloseTo(b.top,0);expect(b.top).toBeCloseTo(c.top,0);expect(b.left).toBeGreaterThanOrEqual(a.right);expect(c.left).toBeGreaterThanOrEqual(b.right);expect(d.top).toBeCloseTo(e.top,0);expect(e.top).toBeCloseTo(f.top,0);expect(e.left).toBeGreaterThanOrEqual(d.right);expect(f.left).toBeGreaterThanOrEqual(e.right);expect(d.top).toBeGreaterThanOrEqual(a.bottom);expect(d.left).toBeCloseTo(a.left,0);expect(e.left).toBeCloseTo(b.left,0);expect(f.left).toBeCloseTo(c.left,0);expect((d.left+f.right)/2).toBeCloseTo(geometry.gridCenter,0);
   }else if(width>760){
-   expect(a.top).toBeCloseTo(b.top,0);expect(b.left).toBeGreaterThanOrEqual(a.right);expect(c.top).toBeCloseTo(d.top,0);expect(d.left).toBeGreaterThanOrEqual(c.right);expect(c.top).toBeGreaterThanOrEqual(a.bottom);expect(e.top).toBeGreaterThanOrEqual(c.bottom);expect((e.left+e.right)/2).toBeCloseTo(geometry.gridCenter,0);
+   expect(a.top).toBeCloseTo(b.top,0);expect(b.left).toBeGreaterThanOrEqual(a.right);expect(c.top).toBeCloseTo(d.top,0);expect(d.left).toBeGreaterThanOrEqual(c.right);expect(c.top).toBeGreaterThanOrEqual(a.bottom);expect(e.top).toBeGreaterThanOrEqual(c.bottom);expect(e.top).toBeCloseTo(f.top,0);expect(f.left).toBeGreaterThanOrEqual(e.right);expect(c.left).toBeCloseTo(a.left,0);expect(e.left).toBeCloseTo(a.left,0);expect(d.left).toBeCloseTo(b.left,0);expect(f.left).toBeCloseTo(b.left,0);expect((e.left+f.right)/2).toBeCloseTo(geometry.gridCenter,0);
   }else{
    for(let index=1;index<geometry.cards.length;index++){expect(geometry.cards[index].left).toBeCloseTo(a.left,0);expect(geometry.cards[index].top).toBeGreaterThanOrEqual(geometry.cards[index-1].bottom);}
   }

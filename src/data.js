@@ -102,4 +102,11 @@ export const projects = [
       { src: '/images/marking-job-11.webp', alt: 'งานตีเส้นแบ่งช่องทางเดินรถและลูกศรสองทิศทาง' },
     ],
   },
+  {
+    id: 'gravel-road', category: 'gravel', title: 'ถนนหินคลุก บดอัด',
+    location: '', description: 'เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก',
+    images: [
+      { src: '/images/gravel-road-job.webp', alt: 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด' },
+    ],
+  },
 ];

@@ -96,7 +96,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
      }
     }
     if (route === 'projects') {
-     const rows = page.locator('.project-row'); await expect(rows).toHaveCount(5);
+     const rows = page.locator('.project-row'); await expect(rows).toHaveCount(6);
      await expect(rows.first()).toHaveAttribute('data-category', 'asphalt');
      const projectLayout = await rows.evaluateAll(items => items.map(element => {
       const photo = element.querySelector('.project-cover').getBoundingClientRect();
@@ -211,8 +211,8 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  await page.goto(path('projects'));
  for (const [, file] of jobs) await loadedPhoto(page.locator(`.project-row .project-cover img[src="${photoPath(file)}"]`), file);
  await page.getByRole('button', { name: 'ลานจอดรถหินคลุก', exact: true }).click();
- await expect(page.locator('.project-row:visible')).toHaveCount(1);
- await page.locator('.project-cover:visible').click();
+ await expect(page.locator('.project-row:visible')).toHaveCount(2);
+ await page.locator('#gravel-yard .project-cover').click();
  await expect(page.locator('#lightbox')).toBeVisible();
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', new URL(photoPath('gravel-job.webp'), page.url()).href);
  await expect(page.locator('#image-caption')).toHaveText('ภาพหน้างานลานจอดรถหินคลุก');
