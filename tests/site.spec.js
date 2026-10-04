@@ -79,7 +79,13 @@ test('project filters show the selected category and retain honest photo labels'
    await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('20 ภาพ');
    await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('15 ภาพ');
    await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
-   await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src',path('images/gravel-road-job.webp'));
+   const cover=page.locator('#gravel-road .project-cover img');
+   await expect(cover).toHaveAttribute('src',path('images/gravel-road-job-04.webp'));
+   await expect(cover).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกบดอัดข้างอาคารสีน้ำเงิน');
+   await expect(cover).toHaveAttribute('width','1280');
+   await expect(cover).toHaveAttribute('height','720');
+   await cover.scrollIntoViewIfNeeded();await cover.evaluate(i=>i.decode());
+   expect(await cover.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1280,720]);
   }
   if(category==='stone'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['stone-yard']);
