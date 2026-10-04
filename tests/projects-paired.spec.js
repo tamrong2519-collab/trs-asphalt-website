@@ -71,6 +71,11 @@ const gravelRoadPhotos = [
  ['gravel-road-job-13.webp', 'ภาพแนวตั้งของทีมงานและรถดันเกลี่ยถนนหินคลุก'],
  ['gravel-road-job-14.webp', 'รถบดบดอัดถนนหินคลุกในภาพแนวตั้ง'],
  ['gravel-road-job-15.webp', 'ภาพรวมถนนหินคลุกหลังบดอัดและรถบด'],
+ ['gravel-road-job-16.webp', 'ภาพรวมถนนหินคลุกและรถบดบริเวณพื้นที่ติดตั้งแผงโซลาร์เซลล์'],
+ ['gravel-road-job-17.webp', 'ถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภคและถังน้ำ'],
+ ['gravel-road-job-18.webp', 'ผิวถนนหินคลุกบดอัดและรถบดบริเวณอาคารระบบสาธารณูปโภค'],
+ ['gravel-road-job-19.webp', 'รถบดบดอัดถนนหินคลุกระหว่างแนวเสาไฟฟ้าและอาคาร'],
+ ['gravel-road-job-20.webp', 'ภาพรวมถนนหินคลุกและรถบดระหว่างแนวแผงโซลาร์เซลล์'],
 ];
 const stonePhotos = [
  ['stone-home-01.webp', 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน'],
@@ -174,6 +179,11 @@ async function expectPhoto(page, photos, index) {
   'gravel-road-job-13.webp': [960, 1280],
   'gravel-road-job-14.webp': [720, 1280],
   'gravel-road-job-15.webp': [960, 1280],
+  'gravel-road-job-16.webp': [1280, 960],
+  'gravel-road-job-17.webp': [1280, 960],
+  'gravel-road-job-18.webp': [1280, 960],
+  'gravel-road-job-19.webp': [1280, 960],
+  'gravel-road-job-20.webp': [1280, 960],
   'stone-building-01.webp': [963, 1280],
   'stone-building-02.webp': [963, 1280],
   'stone-building-03.webp': [963, 1280],
@@ -238,7 +248,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/gravel-road-job-04.webp'));
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('alt', gravelRoadPhotos[0][1]);
- await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('15 ภาพ');
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('20 ภาพ');
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking'], ['gravel-road', 'gravel']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);

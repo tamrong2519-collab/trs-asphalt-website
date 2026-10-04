@@ -171,6 +171,11 @@ export const projects = [
       { src: '/images/gravel-road-job-13.webp', alt: 'ภาพแนวตั้งของทีมงานและรถดันเกลี่ยถนนหินคลุก' },
       { src: '/images/gravel-road-job-14.webp', alt: 'รถบดบดอัดถนนหินคลุกในภาพแนวตั้ง' },
       { src: '/images/gravel-road-job-15.webp', alt: 'ภาพรวมถนนหินคลุกหลังบดอัดและรถบด' },
+      { src: '/images/gravel-road-job-16.webp', alt: 'ภาพรวมถนนหินคลุกและรถบดบริเวณพื้นที่ติดตั้งแผงโซลาร์เซลล์', width: 1280, height: 960 },
+      { src: '/images/gravel-road-job-17.webp', alt: 'ถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภคและถังน้ำ', width: 1280, height: 960 },
+      { src: '/images/gravel-road-job-18.webp', alt: 'ผิวถนนหินคลุกบดอัดและรถบดบริเวณอาคารระบบสาธารณูปโภค', width: 1280, height: 960 },
+      { src: '/images/gravel-road-job-19.webp', alt: 'รถบดบดอัดถนนหินคลุกระหว่างแนวเสาไฟฟ้าและอาคาร', width: 1280, height: 960 },
+      { src: '/images/gravel-road-job-20.webp', alt: 'ภาพรวมถนนหินคลุกและรถบดระหว่างแนวแผงโซลาร์เซลล์', width: 1280, height: 960 },
     ],
   },
 ];
