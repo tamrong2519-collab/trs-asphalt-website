@@ -37,6 +37,11 @@ const gravelRoadPhotos = [
  ['gravel-road-job-08.webp', 'รถบดบดอัดถนนหินคลุกข้างอาคาร'],
  ['gravel-road-job-09.webp', 'งานถนนหินคลุกบริเวณทางเข้าออกสู่ถนน'],
  ['gravel-road-job-10.webp', 'ภาพแนวตั้งของรถบดขณะบดอัดถนนหินคลุก'],
+ ['gravel-road-job-11.webp', 'ภาพรวมถนนหินคลุกและรถบดขณะเก็บผิวทาง'],
+ ['gravel-road-job-12.webp', 'รถดันและทีมงานเกลี่ยหินคลุกบริเวณทางเข้าออก'],
+ ['gravel-road-job-13.webp', 'ภาพแนวตั้งของทีมงานและรถดันเกลี่ยถนนหินคลุก'],
+ ['gravel-road-job-14.webp', 'รถบดบดอัดถนนหินคลุกในภาพแนวตั้ง'],
+ ['gravel-road-job-15.webp', 'ภาพรวมถนนหินคลุกหลังบดอัดและรถบด'],
 ];
 const stonePhotos = [
  ['stone-job.webp', 'ภาพหน้างานหินเกล็ด'],
@@ -102,6 +107,11 @@ async function expectPhoto(page, photos, index) {
   'gravel-road-job-08.webp': [1280, 960],
   'gravel-road-job-09.webp': [1280, 720],
   'gravel-road-job-10.webp': [960, 1280],
+  'gravel-road-job-11.webp': [1280, 960],
+  'gravel-road-job-12.webp': [1280, 960],
+  'gravel-road-job-13.webp': [960, 1280],
+  'gravel-road-job-14.webp': [720, 1280],
+  'gravel-road-job-15.webp': [960, 1280],
   'stone-building-01.webp': [963, 1280],
   'stone-building-02.webp': [963, 1280],
   'stone-building-03.webp': [963, 1280],
@@ -165,7 +175,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/gravel-road-job.webp'));
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('alt', gravelRoadPhotos[0][1]);
- await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('10 ภาพ');
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('15 ภาพ');
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking'], ['gravel-road', 'gravel']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
@@ -245,7 +255,7 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {
  // Traverse all six full albums with browser-generated gestures in both directions.
- test.setTimeout(90000);
+ test.setTimeout(105000);
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1, reducedMotion: 'reduce' });
  try {
   const page = await context.newPage(); await page.goto(path('projects.html'));

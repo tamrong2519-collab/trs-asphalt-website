@@ -116,6 +116,11 @@ export const projects = [
       { src: '/images/gravel-road-job-08.webp', alt: 'รถบดบดอัดถนนหินคลุกข้างอาคาร' },
       { src: '/images/gravel-road-job-09.webp', alt: 'งานถนนหินคลุกบริเวณทางเข้าออกสู่ถนน' },
       { src: '/images/gravel-road-job-10.webp', alt: 'ภาพแนวตั้งของรถบดขณะบดอัดถนนหินคลุก' },
+      { src: '/images/gravel-road-job-11.webp', alt: 'ภาพรวมถนนหินคลุกและรถบดขณะเก็บผิวทาง' },
+      { src: '/images/gravel-road-job-12.webp', alt: 'รถดันและทีมงานเกลี่ยหินคลุกบริเวณทางเข้าออก' },
+      { src: '/images/gravel-road-job-13.webp', alt: 'ภาพแนวตั้งของทีมงานและรถดันเกลี่ยถนนหินคลุก' },
+      { src: '/images/gravel-road-job-14.webp', alt: 'รถบดบดอัดถนนหินคลุกในภาพแนวตั้ง' },
+      { src: '/images/gravel-road-job-15.webp', alt: 'ภาพรวมถนนหินคลุกหลังบดอัดและรถบด' },
     ],
   },
 ];
