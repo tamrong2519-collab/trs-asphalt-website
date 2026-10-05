@@ -118,6 +118,10 @@ const markingPhotos = [
  ['marking-job-09.webp', 'ทีมงานทำลูกศรบอกทิศทางจราจร'],
  ['marking-job-10.webp', 'เส้นแบ่งช่องทางและลูกศรภายในพื้นที่อาคาร'],
  ['marking-job-11.webp', 'งานตีเส้นแบ่งช่องทางเดินรถและลูกศรสองทิศทาง'],
+ ['marking-job-12.webp', 'ทีมงานตีเส้นขอบทางโค้งบนพื้นคอนกรีต'],
+ ['marking-job-13.webp', 'เส้นขอบทางและแถบจราจรสีดำตามแนวอาคาร'],
+ ['marking-job-14.webp', 'งานตีเส้นและแถบจราจรบริเวณทางเข้าออกอาคาร'],
+ ['marking-job-15.webp', 'ภาพรวมเส้นขอบทางโค้งรอบลานจอดรถ'],
 ];
 
 async function expectPhoto(page, photos, index) {
@@ -212,6 +216,10 @@ async function expectPhoto(page, photos, index) {
   'marking-job-09.webp': [1280, 960],
   'marking-job-10.webp': [1280, 960],
   'marking-job-11.webp': [1280, 960],
+  'marking-job-12.webp': [1280, 960],
+  'marking-job-13.webp': [1280, 960],
+  'marking-job-14.webp': [1280, 960],
+  'marking-job-15.webp': [1280, 960],
  }[file];
  if (expectedDimensions) {
   const photoLayout = await image.evaluate(element => {
@@ -241,7 +249,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
  await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('9 ภาพ');
  await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/projects-speed-bump-cover.webp'));
- await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('12 ภาพ');
+ await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('16 ภาพ');
  await expect(page.locator('#parking-marking .project-cover img')).toHaveAttribute('src', path('images/projects-marking-cover.webp'));
  await expect(page.locator('#parking-marking .project-copy')).toContainText('ตีเส้นช่องจอดรถ เส้นแบ่งช่องทาง และลูกศรบอกทิศทาง');
  await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');

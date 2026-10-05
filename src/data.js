@@ -159,6 +159,10 @@ export const projects = [
       { src: '/images/marking-job-09.webp', alt: 'ทีมงานทำลูกศรบอกทิศทางจราจร' },
       { src: '/images/marking-job-10.webp', alt: 'เส้นแบ่งช่องทางและลูกศรภายในพื้นที่อาคาร' },
       { src: '/images/marking-job-11.webp', alt: 'งานตีเส้นแบ่งช่องทางเดินรถและลูกศรสองทิศทาง' },
+      { src: '/images/marking-job-12.webp', alt: 'ทีมงานตีเส้นขอบทางโค้งบนพื้นคอนกรีต', width: 1280, height: 960 },
+      { src: '/images/marking-job-13.webp', alt: 'เส้นขอบทางและแถบจราจรสีดำตามแนวอาคาร', width: 1280, height: 960 },
+      { src: '/images/marking-job-14.webp', alt: 'งานตีเส้นและแถบจราจรบริเวณทางเข้าออกอาคาร', width: 1280, height: 960 },
+      { src: '/images/marking-job-15.webp', alt: 'ภาพรวมเส้นขอบทางโค้งรอบลานจอดรถ', width: 1280, height: 960 },
     ],
   },
   {
