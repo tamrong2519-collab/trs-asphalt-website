@@ -1,9 +1,15 @@
 // Run after building and starting the local production preview on port 4182.
 import { chromium } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
-const blueExamples = process.env.COLOR_EXAMPLES_SET === 'blue';
-const { colorThemes, themeStyles } = await import(blueExamples ? '../public/blue-themes.js' : '../public/color-themes.js');
-const imageFolder = blueExamples ? 'blue-examples-white' : 'color-examples';
+const exampleSets = {
+  blue: { module: '../public/blue-themes.js', images: 'blue-examples-white' },
+  gold: { module: '../public/gold-themes.js', images: 'gold-examples-white' },
+  default: { module: '../public/color-themes.js', images: 'color-examples' },
+};
+const selectedSet = exampleSets[process.env.COLOR_EXAMPLES_SET || 'default'];
+if (!selectedSet) throw new Error('COLOR_EXAMPLES_SET must be blue, gold or default.');
+const { colorThemes, themeStyles } = await import(selectedSet.module);
+const imageFolder = selectedSet.images;
 
 const base = process.env.COLOR_EXAMPLES_BASE || 'http://127.0.0.1:4182/trs-asphalt-website/';
 await mkdir(`public/images/${imageFolder}`, { recursive: true });
