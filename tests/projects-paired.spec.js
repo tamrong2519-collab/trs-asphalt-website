@@ -104,6 +104,11 @@ const speedBumpPhotos = [
  ['speed-bump-job-06.webp', 'ทีมงานทำเครื่องหมายบนลูกระนาดยางมะตอย'],
  ['speed-bump-job-07.webp', 'ภาพรวมงานทำลูกระนาดยางมะตอยและเครื่องหมายชะลอความเร็ว'],
  ['speed-bump-job-08.webp', 'งานลูกระนาดยางมะตอยบริเวณทางเข้าอาคาร'],
+ ['speed-bump-job-09.webp', 'ทีมงานขึ้นรูปและบดอัดลูกระนาดยางมะตอยบนถนนคอนกรีต'],
+ ['speed-bump-job-10.webp', 'ลูกระนาดยางมะตอยบริเวณทางเข้าออกหลังเก็บขอบ'],
+ ['speed-bump-job-11.webp', 'ทีมงานเกลี่ยยางมะตอยขึ้นรูปลูกระนาดบนพื้นคอนกรีต'],
+ ['speed-bump-job-12.webp', 'ลูกระนาดยางมะตอยหลังบดอัดและเครื่องตบอัดข้างแนวงาน'],
+ ['speed-bump-job-13.webp', 'ทีมงานใช้เครื่องตบอัดบดอัดลูกระนาดยางมะตอย'],
 ];
 const markingPhotos = [
  ['projects-marking-cover.webp', 'ภาพหน้างานตีเส้นจราจรและลูกศรบอกทิศทางหน้าอาคาร'],
@@ -205,6 +210,11 @@ async function expectPhoto(page, photos, index) {
   'speed-bump-job-06.webp': [1280, 960],
   'speed-bump-job-07.webp': [1280, 960],
   'speed-bump-job-08.webp': [1280, 960],
+  'speed-bump-job-09.webp': [1280, 960],
+  'speed-bump-job-10.webp': [960, 1280],
+  'speed-bump-job-11.webp': [960, 1280],
+  'speed-bump-job-12.webp': [960, 1280],
+  'speed-bump-job-13.webp': [960, 1280],
   'marking-job.webp': [1280, 960],
   'marking-job-02.webp': [1280, 960],
   'marking-job-03.webp': [1280, 960],
@@ -247,7 +257,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('15 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-home-01.webp'));
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
- await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('9 ภาพ');
+ await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('14 ภาพ');
  await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/projects-speed-bump-cover.webp'));
  await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('16 ภาพ');
  await expect(page.locator('#parking-marking .project-cover img')).toHaveAttribute('src', path('images/projects-marking-cover.webp'));

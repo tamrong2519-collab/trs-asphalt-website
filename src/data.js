@@ -141,6 +141,11 @@ export const projects = [
       { src: '/images/speed-bump-job-06.webp', alt: 'ทีมงานทำเครื่องหมายบนลูกระนาดยางมะตอย' },
       { src: '/images/speed-bump-job-07.webp', alt: 'ภาพรวมงานทำลูกระนาดยางมะตอยและเครื่องหมายชะลอความเร็ว' },
       { src: '/images/speed-bump-job-08.webp', alt: 'งานลูกระนาดยางมะตอยบริเวณทางเข้าอาคาร' },
+      { src: '/images/speed-bump-job-09.webp', alt: 'ทีมงานขึ้นรูปและบดอัดลูกระนาดยางมะตอยบนถนนคอนกรีต', width: 1280, height: 960 },
+      { src: '/images/speed-bump-job-10.webp', alt: 'ลูกระนาดยางมะตอยบริเวณทางเข้าออกหลังเก็บขอบ', width: 960, height: 1280 },
+      { src: '/images/speed-bump-job-11.webp', alt: 'ทีมงานเกลี่ยยางมะตอยขึ้นรูปลูกระนาดบนพื้นคอนกรีต', width: 960, height: 1280 },
+      { src: '/images/speed-bump-job-12.webp', alt: 'ลูกระนาดยางมะตอยหลังบดอัดและเครื่องตบอัดข้างแนวงาน', width: 960, height: 1280 },
+      { src: '/images/speed-bump-job-13.webp', alt: 'ทีมงานใช้เครื่องตบอัดบดอัดลูกระนาดยางมะตอย', width: 960, height: 1280 },
     ],
   },
   {
