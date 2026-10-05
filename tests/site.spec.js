@@ -148,11 +148,11 @@ for(const width of [320,375,390,430]){
   await expectPrimaryContactAccess(page);
   const buttons=page.locator('.contact-panel .actions .button');await expect(buttons).toHaveCount(2);
   await expect(buttons.nth(0)).toHaveText('โทร 062-248-4089');
-  await expect(buttons.nth(1)).toContainText('LINE @138wlldt');
+  await expect(buttons.nth(1)).toContainText('แอด LINE ส่งรูปหน้างาน');
   const layout=await buttons.evaluateAll(items=>items.map(b=>{const r=b.getBoundingClientRect(),s=getComputedStyle(b);return {height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,bg:s.backgroundColor};}));
   for(const button of layout){expect(button.height).toBe(52);expect(button.font).toBe(18);expect(button.radius).toBe(14);expect(button.wrap).toBe('nowrap');expect(button.overflow).toBe(false);expect(button.left).toBeGreaterThanOrEqual(16);expect(button.right).toBeLessThanOrEqual(width-16);}
   expect(layout[1].top-layout[0].bottom).toBe(16);
-  expect(layout[0].bg).toBe('rgb(16, 45, 103)');expect(layout[1].bg).toBe('rgb(0, 168, 61)');
+  expect(layout[0].bg).toBe('rgb(0, 119, 182)');expect(layout[1].bg).toBe('rgb(0, 122, 45)');
  });
 }
 
@@ -248,11 +248,12 @@ test('homepage cards use supplied photos while all five slider images stay uncha
  await page.goto(path('index.html'));
  await page.getByRole('button',{name:'หยุดสไลด์อัตโนมัติ'}).click();
  const albums=['asphalt-road','gravel-yard','stone-yard','speed-bump-work','parking-marking'];
+ const serviceIds=['asphalt','gravel','stone','speed-bump','marking'];
  const serviceCards=page.locator('.home-services a'),sampleCards=page.locator('.sample-card');
  await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(6);
  for(let index=0;index<albums.length;index++){
   const destination=path(`projects.html#${albums[index]}`);
-  await expect(serviceCards.nth(index)).toHaveAttribute('href',destination);
+  await expect(serviceCards.nth(index)).toHaveAttribute('href',path(`services.html#${serviceIds[index]}`));
   await expect(sampleCards.nth(index)).toHaveAttribute('href',destination);
  }
  const gravelRoad=sampleCards.last();
@@ -283,7 +284,7 @@ test('homepage cards use supplied photos while all five slider images stay uncha
   }
  }
  await expect(page.locator('.hero-image')).toHaveAttribute('src',path('images/hero-sharp.webp'));
- await expect(page.locator('.hero-image')).toHaveAttribute('srcset',`${path('images/hero-sharp-mobile.webp')} 960w, ${path('images/hero-sharp.webp')} 1536w`);
+ await expect(page.locator('.hero-image')).toHaveAttribute('srcset',`${path('images/responsive/hero-sharp-480.webp')} 480w, ${path('images/responsive/hero-sharp-800.webp')} 800w, ${path('images/hero-sharp-mobile.webp')} 960w, ${path('images/hero-sharp.webp')} 1536w`);
  const slidePhotos=['gravel-slide','stone-job','speed-bump-job','marking-home'];
  for(let index=0;index<slidePhotos.length;index++){
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
@@ -413,7 +414,9 @@ test('homepage hero matches requested wording, four benefits and blue phone butt
  await expect(page.locator('.hero-copy')).toContainText('โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน');
  await expect(page.locator('.hero-copy')).toContainText('งานเสร็จตรงเวลา');await expect(page.locator('.hero-benefit')).toHaveCount(4);
  await expect(page.locator('.hero-quote-note')).toHaveText('ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น');
- const button=page.locator('.hero-quote .button');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveText('โทร 062-248-4089');
+ await expect(page.locator('.hero-quote .urgent-work-note')).toHaveText('งานด่วนโทรได้เลย เครื่องจักรครบ เริ่มงานไว');
+ await expect(page.locator('.hero-quote .hero-line')).toHaveAttribute('href','https://line.me/ti/p/%40138wlldt');
+ const button=page.locator('.hero-quote .hero-call');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveText('โทร 062-248-4089');
  expect(await button.evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(0, 119, 182)');
  for(const width of [320,375,390,430]){
   await page.setViewportSize({width,height:1000});await page.evaluate(()=>document.fonts.ready);

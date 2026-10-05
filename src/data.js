@@ -47,6 +47,8 @@ export const projects = [
   {
     id: 'asphalt-road', category: 'asphalt', title: 'งานลาดยางมะตอย',
     location: '', description: 'งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร',
+    siteTypes: 'ถนน ทางเข้าอาคาร ลานโรงเรียน และทางเดินในสวน',
+    workScope: 'ปู เกลี่ย และบดอัดผิวลาดยางมะตอย',
     images: [
       { src: '/images/asphalt-job-01.webp', alt: 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร' },
       { src: '/images/asphalt-job-02.webp', alt: 'ภาพหน้างานลาดยางมะตอยและรถบดบริเวณอาคาร' },
@@ -82,6 +84,8 @@ export const projects = [
   {
     id: 'gravel-yard', category: 'gravel', title: 'งานลานจอดรถหินคลุก',
     location: '', description: 'เกลี่ยและบดอัดพื้นลานสำหรับการใช้งาน',
+    siteTypes: 'ลานจอดรถและทางเข้าออก',
+    workScope: 'เตรียมพื้น เกลี่ยปรับระดับ และบดอัดหินคลุก',
     images: [
       { src: '/images/projects-gravel-cover.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุกข้างอาคารและแนวต้นไม้', width: 1280, height: 720 },
       { src: '/images/gravel-job.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุก' },
@@ -109,6 +113,8 @@ export const projects = [
     id: 'stone-yard', category: 'stone', title: 'งานหินเกล็ด',
     anchorAliases: ['stone-building-yard', 'stone-home-yard'],
     location: '', description: 'งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน',
+    siteTypes: 'ลานรอบอาคารและรอบบ้าน',
+    workScope: 'เกลี่ยและบดอัดพื้นหินเกล็ด',
     images: [
       { src: '/images/stone-home-01.webp', alt: 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน', width: 960, height: 1280 },
       { src: '/images/stone-job.webp', alt: 'ภาพหน้างานหินเกล็ด' },
@@ -131,6 +137,8 @@ export const projects = [
     id: 'speed-bump-work', category: 'speed-bump', title: 'งานลูกระนาดยางมะตอย',
     homepagePhoto: { src: '/images/speed-bump-job-02.webp', alt: 'ภาพหน้างานรถบดเดินตามข้างลูกระนาดยางมะตอยบริเวณอาคารและแนวต้นไม้', width: 960, height: 1280 },
     location: '', description: 'จัดทำลูกระนาดและเครื่องหมายชะลอความเร็ว',
+    siteTypes: 'ถนนและทางเข้าออกอาคาร',
+    workScope: 'ขึ้นรูป บดอัด และเก็บขอบลูกระนาดยางมะตอย',
     images: [
       { src: '/images/projects-speed-bump-cover.webp', alt: 'ภาพหน้างานทีมงานใช้รถบดเดินตามบดอัดลูกระนาดยางมะตอย', width: 1280, height: 1280, coverPosition: 'center top' },
       { src: '/images/speed-bump-job.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอย' },
@@ -151,6 +159,8 @@ export const projects = [
   {
     id: 'parking-marking', category: 'marking', title: 'งานตีเส้นจราจร',
     location: '', description: 'ตีเส้นช่องจอดรถ เส้นแบ่งช่องทาง และลูกศรบอกทิศทาง',
+    siteTypes: 'ลานจอดรถและช่องทางเดินรถ',
+    workScope: 'ตีเส้นช่องจอด เส้นขอบทาง และลูกศรบอกทิศทาง',
     images: [
       { src: '/images/projects-marking-cover.webp', alt: 'ภาพหน้างานตีเส้นจราจรและลูกศรบอกทิศทางหน้าอาคาร', width: 1280, height: 960 },
       { src: '/images/marking-job.webp', alt: 'ภาพหน้างานตีเส้นจราจร' },
@@ -174,6 +184,8 @@ export const projects = [
     id: 'gravel-road', category: 'gravel', title: 'ถนนหินคลุก บดอัด',
     homepagePhoto: { src: '/images/home-gravel-road.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภค', width: 1280, height: 960 },
     location: '', description: 'เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก',
+    siteTypes: 'ถนนภายในพื้นที่อาคารและพื้นที่ติดตั้งแผงโซลาร์เซลล์',
+    workScope: 'เกลี่ยปรับระดับและบดอัดถนนหินคลุก',
     images: [
       { src: '/images/gravel-road-job-04.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดข้างอาคารสีน้ำเงิน', width: 1280, height: 720 },
       { src: '/images/gravel-road-job.webp', alt: 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด' },

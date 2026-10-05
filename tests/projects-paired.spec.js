@@ -346,7 +346,8 @@ test('grouped project gallery changes photos with buttons and keyboard and resto
 
 test('mobile project gallery supports touch swipes without overflowing the screen', async ({ browser, baseURL }) => {
  // Traverse all six full albums with browser-generated gestures in both directions.
- test.setTimeout(105000);
+ // Chromium's 228 trusted touch gestures take about 120s before image checks.
+ test.setTimeout(180000);
  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 900 }, isMobile: true, hasTouch: true, deviceScaleFactor: 1, reducedMotion: 'reduce' });
  try {
   const page = await context.newPage(); await page.goto(path('projects.html'));

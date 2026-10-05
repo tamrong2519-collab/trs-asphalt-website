@@ -103,6 +103,44 @@ body[data-page="services"] #main .paired-heading {
 body[data-page="services"] #main .paired-heading > p {
   max-width:360px;
 }
+body[data-page="services"] #main .service-jump-nav {
+  display:block;
+  position:static;
+  margin:0 0 32px;
+  padding:0;
+  background:transparent;
+  box-shadow:none;
+}
+body[data-page="services"] #main .service-jump-label {
+  margin-bottom:12px;
+  color:var(--premium-copy);
+  font-size:15px;
+  font-weight:500;
+  line-height:1.6;
+}
+body[data-page="services"] #main .service-jump-links {
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+}
+body[data-page="services"] #main .service-jump-links a {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  min-height:48px;
+  padding:8px 10px;
+  border:1px solid #d9c397;
+  border-radius:10px;
+  background:var(--champagne-panel, #fbf4e6);
+  color:var(--premium-navy);
+  font-size:15px;
+  font-weight:500;
+  line-height:1.6;
+  text-align:center;
+  text-decoration:none;
+  text-wrap:pretty;
+}
 body[data-page="services"] #main .paired-services {
   display:grid;
   gap:44px;
@@ -286,11 +324,18 @@ body[data-page="services"] #main :is(.paired-content,.paired-cta) a:focus-visibl
   outline-offset:4px;
 }
 @media (hover:hover) and (pointer:fine) {
+  body[data-page="services"] #main .service-jump-links a:hover {
+    background:#f1e2c4;
+    border-color:#b18a2b;
+  }
   body[data-page="services"] #main .paired-quote:hover {
     background:#102f76;
   }
 }
 @media (max-width:1000px) {
+  body[data-page="services"] #main .service-jump-links {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
   body[data-page="services"] #main .paired-service {
     gap:30px;
   }
@@ -346,6 +391,12 @@ body[data-page="services"] #main :is(.paired-content,.paired-cta) a:focus-visibl
   }
   body[data-page="services"] #main .paired-heading > p {
     max-width:100%;
+  }
+  body[data-page="services"] #main .service-jump-nav {
+    margin-bottom:26px;
+  }
+  body[data-page="services"] #main .service-jump-links {
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
   body[data-page="services"] #main .paired-services {
     gap:30px;

@@ -87,6 +87,8 @@ test('mobile cards download responsive photos while albums retain the originals'
  const source = await image.evaluate(element => ({ chosen: element.currentSrc, original: element.src }));
  expect(source.chosen).not.toBe(source.original);
  await card.click();
+ await expect(page).toHaveURL(/\/services\.html#asphalt$/);
+ await page.locator('#asphalt .text-link').click();
  await page.locator('#asphalt-road .project-gallery-open').click();
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', new URL(path('images/asphalt-job-01.webp'), page.url()).href);
  await expect(page.locator('#lightbox-image img')).not.toHaveAttribute('srcset', /.+/);
@@ -96,7 +98,16 @@ test('mouse focus on a contact shortcut does not leave it covering the next acti
  await page.setViewportSize({ width: 390, height: 600 });
  await page.goto(path('services.html'));
  await page.evaluate(() => document.fonts.ready);
- await page.evaluate(() => scrollTo({ top: 200, behavior: 'instant' }));
+ // Start over a work photo, clear of the service links and copy whose
+ // positions change as the page content grows.
+ const dockCenter = await page.locator('.floating-contact').evaluate(element => {
+  const rect = element.getBoundingClientRect();
+  return rect.top + rect.height / 2;
+ });
+ await page.locator('.paired-photo').first().evaluate((element, y) => {
+  const rect = element.getBoundingClientRect();
+  scrollTo({ top: scrollY + rect.top + rect.height / 2 - y, behavior: 'instant' });
+ }, dockCenter);
  const shortcut = page.locator('.floating-contact a').first();
  await expect(shortcut).toBeVisible();
  // Keep the click local: test pointer focus without starting a phone call.

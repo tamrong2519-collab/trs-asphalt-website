@@ -16,10 +16,13 @@ import './projects-paired.css';
 import './page-hero.css';
 import './company-location.css';
 import './contact-improvements.css';
+import './professional-details.css';
 import './surface-theme.css';
 import { responsivePhotoAttributes } from './responsive-photos.js';
 import { initializeContactFloat } from './contact-float.js';
 import { initializeSlider } from './slider.js';
+import { createGalleryThumbnails } from './gallery-thumbnails.js';
+import { applySocialMetadata } from './social-meta.js';
 import { business as b, services, servicesPageServices, projects } from './data.js';
 const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeURL = s => { try { const u = new URL(s); return ['https:', 'http:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
@@ -57,12 +60,15 @@ const chevron = icon('chevron-right');
 const serviceIcon = s => icon(s.id==='asphalt'||s.id==='marking'?'road':s.id==='speed-bump'?'bump':'gravel');
 const call = (cls='button primary',label='',phoneIcon='phone') => phone ? `<a class="${cls}" href="tel:${phone}">${icon(phoneIcon)}${label || escape(b.phone)}</a>` : `<a class="${cls}" href="/contact.html">สอบถามช่องทางโทร</a>`;
 const lineButton = (label='LINE ส่งรูปหน้างาน',cls='button line') => line ? `<a class="${cls}" href="${escape(line)}" target="_blank" rel="noopener noreferrer"><span class="line-symbol" aria-hidden="true">LINE</span>${label}</a>` : '<a class="button line" href="/contact.html">สอบถามช่องทาง LINE</a>';
+const urgentWorkMessage = 'งานด่วนโทรได้เลย เครื่องจักรครบ เริ่มงานไว';
+const urgentWorkMarkup = urgentWorkMessage.split(' ').map(phrase=>`<span>${escape(phrase)}</span>`).join(' ');
+const heroQuote = `<div class="hero-quote"><p class="urgent-work-note">${urgentWorkMarkup}</p><div class="hero-primary-actions">${call('button primary hero-call',`โทร ${escape(b.phone)}`)}${lineButton('แอด LINE ส่งรูปหน้างาน','button line hero-line')}</div><p class="hero-quote-note">ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น</p></div>`;
 const floatingContact = `<div class="floating-contact" aria-label="ติดต่อด่วน">
  <a class="float-button float-call" href="${phone?`tel:${phone}`:'/contact.html'}" aria-label="โทร ${escape(b.phone)}"><span class="float-face">${icon('phone-outline')}<span class="float-label-desktop">โทร ${escape(b.phone)}</span><span class="float-label-mobile">${escape(b.phone)}</span></span></a>
  <a class="float-button float-line" href="${escape(line || '/contact.html')}" ${line?'target="_blank" rel="noopener noreferrer"':''} aria-label="LINE ${escape(b.lineId)}"><span class="float-face"><span class="line-symbol float-symbol-desktop" aria-hidden="true">LINE</span><svg class="float-symbol-mobile" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 3.9 3.6 7.1 8.3 7.7l-.5 2.5c-.1.5.3.6.7.4 3.2-1.7 11.5-6 11.5-10.6C22 6.5 17.5 3 12 3z"/><text x="12" y="12.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.1" font-weight="700" fill="#007a2d">LINE</text></svg><span class="float-label-desktop">LINE ส่งรูปหน้างาน</span><span class="float-label-mobile">LINE</span></span></a>
 </div>`;
-const brand = `<a class="brand footer-brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.webp" alt="" width="60" height="60"><span class="footer-wordmark"><b class="footer-title">TRS <span class="footer-name">${escape(b.name.replace(/^TRS\s*/, ''))}</span></b><small>CONSTRUCTION</small></span></a>`;
-const headerBrand = `<a class="brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.webp" alt="" width="64" height="64"><span class="brand-wordmark"><span class="brand-trs">TRS</span><span class="brand-name">${escape(b.name.replace(/^TRS\s*/, ''))}</span><small>CONSTRUCTION</small></span></a>`;
+const brand = `<a class="brand footer-brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.webp" srcset="${base}images/responsive/logo-128.webp 128w, ${base}images/responsive/logo-256.webp 256w, ${base}images/logo.webp 1254w" sizes="60px" alt="" width="60" height="60" loading="lazy" decoding="async" fetchpriority="low"><span class="footer-wordmark"><b class="footer-title">TRS <span class="footer-name">${escape(b.name.replace(/^TRS\s*/, ''))}</span></b><small>CONSTRUCTION</small></span></a>`;
+const headerBrand = `<a class="brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.webp" srcset="${base}images/responsive/logo-128.webp 128w, ${base}images/responsive/logo-256.webp 256w, ${base}images/logo.webp 1254w" sizes="64px" alt="" width="64" height="64" decoding="async" fetchpriority="low"><span class="brand-wordmark"><span class="brand-trs">TRS</span><span class="brand-name">${escape(b.name.replace(/^TRS\s*/, ''))}</span><small>CONSTRUCTION</small></span></a>`;
 const headerLineIcon = `<svg class="icon header-line-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 3.9 3.6 7.1 8.3 7.7l-.5 2.5c-.1.5.3.6.7.4 3.2-1.7 11.5-6 11.5-10.6C22 6.5 17.5 3 12 3z"/><text x="12" y="12.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.1" font-weight="700" fill="var(--line-ink, #fff)">LINE</text></svg>`;
 const headerContacts = `<div class="header-contact"><a class="button header-call" href="${phone ? `tel:${phone}` : '/contact.html'}" aria-label="${phone ? `โทร ${escape(b.phone)}` : 'สอบถามช่องทางโทร'}">${icon('phone-outline')}<span>${phone ? escape(b.phone) : 'สอบถามโทร'}</span></a><a class="button header-line" href="${escape(line || '/contact.html')}" ${line ? 'target="_blank" rel="noopener noreferrer"' : ''} aria-label="${line ? `LINE ${escape(b.lineId)}` : 'สอบถามช่องทาง LINE'}">${headerLineIcon}<span>${line ? escape(b.lineId) : 'สอบถาม LINE'}</span></a></div>`;
 const siteHeader = `<header class="site-header">
@@ -89,22 +95,29 @@ const projectLink = s => {
  const project = projects.find(p => (s.projectId ? p.id === s.projectId : p.category === s.id) && p.images?.length);
  return project ? `/projects.html#${encodeURIComponent(project.id)}` : '/projects.html';
 };
-const card = s => `<a class="service-card" href="${projectLink(s)}">${homepageCardImage(s)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${page==='index'?homeTitle(s):s.title}</h3><p>${page==='index'?homeDescription(s):s.description}</p></div><span class="card-arrow">${chevron}</span></div></a>`;
+const projectFacts = p => {
+ const facts = [
+  ['ลักษณะพื้นที่',p.siteTypes], ['งานที่แสดง',p.workScope],
+  ['ขนาดพื้นที่',p.area], ['ปีที่ดำเนินงาน',p.completedYear],
+ ].filter(([,value])=>value);
+ return facts.length ? `<dl class="project-facts">${facts.map(([label,value])=>`<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>` : '';
+};
+const card = s => `<a class="service-card" href="/services.html#${escape(s.id)}">${homepageCardImage(s)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${page==='index'?homeTitle(s):s.title}</h3><p>${page==='index'?homeDescription(s):s.description}</p></div><span class="card-arrow">${chevron}</span></div></a>`;
 const sectionHead = (title,copy='',action='') => `<div class="section-heading"><h2>${title}</h2>${copy?`<p>${copy}</p>`:''}${action}</div>`;
 const pageHero = ({name,title,accent,copy,image,imageAlt,width,height}) => `<section class="${name}-hero page-hero">
  <img class="${name}-hero-image page-hero-image" src="${escape(image)}" ${responsivePhotoAttributes(image, '100vw', base)} alt="${escape(imageAlt)}" width="${width}" height="${height}" fetchpriority="high">
  <div class="container"><span class="page-hero-eyebrow">${escape(b.name)} CONSTRUCTION</span><h1>${escape(title)}<span>${escape(accent)}</span></h1><p>${copy.map(escape).join('<br>')}</p></div>
 </section>`;
 const heroBenefits = `<div class="hero-benefits">${[['shield','งานคุณภาพ','ได้มาตรฐาน'],['worker','ทีมงานมืออาชีพ','ประสบการณ์จริง'],['gear','เครื่องจักรพร้อม','รองรับทุกขนาดงาน'],['clock','ส่งมอบงาน','ตรงเวลา']].map(([i,t,d])=>`<div class="hero-benefit">${icon(i)}<div><strong>${t}</strong><span>${d}</span></div></div>`).join('')}</div>`;
-const banner = (title,text,home=false) => `<section class="hero ${home?'hero-home hero-estimate':''}"><img class="hero-image" src="${'/images/hero-sharp.webp'}" ${home?`srcset="${base}images/hero-sharp-mobile.webp 960w, ${base}images/hero-sharp.webp 1536w" sizes="100vw"`:""} alt="ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย" width="1536" height="1024" fetchpriority="high"><div class="hero-overlay"></div><div class="container hero-content">${home?'<div class="hero-kicker"><span>TRS TAMRONGSAK CONSTRUCTION</span><span class="slide-count" aria-label="สไลด์ปัจจุบัน">01 / 05</span></div>':''}<h1>${title}</h1><p class="${home?'hero-copy':'hero-subtitle'}">${text}</p>${home?`${heroBenefits}<div class="hero-quote">${call('button primary hero-call',`โทร ${escape(b.phone)}`)}<p class="hero-quote-note">ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น</p></div>`:''}</div>${home?`<div class="hero-scene" hidden></div><div class="slider-controls" aria-label="ควบคุมสไลด์หน้าแรก"><button class="slide-prev" aria-label="สไลด์ก่อนหน้า">${icon('chevron-left')}</button><button class="slide-next" aria-label="สไลด์ถัดไป">${chevron}</button><button class="slide-play" aria-label="หยุดสไลด์อัตโนมัติ"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3h5v18H5zM14 3h5v18h-5z"/></svg></button></div>`:''}</section>`;
-const cta = `<section class="cta"><div class="container cta-inner"><div><h2>ติดต่อเรา</h2><p>ปรึกษาฟรี<br>ส่งรูปหน้างานเพื่อขอประเมินราคา</p></div><div class="cta-phone">${icon('phone')}<div><span>โทรเลย</span><a href="tel:${phone}">${escape(b.phone)}</a></div></div>${lineButton('แอด LINE ส่งรูปหน้างาน')}</div></section>`;
+const banner = (title,text,home=false) => `<section class="hero ${home?'hero-home hero-estimate':''}"><img class="hero-image" src="${'/images/hero-sharp.webp'}" ${home?`srcset="${base}images/responsive/hero-sharp-480.webp 480w, ${base}images/responsive/hero-sharp-800.webp 800w, ${base}images/hero-sharp-mobile.webp 960w, ${base}images/hero-sharp.webp 1536w" sizes="100vw"`:""} alt="ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย" width="1536" height="1024" fetchpriority="high"><div class="hero-overlay"></div><div class="container hero-content">${home?'<div class="hero-kicker"><span>TRS TAMRONGSAK CONSTRUCTION</span><span class="slide-count" aria-label="สไลด์ปัจจุบัน">01 / 05</span></div>':''}<h1>${title}</h1><p class="${home?'hero-copy':'hero-subtitle'}">${text}</p>${home?`${heroQuote}${heroBenefits}`:''}</div>${home?`<div class="hero-scene" hidden></div><div class="slider-controls" aria-label="ควบคุมสไลด์หน้าแรก"><button class="slide-prev" aria-label="สไลด์ก่อนหน้า">${icon('chevron-left')}</button><button class="slide-next" aria-label="สไลด์ถัดไป">${chevron}</button><button class="slide-play" aria-label="หยุดสไลด์อัตโนมัติ"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3h5v18H5zM14 3h5v18h-5z"/></svg></button></div>`:''}</section>`;
+const cta = `<section class="cta"><div class="container cta-inner"><div><h2>งานด่วนโทรได้เลย</h2><p>เครื่องจักรครบ เริ่มงานไว<br>ส่งรูปหน้างานเพื่อขอประเมินราคา</p></div><div class="cta-phone">${icon('phone')}<div><span>โทรเลย</span><a href="tel:${phone}">${escape(b.phone)}</a></div></div>${lineButton('แอด LINE ส่งรูปหน้างาน')}</div></section>`;
 const samples = (large=false) => `<div class="sample-grid ${large?'large':''}">${projects.filter(p=>p.images?.length && services.some(s=>s.id===p.category)).map(p=>{
  const s=services.find(s=>s.id===p.category), href=`/projects.html#${encodeURIComponent(p.id)}`;
  const sample=projectLink(s)===href?s:{title:p.title,homeImage:p.images[0].src,imageAlt:p.images[0].alt};
  const photo=page==='index' && p.homepagePhoto;
  return `<a class="sample-card" href="${href}">${photo?workPhoto(photo):homepageCardImage(sample,'project')}<div>${icon('pin')}<h3>${escape(sample.title)}</h3>${chevron}</div></a>`;
 }).join('')}</div>`;
-const home = `${banner('<span class="hero-title-primary"><span class="hero-title-word">รับเหมา</span><wbr><span class="hero-title-word">ลาดยางมะตอย</span></span><span class="hero-title-secondary">และงานหินคลุกครบวงจร</span>','<span class="hero-copy-line">ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน</span> <span class="hero-copy-line">โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน</span> <span class="hero-copy-line">งานเสร็จตรงเวลา</span>',true)}<section class="trust-strip"><div class="container trust-grid">${[['helmet','สำรวจหน้างานฟรี','ประเมินพื้นที่ก่อนเริ่มงาน'],['work','เครื่องจักรพร้อม','วางแผนเครื่องจักรให้เหมาะกับงาน'],['handshake','ดูแลตั้งแต่ต้นจนจบ','ให้คำปรึกษาและวางแผนงาน']].map(([i,t,d])=>`<div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>`).join('')}</div></section><section class="container section">${sectionHead('บริการของเรา','งานถนนและพื้นที่ใช้งาน สำหรับบ้าน ธุรกิจ และโครงการ')}<div class="service-grid home-services">${services.map(card).join('')}</div></section><section class="blue-section"><div class="container section">${sectionHead('ผลงานที่ผ่านมา','ภาพหน้างานหินคลุก หินเกล็ด ลูกระนาด และตีเส้น',`<a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a>`)}${samples()}</div></section>`;
+const home = `${banner('<span class="hero-title-primary"><span class="hero-title-word">รับเหมา</span><wbr><span class="hero-title-word">ลาดยางมะตอย</span></span><span class="hero-title-secondary">และงานหินคลุกครบวงจร</span>','<span class="hero-copy-line">ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน</span> <span class="hero-copy-line">โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน</span> <span class="hero-copy-line">งานเสร็จตรงเวลา</span>',true)}<section class="trust-strip"><div class="container trust-grid">${[['helmet','สำรวจหน้างานฟรี','ประเมินพื้นที่ก่อนเริ่มงาน'],['work','เครื่องจักรพร้อม','วางแผนเครื่องจักรให้เหมาะกับงาน'],['handshake','ดูแลตั้งแต่ต้นจนจบ','ให้คำปรึกษาและวางแผนงาน']].map(([i,t,d])=>`<div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>`).join('')}</div></section><section class="container section home-services-section">${sectionHead('บริการของเรา','งานถนนและพื้นที่ใช้งาน สำหรับบ้าน ธุรกิจ และโครงการ',`<a class="button outline home-services-more" href="/services.html">ดูบริการทั้งหมด ${arrow}</a>`)}<div class="service-grid home-services">${services.map(card).join('')}</div></section><section class="blue-section"><div class="container section">${sectionHead('ผลงานที่ผ่านมา','ภาพหน้างานหินคลุก หินเกล็ด ลูกระนาด และตีเส้น',`<a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a>`)}${samples()}</div></section>`;
 const serviceCheckMark = '<span class="paired-check-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" focusable="false"><path d="m2.5 8.2 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 const servicePage = `
 <section class="paired-hero">
@@ -113,12 +126,13 @@ const servicePage = `
 </section>
 <section class="paired-content"><div class="container">
  <div class="paired-heading"><div><span class="paired-eyebrow">บริการงานพื้นและถนน</span><h2>งานถนนและพื้นลานครบวงจร</h2></div><p>เลือกงานให้เหมาะกับพื้นที่<br>พร้อมให้คำปรึกษาก่อนเริ่มงาน</p></div>
+ <nav class="service-jump-nav" aria-label="เลือกบริการ"><p class="service-jump-label">เลือกบริการที่ต้องการ</p><div class="service-jump-links">${servicesPageServices.map(s=>`<a href="#${escape(s.id)}">${escape(s.title)}</a>`).join('')}</div></nav>
  <div class="paired-services">${servicesPageServices.map(s=>`
   <article id="${escape(s.id)}" class="paired-service">
    ${serviceImage(s,'paired-photo')}
    <div class="paired-copy"><span class="paired-number">${escape(s.number)} / ${escape(s.subtitle)}</span><h2>${escape(s.title)}</h2><p>${escape(s.description)}</p>
     <ul class="paired-checks">${s.details.map(d=>`<li>${serviceCheckMark}<span>${escape(d)}</span></li>`).join('')}</ul>
-    <div class="paired-actions">${call('button primary paired-phone',`โทร ${escape(b.phone)}`)}${lineButton('แอด LINE','button line paired-line')}${s.projectId?`<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a>`:''}</div>
+    <div class="paired-actions">${call('button primary paired-phone',`โทร ${escape(b.phone)}`)}${lineButton('แอด LINE','button line paired-line')}<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a></div>
    </div>
   </article>`).join('')}
  </div>
@@ -126,7 +140,7 @@ const servicePage = `
 <section class="paired-process"><div class="container"><span class="paired-eyebrow">ขั้นตอนการให้บริการ</span><h2>ดูแลตั้งแต่สำรวจจนจบงาน</h2>
  <div class="paired-process-grid">${[['01','สำรวจหน้างาน','ตรวจพื้นที่และวางแผนงาน'],['02','เสนอราคา','ระบุขอบเขตงาน วัสดุ และราคา'],['03','ดำเนินงาน','ทำงานตามแผนที่ตกลง']].map(([n,t,d])=>`<article><span>${n}</span><h3>${t}</h3><p>${d}</p></article>`).join('')}</div>
 </div></section>
-<section class="paired-cta"><div class="container paired-cta-inner"><div><h2>ปรึกษางานของคุณกับเรา</h2><p>ส่งประเภทงาน ขนาดพื้นที่ และรูปหน้างาน<br>ทีมงานพร้อมให้คำแนะนำและประเมินเบื้องต้น</p></div>
+<section class="paired-cta"><div class="container paired-cta-inner"><div><h2>งานด่วนโทรได้เลย</h2><p>เครื่องจักรครบ เริ่มงานไว<br>ส่งรูปหน้างานเพื่อปรึกษาและประเมินเบื้องต้น</p></div>
  <div class="paired-actions">${call('button primary paired-phone',`โทร ${escape(b.phone)}`)}${lineButton(`LINE ${escape(b.lineId)}`,'button line paired-line')}</div>
 </div></section>`;
 const projectPage = `
@@ -143,6 +157,7 @@ ${cta}
 <dialog id="lightbox" aria-labelledby="lightbox-title">
  <div class="lightbox-header"><h2 id="lightbox-title"></h2><button type="button" id="close-lightbox" class="close-button" aria-label="ปิดภาพ">✕</button></div>
  <div id="lightbox-image"></div>
+ <div id="gallery-thumbnails" class="gallery-thumbnails" role="group" aria-label="เลือกภาพหน้างาน"></div>
  <div class="lightbox-navigation"><button type="button" id="lightbox-prev" aria-label="ภาพก่อนหน้า">${icon('chevron-left')}</button><span id="image-count" role="status" aria-label="ลำดับภาพ"></span><button type="button" id="lightbox-next" aria-label="ภาพถัดไป">${chevron}</button></div>
  <p id="image-caption"></p>
 </dialog>`;
@@ -154,7 +169,7 @@ const companyLocation = `<section class="container section company-location" ari
  <div class="company-location-shell">
   <div class="company-location-layout">
    <div class="company-location-card">
-    <header class="company-location-heading"><h2 id="company-location-title">ยินดีให้บริการทุกหน้างาน</h2><p>ทั้งกรุงเทพฯ และปริมณฑล</p></header>
+    <header class="company-location-heading"><h2 id="company-location-title">ที่ตั้งและการนัดหมาย</h2><p>${escape(b.serviceArea)}</p></header>
     <div class="company-location-row company-location-address-row">
      <span class="company-location-icon">${icon('pin')}</span>
      <div class="company-location-address"><h3>ที่ตั้ง</h3><div class="company-address-text"><address id="company-address">${escape(b.address)}</address></div><button class="company-location-copy" type="button" aria-label="คัดลอกที่อยู่บริษัท"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h3"/></svg>คัดลอกที่อยู่</button></div>
@@ -172,7 +187,7 @@ const companyLocation = `<section class="container section company-location" ari
   </div>
  </div>
 </section>`;
-const contactPage = `${pageHero({name:'contact',title:'ติดต่อ',accent:'เรา',copy:['ปรึกษาฟรี','พร้อมประเมินหน้างาน'],image:'/images/hero-sharp.webp',imageAlt:'ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย',width:1536,height:1024})}<section class="container section contact-grid">${workPhoto(b.contactPhotos.main,'contact-photo')}<div class="contact-panel">${sectionHead('ช่องทางการติดต่อ')}<p>ปรึกษาฟรี ส่งรูปหน้างานเพื่อขอประเมินราคา</p><div class="contact-box"><span class="contact-icon">${icon('phone')}</span><div><h3>โทรศัพท์</h3><a href="tel:${phone}">${escape(b.phone)}</a></div></div><div class="contact-box"><span class="contact-icon green"><span class="line-symbol">LINE</span></span><div><h3>LINE</h3><a href="${escape(line)}" target="_blank" rel="noopener noreferrer">${escape(b.lineId || 'เพิ่มเพื่อน')}</a></div></div><div class="contact-box contact-email"><span class="contact-icon">${icon('mail')}</span><div><h3>อีเมล</h3><a href="mailto:${escape(b.email)}">${escape(b.email)}</a></div></div><div class="actions">${call('button primary',`โทร ${escape(b.phone)}`)}${lineButton(`LINE ${escape(b.lineId)}`)}</div></div></section><section class="blue-section"><div class="container section">${sectionHead('ข้อมูลสำหรับประเมินราคา','แจ้งประเภทงาน ขนาดพื้นที่ และรูปหน้างาน')}<div class="info-grid">${[['road','ประเภทงาน','เลือกบริการที่ต้องการ',0],['gravel','ขนาดพื้นที่','แจ้งกว้าง × ยาว หรือพื้นที่รวม',1],['camera','สถานที่และรูปหน้างาน','ส่งตำแหน่งและภาพพื้นเดิม',2]].map(([i,t,d,n])=>`<article class="info-card"><div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>${workPhoto(b.contactPhotos.info[n])}</article>`).join('')}</div></div></section><section class="service-area"><div class="container">${icon('pin')}<h2>พื้นที่ให้บริการ</h2><p>${escape(b.serviceArea)}</p></div></section><details id="estimate" class="estimate-disclosure container"><summary>ส่งรายละเอียดขอประเมินราคา ${arrow}</summary>${estimateForm.replace('id="estimate"','id="estimate-panel"')}</details>${companyLocation}`;
+const contactPage = `${pageHero({name:'contact',title:'ติดต่อ',accent:'เรา',copy:['ปรึกษาฟรี','พร้อมประเมินหน้างาน'],image:'/images/hero-sharp.webp',imageAlt:'ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย',width:1536,height:1024})}<section class="container section contact-grid"><div class="contact-panel">${sectionHead('ช่องทางการติดต่อ')}<p class="urgent-work-note">${urgentWorkMarkup}</p><p>ปรึกษาฟรี ส่งรูปหน้างานเพื่อขอประเมินราคา</p><div class="actions">${call('button primary',`โทร ${escape(b.phone)}`)}${lineButton('แอด LINE ส่งรูปหน้างาน')}</div><div class="contact-box"><span class="contact-icon">${icon('phone')}</span><div><h3>โทรศัพท์</h3><a href="tel:${phone}">${escape(b.phone)}</a></div></div><div class="contact-box"><span class="contact-icon green"><span class="line-symbol">LINE</span></span><div><h3>LINE</h3><a href="${escape(line)}" target="_blank" rel="noopener noreferrer">${escape(b.lineId || 'เพิ่มเพื่อน')}</a></div></div><div class="contact-box contact-email"><span class="contact-icon">${icon('mail')}</span><div><h3>อีเมล</h3><a href="mailto:${escape(b.email)}">${escape(b.email)}</a></div></div>${b.hours && !b.hours.startsWith('กรุณา') ? `<p class="contact-hours">เวลาติดต่อ: ${escape(b.hours)}</p>` : ''}</div>${workPhoto(b.contactPhotos.main,'contact-photo')}</section><section class="blue-section"><div class="container section">${sectionHead('ข้อมูลสำหรับประเมินราคา','แจ้งประเภทงาน ขนาดพื้นที่ และรูปหน้างาน')}<div class="info-grid">${[['road','ประเภทงาน','เลือกบริการที่ต้องการ',0],['gravel','ขนาดพื้นที่','แจ้งกว้าง × ยาว หรือพื้นที่รวม',1],['camera','สถานที่และรูปหน้างาน','ส่งตำแหน่งและภาพพื้นเดิม',2]].map(([i,t,d,n])=>`<article class="info-card"><div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>${workPhoto(b.contactPhotos.info[n])}</article>`).join('')}</div></div></section><section class="service-area"><div class="container">${icon('pin')}<h2>พื้นที่ให้บริการ</h2><p>${escape(b.serviceArea)}</p></div></section><details id="estimate" class="estimate-disclosure container"><summary>ส่งรายละเอียดขอประเมินราคา ${arrow}</summary>${estimateForm.replace('id="estimate"','id="estimate-panel"')}</details>${companyLocation}`;
 document.getElementById('app').innerHTML = localPaths(`<a class="skip-link" href="#main">ข้ามไปเนื้อหา</a>${siteHeader}<main id="main">${({index:home,services:servicePage,projects:projectPage,contact:contactPage})[page] || home}</main><div class="footer-shell"><footer class="site-footer"><div class="footer-content"><div class="footer-top">${brand}<div class="footer-tagline"><strong>งานถนนคุณภาพ</strong><p>ครบจบในทีมเดียว</p></div><div class="footer-contact">${call('button primary footer-phone')}${lineButton(escape(b.lineId),'button line footer-line')}</div></div><div class="footer-secondary"><nav class="footer-nav" aria-label="เมนูส่วนท้าย">${nav.map(([id,t])=>`<a href="/${id}.html" ${id===page?'aria-current="page"':''}>${t}</a>`).join('')}</nav><p class="footer-area">${escape(b.serviceArea).replace('กรุงเทพฯ และปริมณฑล','กรุงเทพฯ–ปริมณฑล').replaceAll(' • ',' · ')}</p></div><div class="footer-legal"><span>© ${new Date().getFullYear()} ${escape(b.name)} CONSTRUCTION</span><span>งานถนนคุณภาพ ครบจบในทีมเดียว</span></div></div><div class="footer-stripes" aria-hidden="true"></div></footer></div>${floatingContact}`);
 // Keep in-page destinations below the shared sticky header at every viewport and zoom level.
 const siteHeaderElement = document.querySelector('.site-header');
@@ -254,7 +269,7 @@ if(page==='projects') {
    return `<article class="project-card project-row" id="${escape(p.id)}" data-category="${escape(p.category)}">
     <button type="button" class="photo-button project-cover" data-project="${index}" aria-label="${label}: ${escape(p.title)}"><img src="${escape(cover.src)}" ${responsivePhotoAttributes(cover.src, undefined, base)} alt="${escape(cover.alt)}" width="${cover.width || 1280}" height="${cover.height || 960}" ${cover.coverPosition?`style="object-position:${escape(cover.coverPosition)}"`:''} loading="lazy"><span class="project-view" aria-hidden="true">${arrow}</span></button>
     <div class="project-copy"><span class="project-category">${escape(categoryTitle(s))}</span><h3>${escape(p.title)}</h3>${p.location?`<p class="project-location">${icon('pin')}${escape(p.location)}</p>`:''}<p>${escape(p.description)}</p>
-     ${p.imageKind==='illustration'?'<p class="project-image-note">ภาพประกอบงานลาดยางมะตอย</p>':''}
+     ${projectFacts(p)}${p.imageKind==='illustration'?'<p class="project-image-note">ภาพประกอบงานลาดยางมะตอย</p>':''}
      <div class="project-actions"><button type="button" class="project-gallery-open" data-project="${index}" aria-label="${label}ทั้งหมด: ${escape(p.title)}">${label}${p.images.length>1?`<span class="project-photo-count">${p.images.length} ภาพ</span>`:''}${arrow}</button></div>
     </div>
    </article>`;
@@ -275,6 +290,7 @@ if(page==='projects') {
  const galleryImage=document.createElement('img');galleryImage.draggable=false;imageContainer.append(galleryImage);
  const previous=document.getElementById('lightbox-prev'), next=document.getElementById('lightbox-next');
  let currentGroup, imageIndex=0, galleryTrigger, swipeStart;
+ const thumbnails=typeof createGalleryThumbnails==='function' ? createGalleryThumbnails({container:document.getElementById('gallery-thumbnails'),base,onSelect:index=>{imageIndex=index;showImage();}}) : null;
  const showImage=()=>{
   const photo=currentGroup.images[imageIndex];
   galleryImage.src=new URL(photo.src.startsWith('/')?`${base}${photo.src.slice(1)}`:photo.src,document.baseURI).href;
@@ -283,6 +299,7 @@ if(page==='projects') {
   document.getElementById('image-caption').textContent=photo.alt || currentGroup.title;
   document.getElementById('image-count').textContent=`${imageIndex+1} / ${currentGroup.images.length}`;
   previous.disabled=next.disabled=currentGroup.images.length<2;
+  thumbnails?.setSelected(imageIndex);
  };
  const move=step=>{
   if(!currentGroup || currentGroup.images.length<2)return;
@@ -291,7 +308,7 @@ if(page==='projects') {
  document.getElementById('project-grid').addEventListener('click',e=>{
   const btn=e.target.closest('[data-project]');if(!btn)return;
   currentGroup=groups[Number(btn.dataset.project)];if(!currentGroup)return;
-  imageIndex=0;galleryTrigger=btn;showImage();dialog.showModal();
+  imageIndex=0;galleryTrigger=btn;thumbnails?.setPhotos(currentGroup.images);showImage();dialog.showModal();
  });
  previous.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
  dialog.addEventListener('keydown',e=>{
@@ -314,4 +331,5 @@ if(safeURL(siteURL)) {
  const canonical=document.querySelector('link[rel=canonical]') || document.createElement('link');canonical.rel='canonical';canonical.href=url;document.head.append(canonical);
  const og=document.querySelector('meta[property="og:url"]') || document.createElement('meta');og.setAttribute('property','og:url');og.content=url;document.head.append(og);
  const schema=document.querySelector('script[type="application/ld+json"]') || document.createElement('script');schema.type='application/ld+json';schema.textContent=JSON.stringify({'@context':'https://schema.org','@type':'GeneralContractor',name:b.name,url:siteURL,...(phone?{telephone:phone}:{}),...(b.email?{email:b.email}:{}),...(line?{sameAs:[line]}:{})});document.head.append(schema);
+ if(typeof applySocialMetadata==='function') applySocialMetadata({document,siteURL,business:b,route:page,base});
 }

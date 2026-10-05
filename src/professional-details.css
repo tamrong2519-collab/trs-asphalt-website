@@ -1,0 +1,71 @@
+/* Clear choices and verified work details within the selected champagne theme. */
+body[data-page] #main .urgent-work-note > span {
+ display:inline-block;
+}
+body[data-page="index"] #main .home-services-section .section-heading {
+ display:grid;
+ grid-template-columns:minmax(0,1fr) auto;
+ gap:10px 24px;
+ align-items:center;
+}
+body[data-page="index"] #main .home-services-section .section-heading > p {
+ grid-column:1;
+ margin:0;
+}
+body[data-page="index"] #main .home-services-more {
+ grid-column:2;
+ grid-row:1 / span 2;
+ min-height:52px;
+ border-color:var(--premium-navy);
+ color:var(--premium-navy);
+ font-size:16px;
+ white-space:nowrap;
+}
+body[data-page="contact"] #main .contact-panel .urgent-work-note {
+ margin:12px 0 8px;
+ color:var(--premium-navy);
+ font-size:18px;
+ font-weight:600;
+ line-height:1.8;
+}
+body[data-page="contact"] #main .contact-hours {
+ padding-top:12px;
+ color:var(--premium-copy);
+}
+body[data-page="projects"] #main .project-facts {
+ display:grid;
+ gap:12px;
+ margin:20px 0 0;
+ padding-top:18px;
+ border-top:1px solid var(--premium-border);
+ font-size:16px;
+ line-height:1.8;
+}
+body[data-page="projects"] #main .project-facts > div {
+ display:grid;
+ grid-template-columns:112px minmax(0,1fr);
+ gap:12px;
+}
+body[data-page="projects"] #main .project-facts dt {
+ color:var(--premium-navy);
+ font-weight:600;
+}
+body[data-page="projects"] #main .project-facts dd {
+ margin:0;
+ color:var(--premium-copy);
+}
+@media(max-width:760px) {
+ body[data-page="index"] #main .home-services-section .section-heading {
+  grid-template-columns:minmax(0,1fr);
+  gap:12px;
+ }
+ body[data-page="index"] #main .home-services-more {
+  grid-column:1;
+  grid-row:auto;
+  justify-self:start;
+ }
+ body[data-page="projects"] #main .project-facts > div {
+  grid-template-columns:minmax(0,1fr);
+  gap:2px;
+ }
+}

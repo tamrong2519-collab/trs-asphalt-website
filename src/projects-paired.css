@@ -399,3 +399,69 @@ body[data-page="projects"] #image-caption {
     transition:none;
   }
 }
+
+/* Album navigation uses existing small previews and numbered photo choices. */
+body[data-page="projects"] #lightbox .gallery-thumbnails {
+  display:flex;
+  gap:8px;
+  width:100%;
+  margin-top:12px;
+  padding:5px 3px 8px;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#af8426 #af842619;
+}
+body[data-page="projects"] #lightbox .gallery-thumbnail {
+  position:relative;
+  display:grid;
+  place-items:center;
+  flex:none;
+  width:76px;
+  height:58px;
+  padding:0;
+  overflow:hidden;
+  border:1px solid #af842659;
+  border-radius:9px;
+  background:linear-gradient(125deg,#fbf4e6,#f7eedc);
+  color:var(--premium-navy);
+  font-size:16px;
+  font-weight:600;
+}
+body[data-page="projects"] #lightbox .gallery-thumbnail img {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+body[data-page="projects"] #lightbox .gallery-thumbnail-number {
+  position:relative;
+  z-index:1;
+}
+body[data-page="projects"] #lightbox .gallery-thumbnail.has-preview .gallery-thumbnail-number {
+  position:absolute;
+  right:3px;
+  bottom:3px;
+  min-width:23px;
+  padding:1px 4px;
+  border-radius:4px;
+  background:var(--premium-navy);
+  color:var(--premium-gold);
+  font-size:12px;
+  line-height:1.5;
+}
+body[data-page="projects"] #lightbox .gallery-thumbnail[aria-current="true"] {
+  border:2px solid var(--premium-navy);
+  box-shadow:0 0 0 2px #af842659;
+}
+body[data-page="projects"] #lightbox .gallery-thumbnail:focus-visible {
+  outline:3px solid #af8426;
+  outline-offset:2px;
+}
+@media (max-width:760px) {
+  body[data-page="projects"] #lightbox .gallery-thumbnail {
+    width:64px;
+    height:50px;
+  }
+}

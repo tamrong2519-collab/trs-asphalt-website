@@ -11,13 +11,141 @@ body[data-page="services"] #main .paired-service .paired-actions > .text-link {
  flex-basis:100%;
  width:fit-content;
 }
+/* Keep the same readable phone and LINE colors at every contact entry point. */
+body[data-page] .float-call,
+body[data-page] .float-call .float-face {
+ background:#0077b6;
+ color:#fff;
+}
+body[data-page] .float-call .icon { color:#fff; }
+body[data-page="contact"] #main .contact-panel .actions > .button.primary {
+ background:#0077b6;
+ color:#fff;
+}
+body[data-page="contact"] #main .contact-panel .actions > .button.line {
+ background:#007a2d;
+ color:#fff;
+}
+body[data-page] #main .button.line .line-symbol {
+ background:#fff;
+ color:#007a2d;
+ border-color:transparent;
+ border-radius:50%;
+}
+body[data-page="contact"] #main .contact-grid {
+ grid-template-areas:"photo panel";
+}
+body[data-page="contact"] #main .contact-panel { grid-area:panel; }
+body[data-page="contact"] #main .contact-photo { grid-area:photo; }
+body[data-page="contact"] #main .contact-panel .actions {
+ margin:20px 0 18px;
+}
+body[data-page="contact"] #main .contact-panel .actions > .button:focus-visible {
+ outline:3px solid var(--premium-navy);
+ outline-offset:4px;
+}
+body[data-page="contact"] #main .contact-email {
+ padding-block:16px;
+}
+body[data-page="contact"] #main .contact-email a {
+ font-size:16px;
+ line-height:1.8;
+ font-weight:400;
+}
+/* The main hero offers two direct contact actions before the supporting benefits. */
+body[data-page="index"] #main .hero-estimate .hero-quote {
+ width:560px;
+ max-width:100%;
+ margin-top:22px;
+ text-align:left;
+}
+body[data-page="index"] #main .hero-estimate .urgent-work-note {
+ max-width:100%;
+ min-height:0;
+ margin:0 0 12px;
+ color:var(--premium-gold);
+ font-size:18px;
+ font-weight:600;
+ line-height:1.75;
+}
+body[data-page="index"] #main .hero-estimate .hero-primary-actions {
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:12px;
+}
+body[data-page="index"] #main .hero-estimate .hero-primary-actions > .button {
+ width:100%;
+ min-width:0;
+ min-height:56px;
+ padding:12px 16px;
+ gap:10px;
+ justify-content:center;
+ border:0;
+ border-radius:12px;
+ font-size:18px;
+ font-weight:600;
+ line-height:1.5;
+ white-space:normal;
+ box-shadow:0 5px 16px #091f591c;
+}
+body[data-page="index"] #main .hero-estimate .hero-primary-actions > .hero-call {
+ background:#0077b6;
+ color:#fff;
+ white-space:nowrap;
+}
+body[data-page="index"] #main .hero-estimate .hero-primary-actions > .hero-line {
+ background:#007a2d;
+ color:#fff;
+}
+body[data-page="index"] #main .hero-estimate .hero-primary-actions .icon {
+ width:24px;
+ height:24px;
+ color:#fff;
+}
+body[data-page="index"] #main .hero-estimate .hero-primary-actions .line-symbol {
+ width:28px;
+ height:28px;
+ font-size:8px;
+}
+body[data-page="index"] #main .hero-estimate .hero-quote-note {
+ margin-top:12px;
+ font-size:16px;
+ line-height:1.75;
+}
+body[data-page="index"] #main .hero-estimate .hero-primary-actions > .button:focus-visible {
+ outline:3px solid var(--premium-gold);
+ outline-offset:4px;
+}
+@media(hover:hover) and (pointer:fine) {
+ body[data-page] .float-call:hover,
+ body[data-page] .float-call:hover .float-face,
+ body[data-page="contact"] #main .contact-panel .actions > .button.primary:hover,
+ body[data-page="index"] #main .hero-estimate .hero-primary-actions > .hero-call:hover {
+  background:#00669d;
+ }
+ body[data-page="contact"] #main .contact-panel .actions > .button.line:hover,
+ body[data-page="index"] #main .hero-estimate .hero-primary-actions > .hero-line:hover {
+  background:#006525;
+ }
+}
 @media(max-width:760px) {
+ body[data-page="contact"] #main .contact-grid { grid-template-areas:"panel" "photo"; }
+ body[data-page="contact"] #main .contact-panel .actions { margin:20px 0 16px; }
+ body[data-page="contact"] #main .contact-email { display:flex; }
+ body[data-page="contact"] #main .contact-email > div { display:block; }
+ body[data-page="contact"] #main .contact-email a { display:inline; padding-top:0; overflow-wrap:anywhere; }
+ body[data-page] .float-call,
+ body[data-page] .float-call:hover { background:transparent; }
  body[data-page="services"] #main .paired-service .paired-actions > .button { flex:auto; }
  body[data-page="index"] #main .hero-estimate .hero-content {
   padding-top:calc(var(--hero-photo-height) + 22px);
   padding-bottom:28px;
  }
  body[data-page="index"] #main .hero-estimate h1 { margin-bottom:14px; }
+ body[data-page="index"] #main .hero-estimate .hero-quote { margin-top:18px; text-align:center; }
+ body[data-page="index"] #main .hero-estimate .urgent-work-note { font-size:16px; margin-bottom:12px; }
+ body[data-page="index"] #main .hero-estimate .hero-primary-actions { grid-template-columns:minmax(0,1fr); }
+ body[data-page="index"] #main .hero-estimate .hero-primary-actions > .button { min-height:52px; }
  body[data-page="index"] #main .hero-estimate .hero-benefits { gap:14px 16px; margin:20px 0; }
  body[data-page="index"] #main .hero-estimate .hero-benefit > .icon { width:30px; height:30px; margin-bottom:5px; }
 }
