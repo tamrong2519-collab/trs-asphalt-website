@@ -366,7 +366,7 @@ test('blue and gold header keeps three bands and compact contacts readable on ev
    const activeStyle=await page.locator('#main-nav [aria-current]').evaluate(e=>({color:getComputedStyle(e).color,background:getComputedStyle(e).backgroundColor,underlineHeight:parseFloat(getComputedStyle(e,'::after').height),underlineTransform:getComputedStyle(e,'::after').transform}));
    expect(activeStyle.color).toBe('rgb(20, 61, 117)');expect(activeStyle.background).toBe('rgba(0, 0, 0, 0)');expect(activeStyle.underlineHeight).toBeGreaterThanOrEqual(2);expect(activeStyle.underlineTransform).toBe('matrix(1, 0, 0, 1, 0, 0)');
    const bands=await page.evaluate(()=>['.header-brand-band','.header-nav-band','.header-contact-band'].map(selector=>{const element=document.querySelector(selector),rect=element.getBoundingClientRect();return {background:getComputedStyle(element).backgroundColor,left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom};}));
-   expect(bands.map(band=>band.background)).toEqual(['rgb(22, 79, 159)','rgb(224, 188, 104)','rgb(255, 244, 214)']);
+   expect(bands.map(band=>band.background)).toEqual(['rgb(22, 79, 159)','rgb(224, 188, 104)','rgb(237, 247, 255)']);
    for(const band of bands){expect(band.left).toBe(0);expect(band.right).toBe(width);}
    expect(bands[0].bottom).toBeCloseTo(bands[1].top,1);expect(bands[1].bottom).toBeCloseTo(bands[2].top,1);
    expect(await page.locator('.site-header svg').count()).toBe(2);

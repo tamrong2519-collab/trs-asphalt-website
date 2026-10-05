@@ -16,7 +16,7 @@ import './projects-paired.css';
 import './page-hero.css';
 import './company-location.css';
 import './contact-improvements.css';
-import './gold-surfaces.css';
+import './surface-theme.css';
 import { responsivePhotoAttributes } from './responsive-photos.js';
 import { initializeContactFloat } from './contact-float.js';
 import { initializeSlider } from './slider.js';
