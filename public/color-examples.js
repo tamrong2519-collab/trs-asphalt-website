@@ -1,4 +1,5 @@
-import { colorThemes, themeStyles } from './color-themes.js';
+const { colorThemes, themeStyles } = await import(document.documentElement.dataset.themeModule || './color-themes.js');
+const imageFolder = document.documentElement.dataset.themeImages || 'color-examples';
 
 const grid = document.querySelector('#theme-grid');
 const dialog = document.querySelector('#preview-dialog');
@@ -25,7 +26,7 @@ for (const theme of colorThemes) {
       <span class="window-dots"><i></i><i></i><i></i></span>
       <span class="screenshot-label">ตัวอย่างหน้าเว็บไซต์จริง</span>
     </div>
-    <img class="theme-screenshot" src="./images/color-examples/theme-${escapeText(theme.id)}.jpg" alt="ตัวอย่างเว็บไซต์โทน${escapeText(theme.name)}" width="1200" height="1150" loading="${theme.id === '1' ? 'eager' : 'lazy'}" decoding="async" />
+    <img class="theme-screenshot" src="./images/${escapeText(imageFolder)}/theme-${escapeText(theme.id)}.jpg" alt="ตัวอย่างเว็บไซต์โทน${escapeText(theme.name)}" width="1200" height="1150" loading="${theme.id === '1' ? 'eager' : 'lazy'}" decoding="async" />
     <div class="theme-details">
       <div class="theme-title-row">
         <span class="theme-number" aria-hidden="true">0${escapeText(theme.id)}</span>
