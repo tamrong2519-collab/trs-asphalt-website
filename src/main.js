@@ -16,7 +16,7 @@ import './projects-paired.css';
 import './page-hero.css';
 import './company-location.css';
 import { initializeSlider } from './slider.js';
-import { business as b, services, projects } from './data.js';
+import { business as b, services, servicesPageServices, projects } from './data.js';
 const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeURL = s => { try { const u = new URL(s); return ['https:', 'http:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
 const phone = b.phone.replace(/[^\d+]/g, '');
@@ -80,7 +80,7 @@ const homepageCardImage = (s,type='service') => page==='index' && s.homepageCard
 const homeTitle = s => ({gravel:'ลานหินคลุก',stone:'หินเกล็ด','speed-bump':'ลูกระนาด'})[s.id] || s.title;
 const homeDescription = s => ({asphalt:'ถนน ลานจอดรถ และพื้นที่ใช้งาน',gravel:'เกลี่ยและบดอัดลานจอดรถ ทางเข้าออก',stone:'ปรับพื้นลานและพื้นที่ใช้งาน','speed-bump':'ชะลอความเร็วภายในพื้นที่',marking:'ตีเส้นถนนและช่องจอดรถ'})[s.id];
 const projectLink = s => {
- const project = projects.find(p => p.category === s.id && p.images?.length);
+ const project = projects.find(p => (s.projectId ? p.id === s.projectId : p.category === s.id) && p.images?.length);
  return project ? `/projects.html#${encodeURIComponent(project.id)}` : '/projects.html';
 };
 const card = s => `<a class="service-card" href="${projectLink(s)}">${homepageCardImage(s)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${page==='index'?homeTitle(s):s.title}</h3><p>${page==='index'?homeDescription(s):s.description}</p></div><span class="card-arrow">${chevron}</span></div></a>`;
@@ -107,12 +107,12 @@ const servicePage = `
 </section>
 <section class="paired-content"><div class="container">
  <div class="paired-heading"><div><span class="paired-eyebrow">บริการงานพื้นและถนน</span><h2>งานถนนและพื้นลานครบวงจร</h2></div><p>เลือกงานให้เหมาะกับพื้นที่<br>พร้อมให้คำปรึกษาก่อนเริ่มงาน</p></div>
- <div class="paired-services">${services.map(s=>`
+ <div class="paired-services">${servicesPageServices.map(s=>`
   <article id="${escape(s.id)}" class="paired-service">
    ${serviceImage(s,'paired-photo')}
    <div class="paired-copy"><span class="paired-number">${escape(s.number)} / ${escape(s.subtitle)}</span><h2>${escape(s.title)}</h2><p>${escape(s.description)}</p>
     <ul class="paired-checks">${s.details.map(d=>`<li>${serviceCheckMark}<span>${escape(d)}</span></li>`).join('')}</ul>
-    <div class="paired-actions"><a class="button paired-quote" href="/contact.html" aria-label="ขอประเมินงานนี้: ${escape(s.title)}">ขอประเมินงานนี้ ${arrow}</a></div>
+    <div class="paired-actions"><a class="button paired-quote" href="/contact.html" aria-label="ขอประเมินงานนี้: ${escape(s.title)}">ขอประเมินงานนี้ ${arrow}</a>${s.projectId?`<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a>`:''}</div>
    </div>
   </article>`).join('')}
  </div>

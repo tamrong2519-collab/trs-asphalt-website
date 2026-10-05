@@ -73,7 +73,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
     if (mobile) expect(readability.scale).toBeCloseTo(1, 3);
     if (route === 'services') {
      const rows = page.locator('.paired-service');
-     await expect(rows).toHaveCount(5);
+     await expect(rows).toHaveCount(6);
      await expect(page.locator('.feature-services')).toHaveCount(0);
      const pairedLayout = await rows.evaluateAll(items => items.map(element => {
       const photo = element.querySelector('.paired-photo').getBoundingClientRect();
@@ -185,6 +185,7 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   ['stone', 'stone-job.webp', [1280, 960]],
   ['speed-bump', 'services-speed-bump.webp', [1280, 960]],
   ['marking', 'services-marking.webp', [1280, 960]],
+  ['gravel-road', 'home-gravel-road.webp', [1280, 960]],
  ];
  const projectPhotos = [
   ['gravel-yard', 'projects-gravel-cover.webp', [1280, 720]],
@@ -207,11 +208,11 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   }
  };
  await page.goto(path('services'));
- await expect(page.locator('.paired-service')).toHaveCount(5);
+ await expect(page.locator('.paired-service')).toHaveCount(6);
  for (const [id, file, dimensions] of servicePhotos) {
   await loadedPhoto(page.locator(`.paired-service#${id} img`), file, dimensions);
  }
- for (const id of ['asphalt', ...jobs.map(([id]) => id)]) {
+ for (const id of ['asphalt', ...jobs.map(([id]) => id), 'gravel-road']) {
   const row = page.locator(`.paired-service#${id}`);
   await expect(row.locator('img')).toHaveCount(1);
   const estimateLink = row.locator('.paired-quote');
@@ -219,6 +220,13 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   await expect(estimateLink).toHaveAccessibleName(/^ขอประเมินงาน.+/);
   await expect(estimateLink).toHaveAttribute('href', path('contact'));
  }
+ const road = page.locator('.paired-service#gravel-road');
+ await expect(road.locator('h2')).toHaveText('ถนนหินคลุก บดอัด');
+ await road.getByRole('link', { name: 'ดูผลงาน: ถนนหินคลุก บดอัด', exact: true }).click();
+ await expect(page).toHaveURL(/\/projects\.html#gravel-road$/);
+ await expect(page.locator('#gravel-road')).toBeVisible();
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('20 ภาพ');
+ await page.goto(path('services'));
  await page.locator('.paired-service#gravel .paired-quote').click();
  await expect(page).toHaveURL(/\/contact\.html$/);
  await expect(page.locator('h1')).toHaveText('ติดต่อเรา');

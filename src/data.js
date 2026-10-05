@@ -31,6 +31,16 @@ export const services = [
   { id: 'speed-bump', servicesPageImage: { src: '/images/services-speed-bump.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอยสีส้มขาวบริเวณถนนหน้าอาคาร', width: 1280, height: 960 }, homeImage: '/images/speed-bump-job.webp', number: '04', title: 'ลูกระนาดยางมะตอย', subtitle: 'ชะลอความเร็วในพื้นที่', scene: 3, image: '/images/work-scenes.webp', description: 'ทำลูกระนาดยางมะตอย เพื่อชะลอความเร็วในพื้นที่', details: ['สำรวจตำแหน่งติดตั้ง', 'กำหนดรูปแบบตามการใช้งาน', 'จัดทำผิวและเครื่องหมายที่เหมาะสม'] },
   { id: 'marking', servicesPageImage: { src: '/images/services-marking.webp', alt: 'ภาพหน้างานทีมงานตีเส้นจราจรและลูกศรบอกทิศทางในลานจอดรถ', width: 1280, height: 960 }, homepageImage: '/images/marking-home.webp', homeImage: '/images/marking-job.webp', number: '05', title: 'ตีเส้นจราจร', subtitle: 'สีเทอร์โมพลาสติก', scene: 4, image: '/images/work-scenes.webp', description: 'ตีเส้นถนนและช่องจอดรถด้วยสีเทอร์โมพลาสติก', details: ['วางผังช่องจอดและเส้นจราจร', 'เตรียมผิวก่อนทำเครื่องหมาย', 'ตีเส้นด้วยสีเทอร์โมพลาสติก'] },
 ];
+export const servicesPageServices = [
+  ...services,
+  {
+    id: 'gravel-road', projectId: 'gravel-road', number: '06', title: 'ถนนหินคลุก บดอัด',
+    subtitle: 'เกลี่ยปรับระดับและบดอัดถนน',
+    servicesPageImage: { src: '/images/home-gravel-road.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภค', width: 1280, height: 960 },
+    description: 'เกลี่ยปรับระดับและบดอัดหินคลุก สำหรับถนนภายในโครงการและทางเข้าออก',
+    details: ['สำรวจแนวถนนและระดับพื้นเดิม', 'เกลี่ยหินคลุกและปรับระดับตามแนวทาง', 'บดอัดผิวถนนให้แน่นและเก็บขอบทาง'],
+  },
+];
 // 1 รายการ = 1 ชุดภาพ เพิ่มโครงการใหม่โดยคัดลอกรายการและเปลี่ยนข้อมูลจริง
 // รูปแรกเป็นหน้าปก; location เว้นว่างได้; imageKind: 'illustration' ใช้กับภาพประกอบเท่านั้น
 export const projects = [
