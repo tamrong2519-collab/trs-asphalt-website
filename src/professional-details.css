@@ -1,4 +1,4 @@
-/* Clear choices and verified work details within the selected champagne theme. */
+/* Clear choices and verified work details within the selected surface theme. */
 body[data-page] #main .urgent-work-note > span {
  display:inline-block;
 }

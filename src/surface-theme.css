@@ -1,4 +1,4 @@
-/* Champagne gold, selected from gold-examples.html (option 1).
+/* Pale pearl silver, selected by the site owner.
    Tint only the formerly white/ivory surfaces. Retain the existing blue
    secondary shells, photo fallbacks, brand bands and contact controls. */
 :root {
@@ -7,15 +7,16 @@
   --surface-light:#edf7ff;
   --surface-muted:#e2f1fb;
   --surface-hover:#d7eafa;
-  --champagne-page:#f7eedc;
-  --champagne-card:#fbf4e6;
-  --champagne-light:#fffcf6;
-  --champagne-canvas:
+  --pearl-page:#f2f3f4;
+  --pearl-card:#f8f9fa;
+  --pearl-light:#ffffff;
+  --pearl-hover:#e9ecef;
+  --pearl-canvas:
     radial-gradient(ellipse at 18% 0%,rgba(255,255,255,.16),transparent 58%),
-    linear-gradient(125deg,var(--champagne-page) 0%,var(--champagne-light) 44%,var(--champagne-page) 68%,var(--champagne-card) 100%);
-  --champagne-panel:
-    linear-gradient(125deg,var(--champagne-card) 0%,var(--champagne-light) 36%,var(--champagne-card) 58%,var(--champagne-page) 100%);
-  background:var(--champagne-page);
+    linear-gradient(125deg,var(--pearl-page) 0%,var(--pearl-light) 44%,var(--pearl-page) 68%,var(--pearl-card) 100%);
+  --pearl-panel:
+    linear-gradient(125deg,var(--pearl-card) 0%,var(--pearl-light) 36%,var(--pearl-card) 58%,var(--pearl-page) 100%);
+  background:var(--pearl-page);
 }
 
 /* Static, subtle highlights match the chosen preview without animation. */
@@ -23,7 +24,7 @@ html body[data-page],
 html body[data-page] #main,
 html body[data-page="services"] #main :is(.paired-content,.paired-process),
 html body[data-page="projects"] #main :is(.projects-filter-band,.projects-content) {
-  background:var(--champagne-canvas);
+  background:var(--pearl-canvas);
 }
 
 html body[data-page] .site-header .header-contact-band,
@@ -35,7 +36,7 @@ html body[data-page] #main :is(.estimate,.service-area p),
 html body[data-page="services"] #main .paired-process-grid article,
 html body[data-page="contact"] :is(.company-location-card,.company-map-actions),
 html body[data-page] .site-footer {
-  background:var(--champagne-panel);
+  background:var(--pearl-panel);
 }
 
 html body[data-page] #main :is(input,select,textarea),
@@ -45,7 +46,7 @@ html body[data-page="projects"] #main .project-view,
 html body[data-page] #lightbox,
 html body[data-page="contact"] .company-location-map,
 html body[data-page] .site-footer .footer-brand img {
-  background:var(--champagne-card);
+  background:var(--pearl-card);
 }
 
 body[data-page] #main :is(input,select,textarea) {
@@ -61,7 +62,7 @@ body[data-page] #main :is(input,textarea)::placeholder {
   opacity:1;
 }
 
-/* Keep small notes and service links readable on the champagne tint. */
+/* Keep small notes and service links readable on the pearl silver tint. */
 html body[data-page] #main :is(.project-image-note,.image-note),
 html body[data-page="services"] #main .paired-process-grid article > span,
 html body[data-page="contact"] #main .company-location-card :is(p,address) {
@@ -113,4 +114,10 @@ body[data-page] .footer-shell {
 
 body[data-page] .site-footer .footer-legal {
   color:var(--premium-copy);
+}
+
+@media (hover:hover) and (pointer:fine) {
+  html body[data-page] #main .filter:not(.active):hover {
+    background:var(--pearl-hover);
+  }
 }
