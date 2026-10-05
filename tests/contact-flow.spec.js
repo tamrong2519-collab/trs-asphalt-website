@@ -32,7 +32,7 @@ test('secondary estimate form includes gravel roads and rejects unusable phone n
 
 for (const scenario of [
  { name: 'desktop portfolio link', width: 1440, route: 'index.html', selector: '.blue-section .section-heading .button', shortcut: 1, href: 'projects.html' },
- { name: 'mobile gravel-road phone link', width: 390, route: 'services.html', selector: '#gravel-road .paired-phone', shortcut: 0, href: 'tel:0622484089' },
+ { name: 'mobile service CTA phone link', width: 390, route: 'services.html', selector: '.paired-cta .paired-phone', shortcut: 0, href: 'tel:0622484089' },
 ]) {
  test(`floating contacts do not intercept the ${scenario.name}`, async ({ page }) => {
   await page.setViewportSize({ width: scenario.width, height: 900 });
@@ -41,8 +41,8 @@ for (const scenario of [
   await expectPrimaryContactAccess(page);
   const target = page.locator(scenario.selector);
   await expect(target).toHaveAttribute('href', scenario.href.startsWith('tel:') ? scenario.href : path(scenario.href));
-  // Recreate the scroll position where the floating shortcut previously
-  // intercepted a real link. Click the point inside both rectangles.
+  // Place the real link level with the shortcut. Keep the click within the
+  // link even when its current layout clears the shortcut horizontally.
   const dockCenter = await page.locator('.floating-contact a').nth(scenario.shortcut).evaluate(element => {
    const rect = element.getBoundingClientRect();
    return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
@@ -70,7 +70,7 @@ for (const scenario of [
    expect(await page.evaluate(() => window.clickedContact)).toBe(scenario.href);
   } else {
    await page.mouse.click(point.x, point.y);
-   await expect(page).toHaveURL(/\/projects\.html$/);
+   await expect(page).toHaveURL(new URL(path(scenario.href), page.url()).href);
   }
  });
 }
@@ -120,7 +120,8 @@ test('mouse focus on a contact shortcut does not leave it covering the next acti
   const rect = element.getBoundingClientRect();
   return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
  });
- const nextAction = page.locator('#gravel-road .paired-phone');
+ const nextAction = page.locator('.paired-cta .paired-phone');
+ await expect(nextAction).toHaveAttribute('href', 'tel:0622484089');
  await nextAction.evaluate((element, y) => {
   const rect = element.getBoundingClientRect();
   scrollTo({ top: scrollY + rect.top + rect.height / 2 - y, behavior: 'instant' });

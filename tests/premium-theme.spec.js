@@ -204,12 +204,6 @@ test('premium homepage keeps all five automatic slides, matching photos and acce
 });
 
 test('inner pages show the supplied work photos and gallery opens the selected full photo', async ({ page }) => {
- const jobs = [
-  ['gravel', 'gravel-job.webp', 'ลานจอดรถหินคลุก'],
-  ['stone', 'stone-job.webp', 'งานหินเกล็ด'],
-  ['speed-bump', 'speed-bump-job.webp', 'ลูกระนาดยางมะตอย'],
-  ['marking', 'marking-job.webp', 'ตีเส้นจราจร'],
- ];
  const servicePhotos = [
   ['asphalt', 'services-asphalt.webp', [1280, 720]],
   ['gravel', 'services-gravel.webp', [1280, 960]],
@@ -218,6 +212,10 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   ['marking', 'services-marking.webp', [1280, 960]],
   ['gravel-road', 'services-gravel-road.webp', [960, 1280]],
  ];
+ const projectForService = {
+  asphalt: 'asphalt-road', gravel: 'gravel-yard', stone: 'stone-yard',
+  'speed-bump': 'speed-bump-work', marking: 'parking-marking', 'gravel-road': 'gravel-road',
+ };
  const projectPhotos = [
   ['gravel-yard', 'projects-gravel-cover.webp', [1280, 720]],
   ['stone-yard', 'stone-home-01.webp', [960, 1280]],
@@ -244,15 +242,21 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  for (const [id, file, dimensions] of servicePhotos) {
   await loadedPhoto(page.locator(`.paired-service#${id} img`), file, dimensions);
  }
- for (const id of ['asphalt', ...jobs.map(([id]) => id), 'gravel-road']) {
+ for (const [id] of servicePhotos) {
   const row = page.locator(`.paired-service#${id}`);
   await expect(row.locator('img')).toHaveCount(1);
-  await expect(row.locator('.paired-phone')).toHaveAttribute('href', phone);
-  await expect(row.locator('.paired-phone')).toContainText('062-248-4089');
-  await expect(row.locator('.paired-line')).toHaveAttribute('href', line);
-  await expect(row.locator('.paired-line')).toHaveAccessibleName('แอด LINE');
-  await expect(row.locator('.paired-line')).toHaveAttribute('target', '_blank');
+  await expect(row.locator('.text-link')).toHaveAttribute('href', `${path('projects')}#${projectForService[id]}`);
+  await expect(row.locator('.text-link')).toHaveAccessibleName(/^ดูผลงาน:/);
+  await expect(row.locator('a[href^="tel:"], a[href*="line.me/"]')).toHaveCount(0);
  }
+ const contactCTA = page.locator('.paired-cta');
+ await expect(contactCTA.locator('.paired-phone')).toHaveCount(1);
+ await expect(contactCTA.locator('.paired-phone')).toHaveAttribute('href', phone);
+ await expect(contactCTA.locator('.paired-phone')).toContainText('062-248-4089');
+ await expect(contactCTA.locator('.paired-line')).toHaveCount(1);
+ await expect(contactCTA.locator('.paired-line')).toHaveAttribute('href', line);
+ await expect(contactCTA.locator('.paired-line')).toContainText('@138wlldt');
+ await expect(contactCTA.locator('.paired-line')).toHaveAttribute('target', '_blank');
  const road = page.locator('.paired-service#gravel-road');
  await expect(road.locator('h2')).toHaveText('ถนนหินคลุก บดอัด');
  await road.getByRole('link', { name: 'ดูผลงาน: ถนนหินคลุก บดอัด', exact: true }).click();

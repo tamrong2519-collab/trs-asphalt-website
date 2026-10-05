@@ -2,14 +2,10 @@ body[data-page] .floating-contact.is-obstructing {
  visibility:hidden;
  pointer-events:none;
 }
-body[data-page="services"] #main .paired-service .paired-actions > .button {
- flex:1 1 190px;
- padding-inline:16px;
- gap:8px;
-}
 body[data-page="services"] #main .paired-service .paired-actions > .text-link {
- flex-basis:100%;
+ flex:none;
  width:fit-content;
+ min-height:44px;
 }
 /* Keep the same readable phone and LINE colors at every contact entry point. */
 body[data-page] .float-call,
@@ -136,7 +132,6 @@ body[data-page="index"] #main .hero-estimate .hero-primary-actions > .button:foc
  body[data-page="contact"] #main .contact-email a { display:inline; padding-top:0; overflow-wrap:anywhere; }
  body[data-page] .float-call,
  body[data-page] .float-call:hover { background:transparent; }
- body[data-page="services"] #main .paired-service .paired-actions > .button { flex:auto; }
  body[data-page="index"] #main .hero-estimate .hero-content {
   padding-top:calc(var(--hero-photo-height) + 22px);
   padding-bottom:28px;
