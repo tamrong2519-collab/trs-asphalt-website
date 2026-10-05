@@ -7,8 +7,8 @@ const path = route => `${process.env.SITE_BASE || '/'}${route}.html`;
 const phone = 'tel:0622484089';
 const line = 'https://line.me/ti/p/%40138wlldt';
 
-// Check ordinary dark copy against solid surfaces and a conservative lower
-// color bound for opaque linear gradients. Photos/translucent layers need review.
+// Check ordinary copy against conservative color bounds for solid surfaces
+// and layered linear/radial gradients. Photo backgrounds need visual review.
 async function inspectReadability(page) {
  return page.evaluate(() => {
   const visible = element => {
@@ -24,6 +24,41 @@ async function inspectReadability(page) {
    const normalized = channel / 255;
    return normalized <= .04045 ? normalized / 12.92 : ((normalized + .055) / 1.055) ** 2.4;
   }).reduce((sum, channel, index) => sum + channel * [.2126, .7152, .0722][index], 0);
+  const gradientLayers = value => {
+   if (value === 'none') return [];
+   const layers = []; let depth = 0, start = 0;
+   for (let index = 0; index < value.length; index++) {
+    if (value[index] === '(') depth++;
+    if (value[index] === ')') depth--;
+    if (value[index] === ',' && depth === 0) {
+     layers.push(value.slice(start, index).trim()); start = index + 1;
+    }
+   }
+   layers.push(value.slice(start).trim());
+   if (layers.some(layer => !/^(linear|radial)-gradient\(/.test(layer))) return null;
+   const stops = layers.map(layer => [...layer.matchAll(/rgba?\([^)]+\)/g)].map(match => rgba(match[0])));
+   return stops.every(layer => layer.length && layer.every(Boolean)) ? stops : null;
+  };
+  const surfaceBounds = element => {
+   const surfaces = [];
+   for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
+    const style = getComputedStyle(ancestor), color = rgba(style.backgroundColor);
+    const gradients = gradientLayers(style.backgroundImage);
+    if (!color || !gradients) return null;
+    surfaces.push({ color, gradients });
+    if (color[3] === 1 || gradients.some(stops => stops.every(stop => stop[3] === 1))) break;
+   }
+   let low = [255, 255, 255], high = [...low];
+   for (const { color, gradients } of surfaces.reverse()) {
+    low = blend(color, low); high = blend(color, high);
+    for (const stops of [...gradients].reverse()) {
+     const lows = stops.map(stop => blend(stop, low)), highs = stops.map(stop => blend(stop, high));
+     low = [0, 1, 2].map(channel => Math.min(...lows.map(stop => stop[channel])));
+     high = [0, 1, 2].map(channel => Math.max(...highs.map(stop => stop[channel])));
+    }
+   }
+   return { low, high };
+  };
   const problems = [];
   const paragraphs = [...document.querySelectorAll('main p')].filter(visible);
   for (const element of paragraphs) {
@@ -35,28 +70,14 @@ async function inspectReadability(page) {
   let contrastChecks = 0;
   const copy = document.querySelectorAll('main .card-content :is(p,h3), main .sample-card h3, main .project-caption :is(p,h2), main .project-copy :is(p,h2,h3), main .contact-panel :is(p,h2), main .info-card :is(p,h3), main .process-card :is(p,h3), main .service-detail :is(p,h2), main .checklist li, main .paired-copy :is(p,h2), main .paired-checks li, main .paired-process-grid :is(p,h3)');
   for (const element of [...copy].filter(visible)) {
-   const layers = []; let gradient = false;
-   for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
-    const style = getComputedStyle(ancestor);
-    if (style.backgroundImage !== 'none') {
-     const stops = [...style.backgroundImage.matchAll(/rgba?\([^)]+\)/g)].map(match => rgba(match[0]));
-     if (style.backgroundImage.startsWith('linear-gradient(') && stops.length && stops.every(color => color?.[3] === 1)) {
-      // Each interpolated channel is at least its smallest stop value.
-      // Using all three minima gives a conservative background for dark copy.
-      layers.push([0, 1, 2].map(channel => Math.min(...stops.map(color => color[channel]))).concat(1));
-     } else gradient = true;
-     break;
-    }
-    const color = rgba(style.backgroundColor);
-    if (color) layers.push(color);
-    if (color?.[3] === 1) break;
-   }
-   if (gradient) continue;
+   const background = surfaceBounds(element);
+   if (!background) continue;
    const style = getComputedStyle(element), foreground = rgba(style.color);
    if (!foreground) continue;
-   const background = layers.reverse().reduce((color, layer) => blend(layer, color), [255, 255, 255]);
-   const values = [luminance(blend(foreground, background)), luminance(background)].sort((a, b) => a - b);
-   const ratio = (values[1] + .05) / (values[0] + .05);
+   const low = luminance(background.low), high = luminance(background.high);
+   const foregroundLow = luminance(blend(foreground, background.low)), foregroundHigh = luminance(blend(foreground, background.high));
+   const ratio = foregroundHigh < low ? (low + .05) / (foregroundHigh + .05)
+    : foregroundLow > high ? (foregroundLow + .05) / (high + .05) : 1;
    const font = parseFloat(style.fontSize), large = font >= 24 || font >= 18.66 && parseFloat(style.fontWeight) >= 700;
    contrastChecks++;
    if (ratio < (large ? 3 : 4.5)) problems.push({ text: element.textContent.trim(), problem: 'low text contrast', ratio, foreground: style.color, background });

@@ -365,8 +365,12 @@ test('blue and gold header keeps three bands and compact contacts readable on ev
    for(let index=1;index<linkPositions.length;index++){expect(linkPositions[index].top).toBeCloseTo(linkPositions[0].top,0);expect(linkPositions[index].left).toBeGreaterThanOrEqual(linkPositions[index-1].right);}
    const activeStyle=await page.locator('#main-nav [aria-current]').evaluate(e=>({color:getComputedStyle(e).color,background:getComputedStyle(e).backgroundColor,underlineHeight:parseFloat(getComputedStyle(e,'::after').height),underlineTransform:getComputedStyle(e,'::after').transform}));
    expect(activeStyle.color).toBe('rgb(20, 61, 117)');expect(activeStyle.background).toBe('rgba(0, 0, 0, 0)');expect(activeStyle.underlineHeight).toBeGreaterThanOrEqual(2);expect(activeStyle.underlineTransform).toBe('matrix(1, 0, 0, 1, 0, 0)');
-   const bands=await page.evaluate(()=>['.header-brand-band','.header-nav-band','.header-contact-band'].map(selector=>{const element=document.querySelector(selector),rect=element.getBoundingClientRect();return {background:getComputedStyle(element).backgroundColor,left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom};}));
-   expect(bands.map(band=>band.background)).toEqual(['rgb(22, 79, 159)','rgb(224, 188, 104)','rgb(237, 247, 255)']);
+   const bands=await page.evaluate(()=>['.header-brand-band','.header-nav-band','.header-contact-band'].map(selector=>{const element=document.querySelector(selector),rect=element.getBoundingClientRect(),style=getComputedStyle(element);return {background:style.backgroundColor,finish:style.backgroundImage,left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom};}));
+   expect(bands.slice(0,2).map(band=>band.background)).toEqual(['rgb(22, 79, 159)','rgb(224, 188, 104)']);
+   expect(bands[2].finish).toContain('linear-gradient(');
+   expect(bands[2].finish).toContain('rgb(251, 244, 230)');
+   expect(bands[2].finish).toContain('rgb(255, 252, 246)');
+   expect(bands[2].finish).toContain('rgb(247, 238, 220)');
    for(const band of bands){expect(band.left).toBe(0);expect(band.right).toBe(width);}
    expect(bands[0].bottom).toBeCloseTo(bands[1].top,1);expect(bands[1].bottom).toBeCloseTo(bands[2].top,1);
    expect(await page.locator('.site-header svg').count()).toBe(2);

@@ -1,46 +1,58 @@
-/* Calm pale blue surfaces shared by every page. */
+/* Champagne gold, selected from gold-examples.html (option 1).
+   Tint only the formerly white/ivory surfaces. Retain the existing blue
+   secondary shells, photo fallbacks, brand bands and contact controls. */
 :root {
   --premium-ivory:#edf7ff;
   --premium-border:#c8dceb;
   --surface-light:#edf7ff;
   --surface-muted:#e2f1fb;
   --surface-hover:#d7eafa;
-  background:var(--surface-light);
+  --champagne-page:#f7eedc;
+  --champagne-card:#fbf4e6;
+  --champagne-light:#fffcf6;
+  --champagne-canvas:
+    radial-gradient(ellipse at 18% 0%,rgba(255,255,255,.16),transparent 58%),
+    linear-gradient(125deg,var(--champagne-page) 0%,var(--champagne-light) 44%,var(--champagne-page) 68%,var(--champagne-card) 100%);
+  --champagne-panel:
+    linear-gradient(125deg,var(--champagne-card) 0%,var(--champagne-light) 36%,var(--champagne-card) 58%,var(--champagne-page) 100%);
+  background:var(--champagne-page);
 }
 
-/* Give the main canvas and inner page sections the same light blue tone. */
-body[data-page],
-body[data-page] #main,
-body[data-page="services"] #main :is(.paired-content,.paired-process),
-body[data-page="projects"] #main :is(.projects-filter-band,.projects-content) {
-  background:var(--surface-light);
+/* Static, subtle highlights match the chosen preview without animation. */
+html body[data-page],
+html body[data-page] #main,
+html body[data-page="services"] #main :is(.paired-content,.paired-process),
+html body[data-page="projects"] #main :is(.projects-filter-band,.projects-content) {
+  background:var(--champagne-canvas);
 }
 
-body[data-page] .site-header .header-contact-band,
-body[data-page] .skip-link {
-  background:var(--surface-light);
+html body[data-page] .site-header .header-contact-band,
+html body[data-page] .skip-link,
+html body[data-page] #main :is(.service-card,.sample-card,.info-card,.process-card,.contact-panel),
+html body[data-page] #main .project-card:not(.project-row),
+html body[data-page] #main .estimate-disclosure > summary,
+html body[data-page] #main :is(.estimate,.service-area p),
+html body[data-page="services"] #main .paired-process-grid article,
+html body[data-page="contact"] :is(.company-location-card,.company-map-actions),
+html body[data-page] .site-footer {
+  background:var(--champagne-panel);
 }
 
-body[data-page] #main :is(.service-card,.sample-card,.process-card,.info-card),
-body[data-page] #main .project-card:not(.project-row),
-body[data-page] #main .contact-panel,
-body[data-page] #main .estimate-disclosure > summary,
-body[data-page="services"] #main .paired-process-grid article {
-  background:var(--surface-light);
-}
-
-body[data-page] #main .service-area p,
-body[data-page] #main .estimate {
-  background:var(--surface-muted);
+html body[data-page] #main :is(input,select,textarea),
+html body[data-page] #main select option,
+html body[data-page] #main .filter:not(.active),
+html body[data-page="projects"] #main .project-view,
+html body[data-page] #lightbox,
+html body[data-page="contact"] .company-location-map,
+html body[data-page] .site-footer .footer-brand img {
+  background:var(--champagne-card);
 }
 
 body[data-page] #main :is(input,select,textarea) {
-  background:var(--surface-light);
   color:var(--premium-navy);
 }
 
 body[data-page] #main select option {
-  background:var(--surface-light);
   color:var(--premium-navy);
 }
 
@@ -49,9 +61,19 @@ body[data-page] #main :is(input,textarea)::placeholder {
   opacity:1;
 }
 
-body[data-page] #main .filter:not(.active),
-body[data-page="projects"] #main .project-view {
-  background:var(--surface-light);
+/* Keep small notes and service links readable on the champagne tint. */
+html body[data-page] #main :is(.project-image-note,.image-note),
+html body[data-page="services"] #main .paired-process-grid article > span,
+html body[data-page="contact"] #main .company-location-card :is(p,address) {
+  color:var(--premium-copy);
+}
+
+html body[data-page="services"] #main .paired-number {
+  color:#83651e;
+}
+
+html body[data-page="services"] #main .paired-content .text-link {
+  color:#00669d;
 }
 
 body[data-page="projects"] #main .projects-eyebrow {
@@ -63,10 +85,6 @@ body[data-page="services"] #main .paired-photo {
   background:var(--surface-muted);
 }
 
-body[data-page] #lightbox {
-  background:var(--surface-light);
-}
-
 body[data-page="projects"] #lightbox-image {
   background:var(--surface-muted);
 }
@@ -74,12 +92,6 @@ body[data-page="projects"] #lightbox-image {
 body[data-page="contact"] .company-location-shell {
   background:var(--surface-muted);
   border-color:var(--premium-border);
-}
-
-body[data-page="contact"] .company-location-card,
-body[data-page="contact"] .company-location-map,
-body[data-page="contact"] .company-map-actions {
-  background:var(--surface-light);
 }
 
 body[data-page="contact"] .company-location-map {
@@ -99,17 +111,6 @@ body[data-page] .footer-shell {
   background:var(--surface-muted);
 }
 
-body[data-page] .site-footer,
-body[data-page] .site-footer .footer-brand img {
-  background:var(--surface-light);
-}
-
 body[data-page] .site-footer .footer-legal {
   color:var(--premium-copy);
-}
-
-@media (hover:hover) and (pointer:fine) {
-  body[data-page] #main .filter:not(.active):hover {
-    background:var(--surface-hover);
-  }
 }
