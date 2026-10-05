@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { expectDecodedPhoto } from './photo-assertions.js';
+import { expectPrimaryContactAccess } from './contact-assertions.js';
 
 const routes = ['index', 'services', 'projects', 'contact'];
 const path = route => `${process.env.SITE_BASE || '/'}${route}.html`;
@@ -128,7 +130,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
     }));
     if (sharedPresentation) expect(presentation, `${route} uses the same shared components`).toEqual(sharedPresentation);
     else sharedPresentation = presentation;
-    const actions = route === 'contact' ? page.locator('.contact-panel .actions a') : page.locator('.floating-contact a');
+    const actions = route === 'contact' ? page.locator('.contact-panel .actions a') : page.locator('.header-contact a');
     await expect(actions).toHaveCount(2);
     await expect(actions.nth(0)).toHaveAttribute('href', phone); await expect(actions.nth(1)).toHaveAttribute('href', line);
     for (const action of await actions.all()) {
@@ -141,7 +143,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
      expect(geometry.height).toBeGreaterThanOrEqual(44); expect(geometry.nowrap).toBe(true); expect(geometry.clipped).toBe(false);
     }
     if (mobile) {
-     await expect(page.locator('.floating-contact')).toBeVisible();
+     await expectPrimaryContactAccess(page);
      await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
      const clearFooter = await page.evaluate(() => document.querySelector('.footer-phone').getBoundingClientRect().bottom <= document.querySelector('.floating-contact').getBoundingClientRect().top);
      expect(clearFooter).toBe(true);
@@ -200,7 +202,7 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   await image.scrollIntoViewIfNeeded(); await image.evaluate(element => element.decode());
   const dimensions = await image.evaluate(element => ({ width: element.naturalWidth, height: element.naturalHeight }));
   if (expectedDimensions) {
-   expect([dimensions.width, dimensions.height]).toEqual(expectedDimensions);
+   await expectDecodedPhoto(image, expectedDimensions);
    await expect(image).toHaveAttribute('width', String(expectedDimensions[0]));
    await expect(image).toHaveAttribute('height', String(expectedDimensions[1]));
   } else {
@@ -216,10 +218,11 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  for (const id of ['asphalt', ...jobs.map(([id]) => id), 'gravel-road']) {
   const row = page.locator(`.paired-service#${id}`);
   await expect(row.locator('img')).toHaveCount(1);
-  const estimateLink = row.locator('.paired-quote');
-  await expect(estimateLink).toHaveText('ขอประเมินงานนี้');
-  await expect(estimateLink).toHaveAccessibleName(/^ขอประเมินงาน.+/);
-  await expect(estimateLink).toHaveAttribute('href', path('contact'));
+  await expect(row.locator('.paired-phone')).toHaveAttribute('href', phone);
+  await expect(row.locator('.paired-phone')).toContainText('062-248-4089');
+  await expect(row.locator('.paired-line')).toHaveAttribute('href', line);
+  await expect(row.locator('.paired-line')).toHaveAccessibleName('แอด LINE');
+  await expect(row.locator('.paired-line')).toHaveAttribute('target', '_blank');
  }
  const road = page.locator('.paired-service#gravel-road');
  await expect(road.locator('h2')).toHaveText('ถนนหินคลุก บดอัด');
@@ -227,15 +230,10 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  await expect(page).toHaveURL(/\/projects\.html#gravel-road$/);
  await expect(page.locator('#gravel-road')).toBeVisible();
  await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('20 ภาพ');
- await page.goto(path('services'));
- await page.locator('.paired-service#gravel .paired-quote').click();
- await expect(page).toHaveURL(/\/contact\.html$/);
- await expect(page.locator('h1')).toHaveText('ติดต่อเรา');
- await expect(page.locator('.contact-panel')).toBeVisible();
- await expect(page.locator('#estimate-form')).not.toBeVisible();
+
  await page.goto(path('projects'));
  for (const [id, file, dimensions] of projectPhotos) await loadedPhoto(page.locator(`#${id} .project-cover img`), file, dimensions);
- await page.getByRole('button', { name: 'ลานจอดรถหินคลุก', exact: true }).click();
+ await page.getByRole('button', { name: 'งานหินคลุก', exact: true }).click();
  await expect(page.locator('.project-row:visible')).toHaveCount(2);
  await page.locator('#gravel-yard .project-cover').click();
  await expect(page.locator('#lightbox')).toBeVisible();

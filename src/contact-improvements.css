@@ -1,0 +1,23 @@
+body[data-page] .floating-contact.is-obstructing {
+ visibility:hidden;
+ pointer-events:none;
+}
+body[data-page="services"] #main .paired-service .paired-actions > .button {
+ flex:1 1 190px;
+ padding-inline:16px;
+ gap:8px;
+}
+body[data-page="services"] #main .paired-service .paired-actions > .text-link {
+ flex-basis:100%;
+ width:fit-content;
+}
+@media(max-width:760px) {
+ body[data-page="services"] #main .paired-service .paired-actions > .button { flex:auto; }
+ body[data-page="index"] #main .hero-estimate .hero-content {
+  padding-top:calc(var(--hero-photo-height) + 22px);
+  padding-bottom:28px;
+ }
+ body[data-page="index"] #main .hero-estimate h1 { margin-bottom:14px; }
+ body[data-page="index"] #main .hero-estimate .hero-benefits { gap:14px 16px; margin:20px 0; }
+ body[data-page="index"] #main .hero-estimate .hero-benefit > .icon { width:30px; height:30px; margin-bottom:5px; }
+}

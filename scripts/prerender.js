@@ -1,12 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
+import { responsivePhotoAttributes } from '../src/responsive-photos.js';
 import { business } from '../src/data.js';
 const source = (await readFile('src/main.js', 'utf8')).replace(/^import .*;\n/gm, '').replaceAll('import.meta.env.BASE_URL', JSON.stringify(process.env.SITE_BASE || '/')).replaceAll('import.meta.env.VITE_SITE_URL', JSON.stringify(process.env.VITE_SITE_URL || ''));
 const { services, servicesPageServices, projects } = await import('../src/data.js');
 for (const page of ['index', 'services', 'projects', 'contact']) {
  const path = `dist/${page}.html`;
  const dom = new JSDOM(await readFile(path, 'utf8'), { url: `https://preview.invalid/${page}.html`, runScripts: 'outside-only' });
- dom.window.b = business; dom.window.services = services; dom.window.servicesPageServices = servicesPageServices; dom.window.projects = projects;
+ dom.window.responsivePhotoAttributes = responsivePhotoAttributes; dom.window.b = business; dom.window.services = services; dom.window.servicesPageServices = servicesPageServices; dom.window.projects = projects;
  dom.window.eval(source);
  dom.window.document.querySelector('noscript').textContent = 'เมนูมือถือ ตัวกรองภาพ และฟอร์มขอประเมินราคา ต้องเปิดใช้งาน JavaScript';
  await writeFile(path, dom.serialize());

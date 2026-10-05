@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
+import { expectDecodedPhoto } from './photo-assertions.js';
+import { expectPrimaryContactAccess } from './contact-assertions.js';
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
 for (const width of [320, 375, 390, 430, 768, 1440]) {
  test(`all pages, navigation and layout at ${width}px`, async ({ page }) => {
@@ -45,9 +47,9 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
    if(width>760){await page.evaluate(()=>scrollTo(0,document.documentElement.scrollHeight));await expect(page.locator('.floating-contact')).not.toBeVisible();}
    const nextRoute=routes[(routes.indexOf(route)+1)%routes.length];
    await footer.locator(`a[href="${path(`${nextRoute}.html`)}"]`).click();await expect(page).toHaveURL(new RegExp(`/${nextRoute}\\.html$`));
-   if(width>760){await page.evaluate(()=>scrollTo(0,0));await expect(page.locator('.floating-contact')).toBeVisible();}
+   if(width>760){await page.evaluate(()=>scrollTo(0,0));await expectPrimaryContactAccess(page);}
    await page.locator('#main-nav a').nth(1).click();await expect(page).toHaveURL(/services.html/);
-   if(width>760){await page.evaluate(()=>scrollTo(0,0));await expect(page.locator('.floating-contact')).toBeVisible();}
+   if(width>760){await page.evaluate(()=>scrollTo(0,0));await expectPrimaryContactAccess(page);}
   }
   expect(errors).toEqual([]);
  });
@@ -85,7 +87,7 @@ test('project filters show the selected category and retain honest photo labels'
    await expect(cover).toHaveAttribute('width','1280');
    await expect(cover).toHaveAttribute('height','720');
    await cover.scrollIntoViewIfNeeded();await cover.evaluate(i=>i.decode());
-   expect(await cover.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1280,720]);
+   await expectDecodedPhoto(cover,[1280,720]);
   }
   if(category==='stone'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['stone-yard']);
@@ -143,7 +145,7 @@ test('form message links to email without claiming an automatic submission',asyn
 for(const width of [320,375,390,430]){
  test(`premium contact panel buttons with shared floating controls at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:850});await page.goto(path('contact.html'));await page.evaluate(()=>document.fonts.ready);
-  await expect(page.locator('.floating-contact')).toBeVisible();
+  await expectPrimaryContactAccess(page);
   const buttons=page.locator('.contact-panel .actions .button');await expect(buttons).toHaveCount(2);
   await expect(buttons.nth(0)).toHaveText('โทร 062-248-4089');
   await expect(buttons.nth(1)).toContainText('LINE @138wlldt');
@@ -159,7 +161,7 @@ for(const width of [320,375,390,430]){
   await page.setViewportSize({width,height:850});
   for(const route of ['index','services','projects','contact']){
    await page.goto(path(`${route}.html`));await page.evaluate(()=>document.fonts.ready);
-   await expect(page.locator('.floating-contact')).toBeVisible();
+   await expectPrimaryContactAccess(page);
    const buttons=page.locator('.floating-contact .float-button');await expect(buttons).toHaveCount(2);
    const geometry=await buttons.evaluateAll(items=>items.map(b=>{
     const r=b.getBoundingClientRect(),s=getComputedStyle(b);
@@ -188,9 +190,8 @@ for(const width of [320,375,390,430]){
    await page.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
    const unobstructed=await page.evaluate(()=>document.querySelector('.site-footer').getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
    expect(unobstructed).toBe(true);
-   await page.locator('main .button:visible').last().scrollIntoViewIfNeeded();
-   const clearButton=await page.locator('main .button:visible').last().evaluate(b=>b.getBoundingClientRect().bottom<=document.querySelector('.floating-contact').getBoundingClientRect().top);
-   expect(clearButton).toBe(true);
+   await page.locator('main .button:visible').last().evaluate(element=>element.scrollIntoView({block:'center',behavior:'instant'}));
+   await expect.poll(()=>page.locator('main .button:visible').last().evaluate(b=>{const r=b.getBoundingClientRect();return b.contains(document.elementFromPoint(r.left+r.width/2,r.top+r.height/2));})).toBe(true);
   }
  });
 }
@@ -224,7 +225,7 @@ for(const width of [320,375,390,430]){
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    for(const image of await hero.locator('img:visible').all()) await image.evaluate(i=>i.decode());
    const composition=await hero.evaluate(e=>{const photo=e.querySelector(e.dataset.activeSlide==='0'?'.hero-image':'.hero-scene').getBoundingClientRect();return {photoHeight:photo.height,photoBottom:photo.bottom,titleTop:e.querySelector('h1').getBoundingClientRect().top};});
-   expect(composition.photoHeight).toBeGreaterThanOrEqual(230);expect(composition.titleTop-composition.photoBottom).toBeGreaterThanOrEqual(24);
+   expect(composition.photoHeight).toBeGreaterThanOrEqual(230);expect(composition.titleTop-composition.photoBottom).toBeGreaterThanOrEqual(20);
   }
   await page.clock.runFor(6001);await expect(hero).toHaveAttribute('data-active-slide','0');
   await hero.evaluate(e=>{
@@ -262,7 +263,7 @@ test('homepage cards use supplied photos while all five slider images stay uncha
  await expect(gravelRoad.locator('img')).toHaveAttribute('width','1280');
  await expect(gravelRoad.locator('img')).toHaveAttribute('height','960');
  await gravelRoad.scrollIntoViewIfNeeded();await gravelRoad.locator('img').evaluate(i=>i.decode());
- expect(await gravelRoad.locator('img').evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual([1280,960]);
+ await expectDecodedPhoto(gravelRoad.locator('img'),[1280,960]);
  const photos=[
   ['asphalt-job-18','asphalt-job-17',[1280,960],[960,1280]],
   ['home-gravel-service','gravel-job-14',[1280,960],[1280,960]],
@@ -278,7 +279,7 @@ test('homepage cards use supplied photos while all five slider images stay uncha
    await expect(image).toHaveAttribute('width',String(size[0]));
    await expect(image).toHaveAttribute('height',String(size[1]));
    await image.scrollIntoViewIfNeeded();await image.evaluate(i=>i.decode());
-   expect(await image.evaluate(i=>[i.naturalWidth,i.naturalHeight])).toEqual(size);
+   await expectDecodedPhoto(image,size);
   }
  }
  await expect(page.locator('.hero-image')).toHaveAttribute('src',path('images/hero-sharp.webp'));
@@ -365,7 +366,7 @@ test('blue and gold header keeps three bands and compact contacts readable on ev
    const activeStyle=await page.locator('#main-nav [aria-current]').evaluate(e=>({color:getComputedStyle(e).color,background:getComputedStyle(e).backgroundColor,underlineHeight:parseFloat(getComputedStyle(e,'::after').height),underlineTransform:getComputedStyle(e,'::after').transform}));
    expect(activeStyle.color).toBe('rgb(20, 61, 117)');expect(activeStyle.background).toBe('rgba(0, 0, 0, 0)');expect(activeStyle.underlineHeight).toBeGreaterThanOrEqual(2);expect(activeStyle.underlineTransform).toBe('matrix(1, 0, 0, 1, 0, 0)');
    const bands=await page.evaluate(()=>['.header-brand-band','.header-nav-band','.header-contact-band'].map(selector=>{const element=document.querySelector(selector),rect=element.getBoundingClientRect();return {background:getComputedStyle(element).backgroundColor,left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom};}));
-   expect(bands.map(band=>band.background)).toEqual(['rgb(22, 79, 159)','rgb(224, 188, 104)','rgb(255, 255, 255)']);
+   expect(bands.map(band=>band.background)).toEqual(['rgb(22, 79, 159)','rgb(224, 188, 104)','rgb(255, 244, 214)']);
    for(const band of bands){expect(band.left).toBe(0);expect(band.right).toBe(width);}
    expect(bands[0].bottom).toBeCloseTo(bands[1].top,1);expect(bands[1].bottom).toBeCloseTo(bands[2].top,1);
    expect(await page.locator('.site-header svg').count()).toBe(2);
@@ -399,7 +400,6 @@ test('homepage gallery keeps six equal photo cards aligned on desktop and tablet
    for(let index=1;index<geometry.cards.length;index++){expect(geometry.cards[index].left).toBeCloseTo(a.left,0);expect(geometry.cards[index].top).toBeGreaterThanOrEqual(geometry.cards[index-1].bottom);}
   }
  }
- await page.goto(path('services.html'));await expect(page.locator('.image-note').first()).toContainText('ภาพประกอบบริการ');
  await page.goto(path('projects.html'));await expect(page.locator('.project-row').first().locator('.project-cover img')).toHaveAttribute('src',path('images/asphalt-job-01.webp'));await expect(page.locator('#empty-projects')).not.toBeVisible();
 });
 

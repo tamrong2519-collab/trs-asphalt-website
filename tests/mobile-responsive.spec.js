@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { expectPrimaryContactAccess } from './contact-assertions.js';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}.html`;
 const routes = ['index', 'services', 'projects', 'contact'];
@@ -45,7 +46,7 @@ for (const width of [320, 375, 390, 430]) {
     const viewportMeta = await page.locator('meta[name="viewport"]').getAttribute('content');
     expect(viewportMeta).toMatch(/width\s*=\s*device-width/); expect(viewportMeta).toMatch(/initial-scale\s*=\s*1/);
     expect(viewportMeta).not.toMatch(/user-scalable\s*=\s*(?:no|0)|maximum-scale\s*=/i);
-    await expect(page.locator('.floating-contact')).toBeVisible();
+    await expectPrimaryContactAccess(page);
     const floating = await page.locator('.floating-contact').evaluate(element => {
      const rect = element.getBoundingClientRect();
      return { right: rect.right, bottom: rect.bottom, width: rect.width, buttons: [...element.querySelectorAll('a')].map(button => {
