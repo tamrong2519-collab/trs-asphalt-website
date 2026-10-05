@@ -102,7 +102,7 @@ const home = `${banner('<span class="hero-title-primary"><span class="hero-title
 const serviceCheckMark = '<span class="paired-check-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" focusable="false"><path d="m2.5 8.2 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 const servicePage = `
 <section class="paired-hero">
- <img class="paired-hero-image" src="/images/hero-sharp.webp" alt="ภาพประกอบทีมงานและเครื่องจักรลาดยางมะตอย" width="1536" height="1024" fetchpriority="high">
+ <img class="paired-hero-image" src="/images/services-hero.webp" alt="ภาพหน้างานถนนลาดยางมะตอยรอบอาคารสีขาวและแนวต้นไม้" width="1280" height="960" fetchpriority="high">
  <div class="container"><span class="paired-eyebrow">${escape(b.name)} CONSTRUCTION</span><h1>บริการ<span>ของเรา</span></h1><p>งานถนนและพื้นลานครบวงจร<br>เลือกบริการให้เหมาะกับพื้นที่ของคุณ</p></div>
 </section>
 <section class="paired-content"><div class="container">

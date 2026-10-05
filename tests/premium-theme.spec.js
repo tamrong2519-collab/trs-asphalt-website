@@ -208,6 +208,7 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   }
  };
  await page.goto(path('services'));
+ await loadedPhoto(page.locator('.paired-hero-image'), 'services-hero.webp', [1280, 960]);
  await expect(page.locator('.paired-service')).toHaveCount(6);
  for (const [id, file, dimensions] of servicePhotos) {
   await loadedPhoto(page.locator(`.paired-service#${id} img`), file, dimensions);
