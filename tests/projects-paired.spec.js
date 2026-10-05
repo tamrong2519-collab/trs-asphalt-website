@@ -253,7 +253,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
   await expect(row.locator('.project-gallery-open')).toBeVisible();
-  await expect(row.locator(`a[href="${path(`contact.html?service=${category}#estimate`)}"]`)).toBeVisible();
+  await expect(row.locator(`a[href="${path(`contact.html?service=${category}#estimate`)}"]`)).toHaveCount(0);
  }
  await expect(page.locator('#empty-projects')).not.toBeVisible();
  const expectStoneAnchorClear = async (width, anchor) => {

@@ -240,7 +240,7 @@ if(page==='projects') {
     <button type="button" class="photo-button project-cover" data-project="${index}" aria-label="${label}: ${escape(p.title)}"><img src="${escape(cover.src)}" alt="${escape(cover.alt)}" width="${cover.width || 1280}" height="${cover.height || 960}" ${cover.coverPosition?`style="object-position:${escape(cover.coverPosition)}"`:''} loading="lazy"><span class="project-view" aria-hidden="true">${arrow}</span></button>
     <div class="project-copy"><span class="project-category">${escape(s.title)}</span><h3>${escape(p.title)}</h3>${p.location?`<p class="project-location">${icon('pin')}${escape(p.location)}</p>`:''}<p>${escape(p.description)}</p>
      ${p.imageKind==='illustration'?'<p class="project-image-note">ภาพประกอบงานลาดยางมะตอย</p>':''}
-     <div class="project-actions"><button type="button" class="project-gallery-open" data-project="${index}" aria-label="${label}ทั้งหมด: ${escape(p.title)}">${label}${p.images.length>1?`<span class="project-photo-count">${p.images.length} ภาพ</span>`:''}${arrow}</button><a class="project-quote" href="/contact.html?service=${encodeURIComponent(p.category)}#estimate" aria-label="ปรึกษางานลักษณะนี้: ${escape(p.title)}">ปรึกษางานลักษณะนี้ ${arrow}</a></div>
+     <div class="project-actions"><button type="button" class="project-gallery-open" data-project="${index}" aria-label="${label}ทั้งหมด: ${escape(p.title)}">${label}${p.images.length>1?`<span class="project-photo-count">${p.images.length} ภาพ</span>`:''}${arrow}</button></div>
     </div>
    </article>`;
   }).join(''));

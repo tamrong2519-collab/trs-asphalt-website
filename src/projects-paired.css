@@ -203,17 +203,6 @@ body[data-page="projects"] #main .project-photo-count {
   border-left:1px solid #f0d68c66;
   font-size:16px;
 }
-body[data-page="projects"] #main .project-quote {
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  min-height:44px;
-  color:var(--premium-navy);
-  font-size:16px;
-}
-body[data-page="projects"] #main .project-quote .icon {
-  color:var(--premium-gold-ink);
-}
 body[data-page="projects"] #main .project-actions .icon {
   width:20px;
   height:20px;
@@ -397,9 +386,6 @@ body[data-page="projects"] #image-caption {
     min-height:54px;
     width:100%;
     padding-inline:14px;
-  }
-  body[data-page="projects"] #main .project-quote {
-    justify-content:center;
   }
   body[data-page="projects"] #lightbox {
     padding:16px;
