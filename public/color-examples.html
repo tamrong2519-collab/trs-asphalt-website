@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#f3f4f6" />
+    <meta name="description" content="เปรียบเทียบโทนสีเว็บไซต์ 5 แบบ พร้อมเปิดดูตัวอย่างหน้าเว็บไซต์จริง" />
+    <title>ตัวอย่างสีเว็บไซต์ 5 แบบ | TRS TAMRONGSAK CONSTRUCTION</title>
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./color-examples.css" />
+    <script type="module" src="./color-examples.js"></script>
+  </head>
+  <body>
+    <main class="comparison-page">
+      <header class="comparison-intro">
+        <p class="eyebrow">TRS TAMRONGSAK CONSTRUCTION</p>
+        <h1>เปรียบเทียบสีเว็บไซต์ <span>5 แบบ</span></h1>
+        <p class="intro-description">เลือกโทนสีที่ชอบ แล้วเปิดดูตัวอย่างจากหน้าเว็บไซต์จริง</p>
+        <p class="preview-note"><span aria-hidden="true"></span>ตัวอย่างเพื่อเลือกสี — เว็บไซต์หลักยังใช้สีเดิม</p>
+      </header>
+
+      <section class="theme-grid" id="theme-grid" aria-label="ตัวอย่างโทนสีทั้ง 5 แบบ" aria-busy="true"></section>
+
+      <noscript><p class="no-script">กรุณาเปิด JavaScript เพื่อดูตัวอย่างสีทั้ง 5 แบบ</p></noscript>
+      <footer class="comparison-footer">
+        <p>แต่ละแบบใช้รูปผลงานและเนื้อหาเดียวกัน เพื่อให้เทียบโทนสีได้ชัดเจน</p>
+      </footer>
+    </main>
+
+    <dialog class="preview-dialog" id="preview-dialog" aria-labelledby="preview-title">
+      <div class="preview-toolbar">
+        <div class="preview-heading">
+          <strong id="preview-title">ตัวอย่างสีเว็บไซต์</strong>
+          <span>เปิดดูหน้าแรก บริการ ผลงาน และติดต่อเราได้</span>
+        </div>
+        <div class="preview-controls">
+          <label class="theme-select-label" for="theme-select">โทนสี</label>
+          <select id="theme-select" aria-label="เปลี่ยนโทนสีตัวอย่าง"></select>
+          <button type="button" class="close-preview" id="close-preview" aria-label="ปิดตัวอย่าง กลับไปดูทั้ง 5 แบบ">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+            <span>ปิด</span>
+          </button>
+        </div>
+      </div>
+      <div class="preview-frame-wrap" aria-busy="true">
+        <p class="preview-loading" id="preview-loading" role="status">กำลังเปิดตัวอย่าง…</p>
+        <iframe id="preview-frame" title="ตัวอย่างสีเว็บไซต์" referrerpolicy="same-origin"></iframe>
+      </div>
+    </dialog>
+  </body>
+</html>
