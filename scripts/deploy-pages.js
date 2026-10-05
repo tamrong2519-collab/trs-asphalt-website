@@ -1,7 +1,8 @@
-import { mkdtempSync, cpSync, readdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { stagePagesBuild } from './stage-pages.js';
 const root = process.cwd();
 const run = (command, args, cwd = root, options = {}) => execFileSync(command, args, { cwd, stdio: 'inherit', ...options });
 const readGit = args => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
@@ -12,13 +13,15 @@ const staging = mkdtempSync(join(tmpdir(), 'trs-pages-'));
 try {
  run('git', ['init', '-b', 'gh-pages', staging]);
  const existing = readGit(['ls-remote', 'origin', 'refs/heads/gh-pages']);
+ let history = '';
  if (existing) {
   run('git', ['fetch', 'origin', 'gh-pages']);
-  run('git', ['fetch', root, readGit(['rev-parse', 'FETCH_HEAD'])], staging);
+  history = readGit(['rev-parse', 'FETCH_HEAD']);
+  run('git', ['fetch', root, history], staging);
   run('git', ['reset', '--hard', 'FETCH_HEAD'], staging);
  }
- for (const name of readdirSync(staging)) if (name !== '.git') rmSync(join(staging, name), { recursive: true, force: true });
- cpSync(join(root, 'dist'), staging, { recursive: true });
+ const restored = stagePagesBuild({ repository: root, build: join(root, 'dist'), staging, history });
+ console.log(`Kept previously published assets and recovered ${restored} missing files for cached pages.`);
  run('git', ['config', 'user.name', readGit(['config', 'user.name'])], staging);
  run('git', ['config', 'user.email', readGit(['config', 'user.email'])], staging);
  run('git', ['add', '--all'], staging);

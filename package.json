@@ -8,6 +8,7 @@
     "build": "vite build && node scripts/prerender.js",
     "preview": "vite preview --host 0.0.0.0",
     "test": "playwright test",
+    "test:deploy": "node --test scripts/tests/*.test.js",
     "deploy": "node scripts/deploy-pages.js"
   },
   "devDependencies": {
