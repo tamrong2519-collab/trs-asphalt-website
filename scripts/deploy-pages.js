@@ -8,7 +8,7 @@ const run = (command, args, cwd = root, options = {}) => execFileSync(command, a
 const readGit = args => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
 const origin = readGit(['remote', 'get-url', 'origin']);
 if (!/tamrong2519-collab\/trs-asphalt-website(?:\.git)?$/.test(origin)) throw new Error('Check the deployment repository before using this script.');
-run('npm', ['run', 'build'], root, { env: { ...process.env, SITE_BASE: '/trs-asphalt-website/', VITE_SITE_URL: 'https://tamrong2519-collab.github.io/trs-asphalt-website/' } });
+run('npm', ['run', 'build'], root, { env: { ...process.env, SITE_BASE: '/', VITE_SITE_URL: 'https://www.trsasphalt.com/' } });
 const staging = mkdtempSync(join(tmpdir(), 'trs-pages-'));
 try {
  run('git', ['init', '-b', 'gh-pages', staging]);
@@ -30,5 +30,5 @@ try {
  run('git', ['fetch', staging, 'HEAD']);
  run('git', ['push', 'origin', 'FETCH_HEAD:refs/heads/gh-pages']);
  console.log('Uploaded gh-pages. Enable Settings > Pages > Deploy from a branch > gh-pages / (root).');
- console.log('Expected URL after Pages is enabled: https://tamrong2519-collab.github.io/trs-asphalt-website/');
+ console.log('Expected URL after Pages is enabled: https://www.trsasphalt.com/');
 } finally { rmSync(staging, { recursive: true, force: true }); }
