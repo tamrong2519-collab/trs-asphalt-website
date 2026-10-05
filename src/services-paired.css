@@ -57,14 +57,14 @@ body[data-page="services"] #main .paired-hero-image {
   height:100%;
   object-fit:cover;
   object-position:center 55%;
-  opacity:.58;
+  opacity:1;
   z-index:-2;
 }
 body[data-page="services"] #main .paired-hero::after {
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(90deg,#091f59f7,#091f59d9 42%,transparent 78%);
+  background:linear-gradient(90deg,#091f59e6 0%,#091f59cc 420px,#091f595e 680px,transparent 900px);
   z-index:-1;
 }
 body[data-page="services"] #main .paired-hero .paired-eyebrow {
@@ -318,7 +318,10 @@ body[data-page="services"] #main :is(.paired-content,.paired-cta) a:focus-visibl
     font-size:16px;
   }
   body[data-page="services"] #main .paired-hero {
-    padding-block:34px 38px;
+    padding-block:0;
+  }
+  body[data-page="services"] #main .paired-hero > .container {
+    padding-block:30px 34px;
   }
   body[data-page="services"] #main .paired-hero h1 {
     font-size:clamp(34px,9vw,44px);
@@ -329,11 +332,14 @@ body[data-page="services"] #main :is(.paired-content,.paired-cta) a:focus-visibl
     font-size:17px;
   }
   body[data-page="services"] #main .paired-hero-image {
+    position:static;
+    height:auto;
+    aspect-ratio:4 / 3;
     object-position:68% center;
-    opacity:.3;
+    opacity:1;
   }
   body[data-page="services"] #main .paired-hero::after {
-    background:linear-gradient(90deg,#091f59fa,#091f59ad);
+    display:none;
   }
   body[data-page="services"] #main .paired-content {
     padding-block:32px 38px;
