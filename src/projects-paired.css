@@ -423,7 +423,7 @@ body[data-page="projects"] #lightbox .gallery-thumbnail {
   overflow:hidden;
   border:1px solid #af842659;
   border-radius:9px;
-  background:var(--pearl-panel, #f8f9fa);
+  background:var(--silver-panel, #edf0f3);
   color:var(--premium-navy);
   font-size:16px;
   font-weight:600;

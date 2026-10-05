@@ -132,7 +132,7 @@ body[data-page="services"] #main .service-jump-links a {
   padding:8px 10px;
   border:1px solid #d9c397;
   border-radius:10px;
-  background:var(--pearl-panel, #f8f9fa);
+  background:var(--silver-panel, #edf0f3);
   color:var(--premium-navy);
   font-size:15px;
   font-weight:500;
@@ -325,7 +325,7 @@ body[data-page="services"] #main :is(.paired-content,.paired-cta) a:focus-visibl
 }
 @media (hover:hover) and (pointer:fine) {
   body[data-page="services"] #main .service-jump-links a:hover {
-    background:var(--pearl-hover, #e9ecef);
+    background:var(--silver-hover, #e1e5e9);
     border-color:#b18a2b;
   }
   body[data-page="services"] #main .paired-quote:hover {
