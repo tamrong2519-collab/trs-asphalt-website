@@ -98,7 +98,7 @@ npm run preview -- --port 4173
 
 ภาพตัวอย่างใช้หน้าบริการจริง สร้างใหม่หลัง build และเปิด production preview ที่พอร์ต 4182 ด้วย `node scripts/generate-color-examples.js` จากนั้น build อีกครั้งเพื่อรวมภาพใหม่ เปลี่ยน URL preview ได้ผ่าน `COLOR_EXAMPLES_BASE` ใช้เบราว์เซอร์เดียวกับการทดสอบเว็บไซต์
 
-เปิด `blue-examples.html` เพื่อเปรียบเทียบสีฟ้าอ่อนมีประกาย 5 แบบ ชุดสีและแสงเงาแบบนิ่งอยู่ใน `public/blue-themes.js` ใช้หน้าตัวอย่างร่วมกันผ่านค่า `data-theme-module` และ `data-theme-images` โดยสร้างภาพชุดฟ้าใหม่ด้วย `COLOR_EXAMPLES_SET=blue node scripts/generate-color-examples.js` ตัวอย่างทั้งสองชุดเปิดดูได้ครบ 4 หน้าและไม่บันทึกสีลงเว็บไซต์หลัก
+เปิด `blue-examples.html` เพื่อเปรียบเทียบสีฟ้าอ่อนมีประกาย 5 แบบ เฉพาะพื้นขาว/ครีมเดิม โดยรักษาสีหัวเว็บ เมนู แบนเนอร์ แถบสีและปุ่มติดต่อ ชุดสีและแสงเงาแบบนิ่งอยู่ใน `public/blue-themes.js` ใช้หน้าตัวอย่างร่วมกันผ่านค่า `data-theme-module` และ `data-theme-images` โดยสร้างภาพชุดฟ้าใหม่ใน `images/blue-examples-white` ด้วย `COLOR_EXAMPLES_SET=blue node scripts/generate-color-examples.js` ตัวอย่างทั้งสองชุดเปิดดูได้ครบ 4 หน้าและไม่บันทึกสีลงเว็บไซต์หลัก
 
 ## การขอประเมินราคา
 

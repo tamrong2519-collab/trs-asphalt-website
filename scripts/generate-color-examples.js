@@ -3,7 +3,7 @@ import { chromium } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 const blueExamples = process.env.COLOR_EXAMPLES_SET === 'blue';
 const { colorThemes, themeStyles } = await import(blueExamples ? '../public/blue-themes.js' : '../public/color-themes.js');
-const imageFolder = blueExamples ? 'blue-examples' : 'color-examples';
+const imageFolder = blueExamples ? 'blue-examples-white' : 'color-examples';
 
 const base = process.env.COLOR_EXAMPLES_BASE || 'http://127.0.0.1:4182/trs-asphalt-website/';
 await mkdir(`public/images/${imageFolder}`, { recursive: true });
