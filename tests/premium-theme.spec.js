@@ -185,7 +185,7 @@ test('inner pages show the supplied work photos and gallery opens the selected f
   ['stone', 'stone-job.webp', [1280, 960]],
   ['speed-bump', 'services-speed-bump.webp', [1280, 960]],
   ['marking', 'services-marking.webp', [1280, 960]],
-  ['gravel-road', 'home-gravel-road.webp', [1280, 960]],
+  ['gravel-road', 'services-gravel-road.webp', [960, 1280]],
  ];
  const projectPhotos = [
   ['gravel-yard', 'projects-gravel-cover.webp', [1280, 720]],

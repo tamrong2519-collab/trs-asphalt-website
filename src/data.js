@@ -36,7 +36,7 @@ export const servicesPageServices = [
   {
     id: 'gravel-road', projectId: 'gravel-road', number: '06', title: 'ถนนหินคลุก บดอัด',
     subtitle: 'เกลี่ยปรับระดับและบดอัดถนน',
-    servicesPageImage: { src: '/images/home-gravel-road.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภค', width: 1280, height: 960 },
+    servicesPageImage: { src: '/images/services-gravel-road.webp', alt: 'ภาพหน้างานทีมงาน รถขุด และรถบดขณะเกลี่ยและบดอัดถนนหินคลุกระหว่างอาคาร', width: 960, height: 1280 },
     description: 'เกลี่ยปรับระดับและบดอัดหินคลุก สำหรับถนนภายในโครงการและทางเข้าออก',
     details: ['สำรวจแนวถนนและระดับพื้นเดิม', 'เกลี่ยหินคลุกและปรับระดับตามแนวทาง', 'บดอัดผิวถนนให้แน่นและเก็บขอบทาง'],
   },
