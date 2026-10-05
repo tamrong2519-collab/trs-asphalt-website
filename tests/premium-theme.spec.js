@@ -7,8 +7,8 @@ const path = route => `${process.env.SITE_BASE || '/'}${route}.html`;
 const phone = 'tel:0622484089';
 const line = 'https://line.me/ti/p/%40138wlldt';
 
-// Check the rendered foreground against the solid surface behind ordinary copy.
-// Photos and gradients require visual review, so they are not approximated here.
+// Check ordinary dark copy against solid surfaces and a conservative lower
+// color bound for opaque linear gradients. Photos/translucent layers need review.
 async function inspectReadability(page) {
  return page.evaluate(() => {
   const visible = element => {
@@ -38,7 +38,15 @@ async function inspectReadability(page) {
    const layers = []; let gradient = false;
    for (let ancestor = element; ancestor; ancestor = ancestor.parentElement) {
     const style = getComputedStyle(ancestor);
-    if (style.backgroundImage !== 'none') { gradient = true; break; }
+    if (style.backgroundImage !== 'none') {
+     const stops = [...style.backgroundImage.matchAll(/rgba?\([^)]+\)/g)].map(match => rgba(match[0]));
+     if (style.backgroundImage.startsWith('linear-gradient(') && stops.length && stops.every(color => color?.[3] === 1)) {
+      // Each interpolated channel is at least its smallest stop value.
+      // Using all three minima gives a conservative background for dark copy.
+      layers.push([0, 1, 2].map(channel => Math.min(...stops.map(color => color[channel]))).concat(1));
+     } else gradient = true;
+     break;
+    }
     const color = rgba(style.backgroundColor);
     if (color) layers.push(color);
     if (color?.[3] === 1) break;

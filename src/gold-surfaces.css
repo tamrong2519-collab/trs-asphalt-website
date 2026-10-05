@@ -1,15 +1,26 @@
-/* Pale gold replaces the site's white UI surfaces without tinting photographs. */
+/* Soft champagne-gold surfaces with a static metallic sheen. */
 :root {
   --premium-ivory:#fff4d6;
   --surface-gold:#fff4d6;
   --surface-gold-muted:#f9ebc8;
   --surface-gold-hover:#f3e2b5;
-  background:var(--surface-gold);
+  --surface-gold-sheen:linear-gradient(115deg,#f8e8bd 0%,#fff8e5 32%,#fffdf1 48%,#f5e2af 72%,#fff5d8 100%);
+  --surface-gold-wash:linear-gradient(110deg,#fff5dc 0%,#f8e9c2 28%,#fff9e7 48%,#f6e5b6 73%,#fff6df 100%);
+  --surface-gold-soft-sheen:linear-gradient(115deg,#f3e2b7 0%,#fff3d5 42%,#f9edcc 65%,#f1dfaf 100%);
+  background:var(--surface-gold-sheen) var(--surface-gold);
+}
+
+/* Broad reflections on page sections; finer highlights on individual cards. */
+body[data-page],
+body[data-page] #main,
+body[data-page="services"] #main :is(.paired-content,.paired-process),
+body[data-page="projects"] #main :is(.projects-filter-band,.projects-content) {
+  background:var(--surface-gold-wash) var(--surface-gold);
 }
 
 body[data-page] .site-header .header-contact-band,
 body[data-page] .skip-link {
-  background:var(--surface-gold);
+  background:var(--surface-gold-sheen) var(--surface-gold);
 }
 
 body[data-page] #main :is(.service-card,.sample-card,.process-card,.info-card),
@@ -17,15 +28,19 @@ body[data-page] #main .project-card:not(.project-row),
 body[data-page] #main .contact-panel,
 body[data-page] #main .estimate-disclosure > summary,
 body[data-page="services"] #main .paired-process-grid article {
-  background:var(--surface-gold);
+  background:var(--surface-gold-sheen) var(--surface-gold);
 }
 
 body[data-page] #main .service-area p,
 body[data-page] #main .estimate {
-  background:var(--surface-gold-muted);
+  background:var(--surface-gold-soft-sheen) var(--surface-gold-muted);
 }
 
-body[data-page] #main :is(input,select,textarea),
+body[data-page] #main :is(input,select,textarea) {
+  background:var(--surface-gold-wash) var(--surface-gold);
+  color:var(--premium-navy);
+}
+
 body[data-page] #main select option {
   background:var(--surface-gold);
   color:var(--premium-navy);
@@ -38,31 +53,35 @@ body[data-page] #main :is(input,textarea)::placeholder {
 
 body[data-page] #main .filter:not(.active),
 body[data-page="projects"] #main .project-view {
-  background:var(--surface-gold);
+  background:var(--surface-gold-sheen) var(--surface-gold);
+}
+
+body[data-page="projects"] #main .projects-eyebrow {
+  color:#76591a;
 }
 
 body[data-page="projects"] #main .project-cover,
 body[data-page="services"] #main .paired-photo {
-  background:var(--surface-gold-muted);
+  background:var(--surface-gold-soft-sheen) var(--surface-gold-muted);
 }
 
 body[data-page] #lightbox {
-  background:var(--surface-gold);
+  background:var(--surface-gold-sheen) var(--surface-gold);
 }
 
 body[data-page="projects"] #lightbox-image {
-  background:var(--surface-gold-muted);
+  background:var(--surface-gold-soft-sheen) var(--surface-gold-muted);
 }
 
 body[data-page="contact"] .company-location-shell {
-  background:var(--surface-gold-muted);
+  background:var(--surface-gold-soft-sheen) var(--surface-gold-muted);
   border-color:var(--premium-border);
 }
 
 body[data-page="contact"] .company-location-card,
 body[data-page="contact"] .company-location-map,
 body[data-page="contact"] .company-map-actions {
-  background:var(--surface-gold);
+  background:var(--surface-gold-sheen) var(--surface-gold);
 }
 
 body[data-page="contact"] .company-location-map {
@@ -71,7 +90,7 @@ body[data-page="contact"] .company-location-map {
 
 body[data-page="contact"] .company-location-icon,
 body[data-page="contact"] .company-location-map iframe {
-  background:var(--surface-gold-muted);
+  background:var(--surface-gold-soft-sheen) var(--surface-gold-muted);
 }
 
 body[data-page="contact"] .company-location-row {
@@ -79,12 +98,12 @@ body[data-page="contact"] .company-location-row {
 }
 
 body[data-page] .footer-shell {
-  background:var(--surface-gold-muted);
+  background:var(--surface-gold-soft-sheen) var(--surface-gold-muted);
 }
 
 body[data-page] .site-footer,
 body[data-page] .site-footer .footer-brand img {
-  background:var(--surface-gold);
+  background:var(--surface-gold-sheen) var(--surface-gold);
 }
 
 body[data-page] .site-footer .footer-legal {
@@ -93,6 +112,6 @@ body[data-page] .site-footer .footer-legal {
 
 @media (hover:hover) and (pointer:fine) {
   body[data-page] #main .filter:not(.active):hover {
-    background:var(--surface-gold-hover);
+    background:var(--surface-gold-soft-sheen) var(--surface-gold-hover);
   }
 }
