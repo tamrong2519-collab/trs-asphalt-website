@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
+const siteURL = process.env.VITE_SITE_URL || 'https://tamrong2519-collab.github.io/trs-asphalt-website/';
 test.use({ reducedMotion:'reduce' });
 
 async function expectReadableContactButtons(page) {
@@ -69,7 +70,7 @@ test('shared links expose real JPEG preview images before JavaScript runs',async
  for(const [route,image] of [['index','hero-sharp'],['services','services-hero'],['projects','marking-job'],['contact','hero-sharp']]) {
   const response=await request.get(path(`${route}.html`));expect(response.status()).toBe(200);
   const html=await response.text();
-  expect(html).toContain(`property="og:image" content="https://tamrong2519-collab.github.io/trs-asphalt-website/images/share/${image}.jpg"`);
+  expect(html).toContain(`property="og:image" content="${new URL(`images/share/${image}.jpg`, siteURL).href}"`);
   expect(html).toContain('property="og:image:type" content="image/jpeg"');
   expect(html).toContain('name="twitter:card" content="summary_large_image"');
   expect(html).not.toContain('https://preview.invalid');

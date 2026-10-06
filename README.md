@@ -141,13 +141,15 @@ npm test
 npm run deploy
 ```
 
-คำสั่งนี้ build สำหรับ `/trs-asphalt-website/` และส่งไฟล์ไป branch `gh-pages` โดยไม่ force push โค้ดต้นฉบับอยู่ที่ branch `main`
+คำสั่งนี้ build สำหรับโดเมน `https://www.trsasphalt.com/` ที่ root (`SITE_BASE=/`) และส่งไฟล์ไป branch `gh-pages` โดยไม่ force push โค้ดต้นฉบับอยู่ที่ branch `main` ไฟล์ `public/CNAME` เก็บชื่อโดเมนจริงเพื่อรักษาการตั้งค่าเมื่อเผยแพร่ครั้งถัดไป
 
 เปิด GitHub repository Settings → Pages → Source: Deploy from a branch → Branch: gh-pages → Folder: / (root) → Save
 
-URL หลัง GitHub Pages เปิดใช้งานและ deploy สำเร็จ: https://tamrong2519-collab.github.io/trs-asphalt-website/
+URL หลังตั้ง DNS และ GitHub Pages พร้อมใช้งาน: https://www.trsasphalt.com/
 
-เมื่อเปลี่ยนข้อมูลเว็บไซต์ ให้ commit/push source แล้วรัน `npm run deploy` อีกครั้ง การ Preview build แบบ subpath ให้รัน `SITE_BASE=/trs-asphalt-website/ npm run preview`
+เมื่อเปลี่ยนข้อมูลเว็บไซต์ ให้ commit/push source แล้วรัน `npm run deploy` อีกครั้ง การทดสอบโดเมนปัจจุบันให้ build และรัน Playwright ด้วย `SITE_BASE=/ VITE_SITE_URL=https://www.trsasphalt.com/` ส่วนการ preview ใช้ `npm run preview` หากเปลี่ยนโดเมนต้องแก้ `public/CNAME` และ `VITE_SITE_URL` ในสคริปต์ deploy ให้ตรงกัน
+
+ในผู้ดูแล DNS ให้ `www` เป็น CNAME ไปที่ `tamrong2519-collab.github.io` โดยไม่ใส่ scheme หรือ path และโดเมนหลักมี A records ทั้งสี่ค่า `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` เปลี่ยนเฉพาะรายการเว็บไซต์ที่ขัดกันและรักษารายการอีเมลไว้ การเผยแพร่สำเร็จไม่ยืนยันว่า DNS ชี้ถูกหรือมีใบรับรอง HTTPS แล้ว ต้องตรวจสองส่วนนี้แยกกันก่อนเปิด Enforce HTTPS
 
 การเผยแพร่จะเก็บไฟล์ใน `assets/` ของรุ่นก่อนและกู้ CSS, JavaScript และฟอนต์ที่เคยเผยแพร่จากประวัติ `gh-pages` เพื่อให้หน้า HTML ที่เบราว์เซอร์จำไว้ยังแสดงรูปแบบได้ โดย HTML ทั้ง 4 หน้าใช้ build ล่าสุด ทดสอบขั้นตอนนี้ด้วย `npm run test:deploy`
 
