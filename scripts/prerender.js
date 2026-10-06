@@ -10,7 +10,7 @@ for (const page of ['index', 'services', 'projects', 'contact']) {
  const dom = new JSDOM(await readFile(path, 'utf8'), { url: `https://preview.invalid/${page}.html`, runScripts: 'outside-only' });
  dom.window.responsivePhotoAttributes = responsivePhotoAttributes; dom.window.applySocialMetadata = applySocialMetadata; dom.window.b = business; dom.window.services = services; dom.window.servicesPageServices = servicesPageServices; dom.window.projects = projects;
  dom.window.eval(source);
- dom.window.document.querySelector('noscript').textContent = 'เมนูมือถือ ตัวกรองภาพ และฟอร์มขอประเมินราคา ต้องเปิดใช้งาน JavaScript';
+ dom.window.document.querySelector('#site-noscript').textContent = 'เมนูมือถือ ตัวกรองภาพ และฟอร์มขอประเมินราคา ต้องเปิดใช้งาน JavaScript';
  await writeFile(path, dom.serialize());
  dom.window.close();
 }
