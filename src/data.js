@@ -7,7 +7,7 @@ export const business = {
   address: 'หมู่บ้าน อาร์เคปาร์ค หทัยราษฎร์ แขวงบางชัน เขตคลองสามวา กรุงเทพมหานคร 10510',
   mapLocation: 'หมู่บ้าน อาร์เคปาร์ค หทัยราษฎร์',
   serviceArea: 'กรุงเทพฯ และปริมณฑล • ชลบุรี • ระยอง • ฉะเชิงเทรา',
-  siteUrl: '', // URL เว็บไซต์จริง เช่น https://www.example.com
+  siteUrl: 'https://www.trsasphalt.com/', // โดเมนหลักของเว็บไซต์
   hours: 'กรุณาติดต่อเพื่อสอบถามเวลาทำการ',
   contactPhotos: {
     main: { src: '/images/contact-main.webp', alt: 'ภาพหน้างานรถบดบดอัดถนนลาดยางมะตอยข้างแนวต้นไม้', width: 960, height: 1280 },
