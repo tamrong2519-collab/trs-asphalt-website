@@ -4,6 +4,9 @@
       body.design-02 .site-header .brand, body.design-02 .site-header nav a { color: #f2f1eb; }
       body.design-02 .site-header .brand-name { color: #f2f1eb; }
       body.design-02 .site-header .brand-caption { color: #c6c7cb; }
+      body.design-02 .site-header .brand { display: flex; align-items: center; gap: 12px; }
+      body.design-02 .brand-logo { width: 60px; height: 60px; flex: none; object-fit: contain; clip-path: circle(41.4% at 50% 50%); transform: scale(1.2077); padding: 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+      body.design-02 .brand-copy { min-width: 0; }
       body.design-02 .site-header nav a:hover { color: #e6ca87; }
       body.design-02 .graphite-hero { background: #22252b; }
       body.design-02 .graphite-intro { display: grid; grid-template-columns: 1.1fr .9fr; align-items: end; gap: 60px; padding-top: 54px; padding-bottom: 45px; }
@@ -49,11 +52,18 @@
       body.design-02 .site-footer .footer-bottom { border-color: #ffffff30; }
       body.design-02 .site-footer .actions a:first-child { background: #e0c38a; color: #252329; border-color: #e0c38a; }
       @media (max-width: 1000px) {
+        body.design-02 .site-nav { display: none; position: absolute; top: calc(100% + 4px); left: 16px; right: 16px; margin: 0; padding: 12px; flex-direction: column; align-items: stretch; gap: 0; background: #1b1d23; border: 1px solid #505159; border-radius: 10px; box-shadow: 0 12px 32px #0002; }
+        body.design-02 .site-nav.open { display: flex; }
+        body.design-02 .site-nav a { padding: 10px 12px; min-height: 48px; }
+        body.design-02 .menu-toggle { display: inline-flex; margin-left: auto; background: #31343c; color: #f2f1eb; border-color: #505159; }
+        body.design-02 .header-contact { display: none; }
         body.design-02 .graphite-intro { grid-template-columns: 1fr 1fr; gap: 35px; }
         body.design-02 .graphite-copy { padding-left: 26px; }
         body.design-02 .graphite-availability p strong { font-size: 16px; }
       }
       @media (max-width: 800px) {
+        body.design-02 .brand-logo { width: 50px; height: 50px; }
+        body.design-02 .site-header .brand { gap: 10px; }
         body.design-02 .site-nav { background: #1b1d23; border-color: #505159; }
         body.design-02 .menu-toggle { background: #31343c; color: #f2f1eb; border-color: #505159; }
       }
