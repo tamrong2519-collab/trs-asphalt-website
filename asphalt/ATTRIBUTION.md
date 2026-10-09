@@ -1,6 +1,6 @@
 # ที่มาและเครดิตภาพ
 
-ภาพหลักเป็นภาพที่ผู้ใช้ส่งให้สำหรับเว็บไซต์ลาดยางมะตอย ส่วนภาพเล็ก 14 รูปเป็นภาพประกอบจากแหล่งภายนอก ไม่ใช่ผลงานบริษัท และไม่สื่อถึงการรับรองบริษัทจากผู้สร้างภาพหรือบุคคลในภาพ
+ภาพหลักและภาพเล็ก 5 รูปแรกเป็นภาพที่ผู้ใช้ส่งให้สำหรับเว็บไซต์ลาดยางมะตอย ส่วนภาพเล็กอีก 9 รูปเป็นภาพประกอบจากแหล่งภายนอก ไม่ใช่ผลงานบริษัท และไม่สื่อถึงการรับรองบริษัทจากผู้สร้างภาพหรือบุคคลในภาพ
 
 สำหรับภาพประกอบภายนอก ชื่อผู้สร้าง สัญญาอนุญาต และแหล่งที่มาตรวจสอบจากทะเบียนเครดิตรายภาพใน public mirror ที่ตรึง commit พร้อมตรวจสอบไฟล์ที่ดาวน์โหลด หน้าแหล่งต้นฉบับของผู้ให้บริการไม่สามารถเข้าถึงได้ในสภาพแวดล้อมนี้ จึงไม่ได้ยืนยันโดยอ่านหน้าต้นฉบับโดยตรง
 
@@ -16,75 +16,55 @@
 - ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
 - รายละเอียดภาพ: [photo-01](<image-credits.html#photo-01>)
 
-## 02. Workers Using Heavy Machine in Asphalt Laying
+## 02. ลานลาดยางมะตอยข้างอาคาร
 
-- ภาพประกอบ: ทีมงานปูแอสฟัลท์ด้วยเครื่องจักรในเวลากลางคืน
-- ผู้สร้างภาพ: Rookey Pain
-- แหล่งต้นฉบับ: [Pexels](<https://www.pexels.com/photo/workers-using-heavy-machine-in-asphalt-laying-14053429/>)
-- สัญญาอนุญาต: [Pexels License](<https://www.pexels.com/license/>)
-- ไฟล์ที่ใช้: `assets/images/asphalt-laying-rookey-pain.jpg` (2000 × 1333 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by usman4116/Alijan; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/usman4116/Alijan/fa0326d8cf51d98a953e3f1565f4dcf022b3e6b6/public/media/ATTRIBUTION.md>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/usman4116/Alijan/fa0326d8cf51d98a953e3f1565f4dcf022b3e6b6/public/media/road-work.jpg>)
-- SHA-256: `83bd9f213f4ba12a38014c022ad1aa924dac31e1c9ea3663f20830adef20e22a`
-- เครดิตบนหน้าเว็บ: [photo-02](<image-credits.html#photo-02>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://images.pexels.com/photos/14053429/pexels-photo-14053429.jpeg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-01.jpg` (1280 × 960 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `df0fcc56369bcfd8667660e90efb3735dc3c5b11a7bd670615a8d5e95eafb28a`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-02](<image-credits.html#photo-02>)
 
-## 03. Asphalt Paving on Oregon 62 Expressway (37904264591)
+## 03. ถนนลาดยางมะตอยและทางเข้าอาคาร
 
-- ภาพประกอบ: รถบดหลายคันกำลังบดอัดผิวทาง
-- ผู้สร้างภาพ: [Oregon Department of Transportation](<https://www.flickr.com/people/28364885@N02>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=95465801>)
-- สัญญาอนุญาต: [CC BY 2.0](<https://creativecommons.org/licenses/by/2.0/>)
-- ไฟล์ที่ใช้: `assets/images/road-paving.webp` (1600 × 1067 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/road-paving-1600.webp>)
-- SHA-256: `5a36d1ef31ecb108449b4496dc3f6b74c297d3c565c6a684694439c2833b79a2`
-- เครดิตบนหน้าเว็บ: [photo-03](<image-credits.html#photo-03>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/1/1f/Asphalt_Paving_on_Oregon_62_Expressway_%2837904264591%29.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-02.jpg` (1280 × 960 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `9008a2321871dba673ecb3fad574c8b9e3e3fc5359a60c4185f4f725bfb6fe84`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-03](<image-credits.html#photo-03>)
 
-## 04. Road resurfacing, Newport Harbour, Isle of Wight, England
+## 04. ผิวทางยางมะตอยแนวต้นไม้
 
-- ภาพประกอบ: งานปูผิวแอสฟัลท์ริมท่าเรือ
-- ผู้สร้างภาพ: ITookSomePhotos
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=142936166>)
-- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/>)
-- ไฟล์ที่ใช้: `assets/images/asphalt-laying.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/asphalt-laying-1600.webp>)
-- SHA-256: `c27b0b5a3a96393a031219117219c6081d00c38c06cbd0932dddf58faeb493cf`
-- เครดิตบนหน้าเว็บ: [photo-04](<image-credits.html#photo-04>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/e/e0/Road_resurfacing%2C_Newport_Harbour%2C_Isle_of_Wight%2C_England.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-03.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `50890bed2212821c9eb02f1af4a50eea003ecd96d971676620eb3c51af8dabd3`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-04](<image-credits.html#photo-04>)
 
-## 05. Yashkulsky District Road Construction
+## 05. ถนนลาดยางมะตอยระหว่างอาคารและแนวต้นไม้
 
-- ภาพประกอบ: ผิวแอสฟัลท์ใหม่บนถนนในพื้นที่เปิด
-- ผู้สร้างภาพ: Panoramio Contributor Svetlov Artem
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=53079384>)
-- สัญญาอนุญาต: [CC BY 3.0](<https://creativecommons.org/licenses/by/3.0/>)
-- ไฟล์ที่ใช้: `assets/images/road-new.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/road-new-1600.webp>)
-- SHA-256: `a8d6372519725db1e8d5182fdd6624355b655ffa41f18b9e5061691198cebd71`
-- เครดิตบนหน้าเว็บ: [photo-05](<image-credits.html#photo-05>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/8/83/Yashkulsky_District_Road_Construction.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-04.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `8613f839d026a361e78a053e749da6186d005a07491f657f038b98315ab249a2`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-05](<image-credits.html#photo-05>)
 
-## 06. Hamm roller at Barcelona
+## 06. ถนนลาดยางมะตอยภายในพื้นที่อาคาร
 
-- ภาพประกอบ: รถบดล้อยางสำหรับงานผิวทาง
-- ผู้สร้างภาพ: Alf van Beem
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=19612705>)
-- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/>)
-- ไฟล์ที่ใช้: `assets/images/hamm-pneumatic.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/hamm-pneumatic-1600.webp>)
-- SHA-256: `aa084b1e486a2dc3bc3090a6c9c2f1b0a5bc33884667682f820e1ef918c4431e`
-- เครดิตบนหน้าเว็บ: [photo-06](<image-credits.html#photo-06>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/d/d4/Hamm_roller_at_Barcelona.JPG>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-05.jpg` (1280 × 960 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `e694e084eb7f7a920aaf4dca937026733550a3b8b289e135d7b242b7ab83f401`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-06](<image-credits.html#photo-06>)
 
 ## 07. Hamm HD 120 articulated tandem roller with vibratory and oscillating drum (33149955706)
 
@@ -230,3 +210,77 @@
 - SHA-256: `4f2cbebdd5f83a76c783b25a7f3012398caea393018f71c5372433401e20d3ca`
 - เครดิตบนหน้าเว็บ: [photo-original-lead](<image-credits.html#photo-original-lead>)
 - หากดัดแปลงภาพ ให้คงเครดิต ระบุการเปลี่ยนแปลง และใช้เงื่อนไข ShareAlike ตามสัญญาอนุญาตที่ระบุกับภาพดัดแปลง
+
+## ภาพเล็กเดิมที่เก็บไว้สำหรับหน้าเว็บแคช
+
+ภาพประกอบภายนอก 5 รูปต่อไปนี้ถูกแทนด้วยภาพที่ผู้ใช้ส่งให้ ไฟล์เดิมเก็บไว้รองรับหน้าเว็บที่แคชไว้ พร้อมเครดิตและสัญญาอนุญาตเดิม
+
+### Workers Using Heavy Machine in Asphalt Laying
+
+- ภาพประกอบ: ทีมงานปูแอสฟัลท์ด้วยเครื่องจักรในเวลากลางคืน
+- ผู้สร้างภาพ: Rookey Pain
+- แหล่งต้นฉบับ: [Pexels](<https://www.pexels.com/photo/workers-using-heavy-machine-in-asphalt-laying-14053429/>)
+- สัญญาอนุญาต: [Pexels License](<https://www.pexels.com/license/>)
+- ไฟล์ที่ใช้: `assets/images/asphalt-laying-rookey-pain.jpg` (2000 × 1333 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by usman4116/Alijan; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/usman4116/Alijan/fa0326d8cf51d98a953e3f1565f4dcf022b3e6b6/public/media/ATTRIBUTION.md>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/usman4116/Alijan/fa0326d8cf51d98a953e3f1565f4dcf022b3e6b6/public/media/road-work.jpg>)
+- SHA-256: `83bd9f213f4ba12a38014c022ad1aa924dac31e1c9ea3663f20830adef20e22a`
+- เครดิตบนหน้าเว็บ: [photo-original-02](<image-credits.html#photo-original-02>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://images.pexels.com/photos/14053429/pexels-photo-14053429.jpeg>)
+
+### Asphalt Paving on Oregon 62 Expressway (37904264591)
+
+- ภาพประกอบ: รถบดหลายคันกำลังบดอัดผิวทาง
+- ผู้สร้างภาพ: [Oregon Department of Transportation](<https://www.flickr.com/people/28364885@N02>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=95465801>)
+- สัญญาอนุญาต: [CC BY 2.0](<https://creativecommons.org/licenses/by/2.0/>)
+- ไฟล์ที่ใช้: `assets/images/road-paving.webp` (1600 × 1067 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/road-paving-1600.webp>)
+- SHA-256: `5a36d1ef31ecb108449b4496dc3f6b74c297d3c565c6a684694439c2833b79a2`
+- เครดิตบนหน้าเว็บ: [photo-original-03](<image-credits.html#photo-original-03>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/1/1f/Asphalt_Paving_on_Oregon_62_Expressway_%2837904264591%29.jpg>)
+
+### Road resurfacing, Newport Harbour, Isle of Wight, England
+
+- ภาพประกอบ: งานปูผิวแอสฟัลท์ริมท่าเรือ
+- ผู้สร้างภาพ: ITookSomePhotos
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=142936166>)
+- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/>)
+- ไฟล์ที่ใช้: `assets/images/asphalt-laying.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/asphalt-laying-1600.webp>)
+- SHA-256: `c27b0b5a3a96393a031219117219c6081d00c38c06cbd0932dddf58faeb493cf`
+- เครดิตบนหน้าเว็บ: [photo-original-04](<image-credits.html#photo-original-04>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/e/e0/Road_resurfacing%2C_Newport_Harbour%2C_Isle_of_Wight%2C_England.jpg>)
+
+### Yashkulsky District Road Construction
+
+- ภาพประกอบ: ผิวแอสฟัลท์ใหม่บนถนนในพื้นที่เปิด
+- ผู้สร้างภาพ: Panoramio Contributor Svetlov Artem
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=53079384>)
+- สัญญาอนุญาต: [CC BY 3.0](<https://creativecommons.org/licenses/by/3.0/>)
+- ไฟล์ที่ใช้: `assets/images/road-new.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/road-new-1600.webp>)
+- SHA-256: `a8d6372519725db1e8d5182fdd6624355b655ffa41f18b9e5061691198cebd71`
+- เครดิตบนหน้าเว็บ: [photo-original-05](<image-credits.html#photo-original-05>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/8/83/Yashkulsky_District_Road_Construction.jpg>)
+
+### Hamm roller at Barcelona
+
+- ภาพประกอบ: รถบดล้อยางสำหรับงานผิวทาง
+- ผู้สร้างภาพ: Alf van Beem
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=19612705>)
+- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/>)
+- ไฟล์ที่ใช้: `assets/images/hamm-pneumatic.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/hamm-pneumatic-1600.webp>)
+- SHA-256: `aa084b1e486a2dc3bc3090a6c9c2f1b0a5bc33884667682f820e1ef918c4431e`
+- เครดิตบนหน้าเว็บ: [photo-original-06](<image-credits.html#photo-original-06>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/d/d4/Hamm_roller_at_Barcelona.JPG>)
