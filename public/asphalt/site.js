@@ -14,7 +14,14 @@ if(photoData){
  const thumbs=[...document.querySelectorAll('.thumb')];
  function select(index,scroll=true){
   const photo=photos[index];image.src=photo.src;image.alt=photo.alt;image.width=photo.width;image.height=photo.height;
-  caption.textContent=photo.caption;credit.textContent=`เครดิต: ${photo.author}`;credit.href=`image-credits.html#${photo.creditsId}`;
+  caption.textContent=photo.caption;
+  if(credit){
+   const hasCredit=Boolean(photo.author&&photo.creditsId);
+   credit.hidden=!hasCredit;
+   credit.textContent=hasCredit?`เครดิต: ${photo.author}`:'';
+   if(hasCredit)credit.href=`image-credits.html#${photo.creditsId}`;
+   else credit.removeAttribute('href');
+  }
   frame.classList.toggle('is-selected',index!==0);
   thumbs.forEach(t=>t.setAttribute('aria-pressed',String(Number(t.dataset.index)===index)));
   if(scroll)frame.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});

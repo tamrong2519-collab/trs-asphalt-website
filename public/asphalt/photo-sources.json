@@ -1,29 +1,22 @@
 {
-  "source": "External illustrative photographs from Wikimedia Commons and Pexels, acquired through pinned public mirrors; not company projects.",
-  "verification": "Files and exact per-photo author/license records checked against pinned mirror manifests. Original provider pages were unavailable in this environment.",
+  "source": "Main photograph supplied by the user; 14 thumbnail images are external illustrative photographs from Wikimedia Commons and Pexels, acquired through pinned public mirrors and not company projects.",
+  "verification": "User photograph copied without image edits. External files and exact per-photo author/license records checked against pinned mirror manifests. Original external provider pages were unavailable in this environment.",
   "photos": [
     {
-      "id": "urban-asphalt-paving",
-      "filename": "urban-asphalt-paving.jpg",
-      "width": 1920,
-      "height": 1440,
-      "author": "Sammya Nig Ltd",
-      "source": "Wikimedia Commons",
-      "title": "Asphalt paving.jpg",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Asphalt_paving.jpg",
-      "mirrorUrl": "https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/road-repair-after.jpg",
-      "evidenceUrl": "https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/CREDITS.md",
-      "sha256": "4f2cbebdd5f83a76c783b25a7f3012398caea393018f71c5372433401e20d3ca",
-      "changes": "Mirrored version supplied by VedantSaikhede21/UrbanPulse; copied unchanged for this prototype. Display framing only through CSS.",
-      "attributionRequired": true,
-      "additionalCredit": "Ihe onyonyo na-egosi ebe a na-arụ okporo ụzọ",
-      "alt": "รถปูยางมะตอยและรถบดในงานก่อสร้างถนน",
-      "caption": "ภาพประกอบ: รถปูยางมะตอยและรถบดในงานก่อสร้างถนน",
-      "src": "assets/images/urban-asphalt-paving.jpg",
-      "thumb": "assets/images/urban-asphalt-paving.jpg",
-      "creditsId": "photo-01"
+      "id": "asphalt-project-main",
+      "filename": "asphalt-project-main.jpg",
+      "width": 1280,
+      "height": 960,
+      "source": "User-provided photograph",
+      "title": "ภาพหน้างานถนนและลานลาดยางมะตอย",
+      "sha256": "b162c37a9e359f260de2ba82120d059ef5bd9e639b19200ba90db0803d6c8e97",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "attributionRequired": false,
+      "rightsNote": "User supplied the photograph for use on this website; no photographer name, source URL, or public license was provided.",
+      "alt": "ภาพหน้างานถนนและลานลาดยางมะตอย",
+      "caption": "ภาพหน้างานถนนและลานลาดยางมะตอย",
+      "src": "assets/images/asphalt-project-main.jpg",
+      "thumb": "assets/images/asphalt-project-main.jpg"
     },
     {
       "id": "asphalt-laying-rookey-pain",
@@ -362,5 +355,30 @@
       "service": "ลาดยางมะตอย"
     }
   ],
-  "notes": "Chosen prototype: decorative numbers removed; all original images copied byte-for-byte unchanged."
+  "notes": "The main photograph is user-provided. All 14 existing external thumbnail images retain their order and original bytes. Decorative gallery numbers remain removed. The previous external lead image is retained for cached pages; its provenance is preserved in archivedPhotos and the credits documents.",
+  "archivedPhotos": [
+    {
+      "id": "urban-asphalt-paving",
+      "filename": "urban-asphalt-paving.jpg",
+      "width": 1920,
+      "height": 1440,
+      "author": "Sammya Nig Ltd",
+      "source": "Wikimedia Commons",
+      "title": "Asphalt paving.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Asphalt_paving.jpg",
+      "mirrorUrl": "https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/road-repair-after.jpg",
+      "evidenceUrl": "https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/CREDITS.md",
+      "sha256": "4f2cbebdd5f83a76c783b25a7f3012398caea393018f71c5372433401e20d3ca",
+      "changes": "Mirrored version supplied by VedantSaikhede21/UrbanPulse; copied unchanged for this prototype. Display framing only through CSS.",
+      "attributionRequired": true,
+      "additionalCredit": "Ihe onyonyo na-egosi ebe a na-arụ okporo ụzọ",
+      "alt": "รถปูยางมะตอยและรถบดในงานก่อสร้างถนน",
+      "caption": "ภาพประกอบ: รถปูยางมะตอยและรถบดในงานก่อสร้างถนน",
+      "src": "assets/images/urban-asphalt-paving.jpg",
+      "thumb": "assets/images/urban-asphalt-paving.jpg",
+      "creditsId": "photo-original-lead"
+    }
+  ]
 }
