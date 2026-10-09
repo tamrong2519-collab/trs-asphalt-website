@@ -1,6 +1,6 @@
 # ที่มาและเครดิตภาพ
 
-ภาพหลักและภาพเล็ก 5 รูปแรกเป็นภาพที่ผู้ใช้ส่งให้สำหรับเว็บไซต์ลาดยางมะตอย ส่วนภาพเล็กอีก 9 รูปเป็นภาพประกอบจากแหล่งภายนอก ไม่ใช่ผลงานบริษัท และไม่สื่อถึงการรับรองบริษัทจากผู้สร้างภาพหรือบุคคลในภาพ
+ภาพหลักและภาพเล็ก 10 รูปแรกเป็นภาพที่ผู้ใช้ส่งให้สำหรับเว็บไซต์ลาดยางมะตอย ส่วนภาพเล็กอีก 4 รูปเป็นภาพประกอบจากแหล่งภายนอก ไม่ใช่ผลงานบริษัท และไม่สื่อถึงการรับรองบริษัทจากผู้สร้างภาพหรือบุคคลในภาพ
 
 สำหรับภาพประกอบภายนอก ชื่อผู้สร้าง สัญญาอนุญาต และแหล่งที่มาตรวจสอบจากทะเบียนเครดิตรายภาพใน public mirror ที่ตรึง commit พร้อมตรวจสอบไฟล์ที่ดาวน์โหลด หน้าแหล่งต้นฉบับของผู้ให้บริการไม่สามารถเข้าถึงได้ในสภาพแวดล้อมนี้ จึงไม่ได้ยืนยันโดยอ่านหน้าต้นฉบับโดยตรง
 
@@ -66,75 +66,55 @@
 - ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
 - รายละเอียดภาพ: [photo-06](<image-credits.html#photo-06>)
 
-## 07. Hamm HD 120 articulated tandem roller with vibratory and oscillating drum (33149955706)
+## 07. ถนนลาดยางมะตอยริมแนวต้นกล้วย
 
-- ภาพประกอบ: รถบดสองล้อเหล็กสำหรับงานถนน
-- ผู้สร้างภาพ: [dankeck](<https://www.flickr.com/people/140641142@N05>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=57357858>)
-- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/deed.en>)
-- ไฟล์ที่ใช้: `assets/images/hamm-tandem.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/hamm-tandem-1600.webp>)
-- SHA-256: `e9cdd5fb11a5fa1363a07620df481278cc269bc3b6b0033738d286cca47fb92c`
-- เครดิตบนหน้าเว็บ: [photo-07](<image-credits.html#photo-07>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/a/a2/Hamm_HD_120_articulated_tandem_roller_with_vibratory_and_oscillating_drum_%2833149955706%29.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-06.jpg` (1280 × 960 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `a4da5e3a01a9c2dd14cf46d4a5e6976790e6822447b7a69fa7c30a7b659a73e5`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-07](<image-credits.html#photo-07>)
 
-## 08. Road Resurfacing at the junction of Queens Road and South Terrace, Hastings. c.1990 (6608302717)
+## 08. ลานลาดยางมะตอยระหว่างอาคาร
 
-- ภาพประกอบ: ทีมงานและรถปูยางในงานปรับผิวถนน
-- ผู้สร้างภาพ: [Phil Sellens from East Sussex](<https://www.flickr.com/people/33303746@N07>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=85796563>)
-- สัญญาอนุญาต: [CC BY 2.0](<https://creativecommons.org/licenses/by/2.0/>)
-- ไฟล์ที่ใช้: `assets/images/asphalt-crew.webp` (1600 × 1069 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/asphalt-crew-1600.webp>)
-- SHA-256: `6da3ce96101faa1dba707c0de683c09924b54ea0922574ecec37a777b4121b66`
-- เครดิตบนหน้าเว็บ: [photo-08](<image-credits.html#photo-08>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/c/c1/Road_Resurfacing_at_the_junction_of_Queens_Road_and_South_Terrace%2C_Hastings._c.1990_%286608302717%29.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-07.jpg` (1280 × 960 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `15e2c1d2042c4889fe1e455520849a12d13cec7b4b5c9404a75c21bde48ec047`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-08](<image-credits.html#photo-08>)
 
-## 09. Mala Hrastice 2020-06-16 Ulice z navsi na nadrazi obr05
+## 09. ถนนลาดยางมะตอยข้างอาคารโครงสร้างสีขาว
 
-- ภาพประกอบ: พื้นผิวถนนแอสฟัลท์ที่เรียบสม่ำเสมอ
-- ผู้สร้างภาพ: Miloš Hlávka
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/wiki/File:Mala_Hrastice_2020-06-16_Ulice_z_navsi_na_nadrazi_obr05.jpg>)
-- สัญญาอนุญาต: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
-- ไฟล์ที่ใช้: `assets/images/surface_asphalt_excellent.jpg` (600 × 400 px)
-- การเปลี่ยนแปลง: Thumbnail already cropped/resized by StreetComplete; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต บรรทัด 302](<https://raw.githubusercontent.com/streetcomplete/StreetComplete/513a2dc5f52f85ea06e5f219020b07804af14ae4/app/src/commonMain/composeResources/files/authors.txt>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/streetcomplete/StreetComplete/513a2dc5f52f85ea06e5f219020b07804af14ae4/app/src/commonMain/composeResources/drawable-xxhdpi/surface_asphalt_excellent.jpg>)
-- SHA-256: `2e628293a524187e7b02c0fdb55da72c2e14ea3e66297bf689f2fd35aabd4097`
-- เครดิตบนหน้าเว็บ: [photo-09](<image-credits.html#photo-09>)
-- หากดัดแปลงภาพ ให้คงเครดิต ระบุการเปลี่ยนแปลง และใช้เงื่อนไข ShareAlike ตามสัญญาอนุญาตที่ระบุกับภาพดัดแปลง
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-08.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `58b7970bbbce34bbdf5ce143627d34134c97439d0c0390db1a7812d1a30cf13c`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-09](<image-credits.html#photo-09>)
 
-## 10. 664Ammann ASC 150 Road Roller Soil Compactor
+## 10. ลานลาดยางมะตอยข้างอาคารสีเขียว
 
-- ภาพประกอบ: รถบดดินสำหรับเตรียมพื้นทาง
-- ผู้สร้างภาพ: [Judgefloro](<https://commons.wikimedia.org/wiki/User:Judgefloro>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=64085752>)
-- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/deed.en>)
-- ไฟล์ที่ใช้: `assets/images/roller.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/roller-1600.webp>)
-- SHA-256: `e139c5791f9152d7060e8c92580799d3a9c0ca722b9a6109f93074e1bda64492`
-- เครดิตบนหน้าเว็บ: [photo-10](<image-credits.html#photo-10>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/2/2a/664Ammann_ASC_150_Road_Roller_Soil_Compactor.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-09.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `c545a9588d5addc28013d9802c9c6942513fe29f84792ee58b04661ab6fae070`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-10](<image-credits.html#photo-10>)
 
-## 11. Excavator digging the trench
+## 11. งานบดอัดผิวทางยางมะตอยภายในพื้นที่อาคาร
 
-- ภาพประกอบ: รถขุดกำลังเตรียมพื้นที่ก่อสร้าง
-- ผู้สร้างภาพ: NCDOTcommunications
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=127758631>)
-- สัญญาอนุญาต: [CC BY 2.0](<https://creativecommons.org/licenses/by/2.0/>)
-- ไฟล์ที่ใช้: `assets/images/excavator.webp` (1600 × 902 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/excavator-1600.webp>)
-- SHA-256: `abb4c76d5522ed9e8000f56c963f09dde1741ce6f83c847f5929ccd544e37cc8`
-- เครดิตบนหน้าเว็บ: [photo-11](<image-credits.html#photo-11>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/8/8d/Excavator_digging_the_trench.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-10.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `6d8df9929834913b5cee45f10cb1cf221bc8d842c1583be50517ab13efcf7861`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-11](<image-credits.html#photo-11>)
 
 ## 12. ChSDM ЧСДМ B-140 front loader
 
@@ -213,7 +193,7 @@
 
 ## ภาพเล็กเดิมที่เก็บไว้สำหรับหน้าเว็บแคช
 
-ภาพประกอบภายนอก 5 รูปต่อไปนี้ถูกแทนด้วยภาพที่ผู้ใช้ส่งให้ ไฟล์เดิมเก็บไว้รองรับหน้าเว็บที่แคชไว้ พร้อมเครดิตและสัญญาอนุญาตเดิม
+ภาพประกอบภายนอก 10 รูปต่อไปนี้ถูกแทนด้วยภาพที่ผู้ใช้ส่งให้ ไฟล์เดิมเก็บไว้รองรับหน้าเว็บที่แคชไว้ พร้อมเครดิตและสัญญาอนุญาตเดิม
 
 ### Workers Using Heavy Machine in Asphalt Laying
 
@@ -284,3 +264,73 @@
 - SHA-256: `aa084b1e486a2dc3bc3090a6c9c2f1b0a5bc33884667682f820e1ef918c4431e`
 - เครดิตบนหน้าเว็บ: [photo-original-06](<image-credits.html#photo-original-06>)
 - ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/d/d4/Hamm_roller_at_Barcelona.JPG>)
+
+### Hamm HD 120 articulated tandem roller with vibratory and oscillating drum (33149955706)
+
+- ภาพประกอบ: รถบดสองล้อเหล็กสำหรับงานถนน
+- ผู้สร้างภาพ: [dankeck](<https://www.flickr.com/people/140641142@N05>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=57357858>)
+- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/deed.en>)
+- ไฟล์ที่ใช้: `assets/images/hamm-tandem.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/hamm-tandem-1600.webp>)
+- SHA-256: `e9cdd5fb11a5fa1363a07620df481278cc269bc3b6b0033738d286cca47fb92c`
+- เครดิตบนหน้าเว็บ: [photo-original-07](<image-credits.html#photo-original-07>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/a/a2/Hamm_HD_120_articulated_tandem_roller_with_vibratory_and_oscillating_drum_%2833149955706%29.jpg>)
+
+### Road Resurfacing at the junction of Queens Road and South Terrace, Hastings. c.1990 (6608302717)
+
+- ภาพประกอบ: ทีมงานและรถปูยางในงานปรับผิวถนน
+- ผู้สร้างภาพ: [Phil Sellens from East Sussex](<https://www.flickr.com/people/33303746@N07>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=85796563>)
+- สัญญาอนุญาต: [CC BY 2.0](<https://creativecommons.org/licenses/by/2.0/>)
+- ไฟล์ที่ใช้: `assets/images/asphalt-crew.webp` (1600 × 1069 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/asphalt-crew-1600.webp>)
+- SHA-256: `6da3ce96101faa1dba707c0de683c09924b54ea0922574ecec37a777b4121b66`
+- เครดิตบนหน้าเว็บ: [photo-original-08](<image-credits.html#photo-original-08>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/c/c1/Road_Resurfacing_at_the_junction_of_Queens_Road_and_South_Terrace%2C_Hastings._c.1990_%286608302717%29.jpg>)
+
+### Mala Hrastice 2020-06-16 Ulice z navsi na nadrazi obr05
+
+- ภาพประกอบ: พื้นผิวถนนแอสฟัลท์ที่เรียบสม่ำเสมอ
+- ผู้สร้างภาพ: Miloš Hlávka
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/wiki/File:Mala_Hrastice_2020-06-16_Ulice_z_navsi_na_nadrazi_obr05.jpg>)
+- สัญญาอนุญาต: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
+- ไฟล์ที่ใช้: `assets/images/surface_asphalt_excellent.jpg` (600 × 400 px)
+- การเปลี่ยนแปลง: Thumbnail already cropped/resized by StreetComplete; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต บรรทัด 302](<https://raw.githubusercontent.com/streetcomplete/StreetComplete/513a2dc5f52f85ea06e5f219020b07804af14ae4/app/src/commonMain/composeResources/files/authors.txt>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/streetcomplete/StreetComplete/513a2dc5f52f85ea06e5f219020b07804af14ae4/app/src/commonMain/composeResources/drawable-xxhdpi/surface_asphalt_excellent.jpg>)
+- SHA-256: `2e628293a524187e7b02c0fdb55da72c2e14ea3e66297bf689f2fd35aabd4097`
+- เครดิตบนหน้าเว็บ: [photo-original-09](<image-credits.html#photo-original-09>)
+- หากดัดแปลงภาพ ให้คงเครดิต ระบุการเปลี่ยนแปลง และใช้เงื่อนไข ShareAlike ตามสัญญาอนุญาตที่ระบุกับภาพดัดแปลง
+
+### 664Ammann ASC 150 Road Roller Soil Compactor
+
+- ภาพประกอบ: รถบดดินสำหรับเตรียมพื้นทาง
+- ผู้สร้างภาพ: [Judgefloro](<https://commons.wikimedia.org/wiki/User:Judgefloro>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=64085752>)
+- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/deed.en>)
+- ไฟล์ที่ใช้: `assets/images/roller.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/roller-1600.webp>)
+- SHA-256: `e139c5791f9152d7060e8c92580799d3a9c0ca722b9a6109f93074e1bda64492`
+- เครดิตบนหน้าเว็บ: [photo-original-10](<image-credits.html#photo-original-10>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/2/2a/664Ammann_ASC_150_Road_Roller_Soil_Compactor.jpg>)
+
+### Excavator digging the trench
+
+- ภาพประกอบ: รถขุดกำลังเตรียมพื้นที่ก่อสร้าง
+- ผู้สร้างภาพ: NCDOTcommunications
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=127758631>)
+- สัญญาอนุญาต: [CC BY 2.0](<https://creativecommons.org/licenses/by/2.0/>)
+- ไฟล์ที่ใช้: `assets/images/excavator.webp` (1600 × 902 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/excavator-1600.webp>)
+- SHA-256: `abb4c76d5522ed9e8000f56c963f09dde1741ce6f83c847f5929ccd544e37cc8`
+- เครดิตบนหน้าเว็บ: [photo-original-11](<image-credits.html#photo-original-11>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/8/8d/Excavator_digging_the_trench.jpg>)
