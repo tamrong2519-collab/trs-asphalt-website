@@ -1,25 +1,20 @@
-# เครดิตภาพประกอบภายนอก
+# ที่มาและเครดิตภาพ
 
-ภาพ 15 รูปชุดนี้ใช้ประกอบต้นแบบเว็บไซต์ย่อย 5 แบบ ไม่ใช่ผลงานบริษัท และไม่สื่อถึงการรับรองบริษัทจากผู้สร้างภาพหรือบุคคลในภาพ
+ภาพหลักเป็นภาพที่ผู้ใช้ส่งให้สำหรับเว็บไซต์ลาดยางมะตอย ส่วนภาพเล็ก 14 รูปเป็นภาพประกอบจากแหล่งภายนอก ไม่ใช่ผลงานบริษัท และไม่สื่อถึงการรับรองบริษัทจากผู้สร้างภาพหรือบุคคลในภาพ
 
-ชื่อผู้สร้าง สัญญาอนุญาต และแหล่งที่มาตรวจสอบจากทะเบียนเครดิตรายภาพใน public mirror ที่ตรึง commit พร้อมตรวจสอบไฟล์ที่ดาวน์โหลด หน้าแหล่งต้นฉบับของผู้ให้บริการไม่สามารถเข้าถึงได้ในสภาพแวดล้อมนี้ จึงไม่ได้ยืนยันโดยอ่านหน้าต้นฉบับโดยตรง
+สำหรับภาพประกอบภายนอก ชื่อผู้สร้าง สัญญาอนุญาต และแหล่งที่มาตรวจสอบจากทะเบียนเครดิตรายภาพใน public mirror ที่ตรึง commit พร้อมตรวจสอบไฟล์ที่ดาวน์โหลด หน้าแหล่งต้นฉบับของผู้ให้บริการไม่สามารถเข้าถึงได้ในสภาพแวดล้อมนี้ จึงไม่ได้ยืนยันโดยอ่านหน้าต้นฉบับโดยตรง
 
-เก็บทะเบียนนี้พร้อมภาพและหน้า image-credits.html เมื่อนำต้นแบบไปใช้ต่อ คงชื่อผู้สร้าง แหล่งต้นฉบับ ลิงก์สัญญาอนุญาต และรายละเอียดการเปลี่ยนแปลง สำหรับภาพ CC BY-SA ให้รักษาเงื่อนไข ShareAlike ที่ใช้กับภาพดัดแปลง
+เก็บทะเบียนนี้พร้อมภาพและหน้า image-credits.html เมื่อใช้ภาพต่อ คงชื่อผู้สร้าง แหล่งต้นฉบับ ลิงก์สัญญาอนุญาต และรายละเอียดการเปลี่ยนแปลงของภาพประกอบภายนอก สำหรับภาพ CC BY-SA ให้รักษาเงื่อนไข ShareAlike ที่ใช้กับภาพดัดแปลง
 
-## 01. Asphalt paving.jpg
+## 01. ภาพหน้างานถนนและลานลาดยางมะตอย
 
-- ภาพประกอบ: รถปูแอสฟัลท์และรถบดในงานก่อสร้างถนน
-- ผู้สร้างภาพ: Sammya Nig Ltd
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/wiki/File:Asphalt_paving.jpg>)
-- สัญญาอนุญาต: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
-- ไฟล์ที่ใช้: `assets/images/urban-asphalt-paving.jpg` (1920 × 1440 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by VedantSaikhede21/UrbanPulse; copied unchanged for this prototype. Display framing only through CSS.
-- เครดิตเพิ่มเติมจากแหล่งภาพ: Ihe onyonyo na-egosi ebe a na-arụ okporo ụzọ
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/CREDITS.md>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/road-repair-after.jpg>)
-- SHA-256: `4f2cbebdd5f83a76c783b25a7f3012398caea393018f71c5372433401e20d3ca`
-- เครดิตบนหน้าเว็บ: [photo-01](<image-credits.html#photo-01>)
-- หากดัดแปลงภาพ ให้คงเครดิต ระบุการเปลี่ยนแปลง และใช้เงื่อนไข ShareAlike ตามสัญญาอนุญาตที่ระบุกับภาพดัดแปลง
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-main.jpg` (1280 × 960 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `b162c37a9e359f260de2ba82120d059ef5bd9e639b19200ba90db0803d6c8e97`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-01](<image-credits.html#photo-01>)
 
 ## 02. Workers Using Heavy Machine in Asphalt Laying
 
@@ -216,3 +211,22 @@
 - SHA-256: `5127c545a784244aa4cc9809168c33cad0e9d9c93ba870b0b725e7b9a21d333e`
 - เครดิตบนหน้าเว็บ: [photo-15](<image-credits.html#photo-15>)
 - ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/3/3b/JCB_3CX_Backhoe_Loader_during_sewerage_work_in_Bucharest%2C_2007_%28side_angle_view%29.jpg>)
+
+## ภาพหลักเดิมที่เก็บไว้สำหรับหน้าเว็บแคช
+
+ภาพ `urban-asphalt-paving.jpg` ไม่ใช่ภาพหลักปัจจุบัน ไฟล์เดิมยังเก็บไว้เพื่อรองรับหน้าเว็บที่แคชไว้ และยังคงเครดิตและสัญญาอนุญาตเดิม
+
+### Asphalt paving.jpg
+
+- ภาพประกอบ: รถปูแอสฟัลท์และรถบดในงานก่อสร้างถนน
+- ผู้สร้างภาพ: Sammya Nig Ltd
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/wiki/File:Asphalt_paving.jpg>)
+- สัญญาอนุญาต: [CC BY-SA 4.0](<https://creativecommons.org/licenses/by-sa/4.0/>)
+- ไฟล์ที่ใช้: `assets/images/urban-asphalt-paving.jpg` (1920 × 1440 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by VedantSaikhede21/UrbanPulse; copied unchanged for this prototype. Display framing only through CSS.
+- เครดิตเพิ่มเติมจากแหล่งภาพ: Ihe onyonyo na-egosi ebe a na-arụ okporo ụzọ
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/CREDITS.md>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/VedantSaikhede21/UrbanPulse/c82d6e3c9c724dddead15be2c261aab6be77c389/demo-assets/road-repair-after.jpg>)
+- SHA-256: `4f2cbebdd5f83a76c783b25a7f3012398caea393018f71c5372433401e20d3ca`
+- เครดิตบนหน้าเว็บ: [photo-original-lead](<image-credits.html#photo-original-lead>)
+- หากดัดแปลงภาพ ให้คงเครดิต ระบุการเปลี่ยนแปลง และใช้เงื่อนไข ShareAlike ตามสัญญาอนุญาตที่ระบุกับภาพดัดแปลง
