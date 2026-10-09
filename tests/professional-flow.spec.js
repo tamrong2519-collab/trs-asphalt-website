@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { business } from '../src/data.js';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
-const siteURL = process.env.VITE_SITE_URL || 'https://tamrong2519-collab.github.io/trs-asphalt-website/';
+const siteURL = process.env.VITE_SITE_URL || business.siteUrl;
 test.use({ reducedMotion:'reduce' });
 
 async function expectReadableContactButtons(page) {
@@ -35,7 +36,17 @@ for (const width of [320,390,1440]) {
   expect(actionsBeforeBenefits).toBe(true);
   await expectReadableContactButtons(page);
   await page.locator('.home-services .service-card').first().click();
-  await expect(page).toHaveURL(/\/services\.html#asphalt$/);
+  await expect(page).toHaveURL(/\/asphalt\/$/);
+  await expect(page.locator('main h1')).toBeVisible();
+  const menuToggle = page.locator('.menu-toggle');
+  if(await menuToggle.isVisible()) await menuToggle.click();
+  await page.locator('.main-site-link').click();
+  await expect(page.locator('.home-services')).toBeVisible();
+  await page.goto(path('services.html'));
+  await expect(page.locator('#asphalt .asphalt-detail-link')).toHaveAttribute('href',path('asphalt/'));
+  await page.locator('#asphalt .asphalt-detail-link').click();
+  await expect(page).toHaveURL(/\/asphalt\/$/);
+  await page.goto(path('services.html'));
   const shortcuts = page.locator('.service-jump-links a');
   await expect(shortcuts).toHaveCount(6);
   await expect(page.locator('.paired-service .text-link')).toHaveCount(6);

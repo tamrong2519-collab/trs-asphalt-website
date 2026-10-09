@@ -406,3 +406,5 @@ body[data-page="contact"] .contact-panel .button,.float-button{font-weight:600}
 nav,.site-header nav,.filter,label,.text-link{font-weight:500}
 strong,.footer-phone,.cta-phone a,.contact-box a{font-weight:600}
 .service-area p{font-weight:500}
+.paired-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+.asphalt-detail-link{display:inline-flex;align-items:center;gap:12px;color:var(--blue);font-weight:500;min-height:44px;line-height:1.7}

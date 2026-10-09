@@ -87,7 +87,8 @@ test('mobile cards download responsive photos while albums retain the originals'
  const source = await image.evaluate(element => ({ chosen: element.currentSrc, original: element.src }));
  expect(source.chosen).not.toBe(source.original);
  await card.click();
- await expect(page).toHaveURL(/\/services\.html#asphalt$/);
+ await expect(page).toHaveURL(/\/asphalt\/$/);
+ await page.goto(path('services.html#asphalt'));
  await page.locator('#asphalt .text-link').click();
  await page.locator('#asphalt-road .project-gallery-open').click();
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', new URL(path('images/asphalt-job-01.webp'), page.url()).href);

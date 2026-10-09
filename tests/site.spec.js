@@ -253,7 +253,8 @@ test('homepage cards use supplied photos while all five slider images stay uncha
  await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(6);
  for(let index=0;index<albums.length;index++){
   const destination=path(`projects.html#${albums[index]}`);
-  await expect(serviceCards.nth(index)).toHaveAttribute('href',path(`services.html#${serviceIds[index]}`));
+  const serviceDestination=serviceIds[index]==='asphalt'?'asphalt/':`services.html#${serviceIds[index]}`;
+  await expect(serviceCards.nth(index)).toHaveAttribute('href',path(serviceDestination));
   await expect(sampleCards.nth(index)).toHaveAttribute('href',destination);
  }
  const gravelRoad=sampleCards.last();
@@ -369,9 +370,9 @@ test('blue and gold header keeps three bands and compact contacts readable on ev
    const bands=await page.evaluate(()=>['.header-brand-band','.header-nav-band','.header-contact-band'].map(selector=>{const element=document.querySelector(selector),rect=element.getBoundingClientRect(),style=getComputedStyle(element);return {background:style.backgroundColor,finish:style.backgroundImage,left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom};}));
    expect(bands.slice(0,2).map(band=>band.background)).toEqual(['rgb(22, 79, 159)','rgb(224, 188, 104)']);
    expect(bands[2].finish).toContain('linear-gradient(');
-   expect(bands[2].finish).toContain('rgb(251, 244, 230)');
-   expect(bands[2].finish).toContain('rgb(255, 252, 246)');
-   expect(bands[2].finish).toContain('rgb(247, 238, 220)');
+   expect(bands[2].finish).toContain('rgb(237, 240, 243)');
+   expect(bands[2].finish).toContain('rgb(224, 228, 232)');
+   expect(bands[2].finish).toContain('rgb(227, 230, 233)');
    for(const band of bands){expect(band.left).toBe(0);expect(band.right).toBe(width);}
    expect(bands[0].bottom).toBeCloseTo(bands[1].top,1);expect(bands[1].bottom).toBeCloseTo(bands[2].top,1);
    expect(await page.locator('.site-header svg').count()).toBe(2);
