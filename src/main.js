@@ -102,7 +102,7 @@ const projectFacts = p => {
  ].filter(([,value])=>value);
  return facts.length ? `<dl class="project-facts">${facts.map(([label,value])=>`<div><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>` : '';
 };
-const card = s => `<a class="service-card" href="${s.id==='asphalt'?'/asphalt/':s.id==='speed-bump'?'/speed-bump/':`/services.html#${escape(s.id)}`}">${homepageCardImage(s)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${page==='index'?homeTitle(s):s.title}</h3><p>${page==='index'?homeDescription(s):s.description}</p></div><span class="card-arrow">${chevron}</span></div></a>`;
+const card = s => `<a class="service-card" href="${s.id==='asphalt'?'/asphalt/':s.id==='speed-bump'?'/speed-bump/':s.id==='marking'?'/traffic-marking/':`/services.html#${escape(s.id)}`}">${homepageCardImage(s)}<div class="card-content"><span class="service-icon">${serviceIcon(s)}</span><div><h3>${page==='index'?homeTitle(s):s.title}</h3><p>${page==='index'?homeDescription(s):s.description}</p></div><span class="card-arrow">${chevron}</span></div></a>`;
 const sectionHead = (title,copy='',action='') => `<div class="section-heading"><h2>${title}</h2>${copy?`<p>${copy}</p>`:''}${action}</div>`;
 const pageHero = ({name,title,accent,copy,image,imageAlt,width,height}) => `<section class="${name}-hero page-hero">
  <img class="${name}-hero-image page-hero-image" src="${escape(image)}" ${responsivePhotoAttributes(image, '100vw', base)} alt="${escape(imageAlt)}" width="${width}" height="${height}" fetchpriority="high">
@@ -132,7 +132,7 @@ const servicePage = `
    ${serviceImage(s,'paired-photo')}
    <div class="paired-copy"><span class="paired-number">${escape(s.number)} / ${escape(s.subtitle)}</span><h2>${escape(s.title)}</h2><p>${escape(s.description)}</p>
     <ul class="paired-checks">${s.details.map(d=>`<li>${serviceCheckMark}<span>${escape(d)}</span></li>`).join('')}</ul>
-    <div class="paired-actions">${s.id==='asphalt'?`<a class="asphalt-detail-link" href="/asphalt/">รายละเอียดงานลาดยางมะตอย ${arrow}</a><a class="asphalt-paving-detail-link" href="/asphalt-paving/">รายละเอียดงานปูยางแอสฟัลท์ ${arrow}</a>`:''}${s.id==='speed-bump'?`<a class="speed-bump-detail-link" href="/speed-bump/">รายละเอียดงานลูกระนาด ${arrow}</a>`:''}<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a></div>
+    <div class="paired-actions">${s.id==='asphalt'?`<a class="asphalt-detail-link" href="/asphalt/">รายละเอียดงานลาดยางมะตอย ${arrow}</a><a class="asphalt-paving-detail-link" href="/asphalt-paving/">รายละเอียดงานปูยางแอสฟัลท์ ${arrow}</a>`:''}${s.id==='speed-bump'?`<a class="speed-bump-detail-link" href="/speed-bump/">รายละเอียดงานลูกระนาด ${arrow}</a>`:''}${s.id==='marking'?`<a class="traffic-marking-detail-link" href="/traffic-marking/">รายละเอียดงานตีเส้นจราจรและสัญลักษณ์ ${arrow}</a>`:''}<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a></div>
    </div>
   </article>`).join('')}
  </div>
