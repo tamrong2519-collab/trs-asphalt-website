@@ -1,0 +1,76 @@
+{
+  "source": "Five photographs supplied by the user for the asphalt-paving microsite.",
+  "verification": "All five original JPEG files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
+  "photos": [
+    {
+      "id": "asphalt-paving-main",
+      "filename": "asphalt-paving-main.jpg",
+      "src": "assets/images/asphalt-paving-main.jpg",
+      "title": "เครื่องปูยางแอสฟัลท์และทีมงานใต้หลังคา",
+      "alt": "เครื่องปูยางแอสฟัลท์และทีมงานใต้หลังคา",
+      "caption": "เครื่องปูยางแอสฟัลท์และทีมงานใต้หลังคา",
+      "width": 1280,
+      "height": 960,
+      "sha256": "934693869b1a609574da4d8906bf52b69fb09d8e0bf61c3900d879a1f109eb55",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "asphalt-paving-gallery-01",
+      "filename": "asphalt-paving-gallery-01.jpg",
+      "src": "assets/images/asphalt-paving-gallery-01.jpg",
+      "title": "รถบดอัดผิวทางแอสฟัลท์รอบแนวต้นไม้",
+      "alt": "รถบดอัดผิวทางแอสฟัลท์รอบแนวต้นไม้",
+      "caption": "รถบดอัดผิวทางแอสฟัลท์รอบแนวต้นไม้",
+      "width": 1280,
+      "height": 960,
+      "sha256": "da41f4a10f1e37320b005cc5bb01fd2f137d39ae50a69c48a42e6ac175996776",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "asphalt-paving-gallery-02",
+      "filename": "asphalt-paving-gallery-02.jpg",
+      "src": "assets/images/asphalt-paving-gallery-02.jpg",
+      "title": "งานปูยางแอสฟัลท์บริเวณลานใต้หลังคา",
+      "alt": "งานปูยางแอสฟัลท์บริเวณลานใต้หลังคา",
+      "caption": "งานปูยางแอสฟัลท์บริเวณลานใต้หลังคา",
+      "width": 1280,
+      "height": 960,
+      "sha256": "19eebb11cecc76bcd22512943934f98395cc9c1d9c943527b88bedccf8131939",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "asphalt-paving-gallery-03",
+      "filename": "asphalt-paving-gallery-03.jpg",
+      "src": "assets/images/asphalt-paving-gallery-03.jpg",
+      "title": "ทีมงานเกลี่ยและเก็บผิวทางแอสฟัลท์",
+      "alt": "ทีมงานเกลี่ยและเก็บผิวทางแอสฟัลท์",
+      "caption": "ทีมงานเกลี่ยและเก็บผิวทางแอสฟัลท์",
+      "width": 1280,
+      "height": 960,
+      "sha256": "d467e5d098909e931fe2df4039f684490d8d656bb030811cdfc39ce99e280279",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "asphalt-paving-gallery-04",
+      "filename": "asphalt-paving-gallery-04.jpg",
+      "src": "assets/images/asphalt-paving-gallery-04.jpg",
+      "title": "เครื่องปูยางแอสฟัลท์และทีมงานเก็บขอบทาง",
+      "alt": "เครื่องปูยางแอสฟัลท์และทีมงานเก็บขอบทาง",
+      "caption": "เครื่องปูยางแอสฟัลท์และทีมงานเก็บขอบทาง",
+      "width": 960,
+      "height": 1280,
+      "sha256": "686e55dafa9db7e430909731b52e23bea231a7743d7e3524063a9ac885e58b21",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    }
+  ]
+}
