@@ -1,22 +1,29 @@
 {
-  "source": "All seventeen active gallery photographs were supplied by the user. Fifteen previous external photographs from Wikimedia Commons and Pexels are retained with their provenance for cached pages. Two previous user-supplied photographs are retained separately in retiredUserPhotos.",
-  "verification": "Active and retired user photographs are original JPEGs copied without image edits; SHA-256 hashes were checked against the supplied original files. Archived external files and exact per-photo author/license records were checked against pinned mirror manifests. Original external provider pages were unavailable in this environment.",
+  "source": "The active gallery contains sixteen photographs supplied by the user and one retouched derivative of the user-provided main photograph. Fifteen previous external photographs from Wikimedia Commons and Pexels are retained with their provenance for cached pages. Two previous user-supplied photographs are retained separately in retiredUserPhotos.",
+  "verification": "The active gallery contains sixteen original user-provided photographs and one retouched version of the user-provided main photograph. The original main JPEG remains hosted unchanged. SHA-256 hashes of the retouched file and original user files were verified. Archived external files and exact per-photo author/license records were checked against pinned mirror manifests. Original external provider pages were unavailable in this environment.",
   "photos": [
     {
       "id": "asphalt-project-main",
-      "filename": "asphalt-project-main.jpg",
-      "width": 1280,
-      "height": 960,
-      "source": "User-provided photograph",
+      "filename": "asphalt-project-main-clean-20261010.webp",
+      "width": 1448,
+      "height": 1086,
+      "source": "Retouched derivative of user-provided photograph",
       "title": "ภาพหน้างานถนนและลานลาดยางมะตอย",
-      "sha256": "b162c37a9e359f260de2ba82120d059ef5bd9e639b19200ba90db0803d6c8e97",
-      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "sha256": "d77dff9e7491c70b723334f455ff8463527aee8ab55da6726f530076ad5110bc",
+      "changes": "User-requested image retouch to remove the out-of-focus finger at the lower-left edge. Exported as WebP. Original JPEG retained unchanged.",
       "attributionRequired": false,
       "rightsNote": "User supplied the photograph for use on this website; no photographer name, source URL, or public license was provided.",
       "alt": "ภาพหน้างานถนนและลานลาดยางมะตอย",
       "caption": "ภาพหน้างานถนนและลานลาดยางมะตอย",
-      "src": "assets/images/asphalt-project-main.jpg",
-      "thumb": "assets/images/asphalt-project-main.jpg"
+      "src": "assets/images/asphalt-project-main-clean-20261010.webp",
+      "thumb": "assets/images/asphalt-project-main-clean-20261010.webp",
+      "original": {
+        "filename": "asphalt-project-main.jpg",
+        "src": "assets/images/asphalt-project-main.jpg",
+        "width": 1280,
+        "height": 960,
+        "sha256": "b162c37a9e359f260de2ba82120d059ef5bd9e639b19200ba90db0803d6c8e97"
+      }
     },
     {
       "id": "asphalt-project-gallery-01",
@@ -281,7 +288,7 @@
       "service": "ลาดยางมะตอย"
     }
   ],
-  "notes": "The main photograph remains unchanged and all sixteen thumbnails use user-provided photographs. Decorative gallery numbers remain removed. All fifteen previous external photographs remain hosted for cached pages; their original provenance and licenses are preserved in archivedPhotos and the credits documents. Two retired user photographs remain hosted with their original metadata in retiredUserPhotos, without invented author or public-license information.",
+  "notes": "The main photograph was retouched at the user’s request to remove the finger at the lower-left edge; its original JPEG remains hosted unchanged. All sixteen thumbnails use original user-provided photographs. Decorative gallery numbers remain removed. All fifteen previous external photographs remain hosted for cached pages; their original provenance and licenses are preserved in archivedPhotos and the credits documents. Two retired user photographs remain hosted with their original metadata in retiredUserPhotos, without invented author or public-license information.",
   "archivedPhotos": [
     {
       "id": "urban-asphalt-paving",

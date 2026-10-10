@@ -20,7 +20,7 @@ for (const width of [1440, 768, 390, 320]) {
   await page.setViewportSize({ width, height: 950 });
   await openMicrosite(page);
   await expect(page.locator('.thumb')).toHaveCount(16);
-  await expect(page.locator('#featured-image')).toHaveAttribute('src', 'assets/images/asphalt-project-main.jpg');
+  await expect(page.locator('#featured-image')).toHaveAttribute('src', 'assets/images/asphalt-project-main-clean-20261010.webp');
   await expect(page.locator('.site-header .brand-logo')).toHaveAttribute('src', 'assets/brand/trs-logo.jpg');
   const layout = await page.evaluate(() => {
    const grid = document.querySelector('.gallery-grid');
@@ -122,17 +122,17 @@ test('full-size gallery supports keyboard navigation and restores focus and scro
  await expect(viewer).toBeHidden();
  await expect(trigger).toBeFocused();
  expect(Math.abs(await page.evaluate(() => scrollY) - originalScroll)).toBeLessThanOrEqual(2);
- await expect(page.locator('#featured-image')).toHaveAttribute('src', 'assets/images/asphalt-project-main.jpg');
+ await expect(page.locator('#featured-image')).toHaveAttribute('src', 'assets/images/asphalt-project-main-clean-20261010.webp');
 });
 
-test('mobile viewer cycles through every original and releases the page after closing', async ({ page }) => {
+test('mobile viewer cycles through every gallery image and releases the page after closing', async ({ page }) => {
  await page.setViewportSize({ width: 390, height: 844 });
  await openMicrosite(page);
  const errors = []; page.on('pageerror', error => errors.push(error.message));
  await page.locator('.thumb[data-index="16"]').click();
  await expectViewerImage(page, 'asphalt-project-gallery-18.jpg');
  await page.locator('.viewer-next').click();
- await expectViewerImage(page, 'asphalt-project-main.jpg');
+ await expectViewerImage(page, 'asphalt-project-main-clean-20261010.webp');
  const photos = await page.locator('#photo-data').evaluate(element => JSON.parse(element.textContent));
  for (const photo of photos.slice(1)) {
   await page.locator('.viewer-next').click();
@@ -149,7 +149,7 @@ test('mobile viewer cycles through every original and releases the page after cl
  expect(await page.evaluate(() => document.body.classList.contains('photo-viewer-open'))).toBe(false);
  expect(await page.evaluate(() => getComputedStyle(document.body).position)).not.toBe('fixed');
  await page.locator('.photo-open').click();
- await expectViewerImage(page, 'asphalt-project-main.jpg');
+ await expectViewerImage(page, 'asphalt-project-main-clean-20261010.webp');
  await page.keyboard.press('Escape');
  await expect(page.locator('.photo-open')).toBeFocused();
  expect(errors).toEqual([]);
@@ -159,7 +159,7 @@ test('clicking the image keeps the viewer open and clicking the backdrop dismiss
  await page.setViewportSize({ width: 1440, height: 950 });
  await openMicrosite(page);
  await page.locator('.photo-open').click();
- await expectViewerImage(page, 'asphalt-project-main.jpg');
+ await expectViewerImage(page, 'asphalt-project-main-clean-20261010.webp');
  await page.locator('#viewer-image').click();
  await expect(page.locator('#photo-viewer')).toBeVisible();
  await page.mouse.click(4, 4);
