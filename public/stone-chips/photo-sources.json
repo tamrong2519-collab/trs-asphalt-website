@@ -1,6 +1,6 @@
 {
-  "source": "Fifteen existing user-supplied stone-chip photographs from the main website, previously converted to WebP.",
-  "verification": "All fifteen existing repository WebP files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
+  "source": "Sixteen user-supplied photographs: fourteen existing main-site WebP photographs and two newly supplied original JPEGs.",
+  "verification": "All fourteen existing WebP files and both newly supplied original JPEG files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
   "photos": [
     {
       "id": "stone-job",
@@ -213,18 +213,31 @@
       "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
     },
     {
-      "id": "stone-home-05",
-      "filename": "stone-home-05.webp",
+      "id": "stone-home-06",
+      "filename": "stone-home-06.jpg",
       "alt": "พื้นหินเกล็ดตลอดแนวด้านข้างบ้าน",
       "caption": "พื้นหินเกล็ดตลอดแนวด้านข้างบ้าน",
       "width": 960,
       "height": 1280,
-      "src": "assets/images/stone-home-05.webp",
-      "thumb": "assets/images/stone-home-05.webp",
-      "sourceAsset": "/images/stone-home-05.webp",
-      "sha256": "648fda319b10b917efd27f1d17323006e1e52237d4c44d326a691ece2e83e18f",
-      "source": "Existing user-supplied photograph, previously converted to WebP",
-      "changes": "Existing repository WebP copied unchanged; display framing only through CSS.",
+      "src": "assets/images/stone-home-06.jpg",
+      "thumb": "assets/images/stone-home-06.jpg",
+      "sha256": "b4fcfcd709a74149f59d04d7fb0ead10b2d02d8ce228fb849faf32c449471039",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "stone-home-07",
+      "filename": "stone-home-07.jpg",
+      "alt": "พื้นหินเกล็ดรอบต้นไม้บริเวณข้างบ้าน",
+      "caption": "พื้นหินเกล็ดรอบต้นไม้บริเวณข้างบ้าน",
+      "width": 960,
+      "height": 1280,
+      "src": "assets/images/stone-home-07.jpg",
+      "thumb": "assets/images/stone-home-07.jpg",
+      "sha256": "638fb913e4a903678f885c1e1fb5ced12f9793f993220ab5f6a13b9db48884f1",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
       "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
     }
   ]
