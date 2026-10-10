@@ -1,8 +1,8 @@
 # ที่มาและเครดิตภาพ
 
-ภาพหลักและภาพเล็ก 10 รูปแรกเป็นภาพที่ผู้ใช้ส่งให้สำหรับเว็บไซต์ลาดยางมะตอย ส่วนภาพเล็กอีก 4 รูปเป็นภาพประกอบจากแหล่งภายนอก ไม่ใช่ผลงานบริษัท และไม่สื่อถึงการรับรองบริษัทจากผู้สร้างภาพหรือบุคคลในภาพ
+ภาพทั้งหมดในแกลเลอรีปัจจุบันเป็นภาพที่ผู้ใช้ส่งให้สำหรับเว็บไซต์ลาดยางมะตอย ภาพประกอบเดิมจากแหล่งภายนอกและภาพผู้ใช้เดิมที่เลิกแสดงยังเก็บไฟล์ไว้รองรับหน้าเว็บที่แคชไว้ สัญญาอนุญาตของภาพภายนอกด้านล่างใช้กับภาพเดิมเหล่านั้นเท่านั้น ไม่ใช่ภาพในแกลเลอรีปัจจุบัน
 
-สำหรับภาพประกอบภายนอก ชื่อผู้สร้าง สัญญาอนุญาต และแหล่งที่มาตรวจสอบจากทะเบียนเครดิตรายภาพใน public mirror ที่ตรึง commit พร้อมตรวจสอบไฟล์ที่ดาวน์โหลด หน้าแหล่งต้นฉบับของผู้ให้บริการไม่สามารถเข้าถึงได้ในสภาพแวดล้อมนี้ จึงไม่ได้ยืนยันโดยอ่านหน้าต้นฉบับโดยตรง
+สำหรับภาพประกอบภายนอกเดิมที่เก็บไว้ ชื่อผู้สร้าง สัญญาอนุญาต และแหล่งที่มาตรวจสอบจากทะเบียนเครดิตรายภาพใน public mirror ที่ตรึง commit พร้อมตรวจสอบไฟล์ที่ดาวน์โหลด หน้าแหล่งต้นฉบับของผู้ให้บริการไม่สามารถเข้าถึงได้ในสภาพแวดล้อมนี้ จึงไม่ได้ยืนยันโดยอ่านหน้าต้นฉบับโดยตรง
 
 เก็บทะเบียนนี้พร้อมภาพและหน้า image-credits.html เมื่อใช้ภาพต่อ คงชื่อผู้สร้าง แหล่งต้นฉบับ ลิงก์สัญญาอนุญาต และรายละเอียดการเปลี่ยนแปลงของภาพประกอบภายนอก สำหรับภาพ CC BY-SA ให้รักษาเงื่อนไข ShareAlike ที่ใช้กับภาพดัดแปลง
 
@@ -36,23 +36,23 @@
 - ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
 - รายละเอียดภาพ: [photo-03](<image-credits.html#photo-03>)
 
-## 04. ผิวทางยางมะตอยแนวต้นไม้
+## 04. งานเกลี่ยยางมะตอยบริเวณลานหน้าอาคาร
 
 - ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
 - ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
-- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-03.jpg` (960 × 1280 px)
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-15.jpg` (1280 × 960 px)
 - การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
-- SHA-256: `50890bed2212821c9eb02f1af4a50eea003ecd96d971676620eb3c51af8dabd3`
+- SHA-256: `e10183aae21386ddbbe6b36b719afb2559a927668309a368aa78b901ac0f16c8`
 - ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
 - รายละเอียดภาพ: [photo-04](<image-credits.html#photo-04>)
 
-## 05. ถนนลาดยางมะตอยระหว่างอาคารและแนวต้นไม้
+## 05. เครื่องปูยางและทีมงานลาดยางมะตอยข้างอาคาร
 
 - ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
 - ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
-- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-04.jpg` (960 × 1280 px)
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-16.jpg` (1280 × 960 px)
 - การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
-- SHA-256: `8613f839d026a361e78a053e749da6186d005a07491f657f038b98315ab249a2`
+- SHA-256: `000baba6657d30598aaf74cc94669e9d799e3a9bdd408227f2f24e8e8d6d8b85`
 - ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
 - รายละเอียดภาพ: [photo-05](<image-credits.html#photo-05>)
 
@@ -116,61 +116,45 @@
 - ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
 - รายละเอียดภาพ: [photo-11](<image-credits.html#photo-11>)
 
-## 12. ChSDM ЧСДМ B-140 front loader
+## 12. ถนนลาดยางมะตอยข้างอาคารระหว่างก่อสร้าง
 
-- ภาพประกอบ: รถตักล้อยางสำหรับเคลื่อนย้ายวัสดุ
-- ผู้สร้างภาพ: [Photographer: Mosbatho](<https://commons.wikimedia.org/wiki/User:Mosbatho>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=114332691>)
-- สัญญาอนุญาต: [CC BY 4.0](<https://creativecommons.org/licenses/by/4.0/>)
-- ไฟล์ที่ใช้: `assets/images/wheel-loader.webp` (1600 × 958 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/wheel-loader-1600.webp>)
-- SHA-256: `acffd708914f4e670a7228c17dc109fa36ba81b26d434fe30f34d2db46fbce2a`
-- เครดิตบนหน้าเว็บ: [photo-12](<image-credits.html#photo-12>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/6/64/ChSDM_%D0%A7%D0%A1%D0%94%D0%9C_B-140_front_loader.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-11.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `a863b3abf45dc7066893c1c44586c1a843842f30c3877a8088ca2789bca812de`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-12](<image-credits.html#photo-12>)
 
-## 13. Case skid-steer loader - Arlington, MA
+## 13. ทีมงานเกลี่ยยางมะตอยข้างเครื่องปูยาง
 
-- ภาพประกอบ: รถตักขนาดเล็กสำหรับงานเตรียมพื้นที่
-- ผู้สร้างภาพ: [Daderot](<https://commons.wikimedia.org/wiki/User:Daderot>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=113496353>)
-- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/>)
-- ไฟล์ที่ใช้: `assets/images/skid-steer.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/skid-steer-1600.webp>)
-- SHA-256: `fd294b719d95eed7982e1a5f8accfabd7d15528b8b5532bffd877578cfe1de51`
-- เครดิตบนหน้าเว็บ: [photo-13](<image-credits.html#photo-13>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/7/78/Case_skid-steer_loader_-_Arlington%2C_MA.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-12.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `ffd9c5a362fc2fbad62d0251720fcae78bcc706bb90906797cf046b1a759328c`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-13](<image-credits.html#photo-13>)
 
-## 14. TEREX FERMEC 820 Backhoe Loader during sewerage work in Bucharest, 2007
+## 14. ทีมงานลาดยางมะตอยและเก็บผิวทาง
 
-- ภาพประกอบ: รถแบ็กโฮในพื้นที่ก่อสร้าง
-- ผู้สร้างภาพ: [Gabinho](<https://commons.wikimedia.org/wiki/User:Gabinho>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=12565194>)
-- สัญญาอนุญาต: [CC BY 3.0](<https://creativecommons.org/licenses/by/3.0/>)
-- ไฟล์ที่ใช้: `assets/images/backhoe.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/backhoe-1600.webp>)
-- SHA-256: `04e4e54b88e3aa500615230865659fb6a9ebac98a285382e6bc8f05d379b5a64`
-- เครดิตบนหน้าเว็บ: [photo-14](<image-credits.html#photo-14>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/2/24/TEREX_FERMEC_820_Backhoe_Loader_during_sewerage_work_in_Bucharest%2C_2007.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-13.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `7a60c9d498719dc586d59caeb10691e91a238349c0e8d64eb9902e1556e45eef`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-14](<image-credits.html#photo-14>)
 
-## 15. JCB 3CX Backhoe Loader during sewerage work in Bucharest, 2007 (side angle view)
+## 15. รถบดอัดผิวทางยางมะตอย
 
-- ภาพประกอบ: เครื่องจักรแบ็กโฮสำหรับงานขุดและเตรียมพื้น
-- ผู้สร้างภาพ: [Gabinho](<https://commons.wikimedia.org/wiki/User:Gabinho>)
-- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=12565723>)
-- สัญญาอนุญาต: [CC BY 3.0](<https://creativecommons.org/licenses/by/3.0/>)
-- ไฟล์ที่ใช้: `assets/images/jcb-backhoe.webp` (1600 × 1200 px)
-- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
-- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
-- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/jcb-backhoe-1600.webp>)
-- SHA-256: `5127c545a784244aa4cc9809168c33cad0e9d9c93ba870b0b725e7b9a21d333e`
-- เครดิตบนหน้าเว็บ: [photo-15](<image-credits.html#photo-15>)
-- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/3/3b/JCB_3CX_Backhoe_Loader_during_sewerage_work_in_Bucharest%2C_2007_%28side_angle_view%29.jpg>)
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-14.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `fd8d09d3afa4dd40904172b6073f9fb5386b6667020609a96ea5d56fa529e983`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-15](<image-credits.html#photo-15>)
 
 ## ภาพหลักเดิมที่เก็บไว้สำหรับหน้าเว็บแคช
 
@@ -193,7 +177,7 @@
 
 ## ภาพเล็กเดิมที่เก็บไว้สำหรับหน้าเว็บแคช
 
-ภาพประกอบภายนอก 10 รูปต่อไปนี้ถูกแทนด้วยภาพที่ผู้ใช้ส่งให้ ไฟล์เดิมเก็บไว้รองรับหน้าเว็บที่แคชไว้ พร้อมเครดิตและสัญญาอนุญาตเดิม
+ภาพประกอบภายนอก 14 รูปต่อไปนี้ถูกแทนด้วยภาพที่ผู้ใช้ส่งให้ ไฟล์เดิมเก็บไว้รองรับหน้าเว็บที่แคชไว้ พร้อมเครดิตและสัญญาอนุญาตเดิม
 
 ### Workers Using Heavy Machine in Asphalt Laying
 
@@ -334,3 +318,83 @@
 - SHA-256: `abb4c76d5522ed9e8000f56c963f09dde1741ce6f83c847f5929ccd544e37cc8`
 - เครดิตบนหน้าเว็บ: [photo-original-11](<image-credits.html#photo-original-11>)
 - ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/8/8d/Excavator_digging_the_trench.jpg>)
+
+### ChSDM ЧСДМ B-140 front loader
+
+- ภาพประกอบ: รถตักล้อยางสำหรับเคลื่อนย้ายวัสดุ
+- ผู้สร้างภาพ: [Photographer: Mosbatho](<https://commons.wikimedia.org/wiki/User:Mosbatho>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=114332691>)
+- สัญญาอนุญาต: [CC BY 4.0](<https://creativecommons.org/licenses/by/4.0/>)
+- ไฟล์ที่ใช้: `assets/images/wheel-loader.webp` (1600 × 958 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/wheel-loader-1600.webp>)
+- SHA-256: `acffd708914f4e670a7228c17dc109fa36ba81b26d434fe30f34d2db46fbce2a`
+- เครดิตบนหน้าเว็บ: [photo-original-12](<image-credits.html#photo-original-12>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/6/64/ChSDM_%D0%A7%D0%A1%D0%94%D0%9C_B-140_front_loader.jpg>)
+
+### Case skid-steer loader - Arlington, MA
+
+- ภาพประกอบ: รถตักขนาดเล็กสำหรับงานเตรียมพื้นที่
+- ผู้สร้างภาพ: [Daderot](<https://commons.wikimedia.org/wiki/User:Daderot>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=113496353>)
+- สัญญาอนุญาต: [CC0 1.0](<https://creativecommons.org/publicdomain/zero/1.0/>)
+- ไฟล์ที่ใช้: `assets/images/skid-steer.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/skid-steer-1600.webp>)
+- SHA-256: `fd294b719d95eed7982e1a5f8accfabd7d15528b8b5532bffd877578cfe1de51`
+- เครดิตบนหน้าเว็บ: [photo-original-13](<image-credits.html#photo-original-13>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/7/78/Case_skid-steer_loader_-_Arlington%2C_MA.jpg>)
+
+### TEREX FERMEC 820 Backhoe Loader during sewerage work in Bucharest, 2007
+
+- ภาพประกอบ: รถแบ็กโฮในพื้นที่ก่อสร้าง
+- ผู้สร้างภาพ: [Gabinho](<https://commons.wikimedia.org/wiki/User:Gabinho>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=12565194>)
+- สัญญาอนุญาต: [CC BY 3.0](<https://creativecommons.org/licenses/by/3.0/>)
+- ไฟล์ที่ใช้: `assets/images/backhoe.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/backhoe-1600.webp>)
+- SHA-256: `04e4e54b88e3aa500615230865659fb6a9ebac98a285382e6bc8f05d379b5a64`
+- เครดิตบนหน้าเว็บ: [photo-original-14](<image-credits.html#photo-original-14>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/2/24/TEREX_FERMEC_820_Backhoe_Loader_during_sewerage_work_in_Bucharest%2C_2007.jpg>)
+
+### JCB 3CX Backhoe Loader during sewerage work in Bucharest, 2007 (side angle view)
+
+- ภาพประกอบ: เครื่องจักรแบ็กโฮสำหรับงานขุดและเตรียมพื้น
+- ผู้สร้างภาพ: [Gabinho](<https://commons.wikimedia.org/wiki/User:Gabinho>)
+- แหล่งต้นฉบับ: [Wikimedia Commons](<https://commons.wikimedia.org/w/index.php?curid=12565723>)
+- สัญญาอนุญาต: [CC BY 3.0](<https://creativecommons.org/licenses/by/3.0/>)
+- ไฟล์ที่ใช้: `assets/images/jcb-backhoe.webp` (1600 × 1200 px)
+- การเปลี่ยนแปลง: Mirrored version supplied by AJmoe/Evolution-Engineering; copied unchanged for this prototype. Display framing only through CSS.
+- หลักฐานเครดิตรายภาพ: [ทะเบียนเครดิต](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/resources/images/stock/credits.json>)
+- ไฟล์ snapshot ที่ตรึง commit: [ดาวน์โหลดไฟล์](<https://raw.githubusercontent.com/AJmoe/Evolution-Engineering/95857109706e91be3d454c6f3f7405b800b7cac0/public/images/stock/jcb-backhoe-1600.webp>)
+- SHA-256: `5127c545a784244aa4cc9809168c33cad0e9d9c93ba870b0b725e7b9a21d333e`
+- เครดิตบนหน้าเว็บ: [photo-original-15](<image-credits.html#photo-original-15>)
+- ลิงก์ดาวน์โหลดต้นฉบับ: [ไฟล์ภาพจากผู้ให้บริการ](<https://upload.wikimedia.org/wikipedia/commons/3/3b/JCB_3CX_Backhoe_Loader_during_sewerage_work_in_Bucharest%2C_2007_%28side_angle_view%29.jpg>)
+
+## ภาพผู้ใช้เดิมที่เก็บไว้สำหรับหน้าเว็บแคช
+
+ภาพผู้ใช้สองรูปนี้ไม่ได้อยู่ในแกลเลอรีปัจจุบัน ไฟล์ต้นฉบับและข้อมูลเดิมยังเก็บไว้รองรับหน้าเว็บที่แคชไว้ โดยไม่กำหนดชื่อผู้ถ่ายหรือสัญญาอนุญาตสาธารณะที่ไม่ได้รับข้อมูลมา
+
+### ผิวทางยางมะตอยแนวต้นไม้
+
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-03.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `50890bed2212821c9eb02f1af4a50eea003ecd96d971676620eb3c51af8dabd3`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-retired-user-03](<image-credits.html#photo-retired-user-03>)
+
+### ถนนลาดยางมะตอยระหว่างอาคารและแนวต้นไม้
+
+- ที่มา: ภาพที่ผู้ใช้ส่งให้สำหรับใช้บนเว็บไซต์
+- ไม่มีข้อมูลชื่อผู้ถ่าย ลิงก์ต้นฉบับ หรือสัญญาอนุญาตสาธารณะ จึงไม่ระบุข้อมูลเหล่านั้น
+- ไฟล์ที่ใช้: `assets/images/asphalt-project-gallery-04.jpg` (960 × 1280 px)
+- การเปลี่ยนแปลง: คัดลอกไฟล์ JPEG ต้นฉบับโดยไม่แก้ไขภาพ จัดกรอบแสดงผลด้วย CSS เท่านั้น
+- SHA-256: `8613f839d026a361e78a053e749da6186d005a07491f657f038b98315ab249a2`
+- ไม่ต้องแสดงเครดิตแหล่งภาพภายนอกกับภาพนี้
+- รายละเอียดภาพ: [photo-retired-user-04](<image-credits.html#photo-retired-user-04>)
