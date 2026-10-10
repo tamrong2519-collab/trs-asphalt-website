@@ -1,6 +1,6 @@
 {
-  "source": "Fifteen photographs supplied by the user for the asphalt-paving microsite.",
-  "verification": "All fifteen original JPEG files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
+  "source": "Seventeen photographs supplied by the user for the asphalt-paving microsite.",
+  "verification": "All seventeen original JPEG files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
   "photos": [
     {
       "id": "asphalt-paving-main",
@@ -208,6 +208,34 @@
       "width": 1280,
       "height": 960,
       "sha256": "5c9230957d9cce7c0eb195b7419e9a3a4668387fb77b3a014e8bf4584ca5a1e8",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "asphalt-paving-gallery-15",
+      "filename": "asphalt-paving-gallery-15.jpg",
+      "src": "assets/images/asphalt-paving-gallery-15.jpg",
+      "title": "ลานแอสฟัลท์และเครื่องจักรช่วงพลบค่ำ",
+      "alt": "ลานแอสฟัลท์และเครื่องจักรช่วงพลบค่ำ",
+      "caption": "ลานแอสฟัลท์และเครื่องจักรช่วงพลบค่ำ",
+      "width": 1280,
+      "height": 960,
+      "sha256": "d1cadf9388c664157e84c155e92d12c7c7fe42347cb475f4122a7e257765196b",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "asphalt-paving-gallery-16",
+      "filename": "asphalt-paving-gallery-16.jpg",
+      "src": "assets/images/asphalt-paving-gallery-16.jpg",
+      "title": "รถบดอัดแอสฟัลท์ริมลานใต้หลังคา",
+      "alt": "รถบดอัดแอสฟัลท์ริมลานใต้หลังคา",
+      "caption": "รถบดอัดแอสฟัลท์ริมลานใต้หลังคา",
+      "width": 960,
+      "height": 1280,
+      "sha256": "55615582724468aa0d40b4d00e95f3f243e403906d61020e51e6b380629c30e8",
       "source": "User-provided photograph",
       "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
       "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
