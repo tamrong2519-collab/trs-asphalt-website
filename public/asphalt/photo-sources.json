@@ -1,5 +1,5 @@
 {
-  "source": "All fifteen active gallery photographs were supplied by the user. Fifteen previous external photographs from Wikimedia Commons and Pexels are retained with their provenance for cached pages. Two previous user-supplied photographs are retained separately in retiredUserPhotos.",
+  "source": "All seventeen active gallery photographs were supplied by the user. Fifteen previous external photographs from Wikimedia Commons and Pexels are retained with their provenance for cached pages. Two previous user-supplied photographs are retained separately in retiredUserPhotos.",
   "verification": "Active and retired user photographs are original JPEGs copied without image edits; SHA-256 hashes were checked against the supplied original files. Archived external files and exact per-photo author/license records were checked against pinned mirror manifests. Original external provider pages were unavailable in this environment.",
   "photos": [
     {
@@ -241,6 +241,38 @@
       "caption": "รถบดอัดผิวทางยางมะตอย",
       "src": "assets/images/asphalt-project-gallery-14.jpg",
       "thumb": "assets/images/asphalt-project-gallery-14.jpg"
+    },
+    {
+      "id": "asphalt-project-gallery-17",
+      "filename": "asphalt-project-gallery-17.jpg",
+      "width": 960,
+      "height": 1280,
+      "source": "User-provided photograph",
+      "title": "รถบดและทีมงานบดอัดผิวทางยางมะตอย",
+      "sha256": "91e412c7e7d39bb4a2dd51319299d95ac6b8670bdeb21d5dfe0fadc9b549c025",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "attributionRequired": false,
+      "rightsNote": "User supplied the photograph for use on this website; no photographer name, source URL, or public license was provided.",
+      "alt": "รถบดและทีมงานบดอัดผิวทางยางมะตอย",
+      "caption": "รถบดและทีมงานบดอัดผิวทางยางมะตอย",
+      "src": "assets/images/asphalt-project-gallery-17.jpg",
+      "thumb": "assets/images/asphalt-project-gallery-17.jpg"
+    },
+    {
+      "id": "asphalt-project-gallery-18",
+      "filename": "asphalt-project-gallery-18.jpg",
+      "width": 960,
+      "height": 1280,
+      "source": "User-provided photograph",
+      "title": "งานบดอัดยางมะตอยข้างอาคารระหว่างก่อสร้าง",
+      "sha256": "0c2a9d66a3044747bbaf8751fbade3277970e3c52929d1fcfaec7efc1c9fd150",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "attributionRequired": false,
+      "rightsNote": "User supplied the photograph for use on this website; no photographer name, source URL, or public license was provided.",
+      "alt": "งานบดอัดยางมะตอยข้างอาคารระหว่างก่อสร้าง",
+      "caption": "งานบดอัดยางมะตอยข้างอาคารระหว่างก่อสร้าง",
+      "src": "assets/images/asphalt-project-gallery-18.jpg",
+      "thumb": "assets/images/asphalt-project-gallery-18.jpg"
     }
   ],
   "designs": [
@@ -249,7 +281,7 @@
       "service": "ลาดยางมะตอย"
     }
   ],
-  "notes": "The main photograph remains unchanged and all fourteen thumbnails use user-provided photographs. Decorative gallery numbers remain removed. All fifteen previous external photographs remain hosted for cached pages; their original provenance and licenses are preserved in archivedPhotos and the credits documents. Two retired user photographs remain hosted with their original metadata in retiredUserPhotos, without invented author or public-license information.",
+  "notes": "The main photograph remains unchanged and all sixteen thumbnails use user-provided photographs. Decorative gallery numbers remain removed. All fifteen previous external photographs remain hosted for cached pages; their original provenance and licenses are preserved in archivedPhotos and the credits documents. Two retired user photographs remain hosted with their original metadata in retiredUserPhotos, without invented author or public-license information.",
   "archivedPhotos": [
     {
       "id": "urban-asphalt-paving",

@@ -51,6 +51,9 @@
       body.design-02 .site-footer .eyebrow { color: #dec58b; }
       body.design-02 .site-footer .footer-bottom { border-color: #ffffff30; }
       body.design-02 .site-footer .actions a:first-child { background: #e0c38a; color: #252329; border-color: #e0c38a; }
+      @media (min-width: 1051px) {
+        body.design-02 .gallery-grid { grid-template-columns: repeat(8,minmax(0,1fr)); }
+      }
       @media (max-width: 1000px) {
         body.design-02 .site-nav { display: none; position: absolute; top: calc(100% + 4px); left: 16px; right: 16px; margin: 0; padding: 12px; flex-direction: column; align-items: stretch; gap: 0; background: #1b1d23; border: 1px solid #505159; border-radius: 10px; box-shadow: 0 12px 32px #0002; }
         body.design-02 .site-nav.open { display: flex; }
