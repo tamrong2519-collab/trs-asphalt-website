@@ -1,6 +1,6 @@
 {
-  "source": "Sixteen user-supplied photographs: fourteen existing main-site WebP photographs and two newly supplied original JPEGs.",
-  "verification": "All fourteen existing WebP files and both newly supplied original JPEG files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
+  "source": "Seventeen user-supplied photographs: fourteen existing main-site WebP photographs and three newly supplied original JPEGs.",
+  "verification": "All fourteen existing WebP files and all three newly supplied original JPEG files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
   "photos": [
     {
       "id": "stone-job",
@@ -236,6 +236,20 @@
       "src": "assets/images/stone-home-07.jpg",
       "thumb": "assets/images/stone-home-07.jpg",
       "sha256": "638fb913e4a903678f885c1e1fb5ced12f9793f993220ab5f6a13b9db48884f1",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "stone-home-08",
+      "filename": "stone-home-08.jpg",
+      "alt": "พื้นหินเกล็ดข้างบ้านรอบต้นไม้และแนวกำแพง",
+      "caption": "พื้นหินเกล็ดข้างบ้านรอบต้นไม้และแนวกำแพง",
+      "width": 960,
+      "height": 1280,
+      "src": "assets/images/stone-home-08.jpg",
+      "thumb": "assets/images/stone-home-08.jpg",
+      "sha256": "821795b82a0e5e74347e9461d32e87490424a566a98c56330a565c67be64e2db",
       "source": "User-provided photograph",
       "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
       "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
