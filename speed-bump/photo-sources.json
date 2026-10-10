@@ -1,6 +1,6 @@
 {
-  "source": "Fifteen existing user-supplied photographs from the main website, previously converted to WebP.",
-  "verification": "All fifteen existing repository WebP files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
+  "source": "Seventeen user-supplied photographs: fifteen existing main-site WebP photographs and two newly supplied original JPEGs.",
+  "verification": "All fifteen existing WebP files and both newly supplied original JPEG files copied unchanged, with matching SHA-256 hashes. Display framing through CSS only.",
   "photos": [
     {
       "id": "services-speed-bump",
@@ -225,6 +225,34 @@
       "sha256": "27c62c3b339b32ca44be0cae9243dc51e98a0b6f92e83a17d83302fe1b5944be",
       "source": "Existing user-supplied photograph, previously converted to WebP",
       "changes": "Existing repository WebP copied unchanged; display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "speed-bump-gallery-15",
+      "filename": "speed-bump-gallery-15.jpg",
+      "src": "assets/images/speed-bump-gallery-15.jpg",
+      "thumb": "assets/images/speed-bump-gallery-15.jpg",
+      "alt": "ทีมงานใช้รถบดเดินตามบดอัดลูกระนาดยางมะตอยบนถนน",
+      "caption": "ทีมงานใช้รถบดเดินตามบดอัดลูกระนาดยางมะตอยบนถนน",
+      "width": 960,
+      "height": 1280,
+      "sha256": "dcedda7d572c01ece7b2e011f5465ac0885135c90f633d97924d2407435dfe00",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
+      "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
+    },
+    {
+      "id": "speed-bump-gallery-16",
+      "filename": "speed-bump-gallery-16.jpg",
+      "src": "assets/images/speed-bump-gallery-16.jpg",
+      "thumb": "assets/images/speed-bump-gallery-16.jpg",
+      "alt": "ลูกระนาดยางมะตอยพร้อมเครื่องหมายสีเหลืองดำ",
+      "caption": "ลูกระนาดยางมะตอยพร้อมเครื่องหมายสีเหลืองดำ",
+      "width": 1280,
+      "height": 960,
+      "sha256": "5f66a9f3835b6129f72205367d7c92c7f1d3a948355cd5c9f596fe3377a1cf32",
+      "source": "User-provided photograph",
+      "changes": "Original JPEG copied unchanged. Display framing only through CSS.",
       "rightsNote": "User supplied this photograph for use on this website. No photographer name, original URL, or public license was provided."
     }
   ]
