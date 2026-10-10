@@ -21,7 +21,7 @@ for (const width of [1440, 768, 390, 320]) {
   await openMicrosite(page);
   await expect(page.locator('.thumb')).toHaveCount(16);
   await expect(page.locator('#featured-image')).toHaveAttribute('src', 'assets/images/asphalt-project-main.jpg');
-  await expect(page.locator('.brand-logo')).toHaveAttribute('src', 'assets/brand/trs-logo.jpg');
+  await expect(page.locator('.site-header .brand-logo')).toHaveAttribute('src', 'assets/brand/trs-logo.jpg');
   const layout = await page.evaluate(() => {
    const grid = document.querySelector('.gallery-grid');
    return {
@@ -43,6 +43,53 @@ for (const width of [1440, 768, 390, 320]) {
   await expect(page.locator('.hero-actions .line')).toHaveAttribute('href', 'https://line.me/ti/p/%40138wlldt');
  });
 }
+
+test('asphalt shares the main homepage colors and component shapes', async ({ page }) => {
+ await page.setViewportSize({ width: 1440, height: 950 });
+ const readTheme = selectors => page.evaluate(entries => Object.fromEntries(entries.map(([name, selector, property]) => {
+  const element = document.querySelector(selector);
+  return [name, getComputedStyle(element)[property]];
+ })), selectors);
+ await page.goto(path(''));
+ const mainTheme = await readTheme([
+  ['brand', '.header-brand-band', 'backgroundColor'],
+  ['menu', '.header-nav-band', 'backgroundColor'],
+  ['contactBand', '.header-contact-band', 'backgroundImage'],
+  ['canvas', '#main', 'backgroundImage'],
+  ['call', '.hero-primary-actions .hero-call', 'backgroundColor'],
+  ['line', '.hero-primary-actions .hero-line', 'backgroundColor'],
+  ['buttonShape', '.hero-primary-actions .hero-call', 'borderRadius'],
+  ['trust', '.trust-strip', 'backgroundImage'],
+  ['portfolio', '.blue-section', 'backgroundImage'],
+  ['cardShape', '.service-card', 'borderRadius'],
+  ['footer', '.site-footer', 'backgroundImage'],
+  ['footerShape', '.site-footer', 'borderRadius'],
+  ['stripes', '.footer-stripes', 'backgroundImage'],
+ ]);
+ await openMicrosite(page);
+ const asphaltTheme = await readTheme([
+  ['brand', '.header-brand-band', 'backgroundColor'],
+  ['menu', '.header-nav-band', 'backgroundColor'],
+  ['contactBand', '.header-contact-band', 'backgroundImage'],
+  ['canvas', 'body', 'backgroundImage'],
+  ['call', '.hero-actions .phone', 'backgroundColor'],
+  ['line', '.hero-actions .line', 'backgroundColor'],
+  ['buttonShape', '.hero-actions .phone', 'borderRadius'],
+  ['trust', '.trust-strip', 'backgroundImage'],
+  ['portfolio', '.work-gallery', 'backgroundImage'],
+  ['cardShape', '.process-card', 'borderRadius'],
+  ['footer', '.site-footer', 'backgroundImage'],
+  ['footerShape', '.site-footer', 'borderRadius'],
+  ['stripes', '.footer-stripes', 'backgroundImage'],
+ ]);
+ expect(asphaltTheme).toEqual(mainTheme);
+ await expect(page.locator('.hero-benefit')).toHaveCount(4);
+ await expect(page.locator('.trust-grid > div')).toHaveCount(3);
+ await expect(page.locator('.thumb-caption')).toHaveCount(16);
+ await expect(page.locator('.thumb-number, .process-number')).toHaveCount(0);
+ await page.locator('.site-nav a[href="#photos"]').click();
+ await expect.poll(() => page.evaluate(() => document.querySelector('#photos').getBoundingClientRect().top >= document.querySelector('.site-header').getBoundingClientRect().bottom)).toBe(true);
+});
 
 test('full-size gallery supports keyboard navigation and restores focus and scroll', async ({ page }) => {
  await page.setViewportSize({ width: 1440, height: 950 });

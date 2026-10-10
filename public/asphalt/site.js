@@ -1,5 +1,12 @@
 const menu=document.querySelector('.menu-toggle');
 const nav=document.querySelector('.site-nav');
+const masthead=document.querySelector('.site-header');
+if(masthead){
+ const measureMasthead=()=>document.documentElement.style.setProperty('--site-header-height',`${Math.ceil(masthead.getBoundingClientRect().height)}px`);
+ measureMasthead();
+ if(typeof ResizeObserver==='function')new ResizeObserver(measureMasthead).observe(masthead);
+ else window.addEventListener('resize',measureMasthead);
+}
 function closeMenu(){nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false');}
 menu?.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});
 nav?.addEventListener('click',event=>{if(event.target.closest('a'))closeMenu();});
