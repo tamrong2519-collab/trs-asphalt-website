@@ -253,7 +253,7 @@ test('homepage cards use supplied photos while all five slider images stay uncha
  await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(6);
  for(let index=0;index<albums.length;index++){
   const destination=path(`projects.html#${albums[index]}`);
-  const serviceDestination=serviceIds[index]==='asphalt'?'asphalt/':serviceIds[index]==='speed-bump'?'speed-bump/':serviceIds[index]==='marking'?'traffic-marking/':`services.html#${serviceIds[index]}`;
+  const serviceDestination=serviceIds[index]==='asphalt'?'asphalt/':serviceIds[index]==='speed-bump'?'speed-bump/':serviceIds[index]==='marking'?'traffic-marking/':serviceIds[index]==='gravel'?'gravel-parking/':`services.html#${serviceIds[index]}`;
   await expect(serviceCards.nth(index)).toHaveAttribute('href',path(serviceDestination));
   await expect(sampleCards.nth(index)).toHaveAttribute('href',destination);
  }
