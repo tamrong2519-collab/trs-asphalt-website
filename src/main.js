@@ -132,7 +132,7 @@ const servicePage = `
    ${serviceImage(s,'paired-photo')}
    <div class="paired-copy"><span class="paired-number">${escape(s.number)} / ${escape(s.subtitle)}</span><h2>${escape(s.title)}</h2><p>${escape(s.description)}</p>
     <ul class="paired-checks">${s.details.map(d=>`<li>${serviceCheckMark}<span>${escape(d)}</span></li>`).join('')}</ul>
-    <div class="paired-actions">${s.id==='asphalt'?`<a class="asphalt-detail-link" href="/asphalt/">รายละเอียดงานลาดยางมะตอย ${arrow}</a>`:''}<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a></div>
+    <div class="paired-actions">${s.id==='asphalt'?`<a class="asphalt-detail-link" href="/asphalt/">รายละเอียดงานลาดยางมะตอย ${arrow}</a><a class="asphalt-paving-detail-link" href="/asphalt-paving/">รายละเอียดงานปูยางแอสฟัลท์ ${arrow}</a>`:''}<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a></div>
    </div>
   </article>`).join('')}
  </div>
