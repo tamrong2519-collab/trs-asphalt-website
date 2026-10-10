@@ -1,8 +1,17 @@
-/* Nine supporting photos form complete rows on desktops and tablets. */
-body.design-02 .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Keep the supporting photos evenly spaced, including the final partial row. */
+body.design-02 .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 body.design-02 .thumb img[src$="asphalt-paving-gallery-09.jpg"] {
   object-position: center 25%;
+}
+
+@media (min-width: 801px) {
+  body.design-02 .gallery-grid > .thumb:nth-last-child(2):nth-child(4n + 1) { grid-column: 2; }
+  body.design-02 .gallery-grid > .thumb:last-child:nth-child(4n + 2) { grid-column: 3; }
+}
+
+@media (max-width: 800px) {
+  body.design-02 .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
