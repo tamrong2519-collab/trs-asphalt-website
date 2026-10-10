@@ -51,6 +51,7 @@ for (const width of [320,390,1440]) {
   await expect(shortcuts).toHaveCount(6);
   await expect(page.locator('.paired-service .text-link')).toHaveCount(6);
   await shortcuts.last().click();await expect(page).toHaveURL(/#gravel-road$/);
+  await expect(page.locator('#gravel-road .gravel-road-detail-link')).toHaveAttribute('href',path('gravel-road/'));
   await page.locator('#gravel-road .text-link').click();
   await expect(page).toHaveURL(/\/projects\.html#gravel-road$/);
   await expect(page.locator('#gravel-road .project-facts')).toContainText('เกลี่ยปรับระดับและบดอัดถนนหินคลุก');
