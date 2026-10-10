@@ -1,4 +1,23 @@
-/* Keep the four supporting photos in complete rows on tablets and phones. */
-@media (max-width: 800px) {
-  body.design-02 .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Nine supporting photos form complete rows on desktops and tablets. */
+body.design-02 .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+body.design-02 .thumb img[src$="asphalt-paving-gallery-09.jpg"] {
+  object-position: center 25%;
+}
+
+@media (max-width: 760px) {
+  body.design-02 .gallery-grid {
+    --paving-gallery-gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--paving-gallery-gap);
+  }
+  body.design-02 .gallery-grid > .thumb:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - var(--paving-gallery-gap)) / 2);
+  }
+}
+
+@media (max-width: 560px) {
+  body.design-02 .gallery-grid { --paving-gallery-gap: 12px; }
 }
