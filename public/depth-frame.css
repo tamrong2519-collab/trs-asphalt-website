@@ -22,11 +22,17 @@ body.design-02::after {
   pointer-events: none;
 }
 
-@media (max-width: 760px) {
+/* Touch screens keep document-bound rails, avoiding a full-screen shadow
+   overlay that must be composited above every scrolling frame. */
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  body[data-page],
+  body.design-02 { position: relative; }
+
   body[data-page]::after,
   body.design-02::after {
+    position: absolute;
     border-width: 3px;
-    box-shadow: inset 0 0 0 1px #80602480, inset 0 0 8px #091f591a;
+    box-shadow: none;
   }
 }
 

@@ -16,8 +16,14 @@ export function initializeSlider({ scene, services, image }) {
   { title: 'ตีเส้นจราจร<br><span>คมชัด เป็นระเบียบ</span>', text: 'ตีเส้นถนนและช่องจอดรถด้วยสีเทอร์โมพลาสติก' },
  ];
  // Reserve the tallest slide copy after fonts load, so automatic slides do not move the page.
- const stabilizeCopy = () => {
+ let stabilizedWidths;
+ let stabilizedViewportWidth;
+ const stabilizeCopy = (force = false) => {
   if (!hero.classList.contains('hero-estimate')) return;
+  const widths = [title.clientWidth, subtitle.clientWidth];
+  // Mobile browser toolbars resize the viewport height during scrolling.
+  // Copy only needs measuring again when its available width or fonts change.
+  if (!force && stabilizedViewportWidth === window.innerWidth && stabilizedWidths?.every((width, position) => width === widths[position])) return;
   for (const [element, key] of [[title, 'title'], [subtitle, 'text']]) {
    const probe = element.cloneNode(false);
    probe.setAttribute('aria-hidden', 'true');
@@ -28,9 +34,11 @@ export function initializeSlider({ scene, services, image }) {
    for (const slide of slides) {probe.innerHTML = slide[key];height = Math.max(height, probe.getBoundingClientRect().height, probe.scrollHeight);}
    probe.remove();element.style.minHeight = `${Math.ceil(height)}px`;
   }
+  stabilizedWidths = widths;
+  stabilizedViewportWidth = window.innerWidth;
  };
- document.fonts.ready.then(stabilizeCopy);
- window.addEventListener('resize', stabilizeCopy, {passive:true});
+ document.fonts.ready.then(() => stabilizeCopy(true));
+ window.addEventListener('resize', () => stabilizeCopy(), {passive:true});
  let index = 0;
  let timer;
  let paused = reducedMotion.matches;

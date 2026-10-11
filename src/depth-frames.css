@@ -45,8 +45,26 @@ html body[data-page="projects"] #main .project-view { z-index: 2; }
   }
 }
 
-@media (max-width: 760px) {
-  html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo)::after { border-width: 3px; }
+/* Solid lower edges retain depth without repeated blurred shadow layers. */
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+  html body[data-page] #main :is(.service-card,.sample-card,.info-card,.process-card,.contact-panel,.estimate),
+  html body[data-page] #main :is(.service-card,.sample-card):hover,
+  html body[data-page] #main .project-card:not(.project-row),
+  html body[data-page="services"] #main .paired-process-grid article,
+  html body[data-page="contact"] .company-location-card,
+  html body[data-page] .site-footer {
+    box-shadow: inset 0 1px 0 #ffffffc9, 0 3px 0 #80602440;
+  }
+
+  html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo),
+  html body[data-page] #main .project-cover:hover {
+    box-shadow: 0 3px 0 #80602466;
+  }
+
+  html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo)::after {
+    border-width: 3px;
+    box-shadow: inset 0 0 0 1px #ffffff75;
+  }
 }
 
 @media print {
