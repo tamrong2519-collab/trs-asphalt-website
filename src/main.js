@@ -18,6 +18,7 @@ import './company-location.css';
 import './contact-improvements.css';
 import './professional-details.css';
 import './surface-theme.css';
+import './depth-frames.css';
 import { responsivePhotoAttributes } from './responsive-photos.js';
 import { initializeContactFloat } from './contact-float.js';
 import { initializeSlider } from './slider.js';

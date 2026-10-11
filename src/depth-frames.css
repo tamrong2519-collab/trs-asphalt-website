@@ -1,0 +1,61 @@
+/* Gold rims, light upper edges and lower shadows give the panels depth. */
+html body[data-page] #main :is(.service-card,.sample-card,.info-card,.process-card,.contact-panel,.estimate),
+html body[data-page] #main .project-card:not(.project-row),
+html body[data-page="services"] #main .paired-process-grid article,
+html body[data-page="contact"] .company-location-card,
+html body[data-page] .site-footer {
+  border-color: #ead8aa #b49454 #9b7b3d #d8c391;
+  box-shadow:
+    inset 1px 1px 0 #ffffffc9,
+    inset -1px -2px 0 #80602429,
+    0 4px 0 #80602433,
+    0 12px 24px #091f5921;
+}
+
+/* Framing the image stage leaves the original image and its crop intact. */
+html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo) {
+  position: relative;
+  box-shadow: 0 4px 0 #80602466, 0 12px 24px #091f5926;
+}
+
+html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  border: 4px solid;
+  border-color: #f7e4b2 #b99146 #8b682d #e0c88e;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px #ffffff75, inset 0 0 8px #091f592b;
+  pointer-events: none;
+}
+
+/* Keep the gallery trigger above the decorative picture rim. */
+html body[data-page="projects"] #main .project-view { z-index: 2; }
+
+@media (hover: hover) and (pointer: fine) {
+  html body[data-page] #main :is(.service-card,.sample-card):hover,
+  html body[data-page] #main .project-cover:hover {
+    box-shadow:
+      inset 1px 1px 0 #ffffffc9,
+      inset -1px -2px 0 #80602429,
+      0 4px 0 #80602466,
+      0 16px 28px #091f592e;
+  }
+}
+
+@media (max-width: 760px) {
+  html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo)::after { border-width: 3px; }
+}
+
+@media print {
+  html body[data-page] #main :is(.service-card,.sample-card,.info-card,.process-card,.contact-panel,.estimate,.paired-photo,.project-cover,.contact-photo),
+  html body[data-page="services"] #main .paired-process-grid article,
+  html body[data-page="contact"] .company-location-card,
+  html body[data-page] .site-footer { box-shadow: none; }
+}
+
+@media (forced-colors: active) {
+  html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo)::after { content: none; }
+}
