@@ -1,4 +1,5 @@
 /* Google Ads event snippets copied from TRS Construction on 19 October 2026.
+ * Phone clicks use the primary คลิกเพื่อโทร action verified on 23 October 2026.
  * The two function names are distinct so the TEL and LINE labels cannot overwrite
  * each other. The Google tag itself is installed once in each page's <head>.
  */
@@ -6,7 +7,7 @@
   if (window.__trsAdsConversionsInstalled) return;
   window.__trsAdsConversionsInstalled = true;
 
-  // Event snippet for TEL จาก เว็บไซร์ conversion page.
+  // Event snippet for คลิกเพื่อโทร conversion page.
   function gtag_report_phone_conversion(url) {
     var callback = function () {
       if (typeof(url) != 'undefined') {
@@ -14,7 +15,7 @@
       }
     };
     gtag('event', 'conversion', {
-      'send_to': 'AW-18460039086/0dEpCObMov4cEK6vt-JE',
+      'send_to': 'AW-18460039086/0G4-CMnR8oEdEK6vt-JE',
       'event_callback': callback
     });
     return false;
