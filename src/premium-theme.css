@@ -91,7 +91,7 @@ body[data-page=index] #main .hero-estimate .slider-controls button>.icon-chevron
 
 /* Give every desktop slide the same softer navy shade and photo fade. */
 @media(min-width:761px){
- body[data-page=index] #main .hero-estimate .hero-overlay{background:linear-gradient(90deg,#173463f0 0%,#173463eb 36%,#173463d9 48%,#17346380 56%,transparent 68%)}
+ body[data-page=index] #main .hero-estimate .hero-overlay{background:linear-gradient(90deg,#173463 0%,#173463 40%,#173463d9 48%,#17346380 56%,transparent 68%)}
  body[data-page=index] #main .hero-estimate .hero-benefits{background:linear-gradient(90deg,transparent 36%,#173463d9 100%)}
 }
 
