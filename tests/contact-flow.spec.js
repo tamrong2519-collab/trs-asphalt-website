@@ -34,7 +34,7 @@ for (const scenario of [
  { name: 'desktop portfolio link', width: 1440, route: 'index.html', selector: '.blue-section .section-heading .button', shortcut: 1, href: 'projects.html' },
  { name: 'mobile service CTA phone link', width: 390, route: 'services.html', selector: '.paired-cta .paired-phone', shortcut: 0, href: 'tel:0622484089' },
 ]) {
- test(`floating contacts do not intercept the ${scenario.name}`, async ({ page }) => {
+ test(`floating contacts stay fixed while scrolling past the ${scenario.name}`, async ({ page }) => {
   await page.setViewportSize({ width: scenario.width, height: 900 });
   await page.goto(path(scenario.route));
   await page.evaluate(() => document.fonts.ready);
@@ -55,23 +55,26 @@ for (const scenario of [
    const rect = element.getBoundingClientRect();
    return rect.top + rect.height / 2;
   })).toBeCloseTo(dockCenter.y, 0);
-  const box = await target.boundingBox();
-  const point = { x: Math.min(box.x + box.width - 8, Math.max(box.x + 8, dockCenter.x)), y: dockCenter.y };
-  await expect.poll(() => target.evaluate((element, point) => element.contains(document.elementFromPoint(point.x, point.y)), point)).toBe(true);
-  if (scenario.href.startsWith('tel:')) {
-   await page.evaluate(() => {
-    document.addEventListener('click', event => {
-     const link = event.target.closest('a');
-     window.clickedContact = link?.getAttribute('href');
-     event.preventDefault();
-    }, { once: true });
-   });
-   await page.mouse.click(point.x, point.y);
-   expect(await page.evaluate(() => window.clickedContact)).toBe(scenario.href);
-  } else {
-   await page.mouse.click(point.x, point.y);
-   await expect(page).toHaveURL(new URL(path(scenario.href), page.url()).href);
+  const shortcut = page.locator('.floating-contact a').nth(scenario.shortcut);
+  const href = scenario.shortcut === 0 ? 'tel:0622484089' : 'https://line.me/ti/p/%40138wlldt';
+  await expect(shortcut).toBeVisible();
+  await expect(shortcut).toHaveAttribute('href', href);
+  await expect.poll(() => shortcut.evaluate((element, point) => element.contains(document.elementFromPoint(point.x, point.y)), dockCenter)).toBe(true);
+  const anchored = await shortcut.boundingBox();
+  expect(anchored.x + anchored.width / 2).toBeCloseTo(dockCenter.x, 1);
+  expect(anchored.y + anchored.height / 2).toBeCloseTo(dockCenter.y, 1);
+  if (scenario.width <= 760) {
+   const box = await target.boundingBox();
+   expect(dockCenter.x).toBeGreaterThanOrEqual(box.x);
+   expect(dockCenter.x).toBeLessThanOrEqual(box.x + box.width);
   }
+  // Keep contact activation local, without launching a call or a LINE tab.
+  await shortcut.evaluate(element => element.addEventListener('click', event => {
+   window.clickedContact = element.getAttribute('href');
+   event.preventDefault();
+  }, { once: true }));
+  await shortcut.click();
+  expect(await page.evaluate(() => window.clickedContact)).toBe(href);
  });
 }
 
@@ -95,7 +98,7 @@ test('mobile cards download responsive photos while albums retain the originals'
  await expect(page.locator('#lightbox-image img')).not.toHaveAttribute('srcset', /.+/);
 });
 
-test('mouse focus on a contact shortcut does not leave it covering the next action', async ({ page }) => {
+test('contact shortcuts remain visible after pointer focus, keyboard focus and form editing', async ({ page }) => {
  await page.setViewportSize({ width: 390, height: 600 });
  await page.goto(path('services.html'));
  await page.evaluate(() => document.fonts.ready);
@@ -127,6 +130,16 @@ test('mouse focus on a contact shortcut does not leave it covering the next acti
   const rect = element.getBoundingClientRect();
   scrollTo({ top: scrollY + rect.top + rect.height / 2 - y, behavior: 'instant' });
  }, point.y);
- await expect.poll(() => nextAction.evaluate((element, point) => element.contains(document.elementFromPoint(point.x, point.y)), point)).toBe(true);
+ await expect(shortcut).toBeVisible();
+ await expect.poll(() => shortcut.evaluate((element, point) => element.contains(document.elementFromPoint(point.x, point.y)), point)).toBe(true);
+ await page.keyboard.press('Tab');
+ const lineShortcut = page.locator('.floating-contact a').nth(1);
+ await expect(lineShortcut).toBeFocused();
+ expect(await lineShortcut.evaluate(element => element.matches(':focus-visible'))).toBe(true);
+ await page.goto(path('contact.html#estimate'));
+ await page.locator('#phone').focus();
+ await expect(page.locator('#phone')).toBeFocused();
+ await expect(page.locator('.floating-contact a').first()).toBeVisible();
+ await expect(page.locator('.floating-contact a').nth(1)).toBeVisible();
  await expectPrimaryContactAccess(page);
 });

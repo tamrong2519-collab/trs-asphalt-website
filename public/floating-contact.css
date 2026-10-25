@@ -4,6 +4,7 @@ html body:is([data-page], .design-02) .floating-contact {
   z-index: 70;
   inset: auto max(12px, env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) auto;
   display: flex;
+  visibility: visible;
   flex-direction: column;
   align-items: center;
   width: 48px;
@@ -81,8 +82,9 @@ html body:is([data-page], .design-02) .floating-contact .float-button:focus-visi
   outline-offset: 3px;
 }
 
-html body:is([data-page], .design-02) .floating-contact.is-obstructing {
-  visibility: hidden;
+/* Older cached scripts may still add these classes; the buttons stay visible. */
+html body:is([data-page], .design-02) .floating-contact:is(.is-obstructing, .is-over-footer) {
+  visibility: visible;
   pointer-events: none;
 }
 

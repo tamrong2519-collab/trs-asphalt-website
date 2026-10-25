@@ -1,7 +1,3 @@
-body[data-page] .floating-contact.is-obstructing {
- visibility:hidden;
- pointer-events:none;
-}
 body[data-page="services"] #main .paired-service .paired-actions > .text-link {
  flex:none;
  width:fit-content;
