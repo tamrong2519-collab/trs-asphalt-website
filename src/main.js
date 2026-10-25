@@ -78,7 +78,7 @@ const siteHeader = `<header class="site-header">
 </header>`;
 const scene = (n,alt,cls='') => `<div class="scene scene-${n} ${cls}"><img src="/images/work-scenes.webp" alt="${escape(alt)}" width="1536" height="1024" loading="lazy"></div>`;
 const cardSizes = '(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) calc((100vw - 80px) / 2), 380px';
-const workPhoto = (photo,cls='',responsive=true) => `<div class="scene work-photo ${cls}"><img src="${escape(photo.src)}" ${responsive ? responsivePhotoAttributes(photo.src, page==='index' || (page==='contact' && cls!=='contact-photo') ? cardSizes : undefined, base) : ''} alt="${escape(photo.alt)}" width="${photo.width}" height="${photo.height}" loading="lazy"></div>`;
+const workPhoto = (photo,cls='',responsive=true) => `<div class="scene work-photo ${cls}"><img src="${escape(photo.src)}" ${responsive ? responsivePhotoAttributes(photo.src, page==='index' || (page==='contact' && cls!=='contact-photo') ? cardSizes : undefined, base) : ''} alt="${escape(photo.alt)}" width="${photo.width}" height="${photo.height}"${photo.position ? ` style="object-position:${escape(photo.position)}"` : ''} loading="lazy"></div>`;
 const serviceImage = (s,cls='',responsive=true) => {
  const photo = (page==='services' && s.servicesPageImage) || {
   src: (page==='index' && s.homepageImage) || s.homeImage || s.image,

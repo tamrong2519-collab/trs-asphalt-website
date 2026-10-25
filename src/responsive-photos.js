@@ -70,8 +70,15 @@ export const responsivePhotos = {
       800
     ]
   },
-  "/images/home-gravel-road.webp": {
+  "/images/home-gravel-road-project-20261025.jpg": {
     "originalWidth": 1280,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-road-service-20261025.jpg": {
+    "originalWidth": 960,
     "widths": [
       480,
       800
@@ -204,7 +211,7 @@ export function responsivePhotoAttributes(src, sizes = '(min-width: 1304px) 580p
   const photo = responsivePhotos[src];
   if (!photo) return '';
   const prefix = base.endsWith('/') ? base : `${base}/`;
-  const stem = src.slice('/images/'.length).replace(/\.webp$/, '');
+  const stem = src.slice('/images/'.length).replace(/\.[^/.]+$/, '');
   const candidates = photo.widths.map(width => `${prefix}images/responsive/${stem}-${width}.webp ${width}w`);
   candidates.push(`${prefix}${src.replace(/^\//, '')} ${photo.originalWidth}w`);
   return `srcset="${escapeAttribute(candidates.join(', '))}" sizes="${escapeAttribute(sizes)}"`;

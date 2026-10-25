@@ -29,7 +29,7 @@ const sources = new Set([
   '/images/marking-job.webp',
 ]);
 const sourceFor = s => s.homeImage || s.image;
-for (const service of services) {
+for (const service of servicesPageServices) {
   sources.add(service.homepageCards?.service?.src || service.homepageImage || sourceFor(service));
 }
 for (const project of projects.filter(p => p.images?.length)) {
@@ -63,7 +63,7 @@ export function responsivePhotoAttributes(src, sizes = '(min-width: 1304px) 580p
   const photo = responsivePhotos[src];
   if (!photo) return '';
   const prefix = base.endsWith('/') ? base : `${base}/`;
-  const stem = src.slice('/images/'.length).replace(/\.webp$/, '');
+  const stem = src.slice('/images/'.length).replace(/\.[^/.]+$/, '');
   const candidates = photo.widths.map(width => `${prefix}images/responsive/${stem}-${width}.webp ${width}w`);
   candidates.push(`${prefix}${src.replace(/^\//, '')} ${photo.originalWidth}w`);
   return `srcset="${escapeAttribute(candidates.join(', '))}" sizes="${escapeAttribute(sizes)}"`;

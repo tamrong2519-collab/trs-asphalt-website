@@ -37,7 +37,7 @@ export const servicesPageServices = [
     id: 'gravel-road', projectId: 'gravel-road', number: '06', title: 'ถนนหินคลุก บดอัด',
     subtitle: 'เกลี่ยปรับระดับและบดอัดถนน',
     homepageCards: {
-      service: { src: '/images/home-gravel-road.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภค', width: 1280, height: 960 },
+      service: { src: '/images/home-gravel-road-service-20261025.jpg', alt: 'ภาพหน้างานรถบดสีเหลืองบดอัดถนนหินคลุกข้างอาคารสีน้ำเงิน', width: 960, height: 1280, position: '50% 40%' },
     },
     servicesPageImage: { src: '/images/services-gravel-road.webp', alt: 'ภาพหน้างานทีมงาน รถขุด และรถบดขณะเกลี่ยและบดอัดถนนหินคลุกระหว่างอาคาร', width: 960, height: 1280 },
     description: 'เกลี่ยปรับระดับและบดอัดหินคลุก สำหรับถนนภายในโครงการและทางเข้าออก',
@@ -185,7 +185,7 @@ export const projects = [
   },
   {
     id: 'gravel-road', category: 'gravel', title: 'ถนนหินคลุก บดอัด',
-    homepagePhoto: { src: '/images/home-gravel-road.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดระหว่างอาคารระบบสาธารณูปโภค', width: 1280, height: 960 },
+    homepagePhoto: { src: '/images/home-gravel-road-project-20261025.jpg', alt: 'ภาพหน้างานถนนหินคลุกบดอัดแนวกว้างและรถบดข้างอาคารสีน้ำเงิน', width: 1280, height: 960, position: '50% 35%' },
     location: '', description: 'เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก',
     siteTypes: 'ถนนภายในพื้นที่อาคารและพื้นที่ติดตั้งแผงโซลาร์เซลล์',
     workScope: 'เกลี่ยปรับระดับและบดอัดถนนหินคลุก',
