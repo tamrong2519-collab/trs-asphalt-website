@@ -89,6 +89,12 @@ body[data-page=index] #main .hero-estimate .slide-play{background:#091f59bf;colo
 body[data-page=index] #main .hero-estimate .slider-controls button>.icon-chevron-left,
 body[data-page=index] #main .hero-estimate .slider-controls button>.icon-chevron-right{color:var(--premium-gold)}
 
+/* Give every desktop slide the same softer navy shade and photo fade. */
+@media(min-width:761px){
+ body[data-page=index] #main .hero-estimate .hero-overlay{background:linear-gradient(90deg,#173463f0 0%,#173463eb 36%,#173463d9 48%,#17346380 56%,transparent 68%)}
+ body[data-page=index] #main .hero-estimate .hero-benefits{background:linear-gradient(90deg,transparent 36%,#173463d9 100%)}
+}
+
 body[data-page] #main .trust-strip{background:linear-gradient(110deg,#f5e6b7,#edcf7d)}
 body[data-page] #main .trust-grid h3{color:var(--premium-navy)}
 body[data-page] #main .trust-grid p{color:#32405d}
