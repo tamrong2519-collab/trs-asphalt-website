@@ -70,18 +70,11 @@ body[data-page=index] .hero-estimate .slide-play{bottom:14px;right:16px;backgrou
 }
 @media(max-width:360px){body[data-page=index] .hero-estimate h1{font-size:34px}}
 
-/* Focus the gravel slide on the distant roller while keeping its photo intact. */
+/* Keep the gravel yard wide, with the roller clear of the text overlay. */
 body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.hero-gravel-roller>img{
  object-position:43.4% 31.1%;
- transform:scale(2.4);
- transform-origin:31% 16%;
+ transform:none;
 }
 @media(min-width:761px){
- body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.hero-gravel-roller{width:62%;margin-left:auto}
-}
-@media(min-width:761px) and (max-width:1100px){
- body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.hero-gravel-roller>img{transform-origin:17% 16%}
-}
-@media(max-width:760px){
- body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.hero-gravel-roller>img{transform:scale(4);transform-origin:41% 28%}
+ body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.hero-gravel-roller{width:50%;margin-left:auto}
 }
