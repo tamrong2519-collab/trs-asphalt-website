@@ -253,7 +253,7 @@ test('reduced motion keeps the automatic slider paused initially',async({page})=
  }
 });
 
-test('homepage cards use supplied photos while all five slider images stay unchanged',async({page})=>{
+test('homepage cards use supplied photos and the first slide uses the requested paving photo',async({page})=>{
  await page.goto(path('index.html'));
  await page.getByRole('button',{name:'หยุดสไลด์อัตโนมัติ'}).click();
  const albums=['asphalt-road','gravel-yard','stone-yard','speed-bump-work','parking-marking'];
@@ -303,8 +303,11 @@ test('homepage cards use supplied photos while all five slider images stay uncha
    await expectDecodedPhoto(image,size);
   }
  }
- await expect(page.locator('.hero-image')).toHaveAttribute('src',path('images/hero-sharp.webp'));
- await expect(page.locator('.hero-image')).toHaveAttribute('srcset',`${path('images/responsive/hero-sharp-480.webp')} 480w, ${path('images/responsive/hero-sharp-800.webp')} 800w, ${path('images/hero-sharp-mobile.webp')} 960w, ${path('images/hero-sharp.webp')} 1536w`);
+ await expect(page.locator('.hero-image')).toHaveAttribute('src',path('images/hero-asphalt-paving-20261025.jpg'));
+ await expect(page.locator('.hero-image')).not.toHaveAttribute('srcset',/.+/);
+ await expect(page.locator('.hero-image')).toHaveAttribute('width','1280');
+ await expect(page.locator('.hero-image')).toHaveAttribute('height','960');
+ await expect(page.locator('.hero-image')).toHaveAttribute('alt','ภาพหน้างานทีมงานและเครื่องปูยางมะตอยใต้หลังคาบริเวณลานโรงเรียน');
  const slidePhotos=['gravel-slide','stone-job','speed-bump-job','marking-home'];
  for(let index=0;index<slidePhotos.length;index++){
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
