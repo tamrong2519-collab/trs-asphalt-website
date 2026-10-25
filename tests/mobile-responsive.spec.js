@@ -54,13 +54,23 @@ for (const width of [320, 375, 390, 430]) {
       return { left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height, faceHeight: face.height, overflow: button.scrollWidth > button.clientWidth };
      }) };
     });
-    expect(floating.width).toBe(160); expect(floating.right).toBeCloseTo(width - 12, 1); expect(900 - floating.bottom).toBeGreaterThanOrEqual(12);
+    expect(floating.width).toBe(48); expect(floating.right).toBeCloseTo(width - 12, 1); expect(900 - floating.bottom).toBeGreaterThanOrEqual(12);
     expect(floating.buttons).toHaveLength(2);
-    for (const button of floating.buttons) { expect(button.height).toBe(44); expect(button.width).toBe(160); expect(button.faceHeight).toBe(30); expect(button.left).toBeGreaterThanOrEqual(12); expect(button.right).toBeLessThanOrEqual(width - 12); expect(button.overflow).toBe(false); }
-    expect(floating.buttons[0].left).toBeCloseTo(floating.buttons[1].left, 1); expect(floating.buttons[1].top - floating.buttons[0].bottom).toBeCloseTo(4, 1);
+    for (const button of floating.buttons) { expect(button.height).toBe(48); expect(button.width).toBe(48); expect(button.faceHeight).toBe(42); expect(button.left).toBeGreaterThanOrEqual(12); expect(button.right).toBeLessThanOrEqual(width - 12); expect(button.overflow).toBe(false); }
+    expect(floating.buttons[0].left).toBeCloseTo(floating.buttons[1].left, 1); expect(floating.buttons[1].top - floating.buttons[0].bottom).toBeCloseTo(6, 1);
     await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
-    const clearFooter = await page.evaluate(() => document.querySelector('.site-footer').getBoundingClientRect().bottom <= document.querySelector('.floating-contact').getBoundingClientRect().top);
-    expect(clearFooter).toBe(true);
+    await expect.poll(() => page.evaluate(() => {
+     const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom;
+     const controls = [...document.querySelectorAll('.site-footer a')].map(element => {
+      const rect = element.getBoundingClientRect();
+      return { element, x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, shown: rect.width > 0 && rect.height > 0 };
+     }).filter(control => control.shown && control.x >= 0 && control.x < innerWidth && control.y >= headerBottom && control.y < innerHeight);
+     return controls.length > 0 && controls.every(({ element, x, y }) => element.contains(document.elementFromPoint(x, y)));
+    })).toBe(true);
+    await expect(page.locator('.float-call')).toBeVisible();
+    await expect(page.locator('.float-line')).toBeVisible();
+    await expect(page.locator('.float-call')).toHaveAccessibleName('โทร 062-248-4089');
+    await expect(page.locator('.float-line')).toHaveAccessibleName('LINE @138wlldt');
    }
    expect(errors).toEqual([]);
   } finally { await context.close(); }

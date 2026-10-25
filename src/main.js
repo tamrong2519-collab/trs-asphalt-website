@@ -20,7 +20,6 @@ import './professional-details.css';
 import './surface-theme.css';
 import './depth-frames.css';
 import { responsivePhotoAttributes } from './responsive-photos.js';
-import { initializeContactFloat } from './contact-float.js';
 import { initializeSlider } from './slider.js';
 import { createGalleryThumbnails } from './gallery-thumbnails.js';
 import { applySocialMetadata } from './social-meta.js';
@@ -65,8 +64,8 @@ const urgentWorkMessage = 'งานด่วนโทรได้เลย เ�
 const urgentWorkMarkup = urgentWorkMessage.split(' ').map(phrase=>`<span>${escape(phrase)}</span>`).join(' ');
 const heroQuote = `<div class="hero-quote"><p class="urgent-work-note">${urgentWorkMarkup}</p><div class="hero-primary-actions">${call('button primary hero-call',`โทร ${escape(b.phone)}`)}${lineButton('แอด LINE ส่งรูปหน้างาน','button line hero-line')}</div><p class="hero-quote-note">ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น</p></div>`;
 const floatingContact = `<div class="floating-contact" aria-label="ติดต่อด่วน">
- <a class="float-button float-call" href="${phone?`tel:${phone}`:'/contact.html'}" aria-label="โทร ${escape(b.phone)}"><span class="float-face">${icon('phone-outline')}<span class="float-label-desktop">โทร ${escape(b.phone)}</span><span class="float-label-mobile">${escape(b.phone)}</span></span></a>
- <a class="float-button float-line" href="${escape(line || '/contact.html')}" ${line?'target="_blank" rel="noopener noreferrer"':''} aria-label="LINE ${escape(b.lineId)}"><span class="float-face"><span class="line-symbol float-symbol-desktop" aria-hidden="true">LINE</span><svg class="float-symbol-mobile" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 3.9 3.6 7.1 8.3 7.7l-.5 2.5c-.1.5.3.6.7.4 3.2-1.7 11.5-6 11.5-10.6C22 6.5 17.5 3 12 3z"/><text x="12" y="12.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.1" font-weight="700" fill="#007a2d">LINE</text></svg><span class="float-label-desktop">LINE ส่งรูปหน้างาน</span><span class="float-label-mobile">LINE</span></span></a>
+ <a class="float-button float-call" href="${phone?`tel:${phone}`:'/contact.html'}" aria-label="โทร ${escape(b.phone)}"><span class="float-face">${icon('phone-outline')}</span></a>
+ <a class="float-button float-line" href="${escape(line || '/contact.html')}" ${line?'target="_blank" rel="noopener noreferrer"':''} aria-label="LINE ${escape(b.lineId)}"><span class="float-face"><svg class="float-line-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 3C6.5 3 2 6.5 2 10.8c0 3.9 3.6 7.1 8.3 7.7l-.5 2.5c-.1.5.3.6.7.4 3.2-1.7 11.5-6 11.5-10.6C22 6.5 17.5 3 12 3z"/><text x="12" y="12.6" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.1" font-weight="700" fill="#007a2d">LINE</text></svg></span></a>
 </div>`;
 const brand = `<a class="brand footer-brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.webp" srcset="${base}images/responsive/logo-128.webp 128w, ${base}images/responsive/logo-256.webp 256w, ${base}images/logo.webp 1254w" sizes="60px" alt="" width="60" height="60" loading="lazy" decoding="async" fetchpriority="low"><span class="footer-wordmark"><b class="footer-title">TRS <span class="footer-name">${escape(b.name.replace(/^TRS\s*/, ''))}</span></b><small>CONSTRUCTION</small></span></a>`;
 const headerBrand = `<a class="brand" href="/index.html" aria-label="${escape(b.name)} หน้าแรก"><img src="/images/logo.webp" srcset="${base}images/responsive/logo-128.webp 128w, ${base}images/responsive/logo-256.webp 256w, ${base}images/logo.webp 1254w" sizes="64px" alt="" width="64" height="64" decoding="async" fetchpriority="low"><span class="brand-wordmark"><span class="brand-trs">TRS</span><span class="brand-name">${escape(b.name.replace(/^TRS\s*/, ''))}</span><small>CONSTRUCTION</small></span></a>`;
@@ -200,13 +199,6 @@ updateHeaderHeight();
 if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(siteHeaderElement);
 else window.addEventListener('resize', updateHeaderHeight);
 document.fonts?.ready.then(updateHeaderHeight);
-// Use the footer's own contact links when it is visible, keeping desktop floats clear of its content.
-if ('IntersectionObserver' in window) {
- const floatingContact=document.querySelector('.floating-contact');
- const footerObserver=new IntersectionObserver(([entry])=>floatingContact.classList.toggle('is-over-footer',entry.isIntersecting));
- footerObserver.observe(document.querySelector('.site-footer'));
-}
-if(typeof initializeContactFloat==='function') initializeContactFloat();
 if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage},'',false)), services});}
 if(page==='contact') {
  const copyAddressButton=document.querySelector('.company-location-copy');

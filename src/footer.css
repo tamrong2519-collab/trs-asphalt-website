@@ -31,7 +31,6 @@ body[data-page] .site-footer .footer-area{font-family:'TRS Footer Thai',Arial,sa
 body[data-page] .site-footer .footer-legal{display:flex;justify-content:space-between;gap:20px;padding:13px 36px;color:#6c7b91;font-family:Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.65;border-top:1px solid #e4eaf1}
 body[data-page] .site-footer .footer-legal>span:last-child{font-family:'Noto Sans Thai',Tahoma,sans-serif}
 body[data-page] .site-footer .footer-stripes{height:8px;background:repeating-linear-gradient(125deg,#20b0ed 0,#20b0ed 14px,#e0f4ff 14px,#e0f4ff 28px)}
-@media(min-width:761px){body[data-page] .floating-contact.is-over-footer{visibility:hidden;pointer-events:none}}
 @media(max-width:1000px){
  body[data-page] .site-footer .footer-top{flex-wrap:wrap}
  body[data-page] .site-footer .footer-secondary{flex-direction:column;align-items:flex-start}
