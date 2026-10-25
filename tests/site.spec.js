@@ -259,13 +259,23 @@ test('homepage cards use supplied photos while all five slider images stay uncha
  const albums=['asphalt-road','gravel-yard','stone-yard','speed-bump-work','parking-marking'];
  const serviceIds=['asphalt','gravel','stone','speed-bump','marking'];
  const serviceCards=page.locator('.home-services a'),sampleCards=page.locator('.sample-card');
- await expect(serviceCards).toHaveCount(5);await expect(sampleCards).toHaveCount(6);
+ await expect(serviceCards).toHaveCount(6);await expect(sampleCards).toHaveCount(6);
  for(let index=0;index<albums.length;index++){
   const destination=path(`projects.html#${albums[index]}`);
   const serviceDestination=serviceIds[index]==='asphalt'?'asphalt/':serviceIds[index]==='speed-bump'?'speed-bump/':serviceIds[index]==='marking'?'traffic-marking/':serviceIds[index]==='gravel'?'gravel-parking/':serviceIds[index]==='stone'?'stone-chips/':`services.html#${serviceIds[index]}`;
   await expect(serviceCards.nth(index)).toHaveAttribute('href',path(serviceDestination));
   await expect(sampleCards.nth(index)).toHaveAttribute('href',destination);
  }
+ const gravelRoadService=serviceCards.last();
+ await expect(gravelRoadService).toHaveAttribute('href',path('gravel-road/'));
+ await expect(gravelRoadService.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
+ await expect(gravelRoadService.locator('p')).toContainText('เกลี่ยปรับระดับและบดอัดถนน');
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('src',path('images/home-gravel-road.webp'));
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('alt',/ภาพหน้างาน.*ถนนหินคลุก/);
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('width','1280');
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('height','960');
+ await gravelRoadService.scrollIntoViewIfNeeded();await gravelRoadService.locator('img').evaluate(i=>i.decode());
+ await expectDecodedPhoto(gravelRoadService.locator('img'),[1280,960]);
  const gravelRoad=sampleCards.last();
  await expect(gravelRoad).toHaveAttribute('href',path('projects.html#gravel-road'));
  await expect(gravelRoad.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
@@ -395,7 +405,7 @@ test('blue and gold header keeps three bands and compact contacts readable on ev
 test('homepage gallery keeps six equal photo cards aligned on desktop and tablet and stacked on mobile',async({page})=>{
  for(const width of [320,375,390,430,768,853,1024,1280,1440]){
   await page.setViewportSize({width,height:1280});await page.goto(path('index.html'));await page.evaluate(()=>document.fonts.ready);
-  await expect(page.locator('.home-services .service-card')).toHaveCount(5);await expect(page.locator('.sample-card')).toHaveCount(6);
+  await expect(page.locator('.home-services .service-card')).toHaveCount(6);await expect(page.locator('.sample-card')).toHaveCount(6);
   await expect(page.locator('.header-contact a')).toHaveCount(2);await expect(page.locator('.header-call')).toHaveAttribute('href','tel:0622484089');
   await expect(page.locator('main .cta')).toHaveCount(0);await expect(page.locator('.blue-section .image-note')).toHaveCount(0);
   const geometry=await page.evaluate(()=>{

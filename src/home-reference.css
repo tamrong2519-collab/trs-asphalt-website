@@ -37,7 +37,7 @@ body[data-page=index] .section-heading{gap:24px;margin-bottom:22px;flex-wrap:now
 body[data-page=index] .section-heading h2{font-size:clamp(30px,3.4vw,44px);line-height:1.5;border-left-width:8px;padding-left:22px;font-weight:700}
 body[data-page=index] .section-heading>p{font-size:16px;line-height:1.8;max-width:380px}
 body[data-page=index] .section-heading .button{font-size:15px;min-height:44px;border-radius:4px;padding:10px 18px}
-body[data-page=index] .home-services{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+body[data-page=index] .home-services{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 body[data-page=index] .home-services>.service-card,body[data-page=index] .home-services>.service-card:nth-child(n+4){grid-column:auto}
 body[data-page=index] .home-services .scene{aspect-ratio:1.23}
 body[data-page=index] .home-services .card-content{display:grid;grid-template-columns:minmax(0,1fr);padding:20px 16px 38px;gap:12px}
