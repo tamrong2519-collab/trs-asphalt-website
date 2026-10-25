@@ -199,7 +199,7 @@ updateHeaderHeight();
 if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(siteHeaderElement);
 else window.addEventListener('resize', updateHeaderHeight);
 document.fonts?.ready.then(updateHeaderHeight);
-if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage},'',false)), services});}
+if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage, imageAlt: s.slideImageAlt || s.imageAlt},s.slideClass || '',false)), services});}
 if(page==='contact') {
  const copyAddressButton=document.querySelector('.company-location-copy');
  copyAddressButton.addEventListener('click',async()=>{

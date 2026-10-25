@@ -308,11 +308,11 @@ test('homepage cards use supplied photos and the first slide uses the requested 
  await expect(page.locator('.hero-image')).toHaveAttribute('width','1280');
  await expect(page.locator('.hero-image')).toHaveAttribute('height','960');
  await expect(page.locator('.hero-image')).toHaveAttribute('alt','ภาพหน้างานทีมงานและเครื่องปูยางมะตอยใต้หลังคาบริเวณลานโรงเรียน');
- const slidePhotos=['gravel-slide','stone-job','speed-bump-job','marking-home'];
+ const slidePhotos=['hero-gravel-parking-roller-20261025.jpg','stone-job.webp','speed-bump-job.webp','marking-home.webp'];
  for(let index=0;index<slidePhotos.length;index++){
   await page.getByRole('button',{name:'สไลด์ถัดไป',exact:true}).click();
   await expect(page.locator('.hero-home')).toHaveAttribute('data-active-slide',String(index+1));
-  await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${slidePhotos[index]}.webp`));
+  await expect(page.locator('.hero-scene img')).toHaveAttribute('src',path(`images/${slidePhotos[index]}`));
   await page.locator('.hero-scene img').evaluate(i=>i.decode());
   expect(await page.locator('.hero-scene img').evaluate(i=>getComputedStyle(i).objectFit)).toBe('cover');
  }
