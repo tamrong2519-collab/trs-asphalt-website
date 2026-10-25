@@ -77,4 +77,12 @@ body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.he
 }
 @media(min-width:761px){
  body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.hero-gravel-roller{width:50%;margin-left:auto}
+ body[data-page=index] .hero-estimate :is(.hero-scene,.hero-transition-scene)>.hero-gravel-roller::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(90deg,#091f59 0%,#091f59bf 12%,#091f5959 26%,transparent 38%);
+  pointer-events:none;
+ }
 }
