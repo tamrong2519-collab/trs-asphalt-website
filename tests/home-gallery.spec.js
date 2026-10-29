@@ -2,12 +2,12 @@ import { test, expect } from '@playwright/test';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
 const albums = [
- { id:'asphalt-road', title:'งานลาดยางมะตอย', first:'asphalt-job-01.webp', count:29 },
- { id:'gravel-yard', title:'งานลานจอดรถหินคลุก', first:'projects-gravel-cover.webp', count:20 },
- { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', count:15 },
- { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', count:14 },
- { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', count:16 },
- { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'gravel-road-job-04.webp', count:20 },
+ { id:'asphalt-road', title:'งานลาดยางมะตอย', first:'asphalt-job-01.webp', last:'asphalt-job-29.webp', count:29 },
+ { id:'gravel-yard', title:'งานลานจอดรถหินคลุก', first:'projects-gravel-cover.webp', last:'gravel-job-19.webp', count:20 },
+ { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', last:'stone-home-05.webp', count:15 },
+ { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', last:'speed-bump-job-13.webp', count:14 },
+ { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:16 },
+ { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'gravel-road-job-04.webp', last:'gravel-road-job-20.webp', count:20 },
 ];
 const triggerFor = (page, id, section = '.home-portfolio-card') => page.locator(`${section}[data-home-album="${id}"]`);
 const closeButton = page => page.getByRole('button', { name:'ปิดภาพ', exact:true });
@@ -174,4 +174,97 @@ test('homepage portfolio links still open the project album when JavaScript is d
   await expect(page).toHaveURL(/\/projects\.html#asphalt-road$/);
   await expect(page.locator('#asphalt-road')).toBeVisible();
  } finally { await context.close(); }
+});
+
+test('all five homepage portfolio cards keep equal photo and outer frames at every breakpoint', async ({ page }) => {
+ for (const width of [320, 390, 768, 1440]) {
+  await page.setViewportSize({ width, height:1000 });
+  await openHome(page);
+  const layout = await page.locator('.home-portfolio-grid').evaluate(grid => {
+   const bounds = element => {
+    const rect = element.getBoundingClientRect();
+    return { x:rect.x, y:rect.y, width:rect.width, height:rect.height };
+   };
+   return { grid:bounds(grid), cards:[...grid.querySelectorAll('.home-portfolio-card')].map(card => ({ card:bounds(card), photo:bounds(card.querySelector('.home-portfolio-photo')) })) };
+  });
+  expect(layout.cards).toHaveLength(5);
+  const first = layout.cards[0];
+  for (const { card, photo } of layout.cards) {
+   expect(Math.abs(card.width - first.card.width)).toBeLessThanOrEqual(1);
+   expect(Math.abs(card.height - first.card.height)).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.width - first.photo.width)).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.height - first.photo.height)).toBeLessThanOrEqual(1);
+   expect(card.x).toBeGreaterThanOrEqual(0);
+   expect(card.x + card.width).toBeLessThanOrEqual(width + 1);
+   expect(photo.width).toBeGreaterThan(0);
+   expect(photo.height).toBeGreaterThan(0);
+  }
+  const rows = [];
+  for (const { card } of layout.cards) {
+   let row = rows.find(items => Math.abs(items[0].y - card.y) <= 1);
+   if (!row) { row = []; rows.push(row); }
+   row.push(card);
+  }
+  expect(rows.map(row => row.length)).toEqual(width <= 760 ? [1, 1, 1, 1, 1] : width <= 1100 ? [2, 2, 1] : [3, 2]);
+  if (width > 1100) {
+   const lastRow = rows.at(-1);
+   const left = Math.min(...lastRow.map(card => card.x));
+   const right = Math.max(...lastRow.map(card => card.x + card.width));
+   expect(Math.abs((left + right) / 2 - (layout.grid.x + layout.grid.width / 2))).toBeLessThanOrEqual(1);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+ }
+});
+
+test('homepage album viewer keeps fixed dialog and photo frames across all albums and image shapes', async ({ browser, baseURL }) => {
+ test.setTimeout(60000);
+ for (const viewport of [{ width:390, height:900 }, { width:1440, height:1000 }, { width:844, height:390 }]) {
+  const mobile = viewport.width < 1000;
+  const context = await browser.newContext({ baseURL, viewport, isMobile:mobile, hasTouch:mobile, reducedMotion:'reduce' });
+  try {
+   const page = await context.newPage();
+   await openHome(page);
+   let reference;
+   const expectStableFrames = async () => {
+    const boxes = { dialog:await page.locator('#home-gallery').boundingBox(), stage:await page.locator('#home-gallery-image').boundingBox() };
+    if (!reference) reference = boxes;
+    for (const name of ['dialog', 'stage']) {
+     for (const dimension of ['x', 'y', 'width', 'height']) {
+      expect(Math.abs(boxes[name][dimension] - reference[name][dimension])).toBeLessThanOrEqual(1);
+     }
+     expect(boxes[name].width).toBeGreaterThan(0);
+     expect(boxes[name].height).toBeGreaterThan(0);
+     expect(boxes[name].x).toBeGreaterThanOrEqual(0);
+     expect(boxes[name].y).toBeGreaterThanOrEqual(0);
+     expect(boxes[name].x + boxes[name].width).toBeLessThanOrEqual(viewport.width + 1);
+     expect(boxes[name].y + boxes[name].height).toBeLessThanOrEqual(viewport.height + 1);
+    }
+    await expect(page.locator('#home-gallery-image img')).toHaveCSS('object-fit', 'contain');
+    for (const control of [previousButton(page), nextButton(page), closeButton(page)]) {
+     const box = await control.boundingBox();
+     expect(box.width).toBeGreaterThanOrEqual(44);
+     expect(box.height).toBeGreaterThanOrEqual(44);
+     expect(box.x).toBeGreaterThanOrEqual(0);
+     expect(box.y).toBeGreaterThanOrEqual(0);
+     expect(box.x + box.width).toBeLessThanOrEqual(viewport.width + 1);
+     expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + 1);
+    }
+   };
+   for (const album of albums) {
+    const caption = triggerFor(page, album.id, '.sample-card').locator('h3');
+    await caption.evaluate(element => element.scrollIntoView({ block:'end' }));
+    if (mobile) await caption.tap(); else await caption.click();
+    await expectPhoto(page, album.first, 1, album.count);
+    await expectStableFrames();
+    await previousButton(page).click();
+    await expectPhoto(page, album.last, album.count, album.count);
+    await expectStableFrames();
+    await nextButton(page).click();
+    await expectPhoto(page, album.first, 1, album.count);
+    await expectStableFrames();
+    await closeButton(page).click();
+    await expect(page.locator('#home-gallery')).not.toBeVisible();
+   }
+  } finally { await context.close(); }
+ }
 });

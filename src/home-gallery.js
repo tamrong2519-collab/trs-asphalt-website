@@ -31,6 +31,7 @@ export function initializeHomeGallery({ projects, base = '/' }) {
   image.src = new URL(photo.src.startsWith('/') ? `${prefix}${photo.src.slice(1)}` : photo.src, document.baseURI).href;
   title.textContent = album.title;
   caption.textContent = photo.alt || album.title;
+  title.scrollTop = caption.scrollTop = 0;
   count.textContent = `${imageIndex + 1} / ${album.images.length}`;
   previous.disabled = next.disabled = album.images.length < 2;
   thumbnails.setSelected(imageIndex);
