@@ -20,6 +20,8 @@ import './professional-details.css';
 import './surface-theme.css';
 import './depth-frames.css';
 import './home-portfolio.css';
+import './home-gallery.css';
+import { initializeHomeGallery } from './home-gallery.js';
 import { responsivePhotoAttributes } from './responsive-photos.js';
 import { initializeSlider } from './slider.js';
 import { createGalleryThumbnails } from './gallery-thumbnails.js';
@@ -116,20 +118,27 @@ const samples = (large=false) => `<div class="sample-grid ${large?'large':''}">$
  const s=services.find(s=>s.id===p.category), href=`/projects.html#${encodeURIComponent(p.id)}`;
  const sample=projectLink(s)===href?s:{title:p.title,homeImage:p.images[0].src,imageAlt:p.images[0].alt};
  const photo=page==='index' && p.homepagePhoto;
- return `<a class="sample-card" href="${href}">${photo?workPhoto(photo):homepageCardImage(sample,'project')}<div>${icon('pin')}<h3>${escape(sample.title)}</h3>${chevron}</div></a>`;
+ return `<a class="sample-card" href="${href}" data-home-album="${escape(p.id)}">${photo?workPhoto(photo):homepageCardImage(sample,'project')}<div>${icon('pin')}<h3>${escape(sample.title)}</h3>${chevron}</div></a>`;
 }).join('')}</div>`;
 const portfolioExamples = services.map(service => projects.find(project => project.category === service.id && project.images?.length)).filter(Boolean);
 const homePortfolio = `<section id="home-portfolio" class="container section home-portfolio-section" aria-labelledby="home-portfolio-title">
  <div class="section-heading"><h2 id="home-portfolio-title">ผลงานของเรา</h2><p>5 ตัวอย่างงานจริง พร้อมภาพและรายละเอียดจากหน้างาน</p><a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a></div>
  <div class="home-portfolio-grid">${portfolioExamples.map((project,index) => {
   const cover = { width:1280, height:960, ...project.images[0], position:project.images[0].coverPosition || '50% 50%' };
-  return `<a class="home-portfolio-card" href="/projects.html#${encodeURIComponent(project.id)}" aria-labelledby="home-portfolio-${escape(project.id)}">
+  return `<a class="home-portfolio-card" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" aria-labelledby="home-portfolio-${escape(project.id)}">
    ${workPhoto(cover,'home-portfolio-photo',true,'(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) calc((100vw - 72px) / 2), 608px')}
    <div class="home-portfolio-copy"><div class="home-portfolio-meta"><span>ตัวอย่างที่ ${String(index+1).padStart(2,'0')}</span><span class="home-portfolio-count">${project.images.length} ภาพ</span></div><h3 id="home-portfolio-${escape(project.id)}">${escape(project.title)}</h3><p>${escape(project.description)}</p><span class="home-portfolio-link">ชมภาพผลงาน ${arrow}</span></div>
   </a>`;
  }).join('')}</div>
 </section>`;
-const home = `${banner('<span class="hero-title-primary"><span class="hero-title-word">รับเหมา</span><wbr><span class="hero-title-word">ลาดยางมะตอย</span></span><span class="hero-title-secondary">และงานหินคลุกครบวงจร</span>','<span class="hero-copy-line">ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน</span> <span class="hero-copy-line">โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน</span> <span class="hero-copy-line">งานเสร็จตรงเวลา</span>',true)}<section class="trust-strip"><div class="container trust-grid">${[['helmet','สำรวจหน้างานฟรี','ประเมินพื้นที่ก่อนเริ่มงาน'],['work','เครื่องจักรพร้อม','วางแผนเครื่องจักรให้เหมาะกับงาน'],['handshake','ดูแลตั้งแต่ต้นจนจบ','ให้คำปรึกษาและวางแผนงาน']].map(([i,t,d])=>`<div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>`).join('')}</div></section><section class="container section home-services-section">${sectionHead('บริการของเรา','งานถนนและพื้นที่ใช้งาน สำหรับบ้าน ธุรกิจ และโครงการ',`<a class="button outline home-services-more" href="/services.html">ดูบริการทั้งหมด ${arrow}</a>`)}<div class="service-grid home-services">${servicesPageServices.map(card).join('')}</div></section><section class="blue-section"><div class="container section">${sectionHead('ผลงานที่ผ่านมา','ภาพหน้างานหินคลุก หินเกล็ด ลูกระนาด และตีเส้น',`<a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a>`)}${samples()}</div></section>${homePortfolio}`;
+const homeGallery = `<dialog id="home-gallery" aria-labelledby="home-gallery-title" aria-describedby="home-gallery-caption">
+ <div class="home-gallery-header"><h2 id="home-gallery-title">ภาพผลงาน</h2><button type="button" id="home-gallery-close" aria-label="ปิดภาพ" autofocus>✕</button></div>
+ <div id="home-gallery-image"><img alt="" draggable="false" decoding="async" loading="eager" hidden><span class="home-gallery-message" role="status" hidden></span></div>
+ <p id="home-gallery-caption"></p>
+ <div id="home-gallery-thumbnails"></div>
+ <div class="home-gallery-navigation"><button type="button" id="home-gallery-prev" aria-label="ภาพก่อนหน้า">${icon('chevron-left')}</button><span id="home-gallery-count" role="status" aria-label="ลำดับภาพ"></span><button type="button" id="home-gallery-next" aria-label="ภาพถัดไป">${chevron}</button></div>
+</dialog>`;
+const home = `${banner('<span class="hero-title-primary"><span class="hero-title-word">รับเหมา</span><wbr><span class="hero-title-word">ลาดยางมะตอย</span></span><span class="hero-title-secondary">และงานหินคลุกครบวงจร</span>','<span class="hero-copy-line">ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน</span> <span class="hero-copy-line">โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน</span> <span class="hero-copy-line">งานเสร็จตรงเวลา</span>',true)}<section class="trust-strip"><div class="container trust-grid">${[['helmet','สำรวจหน้างานฟรี','ประเมินพื้นที่ก่อนเริ่มงาน'],['work','เครื่องจักรพร้อม','วางแผนเครื่องจักรให้เหมาะกับงาน'],['handshake','ดูแลตั้งแต่ต้นจนจบ','ให้คำปรึกษาและวางแผนงาน']].map(([i,t,d])=>`<div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>`).join('')}</div></section><section class="container section home-services-section">${sectionHead('บริการของเรา','งานถนนและพื้นที่ใช้งาน สำหรับบ้าน ธุรกิจ และโครงการ',`<a class="button outline home-services-more" href="/services.html">ดูบริการทั้งหมด ${arrow}</a>`)}<div class="service-grid home-services">${servicesPageServices.map(card).join('')}</div></section><section class="blue-section"><div class="container section">${sectionHead('ผลงานที่ผ่านมา','ภาพหน้างานหินคลุก หินเกล็ด ลูกระนาด และตีเส้น',`<a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a>`)}${samples()}</div></section>${homePortfolio}${homeGallery}`;
 const serviceCheckMark = '<span class="paired-check-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" focusable="false"><path d="m2.5 8.2 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 const servicePage = `
 <section class="paired-hero">
@@ -212,6 +221,7 @@ if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(s
 else window.addEventListener('resize', updateHeaderHeight);
 document.fonts?.ready.then(updateHeaderHeight);
 if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage, imageAlt: s.slideImageAlt || s.imageAlt},'',false)), services});}
+if(page==='index' && typeof initializeHomeGallery==='function'){initializeHomeGallery({projects,base});}
 if(page==='contact') {
  const copyAddressButton=document.querySelector('.company-location-copy');
  copyAddressButton.addEventListener('click',async()=>{
