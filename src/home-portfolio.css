@@ -1,9 +1,9 @@
 /* Five real album previews follow the homepage's existing project gallery. */
 body[data-page=index] #main .home-portfolio-section{--premium-copy:#3d4b60;scroll-margin-top:calc(var(--site-header-height,216px) + 24px)}
 body[data-page=index] #main .home-portfolio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-body[data-page=index] #main .home-portfolio-card{display:flex;flex-direction:column;grid-column:auto;min-width:0;border-radius:16px}
-body[data-page=index] #main .home-portfolio-photo{flex:none;aspect-ratio:16/10;border-radius:0}
-body[data-page=index] #main .home-portfolio-copy{display:flex;flex:1;flex-direction:column;min-width:0;padding:26px 28px}
+body[data-page=index] #main .home-portfolio-card{display:flex;flex-direction:column;grid-column:auto;min-width:0;padding:8px;overflow:hidden;border:1px solid #d6e1eb;border-radius:20px;background:#fff;box-shadow:0 6px 18px #091f590a}
+body[data-page=index] #main .home-portfolio-photo{flex:none;aspect-ratio:16/10;border-radius:12px}
+body[data-page=index] #main .home-portfolio-copy{display:flex;flex:1;flex-direction:column;min-width:0;padding:24px 20px}
 body[data-page=index] #main .home-portfolio-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;color:#72551f;font-size:16px;font-weight:600;line-height:1.65}
 body[data-page=index] #main .home-portfolio-count{flex:none;padding:4px 12px;border:1px solid #b8c6d7;border-radius:30px;background:#eef3f8;color:#294363}
 body[data-page=index] #main .home-portfolio-copy h3{margin:0 0 10px;font-size:26px;line-height:1.5}
@@ -11,10 +11,17 @@ body[data-page=index] #main .home-portfolio-copy p{margin:0 0 20px;font-size:16p
 body[data-page=index] #main .home-portfolio-link{display:flex;align-items:center;gap:12px;min-height:44px;margin-top:auto;color:#164f9f;font-size:17px;font-weight:600;line-height:1.65}
 body[data-page=index] #main .home-portfolio-link .icon{width:22px;height:22px}
 body[data-page=index] #main .home-portfolio-card:first-child{display:grid;grid-template-columns:1.1fr 1fr;grid-column:1/-1}
-body[data-page=index] #main .home-portfolio-card:first-child .home-portfolio-photo{height:100%;min-height:300px;aspect-ratio:auto}
+body[data-page=index] #main .home-portfolio-card:first-child .home-portfolio-photo{align-self:stretch;height:auto;min-height:300px;aspect-ratio:auto}
 body[data-page=index] #main .home-portfolio-card:first-child .home-portfolio-copy{justify-content:center;padding:36px}
 body[data-page=index] #main .home-portfolio-card:first-child h3{font-size:32px}
 body[data-page=index] #main .home-portfolio-card:first-child .home-portfolio-link{margin-top:4px}
+@media(hover:hover) and (pointer:fine){
+ body[data-page=index] #main .home-portfolio-card:hover{border-color:#9bb1cb}
+ body[data-page=index] #main .home-portfolio-card:hover .home-portfolio-link{text-decoration:underline;text-underline-offset:4px}
+}
+@media(max-width:760px),(hover:none) and (pointer:coarse){
+ body[data-page=index] #main .home-portfolio-card{box-shadow:none}
+}
 @media(max-width:1100px){
  body[data-page=index] #main .home-portfolio-copy{padding:24px}
  body[data-page=index] #main .home-portfolio-card:first-child .home-portfolio-copy{padding:26px}
