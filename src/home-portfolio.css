@@ -9,11 +9,11 @@ body[data-page=index] #main .home-portfolio-heading p{margin:16px 0 0;color:#dfe
 body[data-page=index] #main .home-portfolio-all{display:flex;align-items:center;justify-content:center;gap:10px;flex:none;min-height:44px;padding:9px 18px;border:1px solid #ad985c;border-radius:28px;color:#e3cf91;font-size:16px;line-height:1.65}
 body[data-page=index] #main .home-portfolio-all .icon{width:20px;height:20px}
 body[data-page=index] #main .home-portfolio-tabs{position:static;inset:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:10px;width:100%;max-height:none;margin:0 0 22px;padding:0 0 22px;overflow:visible;border-bottom:1px solid #58729b;background:transparent;box-shadow:none}
-body[data-page=index] #main .home-portfolio-tab{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-width:0;min-height:78px;padding:14px 16px;border:1px solid #647ea8;border-radius:10px;background:transparent;color:#f4f6ef;text-align:center;font-size:16px;font-weight:600;line-height:1.55;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
+body[data-page=index] #main .home-portfolio-tab{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-width:0;min-height:78px;padding:14px 16px;border:1px solid #647ea8;border-radius:10px;--portfolio-tab-depth:#061638;background:linear-gradient(180deg,#2d4c7a,#173463 55%,#11294f);box-shadow:inset 0 1px 0 #ffffff40,inset 0 -1px 0 #04132f66,0 3px 0 var(--portfolio-tab-depth);color:#f4f6ef;text-align:center;font-size:16px;font-weight:600;line-height:1.55;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
 body[data-page=index] #main .home-portfolio-tab-label{min-width:0}
 body[data-page=index] #main .home-portfolio-label-mobile{display:none}
 body[data-page=index] #main .home-portfolio-count{display:grid;place-items:center;flex:none;min-width:28px;min-height:28px;padding:3px;border-radius:50%;background:#ffffff12;color:inherit;font-size:12px;line-height:1}
-body[data-page=index] #main .home-portfolio-tab.is-active{border-color:var(--portfolio-gold);background:var(--portfolio-gold);color:#091f59}
+body[data-page=index] #main .home-portfolio-tab.is-active{--portfolio-tab-depth:#8e6b2c;border-color:#fff0c1 #d5af59 #9f7c35 #e4c57c;background:linear-gradient(180deg,#f8e2a7,#dfbd68 58%,#c99e4c);box-shadow:inset 0 1px 0 #ffffffa6,inset 0 -1px 0 #79562140,0 3px 0 var(--portfolio-tab-depth);color:#091f59}
 body[data-page=index] #main .home-portfolio-tab.is-active .home-portfolio-count{background:#f8df9c55}
 body[data-page=index] #main .home-portfolio-panel{min-width:0;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
 body[data-page=index] #main .home-portfolio-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(114px,11.8vw,158px);grid-auto-flow:row dense;gap:10px}
@@ -27,7 +27,7 @@ body[data-page=index] #main .home-portfolio-hint{margin:20px 0 0;color:#dfe5ef;t
 body[data-page=index] #main .home-portfolio-status{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 body[data-page=index] #main :is(.home-portfolio-tab,.home-portfolio-all,.home-portfolio-photo):focus-visible{outline:3px solid #b9d8ff;outline-offset:3px}
 @media(hover:hover) and (pointer:fine){
- body[data-page=index] #main .home-portfolio-tab:not(.is-active):hover{background:#173463;border-color:#9eb5d7}
+ body[data-page=index] #main .home-portfolio-tab:not(.is-active):hover{background:linear-gradient(180deg,#395c8f,#234678 55%,#173463);border-color:#b1c8e7;transform:translateY(-1px);box-shadow:inset 0 1px 0 #ffffff59,inset 0 -1px 0 #04132f66,0 4px 0 var(--portfolio-tab-depth)}
  body[data-page=index] #main .home-portfolio-photo:hover{border-color:#c7daf4}
  body[data-page=index] #main .home-portfolio-all:hover{background:#ffffff0d}
 }
@@ -39,8 +39,8 @@ body[data-page=index] #main :is(.home-portfolio-tab,.home-portfolio-all,.home-po
  body[data-page=index] #main .home-portfolio-all{padding:8px 12px;font-size:14px}
  body[data-page=index] #main .home-portfolio-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:14px;padding-bottom:14px}
  body[data-page=index] #main .home-portfolio-tab,
- body[data-page=index] #main .home-portfolio-tab:not(.is-active):hover{gap:0;height:44px;min-height:44px;padding:8px 6px;border:1px solid #d9c397;border-radius:10px;background:var(--silver-panel,#edf0f3);color:var(--portfolio-navy);font-size:clamp(14px,3.9vw,15px);font-weight:500;line-height:1.6}
- body[data-page=index] #main .home-portfolio-tab.is-active{border-color:#6288be;background:#e8f0fb;color:var(--portfolio-navy);box-shadow:inset 0 0 0 1px #6288be}
+ body[data-page=index] #main .home-portfolio-tab:not(.is-active):hover{gap:0;height:44px;min-height:44px;padding:8px 6px;--portfolio-tab-depth:#657892;border:1px solid;border-color:#ffffff #bcc8d7 #899bb1 #dce5ef;border-radius:10px;background:linear-gradient(180deg,#ffffff,#f0f3f7 55%,#d8e1ec);box-shadow:inset 0 1px 0 #ffffff,inset 0 -1px 0 #8a9db633,0 3px 0 var(--portfolio-tab-depth);transform:none;color:var(--portfolio-navy);font-size:clamp(14px,3.9vw,15px);font-weight:500;line-height:1.6}
+ body[data-page=index] #main .home-portfolio-tab.is-active{--portfolio-tab-depth:#345985;border-color:#d2e5ff #7e9fc9 #5279aa #a7c4e7;background:linear-gradient(180deg,#f3f8ff,#dbe8f8 55%,#bed2ec);color:var(--portfolio-navy);box-shadow:inset 0 1px 0 #ffffff,inset 0 -1px 0 #577faa33,0 2px 0 var(--portfolio-tab-depth)}
  body[data-page=index] #main .home-portfolio-tab-label{width:100%}
  body[data-page=index] #main .home-portfolio-label-desktop{display:none}
  body[data-page=index] #main .home-portfolio-label-mobile{display:block}
@@ -59,3 +59,8 @@ body[data-page=index] #main :is(.home-portfolio-tab,.home-portfolio-all,.home-po
  body[data-page=index] #main .home-portfolio-heading p{margin-top:12px}
  body[data-page=index] #main .home-portfolio-all{display:none}
 }
+
+/* A press lowers the face while keeping a crisp, lightweight edge. */
+body[data-page=index] #main .home-portfolio-tab:active,
+body[data-page=index] #main .home-portfolio-tab.is-active:active,
+body[data-page=index] #main .home-portfolio-tab:not(.is-active):hover:active{transform:translateY(2px);box-shadow:inset 0 1px 0 #091f5933,inset 0 -1px 0 #ffffff80,0 1px 0 var(--portfolio-tab-depth)}
