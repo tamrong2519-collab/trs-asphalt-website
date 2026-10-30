@@ -92,12 +92,23 @@ body.design-02 .thumb:focus-visible {
   }
 }
 
-/* Touch screens use solid bevels rather than large soft shadow layers. */
+/* Touch layouts use neutral photo edges and blue selection cues. */
 @media (max-width: 760px), (hover: none) and (pointer: coarse) {
   body.design-02 .thumb,
   body.design-02 .thumb:hover,
   body.design-02 .thumb.active,
+  body.design-02 .thumb[aria-pressed="true"] {
+    border-color: #c8dceb;
+    box-shadow: none;
+  }
+
+  body.design-02 .thumb.active,
   body.design-02 .thumb[aria-pressed="true"],
+  body.design-02 .thumb:focus-visible {
+    border-color: #164f9f;
+    outline-color: #164f9f;
+  }
+
   body.design-02 .site-footer {
     box-shadow: inset 0 1px 0 #ffffffd9, 0 3px 0 #8d713b;
   }
@@ -106,15 +117,15 @@ body.design-02 .thumb:focus-visible {
     box-shadow: inset 0 1px 0 #fff, 0 3px 0 #8397ac;
   }
 
-  body.design-02 .thumb::after,
   body.design-02 .process-card::after,
   body.design-02 .site-footer::after {
     inset: 2px;
     border-radius: 13px;
   }
 
+  body.design-02 .thumb::after,
   body.design-02 .graphite-photo .photo-stage::after {
-    inset: 3px;
+    content: none;
   }
 }
 
