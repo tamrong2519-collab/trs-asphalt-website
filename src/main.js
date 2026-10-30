@@ -21,6 +21,7 @@ import './surface-theme.css';
 import './depth-frames.css';
 import './home-portfolio.css';
 import './home-gallery.css';
+import { initializeHomePortfolio } from './home-portfolio.js';
 import { initializeHomeGallery } from './home-gallery.js';
 import { responsivePhotoAttributes } from './responsive-photos.js';
 import { initializeSlider } from './slider.js';
@@ -124,16 +125,26 @@ const portfolioExamples = servicesPageServices.map(service => {
  const project = projects.find(project => (service.projectId ? project.id === service.projectId : project.category === service.id) && project.images?.length);
  return project ? { ...project, portfolioCover:(service.projectId && project.homepagePhoto) || project.images[0] } : null;
 }).filter(Boolean);
-const homePortfolio = `<section id="home-portfolio" class="container section home-portfolio-section" aria-labelledby="home-portfolio-title">
- <div class="section-heading"><h2 id="home-portfolio-title">ผลงานของเรา</h2><p>${portfolioExamples.length} ตัวอย่างงานจริง พร้อมภาพและรายละเอียดจากหน้างาน</p><a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a></div>
- <div class="home-portfolio-grid">${portfolioExamples.map((project,index) => {
-  const cover = { width:1280, height:960, ...project.portfolioCover, position:project.portfolioCover.position || project.portfolioCover.coverPosition || '50% 50%' };
-  return `<a id="home-portfolio-card-${escape(project.id)}" class="home-portfolio-card" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" aria-labelledby="home-portfolio-${escape(project.id)}">
-   ${workPhoto(cover,'home-portfolio-photo',true,'(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) calc((100vw - 72px) / 2), 380px')}
-   <div class="home-portfolio-copy"><div class="home-portfolio-meta"><span>ตัวอย่างที่ ${String(index+1).padStart(2,'0')}</span><span class="home-portfolio-count">${project.images.length} ภาพ</span></div><h3 id="home-portfolio-${escape(project.id)}">${escape(project.title)}</h3><p>${escape(project.description)}</p><span class="home-portfolio-link">ชมภาพผลงาน ${arrow}</span></div>
-  </a>`;
- }).join('')}</div>
-</section>`;
+const portfolioLabels = {
+ 'asphalt-road':['งานลาดยางมะตอย','และปูยางแอสฟัลท์'],
+ 'gravel-yard':['ลานจอดรถหินคลุก','บดอัดแน่น'],
+ 'stone-yard':['งานหินเกล็ด','ปรับพื้นลาน'],
+ 'speed-bump-work':['งานลูกระนาด','ยางมะตอย'],
+ 'parking-marking':['งานตีเส้นจราจร','และสัญลักษณ์'],
+ 'gravel-road':['งานถนนหินคลุก','บดอัดแน่น'],
+};
+const portfolioImageSizes = index => index===0
+ ? '(max-width: 760px) calc((100vw - 36px) * 2 / 3), (min-width: 1304px) 595px, calc((100vw - 64px) / 2)'
+ : index===7
+ ? '(max-width: 760px) calc((100vw - 48px) / 3), (min-width: 1304px) 394px, calc((100vw - 84px) / 3)'
+ : '(max-width: 760px) calc((100vw - 48px) / 3), (min-width: 1304px) 192px, calc((100vw - 114px) / 6)';
+const homePortfolio = `<section id="home-portfolio" class="home-portfolio-section" aria-labelledby="home-portfolio-title"><div class="container home-portfolio-content">
+ <div class="home-portfolio-heading"><div><span class="home-portfolio-eyebrow">TRS PROJECT GALLERY</span><h2 id="home-portfolio-title">ผลงานของเรา</h2><p>เลือกชมภาพผลงานจริง แยกตามประเภทงาน</p></div><a class="home-portfolio-all" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a></div>
+ <nav class="home-portfolio-tabs" aria-label="เลือกประเภทผลงาน">${portfolioExamples.map((project,index) => `<a id="home-portfolio-card-${escape(project.id)}" class="home-portfolio-tab${index===0?' is-active':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-category="${escape(project.id)}"><span class="home-portfolio-tab-label">${portfolioLabels[project.id].map(escape).join('<br>')}</span><span class="home-portfolio-count" aria-label="${project.images.length} ภาพ">${project.images.length}</span></a>`).join('')}</nav>
+ <div id="home-portfolio-status" class="home-portfolio-status" role="status" aria-live="polite"></div>
+ ${portfolioExamples.map((project,albumIndex) => `<div id="home-portfolio-panel-${escape(project.id)}" class="home-portfolio-panel"${albumIndex>0?' hidden':''}><div class="home-portfolio-grid">${project.images.map((photo,index) => `<a id="home-portfolio-photo-${escape(project.id)}-${index+1}" class="home-portfolio-photo${index===0?' is-featured':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" data-home-photo-index="${index}" aria-label="ดูภาพที่ ${index+1} จาก ${project.images.length}: ${escape(photo.alt || project.title)}" aria-haspopup="dialog" aria-controls="home-gallery"><img src="${escape(photo.src)}" ${responsivePhotoAttributes(photo.src,portfolioImageSizes(index),base)} alt="${escape(photo.alt || project.title)}" width="${photo.width || 1280}" height="${photo.height || 960}" loading="lazy" decoding="async"><span class="home-portfolio-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>${index===0?`<span class="home-portfolio-caption">${portfolioLabels[project.id].map(escape).join('')}</span>`:''}</a>`).join('')}</div></div>`).join('')}
+ <p class="home-portfolio-hint">แตะรูปเพื่อดูขนาดใหญ่ · เลื่อนชมภาพผลงานได้ในหน้านี้</p>
+</div></section>`;
 const homeGallery = `<dialog id="home-gallery" aria-labelledby="home-gallery-title" aria-describedby="home-gallery-caption">
  <div class="home-gallery-header"><h2 id="home-gallery-title">ภาพผลงาน</h2><button type="button" id="home-gallery-close" aria-label="ปิดภาพ" autofocus>✕</button></div>
  <div id="home-gallery-image"><img alt="" draggable="false" decoding="async" loading="eager" hidden><span class="home-gallery-message" role="status" hidden></span></div>
@@ -224,6 +235,7 @@ if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(s
 else window.addEventListener('resize', updateHeaderHeight);
 document.fonts?.ready.then(updateHeaderHeight);
 if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage, imageAlt: s.slideImageAlt || s.imageAlt},'',false)), services});}
+if(page==='index' && typeof initializeHomePortfolio==='function'){initializeHomePortfolio();}
 if(page==='index' && typeof initializeHomeGallery==='function'){initializeHomeGallery({projects,base});}
 if(page==='contact') {
  const copyAddressButton=document.querySelector('.company-location-copy');

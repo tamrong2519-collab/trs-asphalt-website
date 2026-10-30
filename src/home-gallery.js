@@ -61,7 +61,8 @@ export function initializeHomeGallery({ projects, base = '/' }) {
   if (!selected) return;
   event.preventDefault();
   if (dialog.open) return;
-  album = selected; imageIndex = 0; trigger = link;
+  const selectedIndex = Number.parseInt(link.dataset.homePhotoIndex || '0', 10);
+  album = selected; imageIndex = Number.isInteger(selectedIndex) ? Math.max(0, Math.min(selectedIndex, selected.images.length - 1)) : 0; trigger = link;
   scroll = { x: window.scrollX, y: window.scrollY };
   root.style.setProperty('--home-gallery-scroll-top', `${-scroll.y}px`);
   root.style.setProperty('--home-gallery-scroll-left', `${-scroll.x}px`);

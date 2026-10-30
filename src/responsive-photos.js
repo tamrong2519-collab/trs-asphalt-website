@@ -3,6 +3,127 @@ export const responsivePhotos = {
   "/images/asphalt-job-01.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-02.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-03.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-04.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-05.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-06.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-07.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-08.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-09.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-10.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-11.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-12.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-13.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-14.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-15.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-16.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -10,6 +131,7 @@ export const responsivePhotos = {
   "/images/asphalt-job-17.webp": {
     "originalWidth": 960,
     "widths": [
+      240,
       480,
       800
     ]
@@ -17,6 +139,94 @@ export const responsivePhotos = {
   "/images/asphalt-job-18.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-19.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-20.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-21.webp": {
+    "originalWidth": 720,
+    "widths": [
+      240,
+      480
+    ]
+  },
+  "/images/asphalt-job-22.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-23.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-24.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-25.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-26.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-27.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-28.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/asphalt-job-29.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -24,6 +234,7 @@ export const responsivePhotos = {
   "/images/contact-asphalt.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -31,6 +242,7 @@ export const responsivePhotos = {
   "/images/contact-gravel.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -38,6 +250,7 @@ export const responsivePhotos = {
   "/images/contact-main.webp": {
     "originalWidth": 960,
     "widths": [
+      240,
       480,
       800
     ]
@@ -45,6 +258,95 @@ export const responsivePhotos = {
   "/images/contact-marking.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-03.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-04.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-05.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-06.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-07.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-08.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-09.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-10.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-11.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-12.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-13.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -52,6 +354,222 @@ export const responsivePhotos = {
   "/images/gravel-job-14.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-15.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-16.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-17.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-18.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job-19.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-job.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-02.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-03.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-04.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-05.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-06.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-07.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-08.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-09.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-10.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-11.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-12.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-13.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-14.webp": {
+    "originalWidth": 720,
+    "widths": [
+      240,
+      480
+    ]
+  },
+  "/images/gravel-road-job-15.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-16.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-17.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-18.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-19.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job-20.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-road-job.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/gravel-slide.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -59,6 +577,7 @@ export const responsivePhotos = {
   "/images/hero-sharp.webp": {
     "originalWidth": 1536,
     "widths": [
+      240,
       480,
       800
     ]
@@ -66,6 +585,23 @@ export const responsivePhotos = {
   "/images/home-gravel-road-alley-01-20261030.jpg": {
     "originalWidth": 1280,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-road-alley-02-20261030.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-road-alley-03-20261030.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -73,6 +609,7 @@ export const responsivePhotos = {
   "/images/home-gravel-service.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -80,6 +617,119 @@ export const responsivePhotos = {
   "/images/marking-home.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-02.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-03.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-04.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-05.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-06.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-07.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-08.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-09.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-10.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-11.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-12.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-13.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-14.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/marking-job-15.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -87,6 +737,7 @@ export const responsivePhotos = {
   "/images/marking-job.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -94,6 +745,7 @@ export const responsivePhotos = {
   "/images/projects-gravel-cover.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -101,6 +753,7 @@ export const responsivePhotos = {
   "/images/projects-marking-cover.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -108,6 +761,7 @@ export const responsivePhotos = {
   "/images/projects-speed-bump-cover.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -115,6 +769,7 @@ export const responsivePhotos = {
   "/images/services-asphalt.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -122,6 +777,7 @@ export const responsivePhotos = {
   "/images/services-gravel-road.webp": {
     "originalWidth": 960,
     "widths": [
+      240,
       480,
       800
     ]
@@ -129,6 +785,7 @@ export const responsivePhotos = {
   "/images/services-gravel.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -136,6 +793,7 @@ export const responsivePhotos = {
   "/images/services-hero.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -143,6 +801,7 @@ export const responsivePhotos = {
   "/images/services-marking.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -150,6 +809,7 @@ export const responsivePhotos = {
   "/images/services-speed-bump.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]
@@ -157,6 +817,95 @@ export const responsivePhotos = {
   "/images/speed-bump-job-02.webp": {
     "originalWidth": 960,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-03.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-04.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-05.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-06.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-07.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-08.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-09.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-10.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-11.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-12.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/speed-bump-job-13.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -164,6 +913,39 @@ export const responsivePhotos = {
   "/images/speed-bump-job.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-building-01.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-building-02.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-building-03.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-building-04.webp": {
+    "originalWidth": 963,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -171,6 +953,79 @@ export const responsivePhotos = {
   "/images/stone-home-01.webp": {
     "originalWidth": 960,
     "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-home-02.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-home-03.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-home-04.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-home-05.webp": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-job-02.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-job-03.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-job-04.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-job-05.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/stone-job-06.webp": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
       480,
       800
     ]
@@ -178,6 +1033,7 @@ export const responsivePhotos = {
   "/images/stone-job.webp": {
     "originalWidth": 1280,
     "widths": [
+      240,
       480,
       800
     ]

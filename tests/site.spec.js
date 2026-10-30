@@ -43,7 +43,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
    await expect(footerLinks).toHaveCount(4);await expect(footerLinks).toHaveText(['หน้าแรก','บริการของเรา','ผลงานของเรา','ติดต่อเรา']);
    for(let index=0;index<routes.length;index++){await expect(footerLinks.nth(index)).toHaveAttribute('href',path(`${routes[index]}.html`));await expect(footerLinks.nth(index)).toBeVisible();}
    await expect(footer.locator('[aria-current="page"]')).toHaveAttribute('href',path(`${route}.html`));
-   for (const img of await page.locator('img[src]').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
+   for (const img of await page.locator('img[src]:visible').all()) { await img.scrollIntoViewIfNeeded(); await img.evaluate(i=>i.decode()); }
    if(width>760){
     await page.evaluate(()=>scrollTo(0,document.documentElement.scrollHeight));
     await expect(page.locator('.floating-contact')).toBeVisible();

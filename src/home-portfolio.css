@@ -1,28 +1,54 @@
-/* Work album previews follow the homepage's existing project gallery. */
-body[data-page=index] #main .home-portfolio-section{--premium-copy:#3d4b60;scroll-margin-top:calc(var(--site-header-height,216px) + 24px)}
-body[data-page=index] #main .home-portfolio-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:1fr;gap:24px}
-body[data-page=index] #main .home-portfolio-card{display:flex;flex-direction:column;grid-column:span 4;min-width:0;padding:8px;overflow:hidden;border:1px solid #d6e1eb;border-radius:20px;background:#fff;box-shadow:0 6px 18px #091f590a;scroll-margin-top:calc(var(--site-header-height,216px) + 24px)}
-body[data-page=index] #main .home-portfolio-photo{flex:none;aspect-ratio:16/10;border-radius:12px}
-body[data-page=index] #main .home-portfolio-copy{display:flex;flex:1;flex-direction:column;min-width:0;padding:24px 20px}
-body[data-page=index] #main .home-portfolio-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;color:#72551f;font-size:16px;font-weight:600;line-height:1.65}
-body[data-page=index] #main .home-portfolio-count{flex:none;padding:4px 12px;border:1px solid #b8c6d7;border-radius:30px;background:#eef3f8;color:#294363}
-body[data-page=index] #main .home-portfolio-copy h3{margin:0 0 10px;font-size:24px;line-height:1.5}
-body[data-page=index] #main .home-portfolio-copy p{margin:0 0 20px;font-size:16px;line-height:1.85}
-body[data-page=index] #main .home-portfolio-link{display:flex;align-items:center;gap:12px;min-height:44px;margin-top:auto;color:#164f9f;font-size:17px;font-weight:600;line-height:1.65}
-body[data-page=index] #main .home-portfolio-link .icon{width:22px;height:22px}
+/* A category gallery with one featured photo, matching the supplied reference. */
+body[data-page=index] #main .home-portfolio-section{--portfolio-green:#082f22;--portfolio-gold:#dfbd68;background:var(--portfolio-green);color:#f8faf5;padding:60px 0;scroll-margin-top:var(--site-header-height,216px)}
+body[data-page=index] #main .home-portfolio-content{max-width:1200px}
+body[data-page=index] #main .home-portfolio-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:28px}
+body[data-page=index] #main .home-portfolio-eyebrow{display:block;margin-bottom:14px;color:#dfc780;font-size:13px;font-weight:700;letter-spacing:3px;line-height:1.6}
+body[data-page=index] #main .home-portfolio-heading h2{margin:0;color:#f8faf5;font-size:clamp(32px,3.2vw,44px);line-height:1.45}
+body[data-page=index] #main .home-portfolio-heading h2::after{content:'';display:block;width:56px;height:3px;margin-top:18px;background:var(--portfolio-gold)}
+body[data-page=index] #main .home-portfolio-heading p{margin:16px 0 0;color:#c6d7cc;font-size:16px;line-height:1.75}
+body[data-page=index] #main .home-portfolio-all{display:flex;align-items:center;justify-content:center;gap:10px;flex:none;min-height:44px;padding:9px 18px;border:1px solid #ad985c;border-radius:28px;color:#e3cf91;font-size:16px;line-height:1.65}
+body[data-page=index] #main .home-portfolio-all .icon{width:20px;height:20px}
+body[data-page=index] #main .home-portfolio-tabs{position:static;inset:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:10px;width:100%;max-height:none;margin:0 0 22px;padding:0 0 22px;overflow:visible;border-bottom:1px solid #426453;background:transparent;box-shadow:none}
+body[data-page=index] #main .home-portfolio-tab{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-width:0;min-height:78px;padding:14px 16px;border:1px solid #587b67;border-radius:10px;background:transparent;color:#f4f6ef;text-align:center;font-size:16px;font-weight:600;line-height:1.55;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
+body[data-page=index] #main .home-portfolio-tab-label{min-width:0}
+body[data-page=index] #main .home-portfolio-count{display:grid;place-items:center;flex:none;min-width:28px;min-height:28px;padding:3px;border-radius:50%;background:#ffffff12;color:inherit;font-size:12px;line-height:1}
+body[data-page=index] #main .home-portfolio-tab.is-active{border-color:var(--portfolio-gold);background:var(--portfolio-gold);color:#123325}
+body[data-page=index] #main .home-portfolio-tab.is-active .home-portfolio-count{background:#f8df9c55}
+body[data-page=index] #main .home-portfolio-panel{min-width:0;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
+body[data-page=index] #main .home-portfolio-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(114px,11.8vw,158px);grid-auto-flow:row dense;gap:10px}
+body[data-page=index] #main .home-portfolio-photo{position:relative;display:block;min-width:0;min-height:0;overflow:hidden;border:1px solid #5e806a;border-radius:11px;background:#153e2d;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
+body[data-page=index] #main .home-portfolio-photo.is-featured{grid-column:span 3;grid-row:span 2}
+body[data-page=index] #main .home-portfolio-photo:nth-child(8){grid-column:span 2}
+body[data-page=index] #main .home-portfolio-photo>img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;user-select:none}
+body[data-page=index] #main .home-portfolio-number{position:absolute;top:8px;left:8px;display:grid;place-items:center;min-width:28px;min-height:28px;padding:3px 6px;border-radius:5px;background:#082f22df;color:#fff;font-size:13px;line-height:1.4}
+body[data-page=index] #main .home-portfolio-caption{position:absolute;inset:auto 0 0;padding:44px 18px 18px;background:linear-gradient(transparent,#082f22ef);color:#fff;font-size:19px;line-height:1.65}
+body[data-page=index] #main .home-portfolio-hint{margin:20px 0 0;color:#c6d7cc;text-align:center;font-size:16px;line-height:1.75}
+body[data-page=index] #main .home-portfolio-status{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+body[data-page=index] #main :is(.home-portfolio-tab,.home-portfolio-all,.home-portfolio-photo):focus-visible{outline:3px solid #a9dfc6;outline-offset:3px}
 @media(hover:hover) and (pointer:fine){
- body[data-page=index] #main .home-portfolio-card:hover{border-color:#9bb1cb}
- body[data-page=index] #main .home-portfolio-card:hover .home-portfolio-link{text-decoration:underline;text-underline-offset:4px}
-}
-@media(max-width:760px),(hover:none) and (pointer:coarse){
- body[data-page=index] #main .home-portfolio-card{box-shadow:none}
-}
-@media(max-width:1100px){
- body[data-page=index] #main .home-portfolio-card{grid-column:span 6}
- body[data-page=index] #main .home-portfolio-copy{padding:24px}
+ body[data-page=index] #main .home-portfolio-tab:not(.is-active):hover{background:#173f2e;border-color:#9bb7a5}
+ body[data-page=index] #main .home-portfolio-photo:hover{border-color:#bfdbc9}
+ body[data-page=index] #main .home-portfolio-all:hover{background:#ffffff0d}
 }
 @media(max-width:760px){
- body[data-page=index] #main .home-portfolio-grid{grid-template-columns:minmax(0,1fr);gap:24px}
- body[data-page=index] #main .home-portfolio-card{grid-column:auto}
- body[data-page=index] #main .home-portfolio-copy{padding:22px}
+ body[data-page=index] #main .home-portfolio-section{padding:38px 0}
+ body[data-page=index] #main .home-portfolio-heading{align-items:flex-start;gap:16px;margin-bottom:22px}
+ body[data-page=index] #main .home-portfolio-heading h2{font-size:32px}
+ body[data-page=index] #main .home-portfolio-eyebrow{font-size:12px;letter-spacing:2.5px}
+ body[data-page=index] #main .home-portfolio-all{padding:8px 12px;font-size:14px}
+ body[data-page=index] #main .home-portfolio-tabs{gap:6px;margin-bottom:14px;padding-bottom:14px}
+ body[data-page=index] #main .home-portfolio-tab{gap:4px;min-height:76px;padding:10px 5px;border-radius:8px;font-size:14px;line-height:1.55}
+ body[data-page=index] #main .home-portfolio-count{min-width:19px;min-height:19px;padding:2px;font-size:10px}
+ body[data-page=index] #main .home-portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:clamp(88px,28vw,166px);gap:8px}
+ body[data-page=index] #main .home-portfolio-photo{border-radius:10px}
+ body[data-page=index] #main .home-portfolio-photo.is-featured{grid-column:span 2;grid-row:span 2}
+ body[data-page=index] #main .home-portfolio-photo:nth-child(8){grid-column:span 1}
+ body[data-page=index] #main .home-portfolio-caption{padding:38px 12px 12px;font-size:16px}
+ body[data-page=index] #main .home-portfolio-number{top:6px;left:6px;min-width:24px;min-height:24px;padding:2px 4px;font-size:12px}
+ body[data-page=index] #main .home-portfolio-hint{font-size:16px}
+}
+@media(max-width:480px){
+ body[data-page=index] #main .home-portfolio-heading{display:block}
+ body[data-page=index] #main .home-portfolio-heading p{margin-top:12px}
+ body[data-page=index] #main .home-portfolio-all{display:none}
 }

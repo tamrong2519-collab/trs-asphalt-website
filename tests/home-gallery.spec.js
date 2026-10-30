@@ -9,7 +9,18 @@ const albums = [
  { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:16 },
  { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-alley-01-20261030.jpg', last:'gravel-road-job-20.webp', count:23 },
 ];
-const triggerFor = (page, id, section = '.home-portfolio-card') => page.locator(`${section}[data-home-album="${id}"]`);
+const triggerFor = (page, id, section = '.home-portfolio-photo') => page.locator(`${section}[data-home-album="${id}"]`).first();
+const panelFor = (page, id) => page.locator(`#home-portfolio-panel-${id}`);
+const categoryFor = (page, id) => page.locator(`[data-home-category="${id}"]`);
+
+async function selectAlbum(page, id) {
+ const tab = categoryFor(page, id);
+ await tab.scrollIntoViewIfNeeded();
+ await tab.click();
+ await expect(tab).toHaveAttribute('aria-selected', 'true');
+ await expect(panelFor(page, id)).toBeVisible();
+ return panelFor(page, id);
+}
 const closeButton = page => page.getByRole('button', { name:'ปิดภาพ', exact:true });
 const nextButton = page => page.getByRole('button', { name:'ภาพถัดไป', exact:true });
 const previousButton = page => page.getByRole('button', { name:'ภาพก่อนหน้า', exact:true });
@@ -31,17 +42,18 @@ async function expectPhoto(page, file, index, count) {
  await expect(page.locator('#home-gallery-caption')).toHaveText(await image.getAttribute('alt'));
 }
 
-test('all twelve homepage work cards open their full album without leaving the page', async ({ page }) => {
+test('homepage mosaic and six sample cards open each full album without leaving the page', async ({ page }) => {
  await openHome(page);
  const originalURL = page.url();
- await expect(page.locator('.home-portfolio-card[data-home-album]')).toHaveCount(6);
+ await expect(page.locator('.home-portfolio-tabs [data-home-category]')).toHaveCount(6);
  await expect(page.locator('.sample-card[data-home-album]')).toHaveCount(6);
- const gravelRoadCard = triggerFor(page, 'gravel-road');
- await expect(gravelRoadCard.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
- await expect(gravelRoadCard.locator('.home-portfolio-count')).toHaveText('23 ภาพ');
- await expect(gravelRoadCard.locator('img')).toHaveAttribute('src', path('images/home-gravel-road-alley-01-20261030.jpg'));
- for (const section of ['.home-portfolio-card', '.sample-card']) {
+ for (const section of ['.home-portfolio-photo', '.sample-card']) {
   for (const album of albums) {
+   if (section === '.home-portfolio-photo') {
+    const panel = await selectAlbum(page, album.id);
+    await expect(panel.locator('.home-portfolio-photo')).toHaveCount(album.count);
+    await expect(panel.locator('.home-portfolio-photo img').first()).toHaveAttribute('src', path(`images/${album.first}`));
+   }
    const trigger = triggerFor(page, album.id, section);
    await expect(trigger).toHaveAttribute('href', path(`projects.html#${album.id}`));
    await trigger.scrollIntoViewIfNeeded();
@@ -97,6 +109,7 @@ test('a mobile homepage album responds to trusted swipes and returns to its card
   const page = await context.newPage();
   await openHome(page);
   const originalURL = page.url();
+  await selectAlbum(page, 'parking-marking');
   const trigger = triggerFor(page, 'parking-marking');
   await trigger.scrollIntoViewIfNeeded();
   const scroll = await page.evaluate(() => scrollY);
@@ -128,7 +141,8 @@ test('homepage gallery stays inside small portrait and landscape screens with re
   try {
    const page = await context.newPage();
    await openHome(page);
-   const openAlbum = triggerFor(page, 'stone-yard').locator('.home-portfolio-link');
+   await selectAlbum(page, 'stone-yard');
+   const openAlbum = triggerFor(page, 'stone-yard');
    await openAlbum.evaluate(element => element.scrollIntoView({ block:'end' }));
    await openAlbum.tap();
    await expectPhoto(page, 'stone-home-01.webp', 1, 15);
@@ -180,44 +194,121 @@ test('homepage portfolio links still open the project album when JavaScript is d
  } finally { await context.close(); }
 });
 
-test('all six homepage portfolio cards keep equal photo and outer frames at every breakpoint', async ({ page }) => {
+test('homepage mosaic matches the featured photo and equal small tiles at every breakpoint', async ({ page }) => {
  for (const width of [320, 390, 768, 1440]) {
   await page.setViewportSize({ width, height:1000 });
   await openHome(page);
-  const layout = await page.locator('.home-portfolio-grid').evaluate(grid => {
+  const layout = await panelFor(page, 'asphalt-road').locator('.home-portfolio-grid').evaluate(grid => {
    const bounds = element => {
     const rect = element.getBoundingClientRect();
     return { x:rect.x, y:rect.y, width:rect.width, height:rect.height };
    };
-   return { grid:bounds(grid), cards:[...grid.querySelectorAll('.home-portfolio-card')].map(card => ({ card:bounds(card), photo:bounds(card.querySelector('.home-portfolio-photo')) })) };
+   return {
+    grid:bounds(grid),
+    columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+    gap:parseFloat(getComputedStyle(grid).columnGap),
+    rowGap:parseFloat(getComputedStyle(grid).rowGap),
+    photos:[...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), fit:getComputedStyle(photo.querySelector('img')).objectFit })),
+   };
   });
-  expect(layout.cards).toHaveLength(6);
-  const first = layout.cards[0];
-  for (const { card, photo } of layout.cards) {
-   expect(Math.abs(card.width - first.card.width)).toBeLessThanOrEqual(1);
-   expect(Math.abs(card.height - first.card.height)).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.width - first.photo.width)).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.height - first.photo.height)).toBeLessThanOrEqual(1);
-   expect(card.x).toBeGreaterThanOrEqual(0);
-   expect(card.x + card.width).toBeLessThanOrEqual(width + 1);
+  expect(layout.photos).toHaveLength(29);
+  expect(layout.columns).toBe(width <= 760 ? 3 : 6);
+  const featured = layout.photos[0], normal = layout.photos[1], featuredColumns = width <= 760 ? 2 : 3;
+  expect(Math.abs(featured.width - (normal.width * featuredColumns + layout.gap * (featuredColumns - 1)))).toBeLessThanOrEqual(1);
+  expect(Math.abs(featured.height - (normal.height * 2 + layout.rowGap))).toBeLessThanOrEqual(1);
+  for (const [index, photo] of layout.photos.entries()) {
+   expect(photo.x).toBeGreaterThanOrEqual(0);
+   expect(photo.x + photo.width).toBeLessThanOrEqual(width + 1);
    expect(photo.width).toBeGreaterThan(0);
    expect(photo.height).toBeGreaterThan(0);
+   expect(photo.fit).toBe('cover');
+   if (index === 0 || (width > 760 && index === 7)) continue;
+   expect(Math.abs(photo.width - normal.width)).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.height - normal.height)).toBeLessThanOrEqual(1);
   }
-  const rows = [];
-  for (const { card } of layout.cards) {
-   let row = rows.find(items => Math.abs(items[0].y - card.y) <= 1);
-   if (!row) { row = []; rows.push(row); }
-   row.push(card);
-  }
-  expect(rows.map(row => row.length)).toEqual(width <= 760 ? [1, 1, 1, 1, 1, 1] : width <= 1100 ? [2, 2, 2] : [3, 3]);
-  if (width > 1100) {
-   const lastRow = rows.at(-1);
-   const left = Math.min(...lastRow.map(card => card.x));
-   const right = Math.max(...lastRow.map(card => card.x + card.width));
-   expect(Math.abs((left + right) / 2 - (layout.grid.x + layout.grid.width / 2))).toBeLessThanOrEqual(1);
+  for (const tab of await page.locator('.home-portfolio-tabs [data-home-category]').all()) {
+   const box = await tab.boundingBox();
+   expect(box.height).toBeGreaterThanOrEqual(44);
+   expect(box.x).toBeGreaterThanOrEqual(0);
+   expect(box.x + box.width).toBeLessThanOrEqual(width + 1);
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
  }
+});
+
+test('homepage categories support keyboard selection and show accurate photo counts without navigation', async ({ page }) => {
+ await openHome(page);
+ const originalURL = page.url();
+ const tabs = page.locator('.home-portfolio-tabs [data-home-category]');
+ await expect(tabs).toHaveCount(6);
+ await expect(categoryFor(page, 'asphalt-road')).toHaveAttribute('role', 'tab');
+ await expect(categoryFor(page, 'asphalt-road')).toHaveAttribute('aria-selected', 'true');
+ await categoryFor(page, 'asphalt-road').focus();
+ await page.keyboard.press('ArrowRight');
+ await expect(categoryFor(page, 'gravel-yard')).toBeFocused();
+ await expect(categoryFor(page, 'gravel-yard')).toHaveAttribute('aria-selected', 'true');
+ await expect(panelFor(page, 'gravel-yard')).toBeVisible();
+ await page.keyboard.press('End');
+ await expect(categoryFor(page, 'gravel-road')).toBeFocused();
+ await expect(panelFor(page, 'gravel-road')).toBeVisible();
+ await page.keyboard.press('ArrowRight');
+ await expect(categoryFor(page, 'asphalt-road')).toBeFocused();
+ await page.keyboard.press('ArrowLeft');
+ await expect(categoryFor(page, 'gravel-road')).toBeFocused();
+ await page.keyboard.press('Home');
+ await expect(categoryFor(page, 'asphalt-road')).toBeFocused();
+ for (const album of albums) {
+  const panel = await selectAlbum(page, album.id);
+  await expect(categoryFor(page, album.id)).toHaveText(new RegExp(`\\b${album.count}\\b`));
+  await expect(page.locator('.home-portfolio-tabs [aria-selected="true"]')).toHaveCount(1);
+  await expect(page.locator('.home-portfolio-tabs [tabindex="0"]')).toHaveCount(1);
+  await expect(page.locator('.home-portfolio-panel:visible')).toHaveCount(1);
+  await expect(panel).toHaveAttribute('role', 'tabpanel');
+  await expect(panel.locator('.home-portfolio-photo')).toHaveCount(album.count);
+  await expect(page).toHaveURL(originalURL);
+ }
+});
+
+test('existing direct portfolio links select the matching category without changing their hash', async ({ page }) => {
+ await page.route(/https?:\/\/(?:[^/]+\.)?(?:googletagmanager\.com|google-analytics\.com|googleadservices\.com|doubleclick\.net)\//, route => route.abort());
+ await page.goto(path('index.html#home-portfolio-card-gravel-road'));
+ await page.evaluate(() => document.fonts.ready);
+ await expect(categoryFor(page, 'gravel-road')).toHaveAttribute('aria-selected', 'true');
+ await expect(categoryFor(page, 'gravel-road')).toHaveAttribute('tabindex', '0');
+ const panel = panelFor(page, 'gravel-road');
+ await expect(panel).toBeVisible();
+ await expect(page.locator('.home-portfolio-panel:visible')).toHaveCount(1);
+ await expect(panel.locator('.home-portfolio-photo')).toHaveCount(23);
+ for (let index = 0; index < 3; index += 1) {
+  await expect(panel.locator(`[data-home-photo-index="${index}"] img`)).toHaveAttribute('src', path(`images/home-gravel-road-alley-${String(index + 1).padStart(2, '0')}-20261030.jpg`));
+ }
+ await expect(page).toHaveURL(/#home-portfolio-card-gravel-road$/);
+});
+
+test('a mosaic photo opens its own position in the full album and retains the supplied road photos', async ({ page }) => {
+ await openHome(page);
+ const originalURL = page.url();
+ const asphalt = await selectAlbum(page, 'asphalt-road');
+ const fourth = asphalt.locator('[data-home-photo-index="3"]');
+ await fourth.scrollIntoViewIfNeeded();
+ const before = await page.evaluate(() => scrollY);
+ await fourth.click();
+ await expectPhoto(page, 'asphalt-job-04.webp', 4, 29);
+ await closeButton(page).click();
+ await expect(fourth).toBeFocused();
+ await expect.poll(() => page.evaluate(() => scrollY)).toBe(before);
+ const road = await selectAlbum(page, 'gravel-road');
+ for (let index = 0; index < 3; index += 1) {
+  const trigger = road.locator(`[data-home-photo-index="${index}"]`);
+  const file = `home-gravel-road-alley-${String(index + 1).padStart(2, '0')}-20261030.jpg`;
+  await expect(trigger.locator('img')).toHaveAttribute('src', path(`images/${file}`));
+  await trigger.scrollIntoViewIfNeeded();
+  await trigger.click();
+  await expectPhoto(page, file, index + 1, 23);
+  await closeButton(page).click();
+  await expect(trigger).toBeFocused();
+ }
+ await expect(page).toHaveURL(originalURL);
 });
 
 test('homepage album viewer keeps fixed dialog and photo frames across all albums and image shapes', async ({ browser, baseURL }) => {

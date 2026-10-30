@@ -17,10 +17,9 @@ ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "public"
 OUTPUT = PUBLIC / "images" / "responsive"
 HELPER = ROOT / "src" / "responsive-photos.js"
-WIDTHS = (480, 800)
+WIDTHS = (240, 480, 800)
 
-# Keep this selection in step with the actual page cards. Album photos beyond
-# their cover are deliberately omitted; lightboxes retain the original files.
+# Cards and the homepage mosaic use previews; modal viewers retain originals.
 PHOTO_SELECTION = r"""
 import { business, services, servicesPageServices, projects } from './src/data.js';
 const sources = new Set([
@@ -33,7 +32,7 @@ for (const service of servicesPageServices) {
   sources.add(service.homepageCards?.service?.src || service.homepageImage || sourceFor(service));
 }
 for (const project of projects.filter(p => p.images?.length)) {
-  sources.add(project.images[0].src);
+  project.images.forEach(photo => sources.add(photo.src));
   const service = services.find(s => s.id === project.category);
   if (!service) continue;
   const linked = projects.find(p => (service.projectId ? p.id === service.projectId : p.category === service.id) && p.images?.length);
