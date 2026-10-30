@@ -134,12 +134,12 @@ const portfolioLabels = {
  'gravel-road':['งานถนนหินคลุก','บดอัดแน่น'],
 };
 const portfolioMobileLabels = {
- 'asphalt-road':['ลาดยางมะตอย','ปูยางแอสฟัลท์'],
- 'gravel-yard':['ลานจอดรถ','หินคลุกบดอัด'],
- 'stone-yard':['งานหินเกล็ด','ปรับพื้นลาน'],
- 'speed-bump-work':['ลูกระนาด','ยางมะตอย'],
- 'parking-marking':['ตีเส้นจราจร','และสัญลักษณ์'],
- 'gravel-road':['ถนนหินคลุก','บดอัดแน่น'],
+ 'asphalt-road':['ลาดยางมะตอย'],
+ 'gravel-yard':['ลานจอดรถหินคลุก'],
+ 'stone-yard':['งานหินเกล็ด'],
+ 'speed-bump-work':['ลูกระนาดยางมะตอย'],
+ 'parking-marking':['ตีเส้นจราจร'],
+ 'gravel-road':['ถนนหินคลุก บดอัด'],
 };
 const portfolioImageSizes = index => index===0
  ? '(max-width: 760px) calc((100vw - 36px) * 2 / 3), (min-width: 1304px) 595px, calc((100vw - 64px) / 2)'
