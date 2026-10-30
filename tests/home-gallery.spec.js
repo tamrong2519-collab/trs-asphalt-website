@@ -31,13 +31,17 @@ async function expectPhoto(page, file, index, count) {
  await expect(page.locator('#home-gallery-caption')).toHaveText(await image.getAttribute('alt'));
 }
 
-test('all eleven homepage work cards open their full album without leaving the page', async ({ page }) => {
+test('all twelve homepage work cards open their full album without leaving the page', async ({ page }) => {
  await openHome(page);
  const originalURL = page.url();
- await expect(page.locator('.home-portfolio-card[data-home-album]')).toHaveCount(5);
+ await expect(page.locator('.home-portfolio-card[data-home-album]')).toHaveCount(6);
  await expect(page.locator('.sample-card[data-home-album]')).toHaveCount(6);
+ const gravelRoadCard = triggerFor(page, 'gravel-road');
+ await expect(gravelRoadCard.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
+ await expect(gravelRoadCard.locator('.home-portfolio-count')).toHaveText('20 ภาพ');
+ await expect(gravelRoadCard.locator('img')).toHaveAttribute('src', path('images/home-gravel-road-project-20261025.jpg'));
  for (const section of ['.home-portfolio-card', '.sample-card']) {
-  for (const album of section === '.home-portfolio-card' ? albums.slice(0, 5) : albums) {
+  for (const album of albums) {
    const trigger = triggerFor(page, album.id, section);
    await expect(trigger).toHaveAttribute('href', path(`projects.html#${album.id}`));
    await trigger.scrollIntoViewIfNeeded();
@@ -176,7 +180,7 @@ test('homepage portfolio links still open the project album when JavaScript is d
  } finally { await context.close(); }
 });
 
-test('all five homepage portfolio cards keep equal photo and outer frames at every breakpoint', async ({ page }) => {
+test('all six homepage portfolio cards keep equal photo and outer frames at every breakpoint', async ({ page }) => {
  for (const width of [320, 390, 768, 1440]) {
   await page.setViewportSize({ width, height:1000 });
   await openHome(page);
@@ -187,7 +191,7 @@ test('all five homepage portfolio cards keep equal photo and outer frames at eve
    };
    return { grid:bounds(grid), cards:[...grid.querySelectorAll('.home-portfolio-card')].map(card => ({ card:bounds(card), photo:bounds(card.querySelector('.home-portfolio-photo')) })) };
   });
-  expect(layout.cards).toHaveLength(5);
+  expect(layout.cards).toHaveLength(6);
   const first = layout.cards[0];
   for (const { card, photo } of layout.cards) {
    expect(Math.abs(card.width - first.card.width)).toBeLessThanOrEqual(1);
@@ -205,7 +209,7 @@ test('all five homepage portfolio cards keep equal photo and outer frames at eve
    if (!row) { row = []; rows.push(row); }
    row.push(card);
   }
-  expect(rows.map(row => row.length)).toEqual(width <= 760 ? [1, 1, 1, 1, 1] : width <= 1100 ? [2, 2, 1] : [3, 2]);
+  expect(rows.map(row => row.length)).toEqual(width <= 760 ? [1, 1, 1, 1, 1, 1] : width <= 1100 ? [2, 2, 2] : [3, 3]);
   if (width > 1100) {
    const lastRow = rows.at(-1);
    const left = Math.min(...lastRow.map(card => card.x));
