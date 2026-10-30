@@ -133,6 +133,14 @@ const portfolioLabels = {
  'parking-marking':['งานตีเส้นจราจร','และสัญลักษณ์'],
  'gravel-road':['งานถนนหินคลุก','บดอัดแน่น'],
 };
+const portfolioMobileLabels = {
+ 'asphalt-road':['ลาดยางมะตอย','ปูยางแอสฟัลท์'],
+ 'gravel-yard':['ลานจอดรถ','หินคลุกบดอัด'],
+ 'stone-yard':['งานหินเกล็ด','ปรับพื้นลาน'],
+ 'speed-bump-work':['ลูกระนาด','ยางมะตอย'],
+ 'parking-marking':['ตีเส้นจราจร','และสัญลักษณ์'],
+ 'gravel-road':['ถนนหินคลุก','บดอัดแน่น'],
+};
 const portfolioImageSizes = index => index===0
  ? '(max-width: 760px) calc((100vw - 36px) * 2 / 3), (min-width: 1304px) 595px, calc((100vw - 64px) / 2)'
  : index===7
@@ -140,7 +148,7 @@ const portfolioImageSizes = index => index===0
  : '(max-width: 760px) calc((100vw - 48px) / 3), (min-width: 1304px) 192px, calc((100vw - 114px) / 6)';
 const homePortfolio = `<section id="home-portfolio" class="home-portfolio-section" aria-labelledby="home-portfolio-title"><div class="container home-portfolio-content">
  <div class="home-portfolio-heading"><div><span class="home-portfolio-eyebrow">TRS PROJECT GALLERY</span><h2 id="home-portfolio-title">ผลงานของเรา</h2><p>เลือกชมภาพผลงานจริง แยกตามประเภทงาน</p></div><a class="home-portfolio-all" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a></div>
- <nav class="home-portfolio-tabs" aria-label="เลือกประเภทผลงาน">${portfolioExamples.map((project,index) => `<a id="home-portfolio-card-${escape(project.id)}" class="home-portfolio-tab${index===0?' is-active':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-category="${escape(project.id)}"><span class="home-portfolio-tab-label">${portfolioLabels[project.id].map(escape).join('<br>')}</span><span class="home-portfolio-count" aria-label="${project.images.length} ภาพ">${project.images.length}</span></a>`).join('')}</nav>
+ <nav class="home-portfolio-tabs" aria-label="เลือกประเภทผลงาน">${portfolioExamples.map((project,index) => `<a id="home-portfolio-card-${escape(project.id)}" class="home-portfolio-tab${index===0?' is-active':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-category="${escape(project.id)}" data-home-category-label="${escape(portfolioLabels[project.id].join(''))}" aria-label="${escape(portfolioLabels[project.id].join(''))} ${project.images.length} ภาพ"><span class="home-portfolio-tab-label" aria-hidden="true"><span class="home-portfolio-label-desktop">${portfolioLabels[project.id].map(escape).join('<br>')}</span><span class="home-portfolio-label-mobile">${portfolioMobileLabels[project.id].map(line=>`<span>${escape(line)}</span>`).join('')}</span></span><span class="home-portfolio-count" aria-hidden="true">${project.images.length}</span></a>`).join('')}</nav>
  <div id="home-portfolio-status" class="home-portfolio-status" role="status" aria-live="polite"></div>
  ${portfolioExamples.map((project,albumIndex) => `<div id="home-portfolio-panel-${escape(project.id)}" class="home-portfolio-panel"${albumIndex>0?' hidden':''}><div class="home-portfolio-grid">${project.images.map((photo,index) => `<a id="home-portfolio-photo-${escape(project.id)}-${index+1}" class="home-portfolio-photo${index===0?' is-featured':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" data-home-photo-index="${index}" aria-label="ดูภาพที่ ${index+1} จาก ${project.images.length}: ${escape(photo.alt || project.title)}" aria-haspopup="dialog" aria-controls="home-gallery"><img src="${escape(photo.src)}" ${responsivePhotoAttributes(photo.src,portfolioImageSizes(index),base)} alt="${escape(photo.alt || project.title)}" width="${photo.width || 1280}" height="${photo.height || 960}" loading="lazy" decoding="async"><span class="home-portfolio-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>${index===0?`<span class="home-portfolio-caption">${portfolioLabels[project.id].map(escape).join('')}</span>`:''}</a>`).join('')}</div></div>`).join('')}
  <p class="home-portfolio-hint">แตะรูปเพื่อดูขนาดใหญ่ · เลื่อนชมภาพผลงานได้ในหน้านี้</p>
