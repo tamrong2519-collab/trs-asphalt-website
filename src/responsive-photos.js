@@ -56,13 +56,6 @@ export const responsivePhotos = {
       800
     ]
   },
-  "/images/gravel-road-job-04.webp": {
-    "originalWidth": 1280,
-    "widths": [
-      480,
-      800
-    ]
-  },
   "/images/hero-sharp.webp": {
     "originalWidth": 1536,
     "widths": [
@@ -70,15 +63,8 @@ export const responsivePhotos = {
       800
     ]
   },
-  "/images/home-gravel-road-project-20261025.jpg": {
+  "/images/home-gravel-road-alley-01-20261030.jpg": {
     "originalWidth": 1280,
-    "widths": [
-      480,
-      800
-    ]
-  },
-  "/images/home-gravel-road-service-20261025.jpg": {
-    "originalWidth": 960,
     "widths": [
       480,
       800

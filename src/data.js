@@ -37,7 +37,7 @@ export const servicesPageServices = [
     id: 'gravel-road', projectId: 'gravel-road', number: '06', title: 'ถนนหินคลุก บดอัด',
     subtitle: 'เกลี่ยปรับระดับและบดอัดถนน',
     homepageCards: {
-      service: { src: '/images/home-gravel-road-service-20261025.jpg', alt: 'ภาพหน้างานรถบดสีเหลืองบดอัดถนนหินคลุกข้างอาคารสีน้ำเงิน', width: 960, height: 1280, position: '50% 40%' },
+      service: { src: '/images/home-gravel-road-alley-01-20261030.jpg', alt: 'ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น', width: 1280, height: 960, position: '50% 50%' },
     },
     servicesPageImage: { src: '/images/services-gravel-road.webp', alt: 'ภาพหน้างานทีมงาน รถขุด และรถบดขณะเกลี่ยและบดอัดถนนหินคลุกระหว่างอาคาร', width: 960, height: 1280 },
     description: 'เกลี่ยปรับระดับและบดอัดหินคลุก สำหรับถนนภายในโครงการและทางเข้าออก',
@@ -185,11 +185,14 @@ export const projects = [
   },
   {
     id: 'gravel-road', category: 'gravel', title: 'ถนนหินคลุก บดอัด',
-    homepagePhoto: { src: '/images/home-gravel-road-project-20261025.jpg', alt: 'ภาพหน้างานถนนหินคลุกบดอัดแนวกว้างและรถบดข้างอาคารสีน้ำเงิน', width: 1280, height: 960, position: '50% 35%' },
+    homepagePhoto: { src: '/images/home-gravel-road-alley-01-20261030.jpg', alt: 'ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น', width: 1280, height: 960, position: '50% 50%' },
     location: '', description: 'เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก',
     siteTypes: 'ถนนภายในพื้นที่อาคารและพื้นที่ติดตั้งแผงโซลาร์เซลล์',
     workScope: 'เกลี่ยปรับระดับและบดอัดถนนหินคลุก',
     images: [
+      { src: '/images/home-gravel-road-alley-01-20261030.jpg', alt: 'ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น', width: 1280, height: 960 },
+      { src: '/images/home-gravel-road-alley-02-20261030.jpg', alt: 'ภาพถนนหินคลุกบดอัดและรถบดระหว่างอาคาร', width: 1280, height: 960 },
+      { src: '/images/home-gravel-road-alley-03-20261030.jpg', alt: 'ภาพถนนหินคลุกแนวกว้างระหว่างบ้านและกำแพงอาคาร', width: 1280, height: 960 },
       { src: '/images/gravel-road-job-04.webp', alt: 'ภาพหน้างานถนนหินคลุกบดอัดข้างอาคารสีน้ำเงิน', width: 1280, height: 720 },
       { src: '/images/gravel-road-job.webp', alt: 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด' },
       { src: '/images/gravel-road-job-02.webp', alt: 'รถดันเกลี่ยหินคลุกและเตรียมพื้นถนน' },

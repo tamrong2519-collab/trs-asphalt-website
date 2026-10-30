@@ -7,7 +7,7 @@ const albums = [
  { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', last:'stone-home-05.webp', count:15 },
  { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', last:'speed-bump-job-13.webp', count:14 },
  { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:16 },
- { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'gravel-road-job-04.webp', last:'gravel-road-job-20.webp', count:20 },
+ { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-alley-01-20261030.jpg', last:'gravel-road-job-20.webp', count:23 },
 ];
 const triggerFor = (page, id, section = '.home-portfolio-card') => page.locator(`${section}[data-home-album="${id}"]`);
 const closeButton = page => page.getByRole('button', { name:'ปิดภาพ', exact:true });
@@ -38,8 +38,8 @@ test('all twelve homepage work cards open their full album without leaving the p
  await expect(page.locator('.sample-card[data-home-album]')).toHaveCount(6);
  const gravelRoadCard = triggerFor(page, 'gravel-road');
  await expect(gravelRoadCard.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
- await expect(gravelRoadCard.locator('.home-portfolio-count')).toHaveText('20 ภาพ');
- await expect(gravelRoadCard.locator('img')).toHaveAttribute('src', path('images/home-gravel-road-project-20261025.jpg'));
+ await expect(gravelRoadCard.locator('.home-portfolio-count')).toHaveText('23 ภาพ');
+ await expect(gravelRoadCard.locator('img')).toHaveAttribute('src', path('images/home-gravel-road-alley-01-20261030.jpg'));
  for (const section of ['.home-portfolio-card', '.sample-card']) {
   for (const album of albums) {
    const trigger = triggerFor(page, album.id, section);

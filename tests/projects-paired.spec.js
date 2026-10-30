@@ -56,6 +56,9 @@ const gravelPhotos = [
  ['gravel-job-19.webp', 'ภาพรวมการเตรียมพื้นลานจอดรถและกองหินคลุกระหว่างอาคาร'],
 ];
 const gravelRoadPhotos = [
+ ['home-gravel-road-alley-01-20261030.jpg', 'ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น'],
+ ['home-gravel-road-alley-02-20261030.jpg', 'ภาพถนนหินคลุกบดอัดและรถบดระหว่างอาคาร'],
+ ['home-gravel-road-alley-03-20261030.jpg', 'ภาพถนนหินคลุกแนวกว้างระหว่างบ้านและกำแพงอาคาร'],
  ['gravel-road-job-04.webp', 'ภาพหน้างานถนนหินคลุกบดอัดข้างอาคารสีน้ำเงิน'],
  ['gravel-road-job.webp', 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด'],
  ['gravel-road-job-02.webp', 'รถดันเกลี่ยหินคลุกและเตรียมพื้นถนน'],
@@ -138,6 +141,9 @@ async function expectPhoto(page, photos, index) {
  await image.evaluate(element => element.decode());
  expect(await image.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0)).toBe(true);
  const expectedDimensions = {
+  'home-gravel-road-alley-01-20261030.jpg': [1280, 960],
+  'home-gravel-road-alley-02-20261030.jpg': [1280, 960],
+  'home-gravel-road-alley-03-20261030.jpg': [1280, 960],
   'projects-gravel-cover.webp': [1280, 720],
   'projects-speed-bump-cover.webp': [1280, 1280],
   'projects-marking-cover.webp': [1280, 960],
@@ -264,12 +270,12 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#parking-marking .project-copy')).toContainText('ตีเส้นช่องจอดรถ เส้นแบ่งช่องทาง และลูกศรบอกทิศทาง');
  await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
  await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');
- await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/gravel-road-job-04.webp'));
+ await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/home-gravel-road-alley-01-20261030.jpg'));
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('alt', gravelRoadPhotos[0][1]);
- await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('20 ภาพ');
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('23 ภาพ');
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking'], ['gravel-road', 'gravel']]) {
   const row = page.locator(`.project-row#${id}`);
-  await expect(row.locator('.project-cover img')).toHaveAttribute('alt', /ภาพหน้างาน/);
+  await expect(row.locator('.project-cover img')).toHaveAttribute('alt', id === 'gravel-road' ? gravelRoadPhotos[0][1] : /ภาพหน้างาน/);
   await expect(row.locator('.project-gallery-open')).toBeVisible();
   await expect(row.locator(`a[href="${path(`contact.html?service=${category}#estimate`)}"]`)).toHaveCount(0);
  }

@@ -83,15 +83,15 @@ test('project filters show the selected category and retain honest photo labels'
   if(category==='gravel'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['gravel-yard','gravel-road']);
    await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('20 ภาพ');
-   await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('20 ภาพ');
+   await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('23 ภาพ');
    await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');
    const cover=page.locator('#gravel-road .project-cover img');
-   await expect(cover).toHaveAttribute('src',path('images/gravel-road-job-04.webp'));
-   await expect(cover).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกบดอัดข้างอาคารสีน้ำเงิน');
+   await expect(cover).toHaveAttribute('src',path('images/home-gravel-road-alley-01-20261030.jpg'));
+   await expect(cover).toHaveAttribute('alt','ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น');
    await expect(cover).toHaveAttribute('width','1280');
-   await expect(cover).toHaveAttribute('height','720');
+   await expect(cover).toHaveAttribute('height','960');
    await cover.scrollIntoViewIfNeeded();await cover.evaluate(i=>i.decode());
-   await expectDecodedPhoto(cover,[1280,720]);
+   await expectDecodedPhoto(cover,[1280,960]);
   }
   if(category==='stone'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['stone-yard']);
@@ -270,17 +270,17 @@ test('homepage cards use supplied photos and the first slide uses the requested 
  await expect(gravelRoadService).toHaveAttribute('href',path('gravel-road/'));
  await expect(gravelRoadService.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
  await expect(gravelRoadService.locator('p')).toContainText('เกลี่ยปรับระดับและบดอัดถนน');
- await expect(gravelRoadService.locator('img')).toHaveAttribute('src',path('images/home-gravel-road-service-20261025.jpg'));
- await expect(gravelRoadService.locator('img')).toHaveAttribute('alt',/ภาพหน้างาน.*ถนนหินคลุก/);
- await expect(gravelRoadService.locator('img')).toHaveAttribute('width','960');
- await expect(gravelRoadService.locator('img')).toHaveAttribute('height','1280');
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('src',path('images/home-gravel-road-alley-01-20261030.jpg'));
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('alt','ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น');
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('width','1280');
+ await expect(gravelRoadService.locator('img')).toHaveAttribute('height','960');
  await gravelRoadService.scrollIntoViewIfNeeded();await gravelRoadService.locator('img').evaluate(i=>i.decode());
- await expectDecodedPhoto(gravelRoadService.locator('img'),[960,1280]);
+ await expectDecodedPhoto(gravelRoadService.locator('img'),[1280,960]);
  const gravelRoad=sampleCards.last();
  await expect(gravelRoad).toHaveAttribute('href',path('projects.html#gravel-road'));
  await expect(gravelRoad.locator('h3')).toHaveText('ถนนหินคลุก บดอัด');
- await expect(gravelRoad.locator('img')).toHaveAttribute('src',path('images/home-gravel-road-project-20261025.jpg'));
- await expect(gravelRoad.locator('img')).toHaveAttribute('alt','ภาพหน้างานถนนหินคลุกบดอัดแนวกว้างและรถบดข้างอาคารสีน้ำเงิน');
+ await expect(gravelRoad.locator('img')).toHaveAttribute('src',path('images/home-gravel-road-alley-01-20261030.jpg'));
+ await expect(gravelRoad.locator('img')).toHaveAttribute('alt','ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น');
  await expect(gravelRoad.locator('img')).toHaveAttribute('width','1280');
  await expect(gravelRoad.locator('img')).toHaveAttribute('height','960');
  await gravelRoad.scrollIntoViewIfNeeded();await gravelRoad.locator('img').evaluate(i=>i.decode());

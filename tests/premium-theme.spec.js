@@ -262,7 +262,7 @@ test('inner pages show the supplied work photos and gallery opens the selected f
  await road.getByRole('link', { name: 'ดูผลงาน: ถนนหินคลุก บดอัด', exact: true }).click();
  await expect(page).toHaveURL(/\/projects\.html#gravel-road$/);
  await expect(page.locator('#gravel-road')).toBeVisible();
- await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('20 ภาพ');
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('23 ภาพ');
 
  await page.goto(path('projects'));
  for (const [id, file, dimensions] of projectPhotos) await loadedPhoto(page.locator(`#${id} .project-cover img`), file, dimensions);
