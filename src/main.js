@@ -128,7 +128,7 @@ const homePortfolio = `<section id="home-portfolio" class="container section hom
  <div class="section-heading"><h2 id="home-portfolio-title">ผลงานของเรา</h2><p>${portfolioExamples.length} ตัวอย่างงานจริง พร้อมภาพและรายละเอียดจากหน้างาน</p><a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a></div>
  <div class="home-portfolio-grid">${portfolioExamples.map((project,index) => {
   const cover = { width:1280, height:960, ...project.portfolioCover, position:project.portfolioCover.position || project.portfolioCover.coverPosition || '50% 50%' };
-  return `<a class="home-portfolio-card" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" aria-labelledby="home-portfolio-${escape(project.id)}">
+  return `<a id="home-portfolio-card-${escape(project.id)}" class="home-portfolio-card" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" aria-labelledby="home-portfolio-${escape(project.id)}">
    ${workPhoto(cover,'home-portfolio-photo',true,'(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) calc((100vw - 72px) / 2), 380px')}
    <div class="home-portfolio-copy"><div class="home-portfolio-meta"><span>ตัวอย่างที่ ${String(index+1).padStart(2,'0')}</span><span class="home-portfolio-count">${project.images.length} ภาพ</span></div><h3 id="home-portfolio-${escape(project.id)}">${escape(project.title)}</h3><p>${escape(project.description)}</p><span class="home-portfolio-link">ชมภาพผลงาน ${arrow}</span></div>
   </a>`;
