@@ -45,7 +45,7 @@ html body[data-page="projects"] #main .project-view { z-index: 2; }
   }
 }
 
-/* Solid lower edges retain depth without repeated blurred shadow layers. */
+/* Touch layouts keep work cards and photos free of decorative gold rims. */
 @media (max-width: 760px), (hover: none) and (pointer: coarse) {
   html body[data-page] #main :is(.service-card,.sample-card,.info-card,.process-card,.contact-panel,.estimate),
   html body[data-page] #main :is(.service-card,.sample-card):hover,
@@ -56,14 +56,34 @@ html body[data-page="projects"] #main .project-view { z-index: 2; }
     box-shadow: inset 0 1px 0 #ffffffc9, 0 3px 0 #80602440;
   }
 
+  html body[data-page] #main :is(.service-card,.sample-card,.info-card),
+  html body[data-page] #main :is(.service-card,.sample-card):hover,
+  html body[data-page] #main .project-card:not(.project-row) {
+    border-color: #d6e1eb;
+    box-shadow: none;
+  }
+
   html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo),
   html body[data-page] #main .project-cover:hover {
-    box-shadow: 0 3px 0 #80602466;
+    box-shadow: none;
   }
 
   html body[data-page] #main :is(.paired-photo,.project-cover,.contact-photo)::after {
-    border-width: 3px;
-    box-shadow: inset 0 0 0 1px #ffffff75;
+    content: none;
+  }
+
+  html body[data-page] #main :is(.service-card,.sample-card,.project-cover):focus-visible,
+  html body[data-page="projects"] #lightbox .gallery-thumbnail:focus-visible {
+    outline-color: #164f9f;
+  }
+
+  html body[data-page="projects"] #lightbox .gallery-thumbnail:not([aria-current="true"]) {
+    border-color: #bdccdf;
+  }
+
+  html body[data-page="projects"] #lightbox .gallery-thumbnail[aria-current="true"] {
+    border-color: #164f9f;
+    box-shadow: 0 0 0 2px #164f9f33;
   }
 }
 
