@@ -84,6 +84,7 @@ const stonePhotos = [
  ['stone-home-01.webp', 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน'],
  ['home-stone-chips-garden-01-20261031.jpg', 'พื้นหินเกล็ดรอบต้นไม้ตลอดแนวกำแพงข้างลานหน้าบ้าน'],
  ['home-stone-chips-garden-02-20261031.jpg', 'ภาพรวมงานหินเกล็ดรอบต้นไม้และแนวกำแพงบริเวณลานหน้าบ้าน'],
+ ['home-stone-chips-garden-path-20261031.jpg', 'พื้นหินเกล็ดและแผ่นหินทางเดินในสวนข้างอาคารท่ามกลางต้นไม้'],
  ['stone-job.webp', 'ภาพหน้างานหินเกล็ด'],
  ['stone-job-02.webp', 'ภาพรวมลานหินเกล็ดบริเวณอาคาร'],
  ['stone-job-03.webp', 'ลานหินเกล็ดและพื้นที่ทางเข้าอาคาร'],
@@ -208,6 +209,7 @@ async function expectPhoto(page, photos, index) {
   'stone-home-01.webp': [960, 1280],
   'home-stone-chips-garden-01-20261031.jpg': [960, 1280],
   'home-stone-chips-garden-02-20261031.jpg': [1280, 960],
+  'home-stone-chips-garden-path-20261031.jpg': [1920, 2560],
   'stone-home-02.webp': [1280, 960],
   'stone-home-03.webp': [960, 1280],
   'stone-home-04.webp': [1280, 960],
@@ -264,7 +266,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
  await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('20 ภาพ');
  await expect(page.locator('#gravel-yard .project-cover img')).toHaveAttribute('src', path('images/projects-gravel-cover.webp'));
- await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('17 ภาพ');
+ await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('18 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-home-01.webp'));
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
  await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('14 ภาพ');
