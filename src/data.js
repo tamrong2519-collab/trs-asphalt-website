@@ -150,6 +150,9 @@ export const projects = [
     workScope: 'ขึ้นรูป บดอัด และเก็บขอบลูกระนาดยางมะตอย',
     images: [
       { src: '/images/projects-speed-bump-cover.webp', alt: 'ภาพหน้างานทีมงานใช้รถบดเดินตามบดอัดลูกระนาดยางมะตอย', width: 1280, height: 1280, coverPosition: 'center top' },
+      { src: '/images/home-speed-bump-construction-01-20261031.jpg', alt: 'ทีมงานเตรียมพื้นผิวก่อนขึ้นรูปลูกระนาดยางมะตอย', width: 960, height: 1280 },
+      { src: '/images/home-speed-bump-construction-02-20261031.jpg', alt: 'ทีมงานเกลี่ยยางมะตอยเพื่อขึ้นรูปลูกระนาดบนถนนคอนกรีต', width: 960, height: 1280 },
+      { src: '/images/home-speed-bump-construction-03-20261031.jpg', alt: 'รถบดเดินตามบดอัดลูกระนาดยางมะตอยบริเวณหน้าอาคาร', width: 960, height: 1280 },
       { src: '/images/speed-bump-job.webp', alt: 'ภาพหน้างานลูกระนาดยางมะตอย' },
       { src: '/images/speed-bump-job-02.webp', alt: 'รถบดบดอัดงานลูกระนาดยางมะตอย' },
       { src: '/images/speed-bump-job-03.webp', alt: 'ทีมงานเกลี่ยยางมะตอยสำหรับลูกระนาด' },
