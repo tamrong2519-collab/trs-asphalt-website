@@ -629,6 +629,38 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-gravel-parking-open-yard-01-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-parking-open-yard-02-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-parking-open-yard-03-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-parking-open-yard-04-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
   "/images/home-gravel-parking-work-01-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
