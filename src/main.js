@@ -134,7 +134,7 @@ const portfolioLabels = {
  'gravel-road':['งานถนนหินคลุก','บดอัดแน่น'],
 };
 const portfolioMobileLabels = {
- 'asphalt-road':['ลาดยางมะตอย'],
+ 'asphalt-road':['ลาดยางมะตอย','และปูยางแอสฟัลท์'],
  'gravel-yard':['ลานจอดรถหินคลุก'],
  'stone-yard':['งานหินเกล็ด'],
  'speed-bump-work':['ลูกระนาดยางมะตอย'],
