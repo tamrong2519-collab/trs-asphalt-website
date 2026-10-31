@@ -41,6 +41,10 @@ const asphaltPhotos = [
 const gravelPhotos = [
  ['projects-gravel-cover.webp', 'ภาพหน้างานลานจอดรถหินคลุกข้างอาคารและแนวต้นไม้'],
  ['home-gravel-parking-blue-building-20261031.jpg', 'ลานจอดรถหินคลุกหลังปรับพื้นข้างอาคารสีน้ำเงินพร้อมรถจอด'],
+ ['home-gravel-parking-work-01-20261031.jpg', 'ลานจอดรถหินคลุกข้างอาคารสีน้ำเงินและแนวรางระบายน้ำ'],
+ ['home-gravel-parking-work-02-20261031.jpg', 'ภาพรวมลานจอดรถหินคลุกมองออกสู่ทางเข้าออกข้างอาคาร'],
+ ['home-gravel-parking-work-03-20261031.jpg', 'ทีมงานเก็บรายละเอียดพื้นลานจอดรถหินคลุกข้างอาคาร'],
+ ['home-gravel-parking-work-04-20261031.jpg', 'พื้นที่เดิมข้างอาคารก่อนเตรียมพื้นลานจอดรถหินคลุก'],
  ['gravel-job.webp', 'ภาพหน้างานลานจอดรถหินคลุก'],
  ['gravel-slide.webp', 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก'],
  ['gravel-job-03.webp', 'รถบดบดอัดพื้นลานจอดรถหินคลุก'],
@@ -175,6 +179,10 @@ async function expectPhoto(page, photos, index) {
   'home-gravel-road-alley-03-20261030.jpg': [1280, 960],
   'projects-gravel-cover.webp': [1280, 720],
   'home-gravel-parking-blue-building-20261031.jpg': [1280, 960],
+  'home-gravel-parking-work-01-20261031.jpg': [1280, 960],
+  'home-gravel-parking-work-02-20261031.jpg': [1280, 960],
+  'home-gravel-parking-work-03-20261031.jpg': [1280, 960],
+  'home-gravel-parking-work-04-20261031.jpg': [1280, 960],
   'projects-speed-bump-cover.webp': [1280, 1280],
   'home-speed-bump-construction-01-20261031.jpg': [960, 1280],
   'home-speed-bump-construction-02-20261031.jpg': [960, 1280],
@@ -306,7 +314,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-photo-count')).toHaveText('34 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
- await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('21 ภาพ');
+ await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('25 ภาพ');
  await expect(page.locator('#gravel-yard .project-cover img')).toHaveAttribute('src', path('images/projects-gravel-cover.webp'));
  await expect(page.locator('#stone-yard .project-photo-count')).toHaveText('21 ภาพ');
  await expect(page.locator('#stone-yard .project-cover img')).toHaveAttribute('src', path('images/stone-home-01.webp'));

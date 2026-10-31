@@ -97,6 +97,10 @@ export const projects = [
     images: [
       { src: '/images/projects-gravel-cover.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุกข้างอาคารและแนวต้นไม้', width: 1280, height: 720 },
       { src: '/images/home-gravel-parking-blue-building-20261031.jpg', alt: 'ลานจอดรถหินคลุกหลังปรับพื้นข้างอาคารสีน้ำเงินพร้อมรถจอด', width: 1280, height: 960 },
+      { src: '/images/home-gravel-parking-work-01-20261031.jpg', alt: 'ลานจอดรถหินคลุกข้างอาคารสีน้ำเงินและแนวรางระบายน้ำ', width: 1280, height: 960 },
+      { src: '/images/home-gravel-parking-work-02-20261031.jpg', alt: 'ภาพรวมลานจอดรถหินคลุกมองออกสู่ทางเข้าออกข้างอาคาร', width: 1280, height: 960 },
+      { src: '/images/home-gravel-parking-work-03-20261031.jpg', alt: 'ทีมงานเก็บรายละเอียดพื้นลานจอดรถหินคลุกข้างอาคาร', width: 1280, height: 960 },
+      { src: '/images/home-gravel-parking-work-04-20261031.jpg', alt: 'พื้นที่เดิมข้างอาคารก่อนเตรียมพื้นลานจอดรถหินคลุก', width: 1280, height: 960 },
       { src: '/images/gravel-job.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุก' },
       { src: '/images/gravel-slide.webp', alt: 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก' },
       { src: '/images/gravel-job-03.webp', alt: 'รถบดบดอัดพื้นลานจอดรถหินคลุก' },

@@ -629,6 +629,38 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-gravel-parking-work-01-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-parking-work-02-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-parking-work-03-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-parking-work-04-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
   "/images/home-gravel-road-alley-01-20261030.jpg": {
     "originalWidth": 1280,
     "widths": [
