@@ -126,7 +126,7 @@ const portfolioExamples = servicesPageServices.map(service => {
  return project ? { ...project, portfolioCover:(service.projectId && project.homepagePhoto) || project.images[0] } : null;
 }).filter(Boolean);
 const portfolioLabels = {
- 'asphalt-road':['งานลาดยางมะตอย','และปูยางแอสฟัลท์'],
+ 'asphalt-road':['งานลาดยางมะตอย','ปูยางแอสฟัลท์'],
  'gravel-yard':['ลานจอดรถหินคลุก','บดอัดแน่น'],
  'stone-yard':['งานหินเกล็ด','ปรับพื้นลาน'],
  'speed-bump-work':['งานลูกระนาด','ยางมะตอย'],
@@ -134,7 +134,7 @@ const portfolioLabels = {
  'gravel-road':['งานถนนหินคลุก','บดอัดแน่น'],
 };
 const portfolioMobileLabels = {
- 'asphalt-road':['ลาดยางมะตอย','และปูยางแอสฟัลท์'],
+ 'asphalt-road':['ลาดยางมะตอย','ปูยางแอสฟัลท์'],
  'gravel-yard':['ลานจอดรถหินคลุก'],
  'stone-yard':['งานหินเกล็ด'],
  'speed-bump-work':['ลูกระนาดยางมะตอย'],
