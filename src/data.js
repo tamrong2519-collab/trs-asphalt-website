@@ -120,6 +120,8 @@ export const projects = [
     workScope: 'เกลี่ยและบดอัดพื้นหินเกล็ด',
     images: [
       { src: '/images/stone-home-01.webp', alt: 'ภาพหน้างานหินเกล็ดบริเวณหน้าบ้าน', width: 960, height: 1280 },
+      { src: '/images/home-stone-chips-garden-01-20261031.jpg', alt: 'พื้นหินเกล็ดรอบต้นไม้ตลอดแนวกำแพงข้างลานหน้าบ้าน', width: 960, height: 1280 },
+      { src: '/images/home-stone-chips-garden-02-20261031.jpg', alt: 'ภาพรวมงานหินเกล็ดรอบต้นไม้และแนวกำแพงบริเวณลานหน้าบ้าน', width: 1280, height: 960 },
       { src: '/images/stone-job.webp', alt: 'ภาพหน้างานหินเกล็ด' },
       { src: '/images/stone-job-02.webp', alt: 'ภาพรวมลานหินเกล็ดบริเวณอาคาร' },
       { src: '/images/stone-job-03.webp', alt: 'ลานหินเกล็ดและพื้นที่ทางเข้าอาคาร' },

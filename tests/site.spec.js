@@ -95,7 +95,7 @@ test('project filters show the selected category and retain honest photo labels'
   }
   if(category==='stone'){
    expect(await row.evaluateAll(items=>items.map(item=>item.id))).toEqual(['stone-yard']);
-   await expect(row.locator('.project-photo-count')).toHaveText('15 ภาพ');
+   await expect(row.locator('.project-photo-count')).toHaveText('17 ภาพ');
   }
   if(category==='speed-bump'){
    await expect(row).toHaveAttribute('id','speed-bump-work');
