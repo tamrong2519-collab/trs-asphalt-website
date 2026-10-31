@@ -51,7 +51,7 @@ body[data-page=index] #main :is(.home-portfolio-tab,.home-portfolio-all,.home-po
  body[data-page=index] #main .home-portfolio-photo.is-featured{grid-column:span 2;grid-row:span 2}
  body[data-page=index] #main .home-portfolio-photo:nth-child(n+8){grid-column:span 1}
  body[data-page=index] #main .home-portfolio-caption{padding:38px 12px 12px;font-size:16px}
- body[data-page=index] #main .home-portfolio-number{top:6px;left:6px;min-width:24px;min-height:24px;padding:2px 4px;font-size:12px}
+ body[data-page=index] #main .home-portfolio-number{top:4px;left:4px;min-width:0;min-height:0;padding:1px 3px;border-radius:3px;background:#091f59b3;font-size:10px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.2;pointer-events:none}
  body[data-page=index] #main .home-portfolio-hint{font-size:16px}
 }
 @media(max-width:480px){
