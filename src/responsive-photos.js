@@ -717,6 +717,38 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-gravel-road-open-area-01-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-road-open-area-02-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-road-open-area-03-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-gravel-road-open-area-04-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
   "/images/home-gravel-service.webp": {
     "originalWidth": 1280,
     "widths": [

@@ -73,6 +73,10 @@ const gravelRoadPhotos = [
  ['home-gravel-road-alley-01-20261030.jpg', 'ภาพถนนหินคลุกระหว่างกำแพงบ้านและอาคารหลังปรับพื้น'],
  ['home-gravel-road-alley-02-20261030.jpg', 'ภาพถนนหินคลุกบดอัดและรถบดระหว่างอาคาร'],
  ['home-gravel-road-alley-03-20261030.jpg', 'ภาพถนนหินคลุกแนวกว้างระหว่างบ้านและกำแพงอาคาร'],
+ ['home-gravel-road-open-area-01-20261031.jpg', 'ถนนหินคลุกบดอัดบริเวณทางโค้งข้างพื้นที่โล่ง'],
+ ['home-gravel-road-open-area-02-20261031.jpg', 'แนวถนนหินคลุกบดอัดข้างร่องน้ำและอาคาร'],
+ ['home-gravel-road-open-area-03-20261031.jpg', 'เครื่องจักรเกลี่ยปรับระดับถนนหินคลุกในพื้นที่ก่อสร้าง'],
+ ['home-gravel-road-open-area-04-20261031.jpg', 'ภาพรวมถนนหินคลุกบดอัดแนวโค้งรอบพื้นที่โล่ง'],
  ['gravel-road-job-04.webp', 'ภาพหน้างานถนนหินคลุกบดอัดข้างอาคารสีน้ำเงิน'],
  ['gravel-road-job.webp', 'ภาพหน้างานถนนหินคลุกขณะเกลี่ยและบดอัด'],
  ['gravel-road-job-02.webp', 'รถดันเกลี่ยหินคลุกและเตรียมพื้นถนน'],
@@ -181,6 +185,10 @@ async function expectPhoto(page, photos, index) {
   'home-gravel-road-alley-01-20261030.jpg': [1280, 960],
   'home-gravel-road-alley-02-20261030.jpg': [1280, 960],
   'home-gravel-road-alley-03-20261030.jpg': [1280, 960],
+  'home-gravel-road-open-area-01-20261031.jpg': [960, 1280],
+  'home-gravel-road-open-area-02-20261031.jpg': [960, 1280],
+  'home-gravel-road-open-area-03-20261031.jpg': [960, 1280],
+  'home-gravel-road-open-area-04-20261031.jpg': [1280, 960],
   'projects-gravel-cover.webp': [1280, 720],
   'home-gravel-parking-blue-building-20261031.jpg': [1280, 960],
   'home-gravel-parking-work-01-20261031.jpg': [1280, 960],
@@ -336,7 +344,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#gravel-road .project-copy')).toContainText('เกลี่ยปรับระดับและบดอัดหินคลุกสำหรับถนนและทางเข้าออก');
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('src', path('images/home-gravel-road-alley-01-20261030.jpg'));
  await expect(page.locator('#gravel-road .project-cover img')).toHaveAttribute('alt', gravelRoadPhotos[0][1]);
- await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('23 ภาพ');
+ await expect(page.locator('#gravel-road .project-photo-count')).toHaveText('27 ภาพ');
  for (const [id, category] of [['asphalt-road', 'asphalt'], ['gravel-yard', 'gravel'], ['stone-yard', 'stone'], ['speed-bump-work', 'speed-bump'], ['parking-marking', 'marking'], ['gravel-road', 'gravel']]) {
   const row = page.locator(`.project-row#${id}`);
   await expect(row.locator('.project-cover img')).toHaveAttribute('alt', id === 'gravel-road' ? gravelRoadPhotos[0][1] : /ภาพหน้างาน/);

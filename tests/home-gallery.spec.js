@@ -7,7 +7,7 @@ const albums = [
  { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', last:'stone-home-05.webp', count:21 },
  { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', last:'speed-bump-job-13.webp', count:21 },
  { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:21 },
- { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-alley-01-20261030.jpg', last:'gravel-road-job-20.webp', count:23 },
+ { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-alley-01-20261030.jpg', last:'gravel-road-job-20.webp', count:27 },
 ];
 const triggerFor = (page, id, section = '.home-portfolio-photo') => page.locator(`${section}[data-home-album="${id}"]`).first();
 const panelFor = (page, id) => page.locator(`#home-portfolio-panel-${id}`);
@@ -290,7 +290,7 @@ test('existing direct portfolio links select the matching category without chang
  const panel = panelFor(page, 'gravel-road');
  await expect(panel).toBeVisible();
  await expect(page.locator('.home-portfolio-panel:visible')).toHaveCount(1);
- await expect(panel.locator('.home-portfolio-photo')).toHaveCount(23);
+ await expect(panel.locator('.home-portfolio-photo')).toHaveCount(27);
  for (let index = 0; index < 3; index += 1) {
   await expect(panel.locator(`[data-home-photo-index="${index}"] img`)).toHaveAttribute('src', path(`images/home-gravel-road-alley-${String(index + 1).padStart(2, '0')}-20261030.jpg`));
  }
@@ -316,7 +316,7 @@ test('a mosaic photo opens its own position in the full album and retains the su
   await expect(trigger.locator('img')).toHaveAttribute('src', path(`images/${file}`));
   await trigger.scrollIntoViewIfNeeded();
   await trigger.click();
-  await expectPhoto(page, file, index + 1, 23);
+  await expectPhoto(page, file, index + 1, 27);
   await closeButton(page).click();
   await expect(trigger).toBeFocused();
  }
