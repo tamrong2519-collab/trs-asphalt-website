@@ -638,6 +638,38 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-speed-bump-construction-04-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-speed-bump-construction-05-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-speed-bump-construction-06-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-speed-bump-construction-07-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
   "/images/home-stone-chips-front-tree-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
