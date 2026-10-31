@@ -54,6 +54,11 @@ export const projects = [
     workScope: 'ปู เกลี่ย และบดอัดผิวลาดยางมะตอย',
     images: [
       { src: '/images/asphalt-job-01.webp', alt: 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร' },
+      { src: '/images/home-asphalt-road-work-01-20261031.jpg', alt: 'ทีมงานและรถบดกำลังปูและบดอัดยางมะตอยบนถนนข้างอาคาร', width: 1280, height: 720 },
+      { src: '/images/home-asphalt-road-work-02-20261031.jpg', alt: 'รถบดและเครื่องปูยางมะตอยกำลังเก็บผิวถนนข้างแนวกำแพง', width: 1280, height: 960 },
+      { src: '/images/home-asphalt-road-work-03-20261031.jpg', alt: 'ภาพแนวตั้งของถนนลาดยางมะตอยหลังบดอัดข้างแนวต้นไม้', width: 960, height: 1280 },
+      { src: '/images/home-asphalt-road-work-04-20261031.jpg', alt: 'รถบดบดอัดผิวถนนลาดยางมะตอยบริเวณทางโค้ง', width: 1280, height: 960 },
+      { src: '/images/home-asphalt-road-work-05-20261031.jpg', alt: 'ภาพแนวตั้งของรถบดเก็บผิวถนนลาดยางมะตอยข้างแนวต้นไม้', width: 720, height: 1280 },
       { src: '/images/asphalt-job-02.webp', alt: 'ภาพหน้างานลาดยางมะตอยและรถบดบริเวณอาคาร' },
       { src: '/images/asphalt-job-03.webp', alt: 'รถบดเก็บผิวลาดยางมะตอยข้างอาคาร' },
       { src: '/images/asphalt-job-04.webp', alt: 'งานบดอัดยางมะตอยบริเวณทางเข้าอาคาร' },

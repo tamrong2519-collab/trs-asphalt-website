@@ -4,6 +4,11 @@ const path = route => `${process.env.SITE_BASE || '/'}${route}`;
 const imageURL = (page, file) => new URL(path(`images/${file}`), page.url()).href;
 const asphaltPhotos = [
  ['asphalt-job-01.webp', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร'],
+ ['home-asphalt-road-work-01-20261031.jpg', 'ทีมงานและรถบดกำลังปูและบดอัดยางมะตอยบนถนนข้างอาคาร'],
+ ['home-asphalt-road-work-02-20261031.jpg', 'รถบดและเครื่องปูยางมะตอยกำลังเก็บผิวถนนข้างแนวกำแพง'],
+ ['home-asphalt-road-work-03-20261031.jpg', 'ภาพแนวตั้งของถนนลาดยางมะตอยหลังบดอัดข้างแนวต้นไม้'],
+ ['home-asphalt-road-work-04-20261031.jpg', 'รถบดบดอัดผิวถนนลาดยางมะตอยบริเวณทางโค้ง'],
+ ['home-asphalt-road-work-05-20261031.jpg', 'ภาพแนวตั้งของรถบดเก็บผิวถนนลาดยางมะตอยข้างแนวต้นไม้'],
  ['asphalt-job-02.webp', 'ภาพหน้างานลาดยางมะตอยและรถบดบริเวณอาคาร'],
  ['asphalt-job-03.webp', 'รถบดเก็บผิวลาดยางมะตอยข้างอาคาร'],
  ['asphalt-job-04.webp', 'งานบดอัดยางมะตอยบริเวณทางเข้าอาคาร'],
@@ -160,6 +165,11 @@ async function expectPhoto(page, photos, index) {
  await image.evaluate(element => element.decode());
  expect(await image.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0)).toBe(true);
  const expectedDimensions = {
+  'home-asphalt-road-work-01-20261031.jpg': [1280, 720],
+  'home-asphalt-road-work-02-20261031.jpg': [1280, 960],
+  'home-asphalt-road-work-03-20261031.jpg': [960, 1280],
+  'home-asphalt-road-work-04-20261031.jpg': [1280, 960],
+  'home-asphalt-road-work-05-20261031.jpg': [720, 1280],
   'home-gravel-road-alley-01-20261030.jpg': [1280, 960],
   'home-gravel-road-alley-02-20261030.jpg': [1280, 960],
   'home-gravel-road-alley-03-20261030.jpg': [1280, 960],
@@ -294,7 +304,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('src', path('images/asphalt-job-01.webp'));
  await expect(rows.first().locator('.project-cover img')).toHaveAttribute('alt', 'ภาพหน้างานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
  await expect(rows.first().locator('.project-copy')).toContainText('งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร');
- await expect(rows.first().locator('.project-photo-count')).toHaveText('29 ภาพ');
+ await expect(rows.first().locator('.project-photo-count')).toHaveText('34 ภาพ');
  await expect(rows.first().locator('.project-image-note')).toHaveCount(0);
  await expect(page.locator('#gravel-yard .project-photo-count')).toHaveText('21 ภาพ');
  await expect(page.locator('#gravel-yard .project-cover img')).toHaveAttribute('src', path('images/projects-gravel-cover.webp'));

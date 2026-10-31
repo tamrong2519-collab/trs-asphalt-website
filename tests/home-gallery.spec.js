@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
 const albums = [
- { id:'asphalt-road', title:'งานลาดยางมะตอย', first:'asphalt-job-01.webp', last:'asphalt-job-29.webp', count:29 },
+ { id:'asphalt-road', title:'งานลาดยางมะตอย', first:'asphalt-job-01.webp', last:'asphalt-job-29.webp', count:34 },
  { id:'gravel-yard', title:'งานลานจอดรถหินคลุก', first:'projects-gravel-cover.webp', last:'gravel-job-19.webp', count:21 },
  { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', last:'stone-home-05.webp', count:21 },
  { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', last:'speed-bump-job-13.webp', count:21 },
@@ -78,18 +78,18 @@ test('homepage album supports looping, arrow keys, thumbnails and modal keyboard
  const trigger = triggerFor(page, 'asphalt-road');
  await trigger.focus();
  await page.keyboard.press('Enter');
- await expectPhoto(page, 'asphalt-job-01.webp', 1, 29);
+ await expectPhoto(page, 'asphalt-job-01.webp', 1, 34);
  await previousButton(page).click();
- await expectPhoto(page, 'asphalt-job-29.webp', 29, 29);
+ await expectPhoto(page, 'asphalt-job-29.webp', 34, 34);
  await nextButton(page).click();
- await expectPhoto(page, 'asphalt-job-01.webp', 1, 29);
+ await expectPhoto(page, 'asphalt-job-01.webp', 1, 34);
  await page.keyboard.press('ArrowRight');
- await expectPhoto(page, 'asphalt-job-02.webp', 2, 29);
+ await expectPhoto(page, 'home-asphalt-road-work-01-20261031.jpg', 2, 34);
  await page.keyboard.press('ArrowLeft');
- await expectPhoto(page, 'asphalt-job-01.webp', 1, 29);
+ await expectPhoto(page, 'asphalt-job-01.webp', 1, 34);
  const thumbnail = page.getByRole('button', { name:/^เลือกภาพที่ 4:/ });
  await thumbnail.click();
- await expectPhoto(page, 'asphalt-job-04.webp', 4, 29);
+ await expectPhoto(page, 'home-asphalt-road-work-03-20261031.jpg', 4, 34);
  await expect(thumbnail).toHaveAttribute('aria-current', 'true');
  await expect(thumbnail).toBeFocused();
  const controls = page.locator('#home-gallery button:not(:disabled)');
@@ -211,7 +211,7 @@ test('homepage mosaic keeps its desktop layout and shows three photos per lower 
     photos:[...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), fit:getComputedStyle(photo.querySelector('img')).objectFit })),
    };
   });
-  expect(layout.photos).toHaveLength(29);
+  expect(layout.photos).toHaveLength(34);
   expect(layout.columns).toBe(width <= 760 ? 3 : 6);
   const featured = layout.photos[0], normal = layout.photos[1], featuredColumns = width <= 760 ? 2 : 3;
   expect(Math.abs(featured.width - (normal.width * featuredColumns + layout.gap * (featuredColumns - 1)))).toBeLessThanOrEqual(1);
@@ -305,7 +305,7 @@ test('a mosaic photo opens its own position in the full album and retains the su
  await fourth.scrollIntoViewIfNeeded();
  const before = await page.evaluate(() => scrollY);
  await fourth.click();
- await expectPhoto(page, 'asphalt-job-04.webp', 4, 29);
+ await expectPhoto(page, 'home-asphalt-road-work-03-20261031.jpg', 4, 34);
  await closeButton(page).click();
  await expect(fourth).toBeFocused();
  await expect.poll(() => page.evaluate(() => scrollY)).toBe(before);

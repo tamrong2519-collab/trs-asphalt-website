@@ -582,6 +582,45 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-asphalt-road-work-01-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-asphalt-road-work-02-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-asphalt-road-work-03-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-asphalt-road-work-04-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-asphalt-road-work-05-20261031.jpg": {
+    "originalWidth": 720,
+    "widths": [
+      240,
+      480
+    ]
+  },
   "/images/home-gravel-parking-blue-building-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
