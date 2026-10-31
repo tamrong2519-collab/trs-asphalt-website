@@ -6,7 +6,7 @@ const albums = [
  { id:'gravel-yard', title:'งานลานจอดรถหินคลุก', first:'projects-gravel-cover.webp', last:'gravel-job-19.webp', count:20 },
  { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', last:'stone-home-05.webp', count:21 },
  { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', last:'speed-bump-job-13.webp', count:21 },
- { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:16 },
+ { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:21 },
  { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-alley-01-20261030.jpg', last:'gravel-road-job-20.webp', count:23 },
 ];
 const triggerFor = (page, id, section = '.home-portfolio-photo') => page.locator(`${section}[data-home-album="${id}"]`).first();
@@ -114,7 +114,7 @@ test('a mobile homepage album responds to trusted swipes and returns to its card
   await trigger.scrollIntoViewIfNeeded();
   const scroll = await page.evaluate(() => scrollY);
   await trigger.tap();
-  await expectPhoto(page, 'projects-marking-cover.webp', 1, 16);
+  await expectPhoto(page, 'projects-marking-cover.webp', 1, 21);
   const session = await context.newCDPSession(page);
   const swipe = async direction => {
    const stage = await page.locator('#home-gallery-image').boundingBox();
@@ -123,9 +123,9 @@ test('a mobile homepage album responds to trusted swipes and returns to its card
    await session.send('Input.synthesizeScrollGesture', { x:start, y:stage.y + stage.height / 2, xDistance:end - start, yDistance:0, gestureSourceType:'touch', speed:700 });
   };
   await swipe('left');
-  await expectPhoto(page, 'marking-job.webp', 2, 16);
+  await expectPhoto(page, 'home-traffic-marking-road-01-20261031.jpg', 2, 21);
   await swipe('right');
-  await expectPhoto(page, 'projects-marking-cover.webp', 1, 16);
+  await expectPhoto(page, 'projects-marking-cover.webp', 1, 21);
   await expect(page).toHaveURL(originalURL);
   await closeButton(page).tap();
   await expect(page.locator('#home-gallery')).not.toBeVisible();

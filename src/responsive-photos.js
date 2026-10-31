@@ -718,6 +718,46 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-traffic-marking-road-01-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-traffic-marking-road-02-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-traffic-marking-road-03-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-traffic-marking-road-04-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
+  "/images/home-traffic-marking-road-05-20261031.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
   "/images/marking-home.webp": {
     "originalWidth": 1280,
     "widths": [

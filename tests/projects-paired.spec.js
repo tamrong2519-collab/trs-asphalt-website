@@ -128,6 +128,11 @@ const speedBumpPhotos = [
 ];
 const markingPhotos = [
  ['projects-marking-cover.webp', 'ภาพหน้างานตีเส้นจราจรและลูกศรบอกทิศทางหน้าอาคาร'],
+ ['home-traffic-marking-road-01-20261031.jpg', 'ทีมงานตีเส้นขอบทางสีขาวบริเวณทางแยกหน้าอาคาร'],
+ ['home-traffic-marking-road-02-20261031.jpg', 'แถบสีขาวบนถนนยางมะตอยระหว่างอาคาร'],
+ ['home-traffic-marking-road-03-20261031.jpg', 'แนวแถบสีขาวบนผิวถนนยางมะตอยมองออกสู่ถนนด้านนอก'],
+ ['home-traffic-marking-road-04-20261031.jpg', 'เส้นขอบทางและแถบสีขาวบริเวณทางเข้าออกระหว่างอาคาร'],
+ ['home-traffic-marking-road-05-20261031.jpg', 'ภาพรวมงานตีแถบสีขาวบนถนนยางมะตอยข้างอาคาร'],
  ['marking-job.webp', 'ภาพหน้างานตีเส้นจราจร'],
  ['marking-job-02.webp', 'ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่'],
  ['marking-job-03.webp', 'งานตีเส้นช่องจอดรถตามแนวอาคาร'],
@@ -167,6 +172,11 @@ async function expectPhoto(page, photos, index) {
   'home-speed-bump-construction-06-20261031.jpg': [960, 1280],
   'home-speed-bump-construction-07-20261031.jpg': [960, 1280],
   'projects-marking-cover.webp': [1280, 960],
+  'home-traffic-marking-road-01-20261031.jpg': [1280, 960],
+  'home-traffic-marking-road-02-20261031.jpg': [1280, 960],
+  'home-traffic-marking-road-03-20261031.jpg': [1280, 960],
+  'home-traffic-marking-road-04-20261031.jpg': [1280, 960],
+  'home-traffic-marking-road-05-20261031.jpg': [1280, 960],
   'asphalt-job-09.webp': [1280, 720],
   'asphalt-job-10.webp': [960, 1280],
   'asphalt-job-11.webp': [960, 1280],
@@ -291,7 +301,7 @@ test('portfolio combines all stone work into one album with the supplied asphalt
  await expect(page.locator('#stone-yard .project-copy')).toContainText('งานหินเกล็ดสำหรับลาน รอบอาคาร และรอบบ้าน');
  await expect(page.locator('#speed-bump-work .project-photo-count')).toHaveText('21 ภาพ');
  await expect(page.locator('#speed-bump-work .project-cover img')).toHaveAttribute('src', path('images/projects-speed-bump-cover.webp'));
- await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('16 ภาพ');
+ await expect(page.locator('#parking-marking .project-photo-count')).toHaveText('21 ภาพ');
  await expect(page.locator('#parking-marking .project-cover img')).toHaveAttribute('src', path('images/projects-marking-cover.webp'));
  await expect(page.locator('#parking-marking .project-copy')).toContainText('ตีเส้นช่องจอดรถ เส้นแบ่งช่องทาง และลูกศรบอกทิศทาง');
  await expect(page.locator('#gravel-road .project-copy h3')).toHaveText('ถนนหินคลุก บดอัด');

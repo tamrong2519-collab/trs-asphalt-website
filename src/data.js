@@ -179,6 +179,11 @@ export const projects = [
     workScope: 'ตีเส้นช่องจอด เส้นขอบทาง และลูกศรบอกทิศทาง',
     images: [
       { src: '/images/projects-marking-cover.webp', alt: 'ภาพหน้างานตีเส้นจราจรและลูกศรบอกทิศทางหน้าอาคาร', width: 1280, height: 960 },
+      { src: '/images/home-traffic-marking-road-01-20261031.jpg', alt: 'ทีมงานตีเส้นขอบทางสีขาวบริเวณทางแยกหน้าอาคาร', width: 1280, height: 960 },
+      { src: '/images/home-traffic-marking-road-02-20261031.jpg', alt: 'แถบสีขาวบนถนนยางมะตอยระหว่างอาคาร', width: 1280, height: 960 },
+      { src: '/images/home-traffic-marking-road-03-20261031.jpg', alt: 'แนวแถบสีขาวบนผิวถนนยางมะตอยมองออกสู่ถนนด้านนอก', width: 1280, height: 960 },
+      { src: '/images/home-traffic-marking-road-04-20261031.jpg', alt: 'เส้นขอบทางและแถบสีขาวบริเวณทางเข้าออกระหว่างอาคาร', width: 1280, height: 960 },
+      { src: '/images/home-traffic-marking-road-05-20261031.jpg', alt: 'ภาพรวมงานตีแถบสีขาวบนถนนยางมะตอยข้างอาคาร', width: 1280, height: 960 },
       { src: '/images/marking-job.webp', alt: 'ภาพหน้างานตีเส้นจราจร' },
       { src: '/images/marking-job-02.webp', alt: 'ช่องจอดรถสำหรับผู้ใช้รถเข็นและเส้นแบ่งพื้นที่' },
       { src: '/images/marking-job-03.webp', alt: 'งานตีเส้นช่องจอดรถตามแนวอาคาร' },
