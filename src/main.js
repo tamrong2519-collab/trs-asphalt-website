@@ -143,7 +143,7 @@ const portfolioMobileLabels = {
 };
 const portfolioImageSizes = index => index===0
  ? '(max-width: 760px) calc((100vw - 36px) * 2 / 3), (min-width: 1304px) 595px, calc((100vw - 64px) / 2)'
- : index===7
+ : index>=7
  ? '(max-width: 760px) calc((100vw - 48px) / 3), (min-width: 1304px) 394px, calc((100vw - 84px) / 3)'
  : '(max-width: 760px) calc((100vw - 48px) / 3), (min-width: 1304px) 192px, calc((100vw - 114px) / 6)';
 const homePortfolio = `<section id="home-portfolio" class="home-portfolio-section" aria-labelledby="home-portfolio-title"><div class="container home-portfolio-content">

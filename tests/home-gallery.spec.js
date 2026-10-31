@@ -194,7 +194,7 @@ test('homepage portfolio links still open the project album when JavaScript is d
  } finally { await context.close(); }
 });
 
-test('homepage mosaic matches the featured photo and equal small tiles at every breakpoint', async ({ page }) => {
+test('homepage mosaic keeps its featured photos and shows three equal photos per lower row', async ({ page }) => {
  for (const width of [320, 390, 768, 1440]) {
   await page.setViewportSize({ width, height:1000 });
   await openHome(page);
@@ -222,9 +222,19 @@ test('homepage mosaic matches the featured photo and equal small tiles at every 
    expect(photo.width).toBeGreaterThan(0);
    expect(photo.height).toBeGreaterThan(0);
    expect(photo.fit).toBe('cover');
-   if (index === 0 || (width > 760 && index === 7)) continue;
-   expect(Math.abs(photo.width - normal.width)).toBeLessThanOrEqual(1);
+   if (index === 0) continue;
+   const expectedWidth = width > 760 && index >= 7 ? normal.width * 2 + layout.gap : normal.width;
+   expect(Math.abs(photo.width - expectedWidth)).toBeLessThanOrEqual(1);
    expect(Math.abs(photo.height - normal.height)).toBeLessThanOrEqual(1);
+  }
+  const lowerPhotos = layout.photos.slice(width <= 760 ? 3 : 7);
+  const rows = [...Map.groupBy(lowerPhotos, photo => Math.round(photo.y)).values()];
+  for (const [index, row] of rows.entries()) {
+   expect(row).toHaveLength(index === rows.length - 1 ? (lowerPhotos.length - 1) % 3 + 1 : 3);
+   for (const [column, photo] of row.entries()) {
+    expect(Math.abs(photo.width - lowerPhotos[0].width)).toBeLessThanOrEqual(1);
+    if (column > 0) expect(Math.abs(photo.x - (row[column - 1].x + row[column - 1].width + layout.gap))).toBeLessThanOrEqual(1);
+   }
   }
   for (const tab of await page.locator('.home-portfolio-tabs [data-home-category]').all()) {
    const box = await tab.boundingBox();
