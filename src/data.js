@@ -124,6 +124,7 @@ export const projects = [
       { src: '/images/home-stone-chips-garden-02-20261031.jpg', alt: 'ภาพรวมงานหินเกล็ดรอบต้นไม้และแนวกำแพงบริเวณลานหน้าบ้าน', width: 1280, height: 960 },
       { src: '/images/home-stone-chips-garden-path-20261031.jpg', alt: 'พื้นหินเกล็ดและแผ่นหินทางเดินในสวนข้างอาคารท่ามกลางต้นไม้', width: 1920, height: 2560 },
       { src: '/images/home-stone-chips-palm-garden-20261031.jpg', alt: 'งานโรยหินเกล็ดรอบต้นปาล์มและไม้ประดับข้างทางเดินอาคาร', width: 1920, height: 2560 },
+      { src: '/images/home-stone-chips-tree-bed-20261031.jpg', alt: 'งานหินเกล็ดรอบโคนต้นไม้และแปลงไม้ประดับข้างทางเดินปูกระเบื้อง', width: 1920, height: 2560 },
       { src: '/images/stone-job.webp', alt: 'ภาพหน้างานหินเกล็ด' },
       { src: '/images/stone-job-02.webp', alt: 'ภาพรวมลานหินเกล็ดบริเวณอาคาร' },
       { src: '/images/stone-job-03.webp', alt: 'ลานหินเกล็ดและพื้นที่ทางเข้าอาคาร' },

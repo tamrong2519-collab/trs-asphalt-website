@@ -646,6 +646,14 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-stone-chips-tree-bed-20261031.jpg": {
+    "originalWidth": 1920,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
   "/images/marking-home.webp": {
     "originalWidth": 1280,
     "widths": [
