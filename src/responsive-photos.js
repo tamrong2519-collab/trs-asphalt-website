@@ -614,6 +614,14 @@ export const responsivePhotos = {
       800
     ]
   },
+  "/images/home-stone-chips-front-tree-20261031.jpg": {
+    "originalWidth": 960,
+    "widths": [
+      240,
+      480,
+      800
+    ]
+  },
   "/images/home-stone-chips-garden-01-20261031.jpg": {
     "originalWidth": 960,
     "widths": [

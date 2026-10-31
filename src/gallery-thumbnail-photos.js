@@ -71,6 +71,7 @@ export const galleryThumbnailPhotos = {
   "/images/home-gravel-road-alley-01-20261030.jpg": "/images/thumbnails/home-gravel-road-alley-01-20261030.webp",
   "/images/home-gravel-road-alley-02-20261030.jpg": "/images/thumbnails/home-gravel-road-alley-02-20261030.webp",
   "/images/home-gravel-road-alley-03-20261030.jpg": "/images/thumbnails/home-gravel-road-alley-03-20261030.webp",
+  "/images/home-stone-chips-front-tree-20261031.jpg": "/images/thumbnails/home-stone-chips-front-tree-20261031.webp",
   "/images/home-stone-chips-garden-01-20261031.jpg": "/images/thumbnails/home-stone-chips-garden-01-20261031.webp",
   "/images/home-stone-chips-garden-02-20261031.jpg": "/images/thumbnails/home-stone-chips-garden-02-20261031.webp",
   "/images/home-stone-chips-garden-path-20261031.jpg": "/images/thumbnails/home-stone-chips-garden-path-20261031.webp",
