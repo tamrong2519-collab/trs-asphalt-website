@@ -68,6 +68,7 @@ export const galleryThumbnailPhotos = {
   "/images/gravel-road-job-20.webp": "/images/thumbnails/gravel-road-job-20.webp",
   "/images/gravel-road-job.webp": "/images/thumbnails/gravel-road-job.webp",
   "/images/gravel-slide.webp": "/images/thumbnails/gravel-slide.webp",
+  "/images/home-gravel-parking-blue-building-20261031.jpg": "/images/thumbnails/home-gravel-parking-blue-building-20261031.webp",
   "/images/home-gravel-road-alley-01-20261030.jpg": "/images/thumbnails/home-gravel-road-alley-01-20261030.webp",
   "/images/home-gravel-road-alley-02-20261030.jpg": "/images/thumbnails/home-gravel-road-alley-02-20261030.webp",
   "/images/home-gravel-road-alley-03-20261030.jpg": "/images/thumbnails/home-gravel-road-alley-03-20261030.webp",

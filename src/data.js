@@ -91,6 +91,7 @@ export const projects = [
     workScope: 'เตรียมพื้น เกลี่ยปรับระดับ และบดอัดหินคลุก',
     images: [
       { src: '/images/projects-gravel-cover.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุกข้างอาคารและแนวต้นไม้', width: 1280, height: 720 },
+      { src: '/images/home-gravel-parking-blue-building-20261031.jpg', alt: 'ลานจอดรถหินคลุกหลังปรับพื้นข้างอาคารสีน้ำเงินพร้อมรถจอด', width: 1280, height: 960 },
       { src: '/images/gravel-job.webp', alt: 'ภาพหน้างานลานจอดรถหินคลุก' },
       { src: '/images/gravel-slide.webp', alt: 'เครื่องจักรเกลี่ยและปรับพื้นลานหินคลุก' },
       { src: '/images/gravel-job-03.webp', alt: 'รถบดบดอัดพื้นลานจอดรถหินคลุก' },
