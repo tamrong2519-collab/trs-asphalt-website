@@ -196,7 +196,7 @@ test('homepage portfolio links still open the project album when JavaScript is d
  } finally { await context.close(); }
 });
 
-test('homepage gallery has one large lead photo above orderly rows on mobile, tablet and desktop', async ({ page }) => {
+test('homepage gallery has one large lead photo and balances its final row on mobile, tablet and desktop', async ({ page }) => {
  for (const width of [320, 390, 760, 768, 1100, 1101, 1440]) {
   await page.setViewportSize({ width, height:1000 });
   await openHome(page);
@@ -205,12 +205,13 @@ test('homepage gallery has one large lead photo above orderly rows on mobile, ta
     const rect = element.getBoundingClientRect();
     return { x:rect.x, y:rect.y, width:rect.width, height:rect.height };
    };
+   const photos = [...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), featured:photo.classList.contains('is-featured'), fit:getComputedStyle(photo.querySelector('img')).objectFit }));
    return {
     grid:bounds(grid),
-    columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+    columns:photos.filter(photo => !photo.featured && Math.abs(photo.y - photos[1].y) < 1).length,
     gap:parseFloat(getComputedStyle(grid).columnGap),
     rowGap:parseFloat(getComputedStyle(grid).rowGap),
-    photos:[...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), featured:photo.classList.contains('is-featured'), fit:getComputedStyle(photo.querySelector('img')).objectFit })),
+    photos,
    };
   });
   expect(layout.photos).toHaveLength(34);
@@ -234,8 +235,12 @@ test('homepage gallery has one large lead photo above orderly rows on mobile, ta
    if (photo.featured) continue;
    expect(Math.abs(photo.width - normal.width)).toBeLessThanOrEqual(1);
    expect(Math.abs(photo.height - normal.height)).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.x - (normal.x + ((index - 1) % columns) * (normal.width + layout.gap)))).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.y - (normal.y + Math.floor((index - 1) / columns) * (normal.height + layout.rowGap)))).toBeLessThanOrEqual(1);
+   const rowIndex = Math.floor((index - 1) / columns);
+   const rowCount = Math.min(columns, layout.photos.length - 1 - rowIndex * columns);
+   const rowWidth = rowCount * normal.width + (rowCount - 1) * layout.gap;
+   const rowX = layout.grid.x + (layout.grid.width - rowWidth) / 2;
+   expect(Math.abs(photo.x - (rowX + ((index - 1) % columns) * (normal.width + layout.gap)))).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.y - (normal.y + rowIndex * (normal.height + layout.rowGap)))).toBeLessThanOrEqual(1);
   }
   for (const tab of await page.locator('.home-portfolio-tabs [data-home-category]').all()) {
    const box = await tab.boundingBox();
