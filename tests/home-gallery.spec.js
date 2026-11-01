@@ -196,51 +196,63 @@ test('homepage portfolio links still open the project album when JavaScript is d
  } finally { await context.close(); }
 });
 
-test('homepage gallery has one large lead photo and balances its final row on mobile, tablet and desktop', async ({ page }) => {
+test('homepage gallery matches the featured mosaic and fills every lower row on mobile and desktop', async ({ page }) => {
  for (const width of [320, 390, 760, 768, 1100, 1101, 1440]) {
   await page.setViewportSize({ width, height:1000 });
   await openHome(page);
-  const layout = await panelFor(page, 'asphalt-road').locator('.home-portfolio-grid').evaluate(grid => {
-   const bounds = element => {
-    const rect = element.getBoundingClientRect();
-    return { x:rect.x, y:rect.y, width:rect.width, height:rect.height };
-   };
-   const photos = [...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), featured:photo.classList.contains('is-featured'), fit:getComputedStyle(photo.querySelector('img')).objectFit }));
-   return {
-    grid:bounds(grid),
-    columns:photos.filter(photo => !photo.featured && Math.abs(photo.y - photos[1].y) < 1).length,
-    gap:parseFloat(getComputedStyle(grid).columnGap),
-    rowGap:parseFloat(getComputedStyle(grid).rowGap),
-    photos,
-   };
-  });
-  expect(layout.photos).toHaveLength(34);
-  const columns = width <= 1100 ? 3 : 4, featured = layout.photos[0], normal = layout.photos[1];
-  expect(layout.columns).toBe(columns);
-  expect(layout.gap).toBe(width <= 760 ? 8 : 12);
-  expect(layout.rowGap).toBe(layout.gap);
-  expect(layout.photos.filter(photo => photo.featured)).toHaveLength(1);
-  expect(featured.featured).toBe(true);
-  expect(Math.abs(featured.width - layout.grid.width)).toBeLessThanOrEqual(1);
-  expect(Math.abs(featured.height - featured.width * 9 / 16)).toBeLessThanOrEqual(1);
-  expect(Math.abs(normal.y - (featured.y + featured.height + layout.rowGap))).toBeLessThanOrEqual(1);
-  expect(Math.abs(normal.height - normal.width * (width <= 760 ? 1 : 3 / 4))).toBeLessThanOrEqual(1);
-  expect(Math.abs(layout.grid.width - (normal.width * columns + layout.gap * (columns - 1)))).toBeLessThanOrEqual(1);
-  for (const [index, photo] of layout.photos.entries()) {
-   expect(photo.x).toBeGreaterThanOrEqual(0);
-   expect(photo.x + photo.width).toBeLessThanOrEqual(width + 1);
-   expect(photo.width).toBeGreaterThan(0);
-   expect(photo.height).toBeGreaterThan(0);
-   expect(photo.fit).toBe('cover');
-   if (photo.featured) continue;
-   expect(Math.abs(photo.width - normal.width)).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.height - normal.height)).toBeLessThanOrEqual(1);
-   const rowIndex = Math.floor((index - 1) / columns);
-   const rowCount = Math.min(columns, layout.photos.length - 1 - rowIndex * columns);
-   const rowWidth = rowCount * normal.width + (rowCount - 1) * layout.gap;
-   const rowX = layout.grid.x + (layout.grid.width - rowWidth) / 2;
-   expect(Math.abs(photo.x - (rowX + ((index - 1) % columns) * (normal.width + layout.gap)))).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.y - (normal.y + rowIndex * (normal.height + layout.rowGap)))).toBeLessThanOrEqual(1);
+  for (const album of albums.slice(0, 3)) {
+   const panel = await selectAlbum(page, album.id);
+   const layout = await panel.locator('.home-portfolio-grid').evaluate(grid => {
+    const bounds = element => {
+     const rect = element.getBoundingClientRect();
+     return { x:rect.x, y:rect.y, width:rect.width, height:rect.height };
+    };
+    const photos = [...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), featured:photo.classList.contains('is-featured'), wide:photo.classList.contains('is-wide'), fit:getComputedStyle(photo.querySelector('img')).objectFit }));
+    return {
+     grid:bounds(grid),
+     gap:parseFloat(getComputedStyle(grid).columnGap),
+     rowGap:parseFloat(getComputedStyle(grid).rowGap),
+     photos,
+    };
+   });
+   expect(layout.photos).toHaveLength(album.count);
+   const [featured, normal, second] = layout.photos;
+   expect(layout.gap).toBe(width <= 760 ? 8 : 12);
+   expect(layout.rowGap).toBe(layout.gap);
+   expect(layout.photos.filter(photo => photo.featured)).toHaveLength(1);
+   expect(featured.featured).toBe(true);
+   expect(Math.abs(featured.x - layout.grid.x)).toBeLessThanOrEqual(1);
+   expect(Math.abs(featured.width - (normal.width * 2 + layout.gap))).toBeLessThanOrEqual(1);
+   expect(Math.abs(featured.height - (normal.height * 2 + layout.rowGap))).toBeLessThanOrEqual(1);
+   expect(Math.abs(normal.x - (featured.x + featured.width + layout.gap))).toBeLessThanOrEqual(1);
+   expect(Math.abs(normal.y - featured.y)).toBeLessThanOrEqual(1);
+   expect(Math.abs(second.x - normal.x)).toBeLessThanOrEqual(1);
+   expect(Math.abs(second.y - (normal.y + normal.height + layout.rowGap))).toBeLessThanOrEqual(1);
+   expect(Math.abs(normal.height - normal.width / (width <= 760 ? 1.1 : 4 / 3))).toBeLessThanOrEqual(1);
+   expect(Math.abs(layout.grid.width - (normal.width * 3 + layout.gap * 2))).toBeLessThanOrEqual(1);
+   for (const photo of layout.photos) {
+    expect(photo.x).toBeGreaterThanOrEqual(0);
+    expect(photo.x + photo.width).toBeLessThanOrEqual(width + 1);
+    expect(photo.width).toBeGreaterThan(0);
+    expect(photo.height).toBeGreaterThan(0);
+    expect(photo.fit).toBe('cover');
+    if (photo.featured) continue;
+    expect(Math.abs(photo.width - (photo.wide ? (layout.grid.width - layout.gap) / 2 : normal.width))).toBeLessThanOrEqual(1);
+    expect(Math.abs(photo.height - normal.height)).toBeLessThanOrEqual(1);
+   }
+   const lowerRows = [...Map.groupBy(layout.photos.slice(3), photo => Math.round(photo.y)).values()];
+   let previousBottom = featured.y + featured.height;
+   for (const row of lowerRows) {
+    expect(row).toHaveLength(row[0].wide ? 2 : 3);
+    expect(Math.abs(row[0].x - layout.grid.x)).toBeLessThanOrEqual(1);
+    expect(Math.abs(row[0].y - (previousBottom + layout.rowGap))).toBeLessThanOrEqual(1);
+    for (let column = 1; column < row.length; column += 1) {
+     expect(Math.abs(row[column].x - (row[column - 1].x + row[column - 1].width + layout.gap))).toBeLessThanOrEqual(1);
+    }
+    expect(Math.abs(row.at(-1).x + row.at(-1).width - layout.grid.x - layout.grid.width)).toBeLessThanOrEqual(1);
+    previousBottom = row[0].y + row[0].height;
+   }
+   expect(Math.abs(layout.grid.y + layout.grid.height - previousBottom)).toBeLessThanOrEqual(1);
   }
   for (const tab of await page.locator('.home-portfolio-tabs [data-home-category]').all()) {
    const box = await tab.boundingBox();

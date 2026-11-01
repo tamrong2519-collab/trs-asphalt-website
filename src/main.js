@@ -141,10 +141,11 @@ const portfolioMobileLabels = {
  'parking-marking':['ตีเส้นจราจร'],
  'gravel-road':['ถนนหินคลุก บดอัด'],
 };
-const portfolioImageSizes = '(max-width: 760px) calc((100vw - 48px) / 3), (max-width: 1100px) calc((100vw - 72px) / 3), (min-width: 1248px) 291px, calc((100vw - 84px) / 4)';
-const portfolioFeaturedImageSizes = '(max-width: 760px) calc(100vw - 32px), (min-width: 1248px) 1200px, calc(100vw - 48px)';
+const portfolioImageSizes = '(max-width: 760px) calc((100vw - 48px) / 3), (min-width: 1248px) 392px, calc((100vw - 72px) / 3)';
+const portfolioFeaturedImageSizes = '(max-width: 760px) calc((100vw - 36px) * 2 / 3), (min-width: 1248px) 796px, calc((100vw - 54px) * 2 / 3)';
+const portfolioWideImageSizes = '(max-width: 760px) calc((100vw - 40px) / 2), (min-width: 1248px) 594px, calc((100vw - 60px) / 2)';
 const portfolioFeaturedPhotos = {
- 'asphalt-road':{src:'/images/asphalt-job-01.webp',position:'50% 60%'},
+ 'asphalt-road':{src:'/images/home-asphalt-road-work-04-20261031.jpg',position:'50% 60%'},
  'gravel-yard':{src:'/images/home-gravel-parking-blue-building-20261031.jpg',position:'50% 55%'},
  'stone-yard':{src:'/images/home-stone-chips-garden-02-20261031.jpg',position:'50% 80%'},
  'speed-bump-work':{src:'/images/speed-bump-job-08.webp',position:'50% 80%'},
@@ -155,13 +156,15 @@ const portfolioPhotos = project => {
  const photos = project.images.map((photo,index) => ({photo,index}));
  const featuredIndex = photos.findIndex(({photo}) => photo.src === portfolioFeaturedPhotos[project.id]?.src);
  if (featuredIndex > 0) photos.unshift(...photos.splice(featuredIndex,1));
- return photos;
+ const remainder = (photos.length - 3) % 3;
+ const wideCount = remainder === 1 ? 4 : remainder === 2 ? 2 : 0;
+ return photos.map((entry,position) => ({...entry,isWide:wideCount > 0 && position >= photos.length - wideCount}));
 };
 const homePortfolio = `<section id="home-portfolio" class="home-portfolio-section" aria-labelledby="home-portfolio-title"><div class="container home-portfolio-content">
  <div class="home-portfolio-heading"><div><span class="home-portfolio-eyebrow">TRS PROJECT GALLERY</span><h2 id="home-portfolio-title">ผลงานหน้างานจริงของเรา</h2><p>เลือกชมภาพผลงานจริง แยกตามประเภทงาน</p></div><a class="home-portfolio-all" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a></div>
  <nav class="home-portfolio-tabs" aria-label="เลือกประเภทผลงาน">${portfolioExamples.map((project,index) => `<a id="home-portfolio-card-${escape(project.id)}" class="home-portfolio-tab${index===0?' is-active':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-category="${escape(project.id)}" data-home-category-label="${escape(portfolioLabels[project.id].join(''))}" aria-label="${escape(portfolioLabels[project.id].join(''))} ${project.images.length} ภาพ"><span class="home-portfolio-tab-label" aria-hidden="true"><span class="home-portfolio-label-desktop">${portfolioLabels[project.id].map(escape).join('<br>')}</span><span class="home-portfolio-label-mobile">${portfolioMobileLabels[project.id].map(line=>`<span>${escape(line)}</span>`).join('')}</span></span><span class="home-portfolio-count" aria-hidden="true">${project.images.length}</span></a>`).join('')}</nav>
  <div id="home-portfolio-status" class="home-portfolio-status" role="status" aria-live="polite"></div>
- ${portfolioExamples.map((project,albumIndex) => `<div id="home-portfolio-panel-${escape(project.id)}" class="home-portfolio-panel"${albumIndex>0?' hidden':''}><div class="home-portfolio-grid">${portfolioPhotos(project).map(({photo,index},position) => `<a id="home-portfolio-photo-${escape(project.id)}-${index+1}" class="home-portfolio-photo${position===0?' is-featured':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" data-home-photo-index="${index}" aria-label="ดูภาพที่ ${index+1} จาก ${project.images.length}: ${escape(photo.alt || project.title)}" aria-haspopup="dialog" aria-controls="home-gallery"><img src="${escape(photo.src)}" ${responsivePhotoAttributes(photo.src,position===0?portfolioFeaturedImageSizes:portfolioImageSizes,base)}${position===0?` style="object-position:${escape(portfolioFeaturedPhotos[project.id]?.position || '50% 50%')}"`:''} alt="${escape(photo.alt || project.title)}" width="${photo.width || 1280}" height="${photo.height || 960}" loading="lazy" decoding="async"><span class="home-portfolio-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span></a>`).join('')}</div></div>`).join('')}
+ ${portfolioExamples.map((project,albumIndex) => `<div id="home-portfolio-panel-${escape(project.id)}" class="home-portfolio-panel"${albumIndex>0?' hidden':''}><div class="home-portfolio-grid">${portfolioPhotos(project).map(({photo,index,isWide},position) => `<a id="home-portfolio-photo-${escape(project.id)}-${index+1}" class="home-portfolio-photo${position===0?' is-featured':isWide?' is-wide':''}" href="/projects.html#${encodeURIComponent(project.id)}" data-home-album="${escape(project.id)}" data-home-photo-index="${index}" aria-label="ดูภาพที่ ${index+1} จาก ${project.images.length}: ${escape(photo.alt || project.title)}" aria-haspopup="dialog" aria-controls="home-gallery"><img src="${escape(photo.src)}" ${responsivePhotoAttributes(photo.src,position===0?portfolioFeaturedImageSizes:isWide?portfolioWideImageSizes:portfolioImageSizes,base)}${position===0?` style="object-position:${escape(portfolioFeaturedPhotos[project.id]?.position || '50% 50%')}"`:''} alt="${escape(photo.alt || project.title)}" width="${photo.width || 1280}" height="${photo.height || 960}" loading="lazy" decoding="async"><span class="home-portfolio-number" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>${position===0?`<span class="home-portfolio-caption" aria-hidden="true">${portfolioLabels[project.id].map(escape).join(' ')}</span>`:''}</a>`).join('')}</div></div>`).join('')}
  <p class="home-portfolio-hint">แตะรูปเพื่อดูขนาดใหญ่ · เลื่อนชมภาพผลงานได้ในหน้านี้</p>
 </div></section>`;
 const homeGallery = `<dialog id="home-gallery" aria-labelledby="home-gallery-title" aria-describedby="home-gallery-caption">
