@@ -1,4 +1,4 @@
-/* Equal photo frames keep every category orderly at each screen size. */
+/* One standout photo leads each category above an orderly grid of equal frames. */
 body[data-page=index] #main .home-portfolio-section{--portfolio-navy:var(--premium-navy,#091f59);--portfolio-gold:#dfbd68;background:linear-gradient(115deg,#122a53,var(--portfolio-navy));color:#f8faf5;padding:60px 0;scroll-margin-top:var(--site-header-height,216px)}
 body[data-page=index] #main .home-portfolio-content{max-width:1200px}
 body[data-page=index] #main .home-portfolio-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:28px}
@@ -18,6 +18,7 @@ body[data-page=index] #main .home-portfolio-tab.is-active .home-portfolio-count{
 body[data-page=index] #main .home-portfolio-panel{min-width:0;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
 body[data-page=index] #main .home-portfolio-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 body[data-page=index] #main .home-portfolio-photo{position:relative;display:block;min-width:0;min-height:0;aspect-ratio:4/3;overflow:hidden;border:1px solid #647ea8;border-radius:10px;background:#173463;scroll-margin-top:calc(var(--site-header-height,216px) + 20px)}
+body[data-page=index] #main .home-portfolio-photo.is-featured{grid-column:1/-1;aspect-ratio:16/9}
 body[data-page=index] #main .home-portfolio-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;user-select:none}
 body[data-page=index] #main .home-portfolio-number{position:absolute;top:8px;left:8px;display:grid;place-items:center;min-width:28px;min-height:28px;padding:3px 6px;border-radius:5px;background:#091f59df;color:#fff;font-size:13px;line-height:1.4}
 body[data-page=index] #main .home-portfolio-hint{margin:20px 0 0;color:#dfe5ef;text-align:center;font-size:16px;line-height:1.75}

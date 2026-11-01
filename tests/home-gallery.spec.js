@@ -9,7 +9,7 @@ const albums = [
  { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:21 },
  { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-alley-01-20261030.jpg', last:'gravel-road-job-20.webp', count:27 },
 ];
-const triggerFor = (page, id, section = '.home-portfolio-photo') => page.locator(`${section}[data-home-album="${id}"]`).first();
+const triggerFor = (page, id, section = '.home-portfolio-photo') => page.locator(`${section}[data-home-album="${id}"]${section === '.home-portfolio-photo' ? '[data-home-photo-index="0"]' : ''}`).first();
 const panelFor = (page, id) => page.locator(`#home-portfolio-panel-${id}`);
 const categoryFor = (page, id) => page.locator(`[data-home-category="${id}"]`);
 
@@ -42,7 +42,7 @@ async function expectPhoto(page, file, index, count) {
  await expect(page.locator('#home-gallery-caption')).toHaveText(await image.getAttribute('alt'));
 }
 
-test('homepage mosaic and six sample cards open each full album without leaving the page', async ({ page }) => {
+test('homepage featured photos and six sample cards open each full album without leaving the page', async ({ page }) => {
  await openHome(page);
  const originalURL = page.url();
  await expect(page.locator('.home-portfolio-tabs [data-home-category]')).toHaveCount(6);
@@ -52,9 +52,11 @@ test('homepage mosaic and six sample cards open each full album without leaving 
    if (section === '.home-portfolio-photo') {
     const panel = await selectAlbum(page, album.id);
     await expect(panel.locator('.home-portfolio-photo')).toHaveCount(album.count);
-    await expect(panel.locator('.home-portfolio-photo img').first()).toHaveAttribute('src', path(`images/${album.first}`));
+    await expect(panel.locator('.home-portfolio-photo.is-featured')).toHaveCount(1);
    }
-   const trigger = triggerFor(page, album.id, section);
+   const trigger = section === '.home-portfolio-photo' ? panelFor(page, album.id).locator('.home-portfolio-photo.is-featured') : triggerFor(page, album.id, section);
+   const expectedFile = section === '.home-portfolio-photo' ? (await trigger.locator('img').getAttribute('src')).split('/').pop() : album.first;
+   const expectedIndex = Number(await trigger.getAttribute('data-home-photo-index') || 0);
    await expect(trigger).toHaveAttribute('href', path(`projects.html#${album.id}`));
    await trigger.scrollIntoViewIfNeeded();
    const scroll = await page.evaluate(() => ({ x:scrollX, y:scrollY }));
@@ -63,7 +65,7 @@ test('homepage mosaic and six sample cards open each full album without leaving 
    await expect(page.locator('#home-gallery-title')).toHaveText(album.title);
    await expect(page.locator('#home-gallery-count')).toHaveAttribute('role', 'status');
    await expect(page.locator('#home-gallery-thumbnails button')).toHaveCount(album.count);
-   await expectPhoto(page, album.first, 1, album.count);
+   await expectPhoto(page, expectedFile, expectedIndex + 1, album.count);
    await expect(page).toHaveURL(originalURL);
    await closeButton(page).click();
    await expect(page.locator('#home-gallery')).not.toBeVisible();
@@ -194,7 +196,7 @@ test('homepage portfolio links still open the project album when JavaScript is d
  } finally { await context.close(); }
 });
 
-test('homepage gallery uses equal frames and orderly rows on mobile, tablet and desktop', async ({ page }) => {
+test('homepage gallery has one large lead photo above orderly rows on mobile, tablet and desktop', async ({ page }) => {
  for (const width of [320, 390, 760, 768, 1100, 1101, 1440]) {
   await page.setViewportSize({ width, height:1000 });
   await openHome(page);
@@ -208,14 +210,19 @@ test('homepage gallery uses equal frames and orderly rows on mobile, tablet and 
     columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,
     gap:parseFloat(getComputedStyle(grid).columnGap),
     rowGap:parseFloat(getComputedStyle(grid).rowGap),
-    photos:[...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), fit:getComputedStyle(photo.querySelector('img')).objectFit })),
+    photos:[...grid.querySelectorAll('.home-portfolio-photo')].map(photo => ({ ...bounds(photo), featured:photo.classList.contains('is-featured'), fit:getComputedStyle(photo.querySelector('img')).objectFit })),
    };
   });
   expect(layout.photos).toHaveLength(34);
-  const columns = width <= 1100 ? 3 : 4, normal = layout.photos[0];
+  const columns = width <= 1100 ? 3 : 4, featured = layout.photos[0], normal = layout.photos[1];
   expect(layout.columns).toBe(columns);
   expect(layout.gap).toBe(width <= 760 ? 8 : 12);
   expect(layout.rowGap).toBe(layout.gap);
+  expect(layout.photos.filter(photo => photo.featured)).toHaveLength(1);
+  expect(featured.featured).toBe(true);
+  expect(Math.abs(featured.width - layout.grid.width)).toBeLessThanOrEqual(1);
+  expect(Math.abs(featured.height - featured.width * 9 / 16)).toBeLessThanOrEqual(1);
+  expect(Math.abs(normal.y - (featured.y + featured.height + layout.rowGap))).toBeLessThanOrEqual(1);
   expect(Math.abs(normal.height - normal.width * (width <= 760 ? 1 : 3 / 4))).toBeLessThanOrEqual(1);
   expect(Math.abs(layout.grid.width - (normal.width * columns + layout.gap * (columns - 1)))).toBeLessThanOrEqual(1);
   for (const [index, photo] of layout.photos.entries()) {
@@ -224,10 +231,11 @@ test('homepage gallery uses equal frames and orderly rows on mobile, tablet and 
    expect(photo.width).toBeGreaterThan(0);
    expect(photo.height).toBeGreaterThan(0);
    expect(photo.fit).toBe('cover');
+   if (photo.featured) continue;
    expect(Math.abs(photo.width - normal.width)).toBeLessThanOrEqual(1);
    expect(Math.abs(photo.height - normal.height)).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.x - (normal.x + (index % columns) * (normal.width + layout.gap)))).toBeLessThanOrEqual(1);
-   expect(Math.abs(photo.y - (normal.y + Math.floor(index / columns) * (normal.height + layout.rowGap)))).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.x - (normal.x + ((index - 1) % columns) * (normal.width + layout.gap)))).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.y - (normal.y + Math.floor((index - 1) / columns) * (normal.height + layout.rowGap)))).toBeLessThanOrEqual(1);
   }
   for (const tab of await page.locator('.home-portfolio-tabs [data-home-category]').all()) {
    const box = await tab.boundingBox();
