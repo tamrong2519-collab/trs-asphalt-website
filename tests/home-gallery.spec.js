@@ -194,8 +194,8 @@ test('homepage portfolio links still open the project album when JavaScript is d
  } finally { await context.close(); }
 });
 
-test('homepage mosaic keeps its desktop layout and shows three photos per lower row on mobile', async ({ page }) => {
- for (const width of [320, 390, 768, 1440]) {
+test('homepage gallery uses equal frames and orderly rows on mobile, tablet and desktop', async ({ page }) => {
+ for (const width of [320, 390, 760, 768, 1100, 1101, 1440]) {
   await page.setViewportSize({ width, height:1000 });
   await openHome(page);
   const layout = await panelFor(page, 'asphalt-road').locator('.home-portfolio-grid').evaluate(grid => {
@@ -212,31 +212,22 @@ test('homepage mosaic keeps its desktop layout and shows three photos per lower 
    };
   });
   expect(layout.photos).toHaveLength(34);
-  expect(layout.columns).toBe(width <= 760 ? 3 : 6);
-  const featured = layout.photos[0], normal = layout.photos[1], featuredColumns = width <= 760 ? 2 : 3;
-  expect(Math.abs(featured.width - (normal.width * featuredColumns + layout.gap * (featuredColumns - 1)))).toBeLessThanOrEqual(1);
-  expect(Math.abs(featured.height - (normal.height * 2 + layout.rowGap))).toBeLessThanOrEqual(1);
+  const columns = width <= 1100 ? 3 : 4, normal = layout.photos[0];
+  expect(layout.columns).toBe(columns);
+  expect(layout.gap).toBe(width <= 760 ? 8 : 12);
+  expect(layout.rowGap).toBe(layout.gap);
+  expect(Math.abs(normal.height - normal.width * (width <= 760 ? 1 : 3 / 4))).toBeLessThanOrEqual(1);
+  expect(Math.abs(layout.grid.width - (normal.width * columns + layout.gap * (columns - 1)))).toBeLessThanOrEqual(1);
   for (const [index, photo] of layout.photos.entries()) {
    expect(photo.x).toBeGreaterThanOrEqual(0);
    expect(photo.x + photo.width).toBeLessThanOrEqual(width + 1);
    expect(photo.width).toBeGreaterThan(0);
    expect(photo.height).toBeGreaterThan(0);
    expect(photo.fit).toBe('cover');
-   if (index === 0) continue;
-   const expectedWidth = width > 760 && index === 7 ? normal.width * 2 + layout.gap : normal.width;
-   expect(Math.abs(photo.width - expectedWidth)).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.width - normal.width)).toBeLessThanOrEqual(1);
    expect(Math.abs(photo.height - normal.height)).toBeLessThanOrEqual(1);
-  }
-  if (width <= 760) {
-   const lowerPhotos = layout.photos.slice(3);
-   const rows = [...Map.groupBy(lowerPhotos, photo => Math.round(photo.y)).values()];
-   for (const [index, row] of rows.entries()) {
-    expect(row).toHaveLength(index === rows.length - 1 ? (lowerPhotos.length - 1) % 3 + 1 : 3);
-    for (const [column, photo] of row.entries()) {
-     expect(Math.abs(photo.width - lowerPhotos[0].width)).toBeLessThanOrEqual(1);
-     if (column > 0) expect(Math.abs(photo.x - (row[column - 1].x + row[column - 1].width + layout.gap))).toBeLessThanOrEqual(1);
-    }
-   }
+   expect(Math.abs(photo.x - (normal.x + (index % columns) * (normal.width + layout.gap)))).toBeLessThanOrEqual(1);
+   expect(Math.abs(photo.y - (normal.y + Math.floor(index / columns) * (normal.height + layout.rowGap)))).toBeLessThanOrEqual(1);
   }
   for (const tab of await page.locator('.home-portfolio-tabs [data-home-category]').all()) {
    const box = await tab.boundingBox();
