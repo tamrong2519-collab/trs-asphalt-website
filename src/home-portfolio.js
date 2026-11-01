@@ -75,6 +75,18 @@ export function initializeHomePortfolio() {
   });
  });
 
+ section.querySelectorAll('a[data-home-return]').forEach(link => {
+  link.addEventListener('click', event => {
+   if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+   const photo = document.getElementById(link.hash.slice(1));
+   if (!photo || !section.contains(photo)) return;
+   event.preventDefault();
+   photo.focus({ preventScroll: true });
+   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+   photo.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
+  });
+ });
+
  const initial = categoryFromHash() || categories.find(({ panel }) => !panel.hidden) || categories[0];
  activate(initial.id, { announce: false });
  window.addEventListener('hashchange', () => {

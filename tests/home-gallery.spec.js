@@ -190,6 +190,11 @@ test('homepage portfolio links still open the project album when JavaScript is d
  try {
   const page = await context.newPage();
   await page.goto(path('index.html'));
+  const returnLink = page.locator('#home-portfolio-panel-asphalt-road [data-home-return]');
+  await expect(returnLink).toHaveAttribute('href', '#home-portfolio-photo-asphalt-road-5');
+  await returnLink.click();
+  await expect(page).toHaveURL(/#home-portfolio-photo-asphalt-road-5$/);
+  await expect(page.locator('#home-portfolio-photo-asphalt-road-5')).toBeInViewport();
   await triggerFor(page, 'asphalt-road').click();
   await expect(page).toHaveURL(/\/projects\.html#asphalt-road$/);
   await expect(page.locator('#asphalt-road')).toBeVisible();
@@ -261,6 +266,34 @@ test('homepage gallery matches the featured mosaic and fills every lower row on 
    expect(box.x + box.width).toBeLessThanOrEqual(width + 1);
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+ }
+});
+
+test('homepage gallery returns from the bottom to its featured photo without changing the URL', async ({ page }) => {
+ await page.emulateMedia({ reducedMotion:'reduce' });
+ for (const width of [390, 1440]) {
+  await page.setViewportSize({ width, height:1000 });
+  await openHome(page);
+  const originalURL = page.url();
+  for (const album of albums) {
+   const panel = await selectAlbum(page, album.id);
+   const featured = panel.locator('.home-portfolio-photo.is-featured');
+   const returnLink = panel.getByRole('link', { name:'กลับไปรูปแรก' });
+   await expect(returnLink).toHaveAttribute('href', `#${await featured.getAttribute('id')}`);
+   await returnLink.scrollIntoViewIfNeeded();
+   const box = await returnLink.boundingBox();
+   expect(box.height).toBeGreaterThanOrEqual(44);
+   expect((await featured.boundingBox()).y).toBeLessThan(0);
+   if (width === 390) await returnLink.click();
+   else { await returnLink.focus(); await page.keyboard.press('Enter'); }
+   await expect(featured).toBeFocused();
+   await expect(page).toHaveURL(originalURL);
+   await expect.poll(() => featured.evaluate(photo => {
+    const top = photo.getBoundingClientRect().top;
+    const headerBottom = document.querySelector('.site-header').getBoundingClientRect().bottom;
+    return top >= headerBottom - 1 && top < innerHeight - 44;
+   })).toBe(true);
+  }
  }
 });
 
