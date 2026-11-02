@@ -2,12 +2,12 @@ import { test, expect } from '@playwright/test';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
 const albums = [
- { id:'asphalt-road', title:'ลาดยางมะตอยและปูยางแอสฟัลท์', first:'asphalt-job-01.webp', last:'asphalt-job-29.webp', count:34 },
- { id:'gravel-yard', title:'งานลานจอดรถหินคลุก', first:'projects-gravel-cover.webp', last:'gravel-job-19.webp', count:29 },
- { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', last:'stone-home-05.webp', count:21 },
- { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', last:'speed-bump-job-13.webp', count:21 },
- { id:'parking-marking', title:'งานตีเส้นจราจร', first:'projects-marking-cover.webp', last:'marking-job-15.webp', count:21 },
- { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-alley-01-20261030.jpg', last:'gravel-road-job-20.webp', count:27 },
+ { id:'asphalt-road', title:'ลาดยางมะตอยและปูยางแอสฟัลท์', first:'home-asphalt-road-work-04-20261031.jpg', featuredOriginalIndex:4, last:'asphalt-job-29.webp', count:34 },
+ { id:'gravel-yard', title:'งานลานจอดรถหินคลุก', first:'home-gravel-parking-blue-building-20261031.jpg', featuredOriginalIndex:1, last:'gravel-job-19.webp', count:29 },
+ { id:'stone-yard', title:'งานหินเกล็ด', first:'home-stone-chips-garden-02-20261031.jpg', featuredOriginalIndex:2, last:'stone-home-05.webp', count:21 },
+ { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'speed-bump-job-08.webp', featuredOriginalIndex:15, last:'speed-bump-job-13.webp', count:21 },
+ { id:'parking-marking', title:'งานตีเส้นจราจร', first:'home-traffic-marking-road-04-20261031.jpg', featuredOriginalIndex:4, last:'marking-job-15.webp', count:21 },
+ { id:'gravel-road', title:'ถนนหินคลุก บดอัด', first:'home-gravel-road-open-area-04-20261031.jpg', featuredOriginalIndex:6, last:'gravel-road-job-20.webp', count:27 },
 ];
 const triggerFor = (page, id, section = '.home-portfolio-photo') => page.locator(`${section}[data-home-album="${id}"]${section === '.home-portfolio-photo' ? '[data-home-photo-index="0"]' : ''}`).first();
 const panelFor = (page, id) => page.locator(`#home-portfolio-panel-${id}`);
@@ -51,12 +51,18 @@ test('homepage featured photos and six sample cards open each full album without
   for (const album of albums) {
    if (section === '.home-portfolio-photo') {
     const panel = await selectAlbum(page, album.id);
-    await expect(panel.locator('.home-portfolio-photo')).toHaveCount(album.count);
-    await expect(panel.locator('.home-portfolio-photo.is-featured')).toHaveCount(1);
+    const photos = panel.locator('.home-portfolio-photo');
+    const featured = panel.locator('.home-portfolio-photo.is-featured');
+    await expect(photos).toHaveCount(album.count);
+    await expect(featured).toHaveCount(1);
+    await expect(featured).toHaveAttribute('id', `home-portfolio-photo-${album.id}-${album.featuredOriginalIndex + 1}`);
+    await expect(featured).toHaveAttribute('data-home-photo-index', '0');
+    await expect(photos.locator('.home-portfolio-number')).toHaveText(Array.from({ length:album.count }, (_, index) => String(index + 1)));
+    expect(await photos.evaluateAll(elements => elements.map(element => element.dataset.homePhotoIndex))).toEqual(Array.from({ length:album.count }, (_, index) => String(index)));
+    expect(await photos.evaluateAll(elements => elements.map(element => element.getAttribute('aria-label').split(':')[0]))).toEqual(Array.from({ length:album.count }, (_, index) => `ดูภาพที่ ${index + 1} จาก ${album.count}`));
+    await expect(photos.first().locator('img')).toHaveAttribute('src', path(`images/${album.first}`));
    }
    const trigger = section === '.home-portfolio-photo' ? panelFor(page, album.id).locator('.home-portfolio-photo.is-featured') : triggerFor(page, album.id, section);
-   const expectedFile = section === '.home-portfolio-photo' ? (await trigger.locator('img').getAttribute('src')).split('/').pop() : album.first;
-   const expectedIndex = Number(await trigger.getAttribute('data-home-photo-index') || 0);
    await expect(trigger).toHaveAttribute('href', path(`projects.html#${album.id}`));
    await trigger.scrollIntoViewIfNeeded();
    const scroll = await page.evaluate(() => ({ x:scrollX, y:scrollY }));
@@ -65,7 +71,8 @@ test('homepage featured photos and six sample cards open each full album without
    await expect(page.locator('#home-gallery-title')).toHaveText(album.title);
    await expect(page.locator('#home-gallery-count')).toHaveAttribute('role', 'status');
    await expect(page.locator('#home-gallery-thumbnails button')).toHaveCount(album.count);
-   await expectPhoto(page, expectedFile, expectedIndex + 1, album.count);
+   await expect(page.locator('#home-gallery-thumbnails .gallery-thumbnail-number')).toHaveText(Array.from({ length:album.count }, (_, index) => String(index + 1)));
+   await expectPhoto(page, album.first, 1, album.count);
    await expect(page).toHaveURL(originalURL);
    await closeButton(page).click();
    await expect(page.locator('#home-gallery')).not.toBeVisible();
@@ -80,18 +87,18 @@ test('homepage album supports looping, arrow keys, thumbnails and modal keyboard
  const trigger = triggerFor(page, 'asphalt-road');
  await trigger.focus();
  await page.keyboard.press('Enter');
- await expectPhoto(page, 'asphalt-job-01.webp', 1, 34);
+ await expectPhoto(page, 'home-asphalt-road-work-04-20261031.jpg', 1, 34);
  await previousButton(page).click();
  await expectPhoto(page, 'asphalt-job-29.webp', 34, 34);
  await nextButton(page).click();
- await expectPhoto(page, 'asphalt-job-01.webp', 1, 34);
+ await expectPhoto(page, 'home-asphalt-road-work-04-20261031.jpg', 1, 34);
  await page.keyboard.press('ArrowRight');
- await expectPhoto(page, 'home-asphalt-road-work-01-20261031.jpg', 2, 34);
+ await expectPhoto(page, 'asphalt-job-01.webp', 2, 34);
  await page.keyboard.press('ArrowLeft');
- await expectPhoto(page, 'asphalt-job-01.webp', 1, 34);
- const thumbnail = page.getByRole('button', { name:/^เลือกภาพที่ 4:/ });
+ await expectPhoto(page, 'home-asphalt-road-work-04-20261031.jpg', 1, 34);
+ const thumbnail = page.getByRole('button', { name:/^เลือกภาพที่ 5:/ });
  await thumbnail.click();
- await expectPhoto(page, 'home-asphalt-road-work-03-20261031.jpg', 4, 34);
+ await expectPhoto(page, 'home-asphalt-road-work-03-20261031.jpg', 5, 34);
  await expect(thumbnail).toHaveAttribute('aria-current', 'true');
  await expect(thumbnail).toBeFocused();
  const controls = page.locator('#home-gallery button:not(:disabled)');
@@ -116,7 +123,7 @@ test('a mobile homepage album responds to trusted swipes and returns to its card
   await trigger.scrollIntoViewIfNeeded();
   const scroll = await page.evaluate(() => scrollY);
   await trigger.tap();
-  await expectPhoto(page, 'projects-marking-cover.webp', 1, 21);
+  await expectPhoto(page, 'home-traffic-marking-road-04-20261031.jpg', 1, 21);
   const session = await context.newCDPSession(page);
   const swipe = async direction => {
    const stage = await page.locator('#home-gallery-image').boundingBox();
@@ -125,9 +132,9 @@ test('a mobile homepage album responds to trusted swipes and returns to its card
    await session.send('Input.synthesizeScrollGesture', { x:start, y:stage.y + stage.height / 2, xDistance:end - start, yDistance:0, gestureSourceType:'touch', speed:700 });
   };
   await swipe('left');
-  await expectPhoto(page, 'home-traffic-marking-road-01-20261031.jpg', 2, 21);
+  await expectPhoto(page, 'projects-marking-cover.webp', 2, 21);
   await swipe('right');
-  await expectPhoto(page, 'projects-marking-cover.webp', 1, 21);
+  await expectPhoto(page, 'home-traffic-marking-road-04-20261031.jpg', 1, 21);
   await expect(page).toHaveURL(originalURL);
   await closeButton(page).tap();
   await expect(page.locator('#home-gallery')).not.toBeVisible();
@@ -147,7 +154,7 @@ test('homepage gallery stays inside small portrait and landscape screens with re
    const openAlbum = triggerFor(page, 'stone-yard');
    await openAlbum.evaluate(element => element.scrollIntoView({ block:'end' }));
    await openAlbum.tap();
-   await expectPhoto(page, 'stone-home-01.webp', 1, 21);
+   await expectPhoto(page, 'home-stone-chips-garden-02-20261031.jpg', 1, 21);
    const dialog = await page.locator('#home-gallery').boundingBox();
    expect(dialog.x).toBeGreaterThanOrEqual(0);
    expect(dialog.y).toBeGreaterThanOrEqual(0);
@@ -279,7 +286,7 @@ test('homepage gallery returns from the bottom to its featured photo without cha
    const panel = await selectAlbum(page, album.id);
    const featured = panel.locator('.home-portfolio-photo.is-featured');
    const returnLink = panel.getByRole('link', { name:'กลับไปรูปแรก' });
-   await expect(returnLink).toHaveAttribute('href', `#${await featured.getAttribute('id')}`);
+   await expect(returnLink).toHaveAttribute('href', `#home-portfolio-photo-${album.id}-${album.featuredOriginalIndex + 1}`);
    await returnLink.scrollIntoViewIfNeeded();
    const box = await returnLink.boundingBox();
    expect(box.height).toBeGreaterThanOrEqual(44);
@@ -340,8 +347,11 @@ test('existing direct portfolio links select the matching category without chang
  await expect(panel).toBeVisible();
  await expect(page.locator('.home-portfolio-panel:visible')).toHaveCount(1);
  await expect(panel.locator('.home-portfolio-photo')).toHaveCount(27);
+ await expect(panel.locator('[data-home-photo-index="0"] img')).toHaveAttribute('src', path('images/home-gravel-road-open-area-04-20261031.jpg'));
  for (let index = 0; index < 3; index += 1) {
-  await expect(panel.locator(`[data-home-photo-index="${index}"] img`)).toHaveAttribute('src', path(`images/home-gravel-road-alley-${String(index + 1).padStart(2, '0')}-20261030.jpg`));
+  const photo = panel.locator(`#home-portfolio-photo-gravel-road-${index + 1}`);
+  await expect(photo).toHaveAttribute('data-home-photo-index', String(index + 1));
+  await expect(photo.locator('img')).toHaveAttribute('src', path(`images/home-gravel-road-alley-${String(index + 1).padStart(2, '0')}-20261030.jpg`));
  }
  await expect(page).toHaveURL(/#home-portfolio-card-gravel-road$/);
 });
@@ -350,22 +360,25 @@ test('a mosaic photo opens its own position in the full album and retains the su
  await openHome(page);
  const originalURL = page.url();
  const asphalt = await selectAlbum(page, 'asphalt-road');
- const fourth = asphalt.locator('[data-home-photo-index="3"]');
- await fourth.scrollIntoViewIfNeeded();
+ const suppliedPhoto = asphalt.locator('#home-portfolio-photo-asphalt-road-4');
+ await expect(suppliedPhoto).toHaveAttribute('data-home-photo-index', '4');
+ await expect(suppliedPhoto.locator('.home-portfolio-number')).toHaveText('5');
+ await suppliedPhoto.scrollIntoViewIfNeeded();
  const before = await page.evaluate(() => scrollY);
- await fourth.click();
- await expectPhoto(page, 'home-asphalt-road-work-03-20261031.jpg', 4, 34);
+ await suppliedPhoto.click();
+ await expectPhoto(page, 'home-asphalt-road-work-03-20261031.jpg', 5, 34);
  await closeButton(page).click();
- await expect(fourth).toBeFocused();
+ await expect(suppliedPhoto).toBeFocused();
  await expect.poll(() => page.evaluate(() => scrollY)).toBe(before);
  const road = await selectAlbum(page, 'gravel-road');
  for (let index = 0; index < 3; index += 1) {
-  const trigger = road.locator(`[data-home-photo-index="${index}"]`);
+  const trigger = road.locator(`#home-portfolio-photo-gravel-road-${index + 1}`);
   const file = `home-gravel-road-alley-${String(index + 1).padStart(2, '0')}-20261030.jpg`;
+  await expect(trigger).toHaveAttribute('data-home-photo-index', String(index + 1));
   await expect(trigger.locator('img')).toHaveAttribute('src', path(`images/${file}`));
   await trigger.scrollIntoViewIfNeeded();
   await trigger.click();
-  await expectPhoto(page, file, index + 1, 27);
+  await expectPhoto(page, file, index + 2, 27);
   await closeButton(page).click();
   await expect(trigger).toBeFocused();
  }
