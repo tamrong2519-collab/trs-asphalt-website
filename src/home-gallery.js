@@ -29,7 +29,7 @@ export function initializeHomeGallery({ projects, base = '/' }) {
   message.hidden = false;
   image.alt = photo.alt || album.title;
   image.src = new URL(photo.src.startsWith('/') ? `${prefix}${photo.src.slice(1)}` : photo.src, document.baseURI).href;
-  title.textContent = album.title;
+  title.textContent = album.homeGalleryTitle || album.title;
   caption.textContent = photo.alt || album.title;
   title.scrollTop = caption.scrollTop = 0;
   count.textContent = `${imageIndex + 1} / ${album.images.length}`;

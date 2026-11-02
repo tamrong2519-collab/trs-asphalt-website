@@ -49,6 +49,7 @@ export const servicesPageServices = [
 export const projects = [
   {
     id: 'asphalt-road', category: 'asphalt', title: 'งานลาดยางมะตอย',
+    homeGalleryTitle: 'ลาดยางมะตอยและปูยางแอสฟัลท์',
     location: '', description: 'งานลาดยางมะตอยบริเวณถนนและทางเข้าอาคาร',
     siteTypes: 'ถนน ทางเข้าอาคาร ลานโรงเรียน และทางเดินในสวน',
     workScope: 'ปู เกลี่ย และบดอัดผิวลาดยางมะตอย',

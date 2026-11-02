@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const path = route => `${process.env.SITE_BASE || '/'}${route}`;
 const albums = [
- { id:'asphalt-road', title:'งานลาดยางมะตอย', first:'asphalt-job-01.webp', last:'asphalt-job-29.webp', count:34 },
+ { id:'asphalt-road', title:'ลาดยางมะตอยและปูยางแอสฟัลท์', first:'asphalt-job-01.webp', last:'asphalt-job-29.webp', count:34 },
  { id:'gravel-yard', title:'งานลานจอดรถหินคลุก', first:'projects-gravel-cover.webp', last:'gravel-job-19.webp', count:29 },
  { id:'stone-yard', title:'งานหินเกล็ด', first:'stone-home-01.webp', last:'stone-home-05.webp', count:21 },
  { id:'speed-bump-work', title:'งานลูกระนาดยางมะตอย', first:'projects-speed-bump-cover.webp', last:'speed-bump-job-13.webp', count:21 },
