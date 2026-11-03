@@ -1,4 +1,5 @@
 import { createGalleryThumbnails } from './gallery-thumbnails.js';
+import { setResponsivePhoto } from './responsive-photos.js';
 
 // Keep homepage albums in a modal, retaining normal links as a fallback.
 export function initializeHomeGallery({ projects, base = '/' }) {
@@ -15,7 +16,6 @@ export function initializeHomeGallery({ projects, base = '/' }) {
  const previous = document.getElementById('home-gallery-prev');
  const next = document.getElementById('home-gallery-next');
  const root = document.documentElement;
- const prefix = base.endsWith('/') ? base : `${base}/`;
  let album, imageIndex = 0, trigger, scroll, swipeStart, backdropStart = false;
 
  const thumbnails = createGalleryThumbnails({
@@ -28,7 +28,7 @@ export function initializeHomeGallery({ projects, base = '/' }) {
   message.textContent = 'กำลังโหลดภาพ…';
   message.hidden = false;
   image.alt = photo.alt || album.title;
-  image.src = new URL(photo.src.startsWith('/') ? `${prefix}${photo.src.slice(1)}` : photo.src, document.baseURI).href;
+  setResponsivePhoto(image, photo.src, '(min-width: 1100px) 1060px, calc(100vw - 48px)', base);
   title.textContent = album.homeGalleryTitle || album.title;
   caption.textContent = photo.alt || album.title;
   title.scrollTop = caption.scrollTop = 0;
@@ -109,7 +109,7 @@ export function initializeHomeGallery({ projects, base = '/' }) {
  dialog.addEventListener('close', () => {
   swipeStart = null; backdropStart = false; album = null;
   thumbnails.setPhotos([]);
-  image.hidden = true; image.removeAttribute('src'); message.hidden = true;
+  image.hidden = true; image.removeAttribute('src'); image.removeAttribute('srcset'); image.removeAttribute('sizes'); message.hidden = true;
   root.classList.remove('home-gallery-open');
   root.style.removeProperty('--home-gallery-scroll-top');
   root.style.removeProperty('--home-gallery-scroll-left');

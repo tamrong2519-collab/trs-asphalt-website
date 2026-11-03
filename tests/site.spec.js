@@ -17,7 +17,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
    expect(await page.evaluate(()=>document.fonts.check('16px "Noto Sans Thai"'))).toBe(true);
    const typography=await page.evaluate(()=>{
     const copy=[...document.querySelectorAll('main p, main label, main input, main select, main textarea')];
-    const problems=copy.flatMap(e=>{const s=getComputedStyle(e),font=parseFloat(s.fontSize),line=parseFloat(s.lineHeight)/font,issues=[];if(font<16)issues.push('small text');if(line<1.64)issues.push('tight line spacing');if(!s.fontFamily.includes('Noto Sans Thai'))issues.push('unexpected font');return issues.map(problem=>({element:e.id||e.className||e.tagName,problem,font,line}));});
+    const problems=copy.flatMap(e=>{const s=getComputedStyle(e),font=parseFloat(s.fontSize),line=parseFloat(s.lineHeight)/font,issues=[];if(font<(e.matches('.contact-eyebrow')?14:16))issues.push('small text');if(line<1.64)issues.push('tight line spacing');if(!s.fontFamily.includes('Noto Sans Thai'))issues.push('unexpected font');return issues.map(problem=>({element:e.id||e.className||e.tagName,problem,font,line}));});
     const headings=[...document.querySelectorAll('main h1,main h2,main h3')].flatMap(e=>{const s=getComputedStyle(e),minimum=e.tagName==='H1'?34:e.tagName==='H2'?22:17;return parseFloat(s.fontSize)<minimum||!s.fontFamily.includes('Noto Sans Thai')?[{text:e.textContent.trim(),font:s.fontSize,family:s.fontFamily}]:[];});
     const fontResources=performance.getEntriesByType('resource').filter(e=>/\.woff2?(?:[?#]|$)/.test(e.name)).map(e=>e.name);
     return {problems,headings,loadedNoto:[...document.fonts].some(font=>font.family.includes('Noto Sans Thai')&&font.status==='loaded'),fontResources,selfHostedFonts:fontResources.every(url=>new URL(url).origin===location.origin),googleResources:performance.getEntriesByType('resource').filter(e=>/fonts\.(googleapis|gstatic)\.com/.test(e.name)).map(e=>e.name)};
@@ -28,7 +28,7 @@ for (const width of [320, 375, 390, 430, 768, 1440]) {
     const readability=await page.evaluate(()=>({
      heroFont:parseFloat(getComputedStyle(document.querySelector('h1')).fontSize),
      heroHeight:document.querySelector('.hero, .paired-hero, .page-hero').getBoundingClientRect().height,
-     smallParagraphs:[...document.querySelectorAll('main p')].filter(p=>p.textContent.trim()&&parseFloat(getComputedStyle(p).fontSize)<16).map(p=>p.className),
+     smallParagraphs:[...document.querySelectorAll('main p')].filter(p=>p.textContent.trim()&&parseFloat(getComputedStyle(p).fontSize)<(p.matches('.contact-eyebrow')?14:16)).map(p=>p.className),
      smallButtons:[...document.querySelectorAll('main .button')].filter(b=>b.getBoundingClientRect().height>0&&b.getBoundingClientRect().height<52).map(b=>b.textContent.trim()),
     }));
     expect(readability.heroFont).toBeGreaterThanOrEqual(34);expect(readability.heroFont).toBeLessThanOrEqual(44);
@@ -304,7 +304,7 @@ test('homepage cards use supplied photos and the first slide uses the requested 
   }
  }
  await expect(page.locator('.hero-image')).toHaveAttribute('src',path('images/hero-asphalt-paving-20261025.jpg'));
- await expect(page.locator('.hero-image')).not.toHaveAttribute('srcset',/.+/);
+ await expect(page.locator('.hero-image')).toHaveAttribute('srcset',/responsive\/hero-asphalt-paving-20261025-480\.webp 480w/);
  await expect(page.locator('.hero-image')).toHaveAttribute('width','1280');
  await expect(page.locator('.hero-image')).toHaveAttribute('height','960');
  await expect(page.locator('.hero-image')).toHaveAttribute('alt','ภาพหน้างานทีมงานและเครื่องปูยางมะตอยใต้หลังคาบริเวณลานโรงเรียน');

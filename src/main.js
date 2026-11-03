@@ -23,7 +23,7 @@ import './home-portfolio.css';
 import './home-gallery.css';
 import { initializeHomePortfolio } from './home-portfolio.js';
 import { initializeHomeGallery } from './home-gallery.js';
-import { responsivePhotoAttributes } from './responsive-photos.js';
+import { responsivePhotoAttributes, setResponsivePhoto } from './responsive-photos.js';
 import { initializeSlider } from './slider.js';
 import { createGalleryThumbnails } from './gallery-thumbnails.js';
 import { applySocialMetadata } from './social-meta.js';
@@ -84,13 +84,13 @@ const siteHeader = `<header class="site-header">
 const scene = (n,alt,cls='') => `<div class="scene scene-${n} ${cls}"><img src="/images/work-scenes.webp" alt="${escape(alt)}" width="1536" height="1024" loading="lazy"></div>`;
 const cardSizes = '(max-width: 760px) calc(100vw - 32px), (max-width: 1100px) calc((100vw - 80px) / 2), 380px';
 const workPhoto = (photo,cls='',responsive=true,sizes) => `<div class="scene work-photo ${cls}"><img src="${escape(photo.src)}" ${responsive ? responsivePhotoAttributes(photo.src, sizes || (page==='index' || (page==='contact' && cls!=='contact-photo') ? cardSizes : undefined), base) : ''} alt="${escape(photo.alt)}" width="${photo.width}" height="${photo.height}"${photo.position ? ` style="object-position:${escape(photo.position)}"` : ''} loading="lazy"></div>`;
-const serviceImage = (s,cls='',responsive=true) => {
+const serviceImage = (s,cls='',responsive=true,sizes) => {
  const photo = (page==='services' && s.servicesPageImage) || {
   src: (page==='index' && s.homepageImage) || s.homeImage || s.image,
   alt: s.imageAlt || `${s.homeImage?'ภาพหน้างาน':'ภาพประกอบ'}${s.title}`,
   width: s.homeImage?1280:1536, height: s.homeImage?960:1024,
  };
- return workPhoto(photo,cls,responsive);
+ return workPhoto(photo,cls,responsive,sizes);
 };
 const homepageCardImage = (s,type='service') => page==='index' && s.homepageCards?.[type] ? workPhoto(s.homepageCards[type]) : serviceImage(s);
 const categoryTitle = s => s.id === 'gravel' ? 'งานหินคลุก' : s.title;
@@ -114,7 +114,7 @@ const pageHero = ({name,title,accent,copy,image,imageAlt,width,height}) => `<sec
  <div class="container"><span class="page-hero-eyebrow">${escape(b.name)} CONSTRUCTION</span><h1>${escape(title)}<span>${escape(accent)}</span></h1><p>${copy.map(escape).join('<br>')}</p></div>
 </section>`;
 const heroBenefits = `<div class="hero-benefits">${[['shield','งานคุณภาพ','ได้มาตรฐาน'],['worker','ทีมงานมืออาชีพ','ประสบการณ์จริง'],['gear','เครื่องจักรพร้อม','รองรับทุกขนาดงาน'],['clock','ส่งมอบงาน','ตรงเวลา']].map(([i,t,d])=>`<div class="hero-benefit">${icon(i)}<div><strong>${t}</strong><span>${d}</span></div></div>`).join('')}</div>`;
-const banner = (title,text,home=false) => `<section class="hero ${home?'hero-home hero-estimate':''}"><img class="hero-image" src="${home?'/images/hero-asphalt-paving-20261025.jpg':'/images/hero-sharp.webp'}" alt="${home?'ภาพหน้างานทีมงานและเครื่องปูยางมะตอยใต้หลังคาบริเวณลานโรงเรียน':'ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย'}" width="${home?1280:1536}" height="${home?960:1024}" fetchpriority="high"><div class="hero-overlay"></div><div class="container hero-content">${home?'<div class="hero-kicker"><span>TRS TAMRONGSAK CONSTRUCTION</span><span class="slide-count" aria-label="สไลด์ปัจจุบัน">01 / 05</span></div>':''}<h1>${title}</h1><p class="${home?'hero-copy':'hero-subtitle'}">${text}</p>${home?`${heroQuote}${heroBenefits}`:''}</div>${home?`<div class="hero-scene" hidden></div><div class="slider-controls" aria-label="ควบคุมสไลด์หน้าแรก"><button class="slide-prev" aria-label="สไลด์ก่อนหน้า">${icon('chevron-left')}</button><button class="slide-next" aria-label="สไลด์ถัดไป">${chevron}</button><button class="slide-play" aria-label="หยุดสไลด์อัตโนมัติ"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3h5v18H5zM14 3h5v18h-5z"/></svg></button></div>`:''}</section>`;
+const banner = (title,text,home=false) => `<section class="hero ${home?'hero-home hero-estimate':''}"><img class="hero-image" src="${home?'/images/hero-asphalt-paving-20261025.jpg':'/images/hero-sharp.webp'}" ${responsivePhotoAttributes(home?'/images/hero-asphalt-paving-20261025.jpg':'/images/hero-sharp.webp', '100vw', base)} alt="${home?'ภาพหน้างานทีมงานและเครื่องปูยางมะตอยใต้หลังคาบริเวณลานโรงเรียน':'ภาพประกอบเครื่องจักรและทีมงานลาดยางมะตอย'}" width="${home?1280:1536}" height="${home?960:1024}" fetchpriority="high"><div class="hero-overlay"></div><div class="container hero-content">${home?'<div class="hero-kicker"><span>TRS TAMRONGSAK CONSTRUCTION</span><span class="slide-count" aria-label="สไลด์ปัจจุบัน">01 / 05</span></div>':''}<h1>${title}</h1><p class="${home?'hero-copy':'hero-subtitle'}">${text}</p>${home?`${heroQuote}${heroBenefits}`:''}</div>${home?`<div class="hero-scene" hidden></div><div class="slider-controls" aria-label="ควบคุมสไลด์หน้าแรก"><button class="slide-prev" aria-label="สไลด์ก่อนหน้า">${icon('chevron-left')}</button><button class="slide-next" aria-label="สไลด์ถัดไป">${chevron}</button><button class="slide-play" aria-label="หยุดสไลด์อัตโนมัติ"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3h5v18H5zM14 3h5v18h-5z"/></svg></button></div>`:''}</section>`;
 const cta = `<section class="cta"><div class="container cta-inner"><div><h2>งานด่วนโทรได้เลย</h2><p>เครื่องจักรครบ เริ่มงานไว<br>ส่งรูปหน้างานเพื่อขอประเมินราคา</p></div><div class="cta-phone">${icon('phone')}<div><span>โทรเลย</span><a href="tel:${phone}">${escape(b.phone)}</a></div></div>${lineButton('คุยกับช่างหมู')}</div></section>`;
 const samples = (large=false) => `<div class="sample-grid ${large?'large':''}">${projects.filter(p=>p.images?.length && services.some(s=>s.id===p.category)).map(p=>{
  const s=services.find(s=>s.id===p.category), href=`/projects.html#${encodeURIComponent(p.id)}`;
@@ -260,7 +260,7 @@ updateHeaderHeight();
 if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(siteHeaderElement);
 else window.addEventListener('resize', updateHeaderHeight);
 document.fonts?.ready.then(updateHeaderHeight);
-if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage, imageAlt: s.slideImageAlt || s.imageAlt},'',false)), services});}
+if(page==='index' && typeof initializeSlider==='function'){initializeSlider({scene: (n,alt)=>localPaths(scene(n,alt)), image: s=>localPaths(serviceImage({...s, homeImage: s.slideImage || s.homeImage, imageAlt: s.slideImageAlt || s.imageAlt},'',true,'100vw')), services});}
 if(page==='index' && typeof initializeHomePortfolio==='function'){initializeHomePortfolio();}
 if(page==='index' && typeof initializeHomeGallery==='function'){initializeHomeGallery({projects:portfolioExamples.map(project=>({...project,images:portfolioPhotos(project).map(({photo})=>photo)})),base});}
 if(page==='contact') {
@@ -349,7 +349,7 @@ if(page==='projects') {
  const thumbnails=typeof createGalleryThumbnails==='function' ? createGalleryThumbnails({container:document.getElementById('gallery-thumbnails'),base,onSelect:index=>{imageIndex=index;showImage();}}) : null;
  const showImage=()=>{
   const photo=currentGroup.images[imageIndex];
-  galleryImage.src=new URL(photo.src.startsWith('/')?`${base}${photo.src.slice(1)}`:photo.src,document.baseURI).href;
+  setResponsivePhoto(galleryImage,photo.src,'(min-width: 1100px) 1060px, calc(100vw - 48px)',base);
   galleryImage.alt=photo.alt || currentGroup.title;
   document.getElementById('lightbox-title').textContent=currentGroup.title;
   document.getElementById('image-caption').textContent=photo.alt || currentGroup.title;

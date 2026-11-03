@@ -78,7 +78,7 @@ for (const scenario of [
  });
 }
 
-test('mobile cards download responsive photos while albums retain the originals', async ({ page }) => {
+test('mobile cards and albums load responsive photos with original fallbacks', async ({ page }) => {
  await page.setViewportSize({ width: 390, height: 900 });
  await page.goto(path('index.html'));
  const card = page.locator('.home-services .service-card').first();
@@ -95,7 +95,7 @@ test('mobile cards download responsive photos while albums retain the originals'
  await page.locator('#asphalt .text-link').click();
  await page.locator('#asphalt-road .project-gallery-open').click();
  await expect(page.locator('#lightbox-image img')).toHaveAttribute('src', new URL(path('images/asphalt-job-01.webp'), page.url()).href);
- await expect(page.locator('#lightbox-image img')).not.toHaveAttribute('srcset', /.+/);
+ await expect(page.locator('#lightbox-image img')).toHaveAttribute('srcset', /\d+w/);
 });
 
 test('contact shortcuts remain visible after pointer focus, keyboard focus and form editing', async ({ page }) => {

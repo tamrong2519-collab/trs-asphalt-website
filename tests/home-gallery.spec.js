@@ -34,7 +34,13 @@ async function openHome(page) {
 async function expectPhoto(page, file, index, count) {
  await expect(page.locator('#home-gallery-count')).toHaveText(`${index} / ${count}`);
  const image = page.locator('#home-gallery-image img');
- await expect.poll(() => image.evaluate(element => new URL(element.currentSrc || element.src, location.href).pathname)).toBe(path(`images/${file}`));
+ await expect(image).toHaveAttribute('src', new URL(path(`images/${file}`), page.url()).href);
+ await expect.poll(() => image.evaluate(element => {
+  const candidates = element.srcset
+   ? element.srcset.split(',').map(candidate => new URL(candidate.trim().split(/\s+/)[0], location.href).href)
+   : [element.src];
+  return element.complete && element.naturalWidth > 0 && candidates.includes(element.currentSrc);
+ })).toBe(true);
  await expect(image).toBeVisible();
  await image.evaluate(element => element.decode());
  expect(await image.evaluate(element => element.naturalWidth > 0 && element.naturalHeight > 0)).toBe(true);

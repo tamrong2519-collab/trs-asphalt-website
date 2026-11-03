@@ -20,7 +20,7 @@ for (const width of [320, 375, 390, 430]) {
      return {
       inner: innerWidth, client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth, visual: visualViewport.width, scale: visualViewport.scale,
       heading: parseFloat(getComputedStyle(document.querySelector('h1')).fontSize),
-      paragraphs: [...document.querySelectorAll('main p')].filter(visible).map(element => ({ text: element.textContent.trim(), font: parseFloat(getComputedStyle(element).fontSize) })),
+      paragraphs: [...document.querySelectorAll('main p')].filter(visible).map(element => ({ text: element.textContent.trim(), font: parseFloat(getComputedStyle(element).fontSize), compactLabel: element.matches('.contact-eyebrow') })),
       actions: rectangles('main .button'), navigation: rectangles('#main-nav a'), contacts: rectangles('.header-contact a'),
       photoCards: rectangles('main .service-card, main .sample-card, main .project-card, main .info-card, main .contact-photo, main .scene, main .hero-image, main .hero-scene'),
      };
@@ -28,7 +28,7 @@ for (const width of [320, 375, 390, 430]) {
     expect(layout.inner).toBe(width); expect(layout.client).toBe(width); expect(layout.scroll).toBeLessThanOrEqual(width);
     expect(layout.visual).toBeCloseTo(width, 1); expect(layout.scale).toBeCloseTo(1, 3);
     expect(layout.heading).toBeGreaterThanOrEqual(34); expect(layout.heading).toBeLessThanOrEqual(44);
-    for (const paragraph of layout.paragraphs) expect(paragraph.font, paragraph.text).toBeGreaterThanOrEqual(16);
+    for (const paragraph of layout.paragraphs) expect(paragraph.font, paragraph.text).toBeGreaterThanOrEqual(paragraph.compactLabel ? 14 : 16);
     for (const action of layout.actions) expect(action.height, action.text).toBeGreaterThanOrEqual(52);
     expect(layout.navigation).toHaveLength(4);
     for (const link of layout.navigation) { expect(link.font).toBeGreaterThanOrEqual(14); expect(link.height).toBeGreaterThanOrEqual(44); expect(link.overflow).toBe(false); }
@@ -70,7 +70,7 @@ for (const width of [320, 375, 390, 430]) {
     await expect(page.locator('.float-call')).toBeVisible();
     await expect(page.locator('.float-line')).toBeVisible();
     await expect(page.locator('.float-call')).toHaveAccessibleName('โทร 062-248-4089');
-    await expect(page.locator('.float-line')).toHaveAccessibleName('LINE @138wlldt');
+    await expect(page.locator('.float-line')).toHaveAccessibleName('คุยกับช่างหมูทาง LINE @138wlldt');
    }
    expect(errors).toEqual([]);
   } finally { await context.close(); }

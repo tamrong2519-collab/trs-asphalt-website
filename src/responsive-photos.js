@@ -5,231 +5,289 @@ export const responsivePhotos = {
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-02.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-03.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-04.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-05.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-06.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-07.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-08.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-09.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-10.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-11.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-12.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-13.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-14.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-15.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-16.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-17.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-18.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-19.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-20.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-21.webp": {
     "originalWidth": 720,
     "widths": [
       240,
-      480
-    ]
+      480,
+      720
+    ],
+    "maxPreviewWidth": 720
   },
   "/images/asphalt-job-22.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-23.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/asphalt-job-24.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-25.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/asphalt-job-26.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/asphalt-job-27.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/asphalt-job-28.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/asphalt-job-29.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/contact-asphalt.webp": {
     "originalWidth": 1280,
@@ -268,790 +326,1008 @@ export const responsivePhotos = {
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-04.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-05.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-job-06.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-job-07.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-08.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-09.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-job-10.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-11.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-12.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-13.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-14.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-15.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-16.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-17.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-18.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job-19.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-job.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-02.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-03.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-04.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-05.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-06.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-road-job-07.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-road-job-08.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-09.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-10.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-road-job-11.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-12.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-13.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-road-job-14.webp": {
     "originalWidth": 720,
     "widths": [
       240,
-      480
-    ]
+      480,
+      720
+    ],
+    "maxPreviewWidth": 720
   },
   "/images/gravel-road-job-15.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/gravel-road-job-16.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-17.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-18.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-19.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job-20.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-road-job.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/gravel-slide.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
+  },
+  "/images/hero-asphalt-paving-20261025.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
+  },
+  "/images/hero-gravel-parking-roller-20261025.jpg": {
+    "originalWidth": 1280,
+    "widths": [
+      240,
+      480,
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/hero-sharp.webp": {
     "originalWidth": 1536,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1536
+    ],
+    "maxPreviewWidth": 1536
   },
   "/images/home-asphalt-road-work-01-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-asphalt-road-work-02-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-asphalt-road-work-03-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-asphalt-road-work-04-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-asphalt-road-work-05-20261031.jpg": {
     "originalWidth": 720,
     "widths": [
       240,
-      480
-    ]
+      480,
+      720
+    ],
+    "maxPreviewWidth": 720
   },
   "/images/home-gravel-parking-blue-building-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-open-yard-01-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-open-yard-02-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-open-yard-03-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-open-yard-04-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-work-01-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-work-02-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-work-03-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-parking-work-04-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-road-alley-01-20261030.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-road-alley-02-20261030.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-road-alley-03-20261030.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-road-open-area-01-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-gravel-road-open-area-02-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-gravel-road-open-area-03-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-gravel-road-open-area-04-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-gravel-service.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-speed-bump-construction-01-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-speed-bump-construction-02-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-speed-bump-construction-03-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-speed-bump-construction-04-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-speed-bump-construction-05-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-speed-bump-construction-06-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-speed-bump-construction-07-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-stone-chips-front-tree-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-stone-chips-garden-01-20261031.jpg": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/home-stone-chips-garden-02-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-stone-chips-garden-path-20261031.jpg": {
     "originalWidth": 1920,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1536
+    ],
+    "maxPreviewWidth": 1536
   },
   "/images/home-stone-chips-palm-garden-20261031.jpg": {
     "originalWidth": 1920,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1536
+    ],
+    "maxPreviewWidth": 1536
   },
   "/images/home-stone-chips-tree-bed-20261031.jpg": {
     "originalWidth": 1920,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1536
+    ],
+    "maxPreviewWidth": 1536
   },
   "/images/home-traffic-marking-road-01-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-traffic-marking-road-02-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-traffic-marking-road-03-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-traffic-marking-road-04-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/home-traffic-marking-road-05-20261031.jpg": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-home.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-02.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-03.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-04.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-05.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-06.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-07.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/marking-job-08.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/marking-job-09.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-10.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-11.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-12.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-13.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-14.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job-15.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/marking-job.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/projects-gravel-cover.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/projects-marking-cover.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/projects-speed-bump-cover.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/services-asphalt.webp": {
     "originalWidth": 1280,
@@ -1082,8 +1358,10 @@ export const responsivePhotos = {
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/services-marking.webp": {
     "originalWidth": 1280,
@@ -1106,224 +1384,280 @@ export const responsivePhotos = {
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job-03.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job-04.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job-05.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job-06.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/speed-bump-job-07.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/speed-bump-job-08.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/speed-bump-job-09.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/speed-bump-job-10.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job-11.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job-12.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job-13.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/speed-bump-job.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-building-01.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/stone-building-02.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/stone-building-03.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/stone-building-04.webp": {
     "originalWidth": 963,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      963
+    ],
+    "maxPreviewWidth": 963
   },
   "/images/stone-home-01.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/stone-home-02.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-home-03.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/stone-home-04.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-home-05.webp": {
     "originalWidth": 960,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      960
+    ],
+    "maxPreviewWidth": 960
   },
   "/images/stone-job-02.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-job-03.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-job-04.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-job-05.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-job-06.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   },
   "/images/stone-job.webp": {
     "originalWidth": 1280,
     "widths": [
       240,
       480,
-      800
-    ]
+      800,
+      1280
+    ],
+    "maxPreviewWidth": 1280
   }
 };
 
@@ -1331,17 +1665,44 @@ const escapeAttribute = value => String(value).replace(/[&<>"']/g, character => 
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 })[character]);
 
-/**
- * Return optional HTML attributes for static cards and secondary page banners.
- * Keep the original src/width/height on the img; do not use this for lightboxes
- * or the homepage slider, which have their own full-photo behavior.
- */
-export function responsivePhotoAttributes(src, sizes = '(min-width: 1304px) 580px, (min-width: 761px) calc((100vw - 96px) / 2), calc(100vw - 32px)', base = '/') {
+const defaultPhotoSizes = '(min-width: 1304px) 580px, (min-width: 761px) calc((100vw - 96px) / 2), calc(100vw - 32px)';
+const sourcePrefix = base => base.endsWith('/') ? base : `${base}/`;
+
+const responsivePhotoSourceSet = (src, base) => {
   const photo = responsivePhotos[src];
   if (!photo) return '';
-  const prefix = base.endsWith('/') ? base : `${base}/`;
+  const prefix = sourcePrefix(base);
   const stem = src.slice('/images/'.length).replace(/\.[^/.]+$/, '');
   const candidates = photo.widths.map(width => `${prefix}images/responsive/${stem}-${width}.webp ${width}w`);
-  candidates.push(`${prefix}${src.replace(/^\//, '')} ${photo.originalWidth}w`);
-  return `srcset="${escapeAttribute(candidates.join(', '))}" sizes="${escapeAttribute(sizes)}"`;
+  if (!photo.maxPreviewWidth && !photo.widths.includes(photo.originalWidth)) {
+    candidates.push(`${prefix}${src.replace(/^\//, '')} ${photo.originalWidth}w`);
+  }
+  return candidates.join(', ');
+};
+
+/**
+ * Return HTML attributes for responsive cards, banners and homepage slides.
+ * Keep the original src/width/height on the img as a fallback.
+ */
+export function responsivePhotoAttributes(src, sizes = defaultPhotoSizes, base = '/') {
+  const srcset = responsivePhotoSourceSet(src, base);
+  return srcset ? `srcset="${escapeAttribute(srcset)}" sizes="${escapeAttribute(sizes)}"` : '';
+}
+
+/**
+ * Configure responsive modal photos before assigning their original fallback.
+ * The same candidate list is used by server-rendered HTML and live viewers.
+ */
+export function setResponsivePhoto(image, src, sizes = defaultPhotoSizes, base = '/') {
+  const srcset = responsivePhotoSourceSet(src, base);
+  if (srcset) {
+    image.setAttribute('sizes', sizes);
+    image.setAttribute('srcset', srcset);
+  } else {
+    image.removeAttribute('srcset');
+    image.removeAttribute('sizes');
+  }
+  const fallback = /^\/(?!\/)/.test(src) ? `${sourcePrefix(base)}${src.slice(1)}` : src;
+  image.src = new URL(fallback, image.ownerDocument.baseURI).href;
+  return image;
 }
