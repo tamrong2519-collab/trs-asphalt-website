@@ -152,7 +152,7 @@ for(const width of [320,375,390,430]){
   await expectPrimaryContactAccess(page);
   const buttons=page.locator('.contact-panel .actions .button');await expect(buttons).toHaveCount(2);
   await expect(buttons.nth(0)).toHaveText('โทร 062-248-4089');
-  await expect(buttons.nth(1)).toContainText('แอด LINE ส่งรูปหน้างาน');
+  await expect(buttons.nth(1)).toContainText('คุยกับช่างหมู');
   const layout=await buttons.evaluateAll(items=>items.map(b=>{const r=b.getBoundingClientRect(),s=getComputedStyle(b);return {height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,bg:s.backgroundColor};}));
   for(const button of layout){expect(button.height).toBe(52);expect(button.font).toBe(18);expect(button.radius).toBe(14);expect(button.wrap).toBe('nowrap');expect(button.overflow).toBe(false);expect(button.left).toBeGreaterThanOrEqual(16);expect(button.right).toBeLessThanOrEqual(width-16);}
   expect(layout[1].top-layout[0].bottom).toBe(16);

@@ -22,10 +22,10 @@ body[data-page="index"] #main .home-services-more {
  white-space:nowrap;
 }
 body[data-page="contact"] #main .contact-panel .urgent-work-note {
- margin:12px 0 8px;
+ margin:0 0 8px;
  color:var(--premium-navy);
- font-size:18px;
- font-weight:600;
+ font-size:16px;
+ font-weight:500;
  line-height:1.8;
 }
 body[data-page="contact"] #main .contact-hours {

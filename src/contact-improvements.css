@@ -140,3 +140,67 @@ body[data-page="index"] #main .hero-estimate .hero-primary-actions > .button:foc
  body[data-page="index"] #main .hero-estimate .hero-benefits { gap:14px 16px; margin:20px 0; }
  body[data-page="index"] #main .hero-estimate .hero-benefit > .icon { width:30px; height:30px; margin-bottom:5px; }
 }
+
+/* Keep the named contact and company together, with a clear reading order. */
+body[data-page="contact"] #main .contact-identity {
+ padding-bottom:22px;
+ margin-bottom:20px;
+ border-bottom:1px solid #d8c89d;
+}
+body[data-page="contact"] #main .contact-identity .contact-eyebrow {
+ display:flex;
+ align-items:center;
+ gap:10px;
+ margin:0 0 10px;
+ color:#76591f;
+ font-size:14px;
+ font-weight:500;
+ line-height:1.7;
+}
+body[data-page="contact"] #main .contact-eyebrow::before {
+ content:'';
+ width:24px;
+ height:2px;
+ flex:none;
+ background:#ad852e;
+}
+body[data-page="contact"] #main .contact-identity h2 {
+ margin:0 0 12px;
+ color:var(--premium-navy);
+ font-size:34px;
+ font-weight:500;
+ line-height:1.5;
+ text-wrap:initial;
+}
+body[data-page="contact"] #main .contact-identity h2 span {
+ display:inline-block;
+ margin-inline-start:.15em;
+ font-weight:700;
+}
+body[data-page="contact"] #main .contact-identity .contact-business {
+ display:flex;
+ flex-wrap:wrap;
+ align-items:baseline;
+ column-gap:10px;
+ row-gap:2px;
+ margin:0;
+ color:var(--premium-copy);
+ font-size:16px;
+ line-height:1.8;
+}
+body[data-page="contact"] #main .contact-business strong {
+ color:var(--premium-navy);
+ font-size:17px;
+ font-weight:600;
+ letter-spacing:.06em;
+}
+@media(max-width:760px) {
+ body[data-page="contact"] #main .contact-identity {
+  padding-bottom:20px;
+  margin-bottom:18px;
+ }
+ body[data-page="contact"] #main .contact-identity h2 {
+  font-size:30px;
+  margin-bottom:10px;
+ }
+}

@@ -1,6 +1,6 @@
 // แก้ข้อมูลธุรกิจและช่องทางติดต่อที่นี่ก่อนเผยแพร่จริง
 export const business = {
-  name: 'TRS TAMRONGSAK', thaiName: 'ทีอาร์เอส ธำรงศักดิ์ คอนสตรัคชั่น',
+  name: 'TRS TAMRONGSAK', thaiName: 'ทีอาร์เอส ทำรงศักดิ์ คอนสตรัคชั่น',
   phone: '062-248-4089', // เช่น 0812345678
   lineId: '@138wlldt', lineUrl: 'https://line.me/ti/p/%40138wlldt', // เช่น https://line.me/ti/p/~your-id
   email: 'tamrong2519@gmail.com',

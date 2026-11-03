@@ -7,7 +7,7 @@ const routes = ['index.html', 'services.html', 'projects.html', 'contact.html',
   'asphalt/index.html', 'asphalt-paving/index.html', 'gravel-parking/index.html',
   'gravel-road/index.html', 'stone-chips/index.html', 'speed-bump/index.html',
   'traffic-marking/index.html'];
-const phoneDestination = 'AW-18460039086/0dEpCObMov4cEK6vt-JE';
+const phoneDestination = 'AW-18460039086/0G4-CMnR8oEdEK6vt-JE';
 const lineDestination = 'AW-18460039086/AVTTCIvEnf4cEK6vt-JE';
 const script = readFileSync(new URL('../../public/ads-conversions.js', import.meta.url), 'utf8');
 
