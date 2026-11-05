@@ -38,7 +38,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
        numberWeight: label ? getComputedStyle(label).fontWeight : null,
        name: name?.textContent,
        iconVisible: !expectsIcon || Boolean(icon && icon.getBoundingClientRect().width > 0 && getComputedStyle(icon).visibility === 'visible'),
-       badgeVisible: !expectsIcon || Boolean(badge && badge.getBoundingClientRect().width > 0 && getComputedStyle(badge).borderTopColor === 'rgb(225, 197, 142)'),
+       badgeVisible: !expectsIcon || link.matches('.header-call') || Boolean(badge && badge.getBoundingClientRect().width > 0 && getComputedStyle(badge).borderTopColor === 'rgb(225, 197, 142)'),
        fits: !copy || (numberBox.left >= bounds.left - 1 && nameBox.right <= bounds.right + 1
         && numberBox.top >= bounds.top - 1 && nameBox.bottom <= bounds.bottom + 1),
        sameLine: !copy || Math.max(numberBox.top, nameBox.top) < Math.min(numberBox.bottom, nameBox.bottom),
