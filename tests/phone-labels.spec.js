@@ -31,6 +31,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
       return {
        frame: size(frame), href: link.getAttribute('href'), aria: link.getAttribute('aria-label'),
        visibleNumber: copy ? label?.textContent : link.innerText.trim(),
+       numberWeight: label ? getComputedStyle(label).fontWeight : null,
        name: name?.textContent,
        fits: !copy || (numberBox.left >= bounds.left - 1 && nameBox.right <= bounds.right + 1
         && numberBox.top >= bounds.top - 1 && nameBox.bottom <= bounds.bottom + 1),
@@ -50,6 +51,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
     if (phone.visibleNumber) {
      expect(phone.visibleNumber, note).toContain('062-248-4089');
      expect(phone.name, note).toBe('ช่างหมู');
+     expect(phone.numberWeight, note).toBe('700');
     }
     expect(phone.fits, note).toBe(true);
     expect(phone.sameLine, note).toBe(true);
