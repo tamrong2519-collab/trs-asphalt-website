@@ -1,9 +1,9 @@
 /* Preserve the existing phone-button frames while adding the contact name. */
 html body:is([data-page], .design-02) .phone-contact-button {
   position: relative;
-  --phone-copy-size: 16px;
+  --phone-copy-size: 18px;
   --phone-name-size: 13px;
-  --phone-icon-size: 18px;
+  --phone-icon-size: 20px;
   --phone-copy-gap: 6px;
   --phone-copy-padding: 8px;
 }
@@ -32,6 +32,8 @@ html body:is([data-page], .design-02) .phone-contact-button > .phone-button-copy
 }
 
 html body:is([data-page], .design-02) .phone-contact-button > .phone-button-copy > svg {
+  display: block !important;
+  visibility: visible;
   width: var(--phone-icon-size) !important;
   height: var(--phone-icon-size) !important;
   flex: 0 0 var(--phone-icon-size) !important;
@@ -40,6 +42,19 @@ html body:is([data-page], .design-02) .phone-contact-button > .phone-button-copy
 html body:is([data-page], .design-02) .phone-button-copy > .phone-button-name {
   font-size: var(--phone-name-size);
   font-weight: 500;
+  position: relative;
+  margin-inline-start: 3px;
+}
+
+html body:is([data-page], .design-02) .phone-button-copy > .phone-button-name::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 20%;
+  width: 1px;
+  height: 60%;
+  background: currentColor;
+  opacity: .35;
 }
 
 html body:is([data-page], .design-02) :is(.phone-button-copy,.phone-inline-copy) > .phone-button-number {
@@ -47,18 +62,18 @@ html body:is([data-page], .design-02) :is(.phone-button-copy,.phone-inline-copy)
 }
 
 html body:is([data-page], .design-02) .phone-contact-button.header-call {
-  --phone-copy-size: 12px;
-  --phone-name-size: 10.5px;
-  --phone-icon-size: 14px;
+  --phone-copy-size: 15px;
+  --phone-name-size: 13px;
+  --phone-icon-size: 16px;
   --phone-copy-gap: 4px;
   --phone-copy-padding: 4px;
 }
 
 html body:is([data-page], .design-02) .site-footer .phone-contact-button {
-  --phone-copy-size: 13px;
-  --phone-name-size: 11.5px;
+  --phone-copy-size: 15.5px;
+  --phone-name-size: 13.5px;
   --phone-icon-size: 16px;
-  --phone-copy-gap: 5px;
+  --phone-copy-gap: 3px;
   --phone-copy-padding: 4px;
 }
 
@@ -81,10 +96,38 @@ html body[data-page] .phone-contact-button:is(.hero-call, .contact-call) {
 @media (max-width: 760px) {
   html body:is([data-page], .design-02) .phone-contact-button:not(.header-call) {
     --phone-copy-size: 18px;
-    --phone-name-size: 13px;
+    --phone-name-size: 14px;
     --phone-icon-size: 20px;
     --phone-copy-gap: 7px;
     --phone-copy-padding: 6px;
+  }
+}
+
+@media (min-width: 361px) and (max-width: 760px) {
+  html body:is([data-page], .design-02) .phone-contact-button.header-call {
+    --phone-copy-size: 14px;
+    --phone-name-size: 13px;
+    --phone-icon-size: 14px;
+    --phone-copy-gap: 3px;
+    --phone-copy-padding: 4px;
+  }
+}
+@media (max-width: 360px) {
+  html body:is([data-page], .design-02) .phone-contact-button.header-call {
+    --phone-copy-size: 13px;
+    --phone-name-size: 12px;
+    --phone-icon-size: 12px;
+    --phone-copy-gap: 2px;
+    --phone-copy-padding: 3px;
+  }
+}
+
+html body:is([data-page], .design-02) .header-call .phone-button-name::before {
+  left: -3px;
+}
+@media (min-width: 761px) {
+  html body:is([data-page], .design-02) .site-footer .phone-contact-button .phone-button-name::before {
+    left: -3px;
   }
 }
 
