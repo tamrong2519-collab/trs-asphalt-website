@@ -27,12 +27,15 @@ for (const width of [320, 390, 768, 1024, 1440]) {
       const copy = link.querySelector('.phone-button-copy,.phone-inline-copy');
       const label = copy?.querySelector('.phone-button-number');
       const name = copy?.querySelector('.phone-button-name');
+      const icon = copy?.querySelector('svg');
+      const expectsIcon = copy?.classList.contains('phone-button-copy');
       const numberBox = label?.getBoundingClientRect(), nameBox = name?.getBoundingClientRect();
       return {
        frame: size(frame), href: link.getAttribute('href'), aria: link.getAttribute('aria-label'),
        visibleNumber: copy ? label?.textContent : link.innerText.trim(),
        numberWeight: label ? getComputedStyle(label).fontWeight : null,
        name: name?.textContent,
+       iconVisible: !expectsIcon || Boolean(icon && icon.getBoundingClientRect().width > 0 && getComputedStyle(icon).visibility === 'visible'),
        fits: !copy || (numberBox.left >= bounds.left - 1 && nameBox.right <= bounds.right + 1
         && numberBox.top >= bounds.top - 1 && nameBox.bottom <= bounds.bottom + 1),
        sameLine: !copy || Math.max(numberBox.top, nameBox.top) < Math.min(numberBox.bottom, nameBox.bottom),
@@ -54,6 +57,7 @@ for (const width of [320, 390, 768, 1024, 1440]) {
      expect(phone.numberWeight, note).toBe('700');
     }
     expect(phone.fits, note).toBe(true);
+    expect(phone.iconVisible, note).toBe(true);
     expect(phone.sameLine, note).toBe(true);
     for (const dimension of ['width', 'height']) {
      expect(Math.abs(phone.frame[dimension] - previous.frames[index][dimension]), `${note}: ${dimension}`).toBeLessThan(1);

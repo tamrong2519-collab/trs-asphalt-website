@@ -63,7 +63,7 @@ const icon = name => `<svg class="icon icon-${name}" aria-hidden="true" focusabl
 const arrow = icon('arrow');
 const chevron = icon('chevron-right');
 const serviceIcon = s => icon(['asphalt','marking','gravel-road'].includes(s.id)?'road':s.id==='speed-bump'?'bump':'gravel');
-const phoneButtonContent = (label, phoneIcon='phone') => `${icon(phoneIcon)}<span class="phone-button-measure" aria-hidden="true">${label}</span><span class="phone-button-copy">${icon(phoneIcon)}<span class="phone-button-number">${label}</span> <span class="phone-button-name">ช่างหมู</span></span>`;
+const phoneButtonContent = (label, phoneIcon='phone') => `${icon(phoneIcon)}<span class="phone-button-measure" aria-hidden="true">${label}</span><span class="phone-button-copy">${icon(phoneIcon)}<span class="phone-button-number">${escape(b.phone)}</span> <span class="phone-button-name">ช่างหมู</span></span>`;
 const phoneInlineContent = label => `<span class="phone-inline-label"><span class="phone-inline-measure" aria-hidden="true">${label}</span><span class="phone-inline-copy"><span class="phone-button-number">${label}</span> <span class="phone-button-name">ช่างหมู</span></span></span>`;
 const call = (cls='button primary',label='',phoneIcon='phone') => phone ? `<a class="${cls} phone-contact-button" href="tel:${phone}" aria-label="โทร ${escape(b.phone)} ช่างหมู">${phoneButtonContent(label || escape(b.phone),phoneIcon)}</a>` : `<a class="${cls}" href="/contact.html">สอบถามช่องทางโทร</a>`;
 const lineButton = (label='คุยกับช่างหมู',cls='button line') => line ? `<a class="${cls}" href="${escape(line)}" target="_blank" rel="noopener noreferrer"><span class="line-symbol" aria-hidden="true">LINE</span>${label}</a>` : '<a class="button line" href="/contact.html">สอบถามช่องทาง LINE</a>';
