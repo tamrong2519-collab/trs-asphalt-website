@@ -151,7 +151,7 @@ for(const width of [320,375,390,430]){
   await page.setViewportSize({width,height:850});await page.goto(path('contact.html'));await page.evaluate(()=>document.fonts.ready);
   await expectPrimaryContactAccess(page);
   const buttons=page.locator('.contact-panel .actions .button');await expect(buttons).toHaveCount(2);
-  await expect(buttons.nth(0)).toHaveText('โทร 062-248-4089');
+  await expect(buttons.nth(0)).toHaveAccessibleName('โทร 062-248-4089 ช่างหมู');
   await expect(buttons.nth(1)).toContainText('คุยกับช่างหมู');
   const layout=await buttons.evaluateAll(items=>items.map(b=>{const r=b.getBoundingClientRect(),s=getComputedStyle(b);return {height:r.height,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),radius:parseFloat(s.borderRadius),wrap:s.whiteSpace,overflow:b.scrollWidth>b.clientWidth,bg:s.backgroundColor};}));
   for(const button of layout){expect(button.height).toBe(52);expect(button.font).toBe(18);expect(button.radius).toBe(14);expect(button.wrap).toBe('nowrap');expect(button.overflow).toBe(false);expect(button.left).toBeGreaterThanOrEqual(16);expect(button.right).toBeLessThanOrEqual(width-16);}
@@ -198,7 +198,7 @@ for(const width of [320,375,390,430]){
     return controls.length>0&&controls.every(({element,x,y})=>element.contains(document.elementFromPoint(x,y)));
    })).toBe(true);
    await expect(buttons.nth(0)).toBeVisible();await expect(buttons.nth(1)).toBeVisible();
-   await expect(buttons.nth(0)).toHaveAccessibleName('โทร 062-248-4089');await expect(buttons.nth(1)).toHaveAccessibleName('LINE @138wlldt');
+   await expect(buttons.nth(0)).toHaveAccessibleName('โทร 062-248-4089 ช่างหมู');await expect(buttons.nth(1)).toHaveAccessibleName('คุยกับช่างหมูทาง LINE @138wlldt');
    await page.locator('main .button:visible').last().evaluate(element=>element.scrollIntoView({block:'center',behavior:'instant'}));
    await expect.poll(()=>page.locator('main .button:visible').last().evaluate(b=>{const r=b.getBoundingClientRect();return b.contains(document.elementFromPoint(r.left+r.width/2,r.top+r.height/2));})).toBe(true);
   }
@@ -362,8 +362,9 @@ test('blue and gold header keeps three bands and compact contacts readable on ev
    await expect(page.locator('header .brand img')).toHaveAttribute('src',path('images/logo.webp'));
    const contacts=page.locator('.header-contact a');await expect(contacts).toHaveCount(2);
    await expect(contacts.nth(0)).toHaveAttribute('href','tel:0622484089');
-   await expect(contacts.nth(0)).toHaveText('062-248-4089');
-   await expect(contacts.nth(0)).toHaveAccessibleName('โทร 062-248-4089');
+   await expect(contacts.nth(0).locator('.phone-button-number')).toHaveText('062-248-4089');
+   await expect(contacts.nth(0).locator('.phone-button-name')).toHaveText('ช่างหมู');
+   await expect(contacts.nth(0)).toHaveAccessibleName('โทร 062-248-4089 ช่างหมู');
    await expect(contacts.nth(1)).toHaveAttribute('href','https://line.me/ti/p/%40138wlldt');
    await expect(contacts.nth(1)).toContainText('@138wlldt');
    for(const contact of await contacts.all()) await expect(contact).toBeVisible();
@@ -439,7 +440,7 @@ test('homepage hero matches requested wording, four benefits and blue phone butt
  await expect(page.locator('.hero-quote-note')).toHaveText('ฟรี! เข้าดูหน้างาน ประเมินเบื้องต้น');
  await expect(page.locator('.hero-quote .urgent-work-note')).toHaveText('งานด่วนโทรได้เลย เครื่องจักรครบ เริ่มงานไว');
  await expect(page.locator('.hero-quote .hero-line')).toHaveAttribute('href','https://line.me/ti/p/%40138wlldt');
- const button=page.locator('.hero-quote .hero-call');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveText('โทร 062-248-4089');
+ const button=page.locator('.hero-quote .hero-call');await expect(button).toHaveAttribute('href','tel:0622484089');await expect(button).toHaveAccessibleName('โทร 062-248-4089 ช่างหมู');
  expect(await button.evaluate(el=>getComputedStyle(el).backgroundColor)).toBe('rgb(0, 119, 182)');
  for(const width of [320,375,390,430]){
   await page.setViewportSize({width,height:1000});await page.evaluate(()=>document.fonts.ready);

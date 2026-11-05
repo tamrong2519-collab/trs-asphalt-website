@@ -1,0 +1,131 @@
+/* Preserve the existing phone-button frames while adding the contact name. */
+html body:is([data-page], .design-02) .phone-contact-button {
+  position: relative;
+  --phone-copy-size: 16px;
+  --phone-name-size: 13px;
+  --phone-icon-size: 18px;
+  --phone-copy-gap: 6px;
+  --phone-copy-padding: 8px;
+}
+
+/* These original children continue to determine the button's size. */
+html body:is([data-page], .design-02) .phone-contact-button > svg,
+html body:is([data-page], .design-02) .phone-contact-button > .phone-button-measure {
+  visibility: hidden;
+}
+
+html body:is([data-page], .design-02) .phone-contact-button > .phone-button-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--phone-copy-gap);
+  padding-inline: var(--phone-copy-padding);
+  color: inherit;
+  font-family: 'Noto Sans Thai', sans-serif;
+  font-size: var(--phone-copy-size);
+  font-weight: inherit;
+  line-height: 1.35;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+html body:is([data-page], .design-02) .phone-contact-button > .phone-button-copy > svg {
+  width: var(--phone-icon-size) !important;
+  height: var(--phone-icon-size) !important;
+  flex: 0 0 var(--phone-icon-size) !important;
+}
+
+html body:is([data-page], .design-02) .phone-button-copy > .phone-button-name {
+  font-size: var(--phone-name-size);
+  font-weight: 500;
+}
+
+html body:is([data-page], .design-02) .phone-contact-button.header-call {
+  --phone-copy-size: 12px;
+  --phone-name-size: 10.5px;
+  --phone-icon-size: 14px;
+  --phone-copy-gap: 4px;
+  --phone-copy-padding: 4px;
+}
+
+html body:is([data-page], .design-02) .site-footer .phone-contact-button {
+  --phone-copy-size: 13px;
+  --phone-name-size: 11.5px;
+  --phone-icon-size: 16px;
+  --phone-copy-gap: 5px;
+  --phone-copy-padding: 4px;
+}
+
+html body[data-page] .phone-contact-button:is(.hero-call, .contact-call) {
+  --phone-copy-size: 18px;
+  --phone-name-size: 13px;
+  --phone-icon-size: 20px;
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  html body[data-page] .phone-contact-button.contact-call {
+    --phone-copy-size: 16px;
+    --phone-name-size: 12px;
+    --phone-icon-size: 18px;
+    --phone-copy-gap: 5px;
+    --phone-copy-padding: 6px;
+  }
+}
+
+@media (max-width: 760px) {
+  html body:is([data-page], .design-02) .phone-contact-button:not(.header-call) {
+    --phone-copy-size: 18px;
+    --phone-name-size: 13px;
+    --phone-icon-size: 20px;
+    --phone-copy-gap: 7px;
+    --phone-copy-padding: 6px;
+  }
+}
+
+/* Text-only phone links keep their original line box and surrounding frame. */
+html body[data-page] .phone-inline-label {
+  position: relative;
+  white-space: nowrap;
+}
+html body[data-page] .phone-inline-measure {
+  visibility: hidden;
+}
+html body[data-page] .phone-inline-copy {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  width: max-content;
+  color: inherit;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+html body[data-page] .phone-inline-copy > .phone-button-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+html body[data-page="contact"] .company-location-phone .phone-button-name {
+  font-size: 10.5px;
+}
+html body[data-page] #main .cta-phone a :is(.phone-inline-label,.phone-inline-measure) {
+  font: inherit;
+}
+html body[data-page] #main .cta-phone .phone-inline-copy {
+  font-size: 20px;
+  line-height: 1.35;
+}
+html body[data-page] #main .cta-phone .phone-inline-copy > .phone-button-number {
+  font: inherit;
+}
+html body[data-page] #main .cta-phone .phone-inline-copy > .phone-button-name {
+  font-size: 11.5px;
+}
+@media (min-width: 1101px), (max-width: 760px) {
+  html body[data-page] #main .cta-phone .phone-inline-copy { font-size: 24px; }
+  html body[data-page] #main .cta-phone .phone-inline-copy > .phone-button-name { font-size: 13px; }
+}

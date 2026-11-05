@@ -40,7 +40,7 @@ for (const width of [320, 375, 390, 430]) {
     for (const photo of layout.photoCards) { expect(photo.left).toBeGreaterThanOrEqual(-1); expect(photo.right).toBeLessThanOrEqual(width + 1); }
     await expect(page.locator('#main-nav a')).toHaveText(['หน้าแรก', 'บริการของเรา', 'ผลงานของเรา', 'ติดต่อเรา']);
     await expect(page.locator('.header-call')).toHaveAttribute('href', 'tel:0622484089');
-    await expect(page.locator('.header-call')).toHaveAccessibleName('โทร 062-248-4089');
+    await expect(page.locator('.header-call')).toHaveAccessibleName('โทร 062-248-4089 ช่างหมู');
     await expect(page.locator('.header-line')).toHaveAttribute('href', 'https://line.me/ti/p/%40138wlldt');
     await expect(page.locator('.header-line')).toHaveAccessibleName('LINE @138wlldt');
     const viewportMeta = await page.locator('meta[name="viewport"]').getAttribute('content');
@@ -69,7 +69,7 @@ for (const width of [320, 375, 390, 430]) {
     })).toBe(true);
     await expect(page.locator('.float-call')).toBeVisible();
     await expect(page.locator('.float-line')).toBeVisible();
-    await expect(page.locator('.float-call')).toHaveAccessibleName('โทร 062-248-4089');
+    await expect(page.locator('.float-call')).toHaveAccessibleName('โทร 062-248-4089 ช่างหมู');
     await expect(page.locator('.float-line')).toHaveAccessibleName('คุยกับช่างหมูทาง LINE @138wlldt');
    }
    expect(errors).toEqual([]);
