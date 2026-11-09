@@ -1,0 +1,307 @@
+/* Preserve the existing phone-button frames while adding the contact name. */
+html body:is([data-page], .design-02) .phone-contact-button {
+  position: relative;
+  --phone-copy-size: 18px;
+  --phone-name-size: 13px;
+  --phone-icon-size: 20px;
+  --phone-copy-gap: 6px;
+  --phone-copy-padding: 8px;
+}
+
+/* These original children continue to determine the button's size. */
+html body:is([data-page], .design-02) .phone-contact-button > svg,
+html body:is([data-page], .design-02) .phone-contact-button > .phone-button-measure {
+  visibility: hidden;
+}
+
+html body:is([data-page], .design-02) .phone-contact-button > .phone-button-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--phone-copy-gap);
+  padding-inline: var(--phone-copy-padding);
+  color: inherit;
+  font-family: 'Noto Sans Thai', sans-serif;
+  font-size: var(--phone-copy-size);
+  font-weight: inherit;
+  line-height: 1.35;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+html body:is([data-page], .design-02) .phone-contact-button > .phone-button-copy > svg {
+  display: block !important;
+  visibility: visible;
+  width: var(--phone-icon-size) !important;
+  height: var(--phone-icon-size) !important;
+  flex: 0 0 var(--phone-icon-size) !important;
+}
+
+html body:is([data-page], .design-02) .phone-button-copy > .phone-button-name {
+  font-size: var(--phone-name-size);
+  font-weight: 500;
+  position: relative;
+  margin-inline-start: 3px;
+}
+
+html body:is([data-page], .design-02) .phone-button-copy > .phone-button-name::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 20%;
+  width: 1px;
+  height: 60%;
+  background: currentColor;
+  opacity: .35;
+}
+
+html body:is([data-page], .design-02) :is(.phone-button-copy,.phone-inline-copy) > .phone-button-number {
+  font-weight: 700;
+}
+
+html body:is([data-page], .design-02) .phone-contact-button.header-call {
+  --phone-copy-size: 15px;
+  --phone-name-size: 13px;
+  --phone-icon-size: 16px;
+  --phone-copy-gap: 4px;
+  --phone-copy-padding: 4px;
+}
+
+html body:is([data-page], .design-02) .site-footer .phone-contact-button {
+  --phone-copy-size: 15.5px;
+  --phone-name-size: 13.5px;
+  --phone-icon-size: 16px;
+  --phone-copy-gap: 3px;
+  --phone-copy-padding: 4px;
+}
+
+html body[data-page] .phone-contact-button:is(.hero-call, .contact-call) {
+  --phone-copy-size: 18px;
+  --phone-name-size: 13px;
+  --phone-icon-size: 20px;
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  html body[data-page] .phone-contact-button.contact-call {
+    --phone-copy-size: 16px;
+    --phone-name-size: 12px;
+    --phone-icon-size: 18px;
+    --phone-copy-gap: 5px;
+    --phone-copy-padding: 6px;
+  }
+}
+
+@media (max-width: 760px) {
+  html body:is([data-page], .design-02) .phone-contact-button:not(.header-call) {
+    --phone-copy-size: 18px;
+    --phone-name-size: 14px;
+    --phone-icon-size: 20px;
+    --phone-copy-gap: 7px;
+    --phone-copy-padding: 6px;
+  }
+}
+
+@media (min-width: 361px) and (max-width: 760px) {
+  html body:is([data-page], .design-02) .phone-contact-button.header-call {
+    --phone-copy-size: 14px;
+    --phone-name-size: 13px;
+    --phone-icon-size: 14px;
+    --phone-copy-gap: 3px;
+    --phone-copy-padding: 4px;
+  }
+}
+@media (max-width: 360px) {
+  html body:is([data-page], .design-02) .phone-contact-button.header-call {
+    --phone-copy-size: 13px;
+    --phone-name-size: 12px;
+    --phone-icon-size: 12px;
+    --phone-copy-gap: 2px;
+    --phone-copy-padding: 3px;
+  }
+}
+
+html body:is([data-page], .design-02) .header-call .phone-button-name::before {
+  left: -3px;
+}
+@media (min-width: 761px) {
+  html body:is([data-page], .design-02) .site-footer .phone-contact-button .phone-button-name::before {
+    left: -3px;
+  }
+}
+
+/* Text-only phone links keep their original line box and surrounding frame. */
+html body[data-page] .phone-inline-label {
+  position: relative;
+  white-space: nowrap;
+}
+html body[data-page] .phone-inline-measure {
+  visibility: hidden;
+}
+html body[data-page] .phone-inline-copy {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  width: max-content;
+  color: inherit;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+html body[data-page] .phone-inline-copy > .phone-button-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+html body[data-page="contact"] .company-location-phone .phone-button-name {
+  font-size: 10.5px;
+}
+html body[data-page] #main .cta-phone a :is(.phone-inline-label,.phone-inline-measure) {
+  font: inherit;
+}
+html body[data-page] #main .cta-phone .phone-inline-copy {
+  font-size: 20px;
+  line-height: 1.35;
+}
+html body[data-page] #main .cta-phone .phone-inline-copy > .phone-button-number {
+  font: inherit;
+  font-weight: 700;
+}
+html body[data-page] #main .cta-phone .phone-inline-copy > .phone-button-name {
+  font-size: 11.5px;
+}
+@media (min-width: 1101px), (max-width: 760px) {
+  html body[data-page] #main .cta-phone .phone-inline-copy { font-size: 24px; }
+  html body[data-page] #main .cta-phone .phone-inline-copy > .phone-button-name { font-size: 13px; }
+}
+
+/* Selected design 05: raised blue/emerald frames outside the classic header.
+   Original hidden children continue to reserve every frame's dimensions. */
+html body:is([data-page], .design-02) .phone-contact-button:not(.header-call),
+html body:is([data-page], .design-02) .line-contact-button:not(.header-line) {
+  position: relative;
+  border-radius: 16px !important;
+  color: #fff !important;
+  --contact-badge-size: 26px;
+  --contact-badge-glyph: 15px;
+  transition:box-shadow .16s ease, filter .16s ease;
+}
+html body:is([data-page], .design-02) .phone-contact-button:not(.header-call) {
+  background: #006ca8 !important;
+  background-image:linear-gradient(180deg, #0879b0 0%, #006ca8 50%, #005386 100%) !important;
+  border-color: #4b9bc3 !important;
+  --contact-depth:#00456d;
+  --contact-edge:#79c4e6a6;
+  box-shadow:inset 0 0 0 1px var(--contact-edge), inset 0 2px 1px #ffffff52, inset 0 -2px 2px #003b6133, 0 3px 0 var(--contact-depth), 0 6px 10px #003f6329 !important;
+  --phone-copy-size: 17px;
+  --phone-name-size: 13px;
+  --phone-copy-gap: 6px;
+  --phone-copy-padding: 8px;
+}
+html body:is([data-page], .design-02) .line-contact-button:not(.header-line) {
+  background: #007a3d !important;
+  background-image:linear-gradient(180deg, #118446 0%, #007a3d 50%, #005e2e 100%) !important;
+  border-color: #409863 !important;
+  --contact-depth:#004e29;
+  --contact-edge:#81c89ba6;
+  box-shadow:inset 0 0 0 1px var(--contact-edge), inset 0 2px 1px #ffffff52, inset 0 -2px 2px #003e2233, 0 3px 0 var(--contact-depth), 0 6px 10px #00432629 !important;
+  --line-copy-size: 17px;
+  --line-copy-gap: 9px;
+}
+html body:is([data-page], .design-02) .line-contact-button > :is(.line-measure-icon,.line-measure-text) {
+  visibility: hidden;
+}
+html body:is([data-page], .design-02) .line-button-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--line-copy-gap);
+  padding-inline: 6px;
+  font-family: 'Noto Sans Thai',sans-serif;
+  font-size: var(--line-copy-size);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+}
+html body:is([data-page], .design-02) .contact-badge {
+  display: inline-grid;
+  place-items: center;
+  width: var(--contact-badge-size);
+  height: var(--contact-badge-size);
+  flex: 0 0 var(--contact-badge-size);
+  box-sizing: border-box;
+  border: 1px solid #e1c58e;
+  border-radius: 50%;
+  box-shadow:inset 0 1px 1px #ffffff8c, inset 0 -1px 1px #002d4a33, 0 2px 2px #001e3538;
+}
+html body:is([data-page], .design-02) .phone-badge { color:#fff; background:linear-gradient(145deg,#ffffff38,#ffffff05 65%,#003c6033); }
+html body:is([data-page], .design-02) .line-badge { color:#007a3d; background:linear-gradient(145deg,#fff 0%,#f7fff9 50%,#dcece2 100%); }
+html body:is([data-page], .design-02) .contact-badge > svg { filter:drop-shadow(0 1px 0 #00302126); }
+html body:is([data-page], .design-02) .contact-badge > svg {
+  display: block !important;
+  visibility: visible;
+  width: var(--contact-badge-glyph) !important;
+  height: var(--contact-badge-glyph) !important;
+  flex: none !important;
+  color: inherit !important;
+}
+html body:is([data-page], .design-02) .phone-contact-button:not(.header-call) .phone-button-copy > .phone-button-name {
+  margin-inline-start: 0;
+}
+html body:is([data-page], .design-02) .phone-contact-button:not(.header-call) .phone-button-copy > .phone-button-name::before { content:none; }
+html body:is([data-page], .design-02) .site-footer .phone-contact-button {
+  --phone-copy-size:14.5px; --phone-name-size:12.5px;
+  --phone-copy-gap:4px; --phone-copy-padding:5px;
+  --contact-badge-size:24px; --contact-badge-glyph:14px;
+}
+html body:is([data-page], .design-02) .site-footer .line-contact-button {
+  --contact-badge-size:24px; --contact-badge-glyph:17px;
+}
+html body[data-page] .phone-contact-button:is(.hero-call,.contact-call) {
+  --phone-copy-size:18px; --phone-name-size:14px;
+  --phone-copy-gap:8px; --phone-copy-padding:12px;
+  --contact-badge-size:30px; --contact-badge-glyph:17px;
+}
+@media(min-width:761px) and (max-width:1100px) {
+  html body[data-page] .phone-contact-button.contact-call {
+    --phone-copy-size:16px; --phone-name-size:12.5px;
+    --phone-copy-gap:6px; --phone-copy-padding:6px;
+    --contact-badge-size:24px; --contact-badge-glyph:14px;
+  }
+}
+@media(max-width:760px) {
+  html body:is([data-page], .design-02) .phone-contact-button:not(.header-call) {
+    --phone-copy-size:18px; --phone-name-size:14px;
+    --phone-copy-gap:8px; --phone-copy-padding:12px;
+    --contact-badge-size:30px; --contact-badge-glyph:17px;
+  }
+  html body:is([data-page], .design-02) .line-contact-button:not(.header-line) {
+    --line-copy-size:18px; --line-copy-gap:12px;
+    --contact-badge-size:30px; --contact-badge-glyph:21px;
+  }
+}
+html body:is([data-page], .design-02) .float-call .float-face {
+  background:radial-gradient(ellipse at 32% 16%,#2ca0cd 0%,#0075af 48%,#004d7e 100%) !important; color:#fff !important; border-color:#e1c58e !important;
+}
+html body:is([data-page], .design-02) .float-line .float-face {
+  background:radial-gradient(ellipse at 32% 16%,#3eae77 0%,#008448 48%,#00552d 100%) !important; color:#fff !important; border-color:#e1c58e !important;
+}
+html body:is([data-page], .design-02) .float-line text { fill:#007a3d; }
+@media(hover:hover) and (pointer:fine) {
+  html body:is([data-page], .design-02) :is(.phone-contact-button:not(.header-call),.line-contact-button:not(.header-line)):hover { filter:brightness(1.05); }
+}
+html body:is([data-page], .design-02) :is(.phone-contact-button:not(.header-call),.line-contact-button:not(.header-line)):active {
+  box-shadow:inset 0 0 0 1px var(--contact-edge), inset 0 2px 3px #001e352e, 0 1px 0 var(--contact-depth), 0 3px 5px #002b4226 !important;
+  filter:brightness(.98);
+}
+html body:is([data-page], .design-02) :is(.phone-contact-button:not(.header-call),.line-contact-button:not(.header-line)):active > :is(.phone-button-copy,.line-button-copy) { transform:translateY(1px); }
+@media(prefers-reduced-motion:reduce) {
+  html body:is([data-page], .design-02) :is(.phone-contact-button,.line-contact-button) { transition:none; }
+}
