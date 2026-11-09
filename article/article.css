@@ -400,6 +400,9 @@ body.article-page .footer-shell { background:#edf4fc; }
 .article-page .article-body:focus { outline:none; }
 .article-page .article-body p { margin:0 0 21px; }
 .article-page .article-body .article-intro { margin:0 0 28px; color:#203e64; font-size:23px; font-weight:400; line-height:1.85; }
+.article-page .article-context-link { color:#164f9f; font-weight:500; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+.article-page .article-context-link:hover { color:#0c2c60; }
+.article-page .article-context-link:focus-visible { outline:2px solid currentColor; outline-offset:3px; border-radius:2px; }
 .article-page .article-takeaway { padding:22px 25px; border-left:3px solid #3d83d0; background:#f0f6ff; }
 .article-page .article-takeaway p { margin:7px 0 0; color:#536c8b; font-size:18px; line-height:1.9; }
 .article-page .article-takeaway strong { color:#214e86; font-size:22px; font-weight:600; }
