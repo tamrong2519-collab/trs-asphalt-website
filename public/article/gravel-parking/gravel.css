@@ -1,0 +1,27 @@
+/* Gravel article presentation, using the established TRS article layout. */
+.gravel-article-page .article-cover-frame { aspect-ratio:4/3; }
+.gravel-article-page .article-cover img { object-position:center; }
+.gravel-article-page .article-body { min-width:0; }
+.gravel-article-page .article-body h2 { overflow-wrap:anywhere; }
+.gravel-article-page .gravel-at-a-glance { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:26px 0 0; border:1px solid #d6e4f5; border-radius:12px; background:#f7faff; overflow:hidden; }
+.gravel-article-page .gravel-at-a-glance>div { display:flex; flex-direction:column; gap:6px; padding:20px 16px; border-right:1px solid #d6e4f5; }
+.gravel-article-page .gravel-at-a-glance>div:last-child { border:0; }
+.gravel-article-page .gravel-at-a-glance b { color:#164f9f; font-size:21px; font-weight:600; }
+.gravel-article-page .gravel-at-a-glance span { color:#607188; font-size:16px; line-height:1.7; }
+.gravel-article-page .gravel-work-photo { margin:28px 0 8px; }
+.gravel-article-page .gravel-photo-frame { position:relative; overflow:hidden; border-radius:12px; background:#edf3f9; }
+.gravel-article-page .gravel-photo-frame img { display:block; width:100%; height:auto; }
+.gravel-article-page .gravel-photo-frame>span { position:absolute; bottom:14px; left:14px; padding:5px 12px; border-radius:5px; background:#fff; color:#164f9f; font-size:14px; font-weight:500; }
+.gravel-article-page .gravel-work-photo figcaption { margin-top:10px; color:#607188; font-size:16px; line-height:1.85; }
+.gravel-article-page .gravel-related { display:flex; flex-direction:column; gap:14px; margin:30px 0; padding:24px; border:1px solid #d6e4f5; border-radius:12px; }
+.gravel-article-page .gravel-related a { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:8px 0; color:#164f9f; font-size:19px; text-decoration:underline; text-underline-offset:4px; }
+.gravel-article-page .gravel-related a span { flex-shrink:0; }
+@media(max-width:760px) {
+ .gravel-article-page .gravel-at-a-glance { grid-template-columns:minmax(0,1fr); }
+ .gravel-article-page .gravel-at-a-glance>div { flex-direction:row; align-items:baseline; gap:14px; padding:14px 16px; border-right:0; border-bottom:1px solid #d6e4f5; }
+ .gravel-article-page .gravel-at-a-glance b { flex:0 0 86px; font-size:20px; }
+ .gravel-article-page .gravel-work-photo { margin-top:24px; }
+ .gravel-article-page .gravel-work-photo figcaption { font-size:15px; }
+ .gravel-article-page .gravel-related { padding:20px; }
+ .gravel-article-page .gravel-related a { font-size:18px; }
+}
