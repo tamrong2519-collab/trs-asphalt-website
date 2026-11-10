@@ -521,3 +521,24 @@ body.article-page .article-main-site{font-family:inherit;color:#164f9f;text-deco
 /* Identify this standalone site as a single-article publication. */
 body.article-page .site-header .brand small{font-size:13px;letter-spacing:0;line-height:1.45;color:#d5e9ff}
 body.article-page .site-footer .footer-brand small{font-family:inherit;letter-spacing:0;font-size:13px;color:#527095}
+
+/* Thickness guidance stays readable in the article column and on mobile. */
+.article-page .article-body h3 { margin:27px 0 12px; color:#173765; font-size:24px; font-weight:600; line-height:1.6; }
+.article-page .article-thickness-table { width:100%; margin:24px 0; border-collapse:collapse; table-layout:fixed; font-size:18px; line-height:1.85; }
+.article-page .article-thickness-table caption { margin-bottom:13px; color:#527095; font-size:17px; text-align:left; }
+.article-page .article-thickness-table th,
+.article-page .article-thickness-table td { border:1px solid #cddff4; padding:16px; vertical-align:top; overflow-wrap:anywhere; }
+.article-page .article-thickness-table thead th { background:#164f9f; color:#fff; text-align:left; font-weight:600; }
+.article-page .article-thickness-table th:first-child { width:24%; }
+.article-page .article-thickness-table tbody th { background:#edf5ff; color:#164f9f; text-align:center; font-size:24px; font-weight:600; }
+.article-page .article-thickness-table tbody tr:nth-child(even) td { background:#f8fbff; }
+.article-page .article-body .article-updated,
+.article-page .article-body .article-material-source { color:#607188; font-size:16px; line-height:1.9; }
+@media(max-width:760px) {
+  .article-page .article-body h3 { font-size:23px; }
+  .article-page .article-thickness-table { font-size:18px; }
+  .article-page .article-thickness-table th,
+  .article-page .article-thickness-table td { padding:12px 10px; }
+  .article-page .article-thickness-table th:first-child { width:28%; }
+  .article-page .article-thickness-table tbody th { font-size:22px; }
+}
