@@ -228,6 +228,17 @@ body[data-page="services"] #main .paired-actions {
   gap:12px;
   margin-top:22px;
 }
+body[data-page="services"] #main .paired-service .service-article-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.25rem;
+  color: inherit;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  overflow-wrap: anywhere;
+}
 body[data-page="services"] #main .paired-actions > .button {
   display:inline-flex;
   align-items:center;

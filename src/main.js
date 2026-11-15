@@ -184,6 +184,10 @@ const homeGallery = `<dialog id="home-gallery" aria-labelledby="home-gallery-tit
 </dialog>`;
 const home = `${banner('<span class="hero-title-primary"><span class="hero-title-word">รับเหมา</span><wbr><span class="hero-title-word">ลาดยางมะตอย</span></span><span class="hero-title-secondary">และงานหินคลุกครบวงจร</span>','<span class="hero-copy-line">ถนน ลานจอดรถ ไซต์งาน โครงการภาครัฐและเอกชน</span> <span class="hero-copy-line">โดยทีมงานมืออาชีพ เครื่องจักรพร้อม ได้มาตรฐาน</span> <span class="hero-copy-line">งานเสร็จตรงเวลา</span>',true)}<section class="trust-strip"><div class="container trust-grid">${[['helmet','สำรวจหน้างานฟรี','ประเมินพื้นที่ก่อนเริ่มงาน'],['work','เครื่องจักรพร้อม','วางแผนเครื่องจักรให้เหมาะกับงาน'],['handshake','ดูแลตั้งแต่ต้นจนจบ','ให้คำปรึกษาและวางแผนงาน']].map(([i,t,d])=>`<div>${icon(i)}<div><h3>${t}</h3><p>${d}</p></div></div>`).join('')}</div></section><section class="container section home-services-section">${sectionHead('บริการของเรา','งานถนนและพื้นที่ใช้งาน สำหรับบ้าน ธุรกิจ และโครงการ',`<a class="button outline home-services-more" href="/services.html">ดูบริการทั้งหมด ${arrow}</a>`)}<div class="service-grid home-services">${servicesPageServices.map(card).join('')}</div></section><section class="blue-section"><div class="container section">${sectionHead('ผลงานที่ผ่านมา','ภาพหน้างานหินคลุก หินเกล็ด ลูกระนาด และตีเส้น',`<a class="button outline" href="/projects.html">ดูผลงานทั้งหมด ${arrow}</a>`)}${samples()}</div></section>${homePortfolio}${homeGallery}`;
 const serviceCheckMark = '<span class="paired-check-mark" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" focusable="false"><path d="m2.5 8.2 3.5 3.5 7.5-7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+const serviceArticles = {
+ asphalt: { href: '/article/', text: 'วิธีเตรียมพื้นและเลือกความหนายางมะตอย' },
+ gravel: { href: '/article/gravel-parking/', text: 'ขั้นตอนทำลานจอดรถหินคลุกพร้อมบดอัด' }
+};
 const servicePage = `
 <section class="paired-hero">
  <img class="paired-hero-image" src="/images/services-hero.webp" ${responsivePhotoAttributes('/images/services-hero.webp', '100vw', base)} alt="ภาพหน้างานถนนลาดยางมะตอยรอบอาคารสีขาวและแนวต้นไม้" width="1280" height="960" fetchpriority="high">
@@ -192,14 +196,18 @@ const servicePage = `
 <section class="paired-content"><div class="container">
  <div class="paired-heading"><div><span class="paired-eyebrow">บริการงานพื้นและถนน</span><h2>งานถนนและพื้นลานครบวงจร</h2></div><p>เลือกงานให้เหมาะกับพื้นที่<br>พร้อมให้คำปรึกษาก่อนเริ่มงาน</p></div>
  <nav class="service-jump-nav" aria-label="เลือกบริการ"><p class="service-jump-label">เลือกบริการที่ต้องการ</p><div class="service-jump-links">${servicesPageServices.map(s=>`<a href="#${escape(s.id)}">${escape(s.title)}</a>`).join('')}</div></nav>
- <div class="paired-services">${servicesPageServices.map(s=>`
+ <div class="paired-services">${servicesPageServices.map(s=>{
+  const article = serviceArticles[s.id];
+  return `
   <article id="${escape(s.id)}" class="paired-service">
    ${serviceImage(s,'paired-photo')}
    <div class="paired-copy"><span class="paired-number">${escape(s.number)} / ${escape(s.subtitle)}</span><h2>${escape(s.title)}</h2><p>${escape(s.description)}</p>
     <ul class="paired-checks">${s.details.map(d=>`<li>${serviceCheckMark}<span>${escape(d)}</span></li>`).join('')}</ul>
     <div class="paired-actions">${s.id==='asphalt'?`<a class="asphalt-detail-link" href="/asphalt/">รายละเอียดงานลาดยางมะตอย ${arrow}</a><a class="asphalt-paving-detail-link" href="/asphalt-paving/">รายละเอียดงานปูยางแอสฟัลท์ ${arrow}</a>`:''}${s.id==='speed-bump'?`<a class="speed-bump-detail-link" href="/speed-bump/">รายละเอียดงานลูกระนาด ${arrow}</a>`:''}${s.id==='marking'?`<a class="traffic-marking-detail-link" href="/traffic-marking/">รายละเอียดงานตีเส้นจราจรและสัญลักษณ์ ${arrow}</a>`:''}${s.id==='gravel'?`<a class="gravel-parking-detail-link" href="/gravel-parking/">รายละเอียดงานลานจอดรถหินคลุก ${arrow}</a>`:''}${s.id==='stone'?`<a class="stone-chips-detail-link" href="/stone-chips/">รายละเอียดงานหินเกล็ด ${arrow}</a>`:''}${s.id==='gravel-road'?`<a class="gravel-road-detail-link" href="/gravel-road/">รายละเอียดงานถนนหินคลุก บดอัด ${arrow}</a>`:''}<a class="text-link" href="${projectLink(s)}" aria-label="ดูผลงาน: ${escape(s.title)}">ดูผลงาน ${arrow}</a></div>
+    ${article ? `<a class="service-article-link" href="${article.href}">${escape(article.text)}</a>` : ''}
    </div>
-  </article>`).join('')}
+  </article>`;
+ }).join('')}
  </div>
 </div></section>
 <section class="paired-process"><div class="container"><span class="paired-eyebrow">ขั้นตอนการให้บริการ</span><h2>ดูแลตั้งแต่สำรวจจนจบงาน</h2>
